@@ -39,7 +39,7 @@ Object orders should list the user information and what they ordered, picture if
   food : [ ],  // list of items they ordered
   total : ,  // total cost
   estimatedTime : , // time in min
-
+  orderTime: ,  // time order is placed in millitary
   requestedPickUpTime : , // time in military
 }
 
@@ -82,6 +82,7 @@ const elliotsBurgers = {
       customerImg : null,
       food : [ "Burger", "Burger", "Fries"],
       total : 19.50,
+      orderTime: 12,
       estimatedTime : 19,
       requestedPickUpTime : null,
     }
@@ -119,6 +120,7 @@ const benjisStuffYourFace = {
       customerImg : null,
       food : [ "Kangaroo Caraway Burger"],
       total : 12,
+      orderTime: 13,
       estimatedTime : 14,
       requestedPickUpTime : null,
     },
@@ -128,6 +130,7 @@ const benjisStuffYourFace = {
       customerImg : "https://pbs.twimg.com/profile_images/502176585038823424/PQREJrKH.jpeg",
       food : [ "Kangaroo Caraway Burger", "Kangaroo Caraway Burger", "Kangaroo Caraway Burger"],
       total : 36 ,
+      orderTime: 1310,
       estimatedTime : 20,
       requestedPickUpTime : null,
     }
@@ -175,6 +178,7 @@ const tomsKillerPizza = {
     customerImg : null,
     food : [ "garlic breadsticks" ],
     total : 7,
+    orderTime: 1215,
     estimatedTime : 15 ,
     requestedPickUpTime : ,
   },
@@ -184,6 +188,7 @@ const tomsKillerPizza = {
     customerImg : null,
     food : [ "cheese", "garlic breadsticks"],
     total : 21.50,
+    orderTime: 1216,
     estimatedTime : 25,
     requestedPickUpTime : ,
   },
@@ -193,6 +198,7 @@ const tomsKillerPizza = {
     customerImg : ,
     food : [ "cheese", "volcano", "volcano", "garlic breadsticks"],
     total : 57.50 ,
+    orderTime: 1219,
     estimatedTime : ,
     requestedPickUpTime : 14 ,
   },
@@ -252,6 +258,7 @@ export default = {
   customerImg : ,
   food : [ ],
   total : ,
+  orderTime: ,
   estimatedTime : ,
   requestedPickUpTime : ,
 }
