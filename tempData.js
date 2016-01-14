@@ -16,13 +16,13 @@ All vendor data will have the same basic format (for now, change as needed)
    ],
   recomendedItem : , //should only be able to refrence an item in their list
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOen: false, open: null, close: null},
-    wednesday : {isOpen: false, open: null, close: null},  // what days they are normaly scheduled to be open
-    thursday : {isOpen: false, open: null, close: null},   // open and close in military time
-    friday : {isOpen: false, open: null, close: null},
-    saturday : {isOpen: false, open: null, close: null},
-    sunday : {isOpen: false, open: null, close: null}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOen: false, opens: null, close: null},
+    wednesday : {isOpen: false, opens: null, close: null},  // what days they are normaly scheduled to be open
+    thursday : {isOpen: false, opens: null, close: null},   // open and close in military time
+    friday : {isOpen: false, opens: null, close: null},
+    saturday : {isOpen: false, opens: null, close: null},
+    sunday : {isOpen: false, opens: null, close: null}
   },
   isOpen :  ,// should only be set to true when the vendor logs in (boolean val)
   foodQueue : [] , // list of orders as they come in
@@ -55,7 +55,7 @@ const elliotsBurgers = {
     { food : "Fries",
       price : 4.50,
       description : "thin cut, homestyle fries",
-      prepTime : 7  // in mins
+      prepTime : 7
     },
     {
       food : "Burger",
@@ -64,17 +64,17 @@ const elliotsBurgers = {
       prepTime : 10
     }
    ],
-  recomendedItem : menu[1], //should only be able to refrence an item in their list
+  recomendedItem : menu[1],
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOpen: true, open: 11, close: 15},
-    wednesday : {isOpen: true, open: 11, close: 15},
-    thursday : {isOpen: true, open: 11, close: 15},
-    friday : {isOpen: true, open: 11, close: 15},
-    saturday : {isOpen: false, open: null, close: null},
-    sunday : {isOpen: false, open: null, close: null}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOpen: true, opens: 11, close: 15},
+    wednesday : {isOpen: true, opens: 11, close: 15},
+    thursday : {isOpen: true, opens: 11, close: 15},
+    friday : {isOpen: true, opens: 11, close: 15},
+    saturday : {isOpen: false, opens: null, close: null},
+    sunday : {isOpen: false, opens: null, close: null}
   },
-  isOpen : false, //should only be set to true when the vendor logs in
+  isOpen : false,
   foodQueue : [
     {
       customer : "Clark Williams",
@@ -104,13 +104,13 @@ const benjisStuffYourFace = {
    ],
   recomendedItem : menu[0],
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOpen: true, open: 10, close: 16},
-    wednesday : {isOpen: true, open: 10, close: 16},
-    thursday : {isOpen: true, open: 10, close: 16},
-    friday : {isOpen: true, open: 10, close: 16},
-    saturday : {isOpen: false, open: null, close: null},
-    sunday : {isOpen: false, open: null, close: null}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOpen: true, opens: 10, close: 16},
+    wednesday : {isOpen: true, opens: 10, close: 16},
+    thursday : {isOpen: true, opens: 10, close: 16},
+    friday : {isOpen: true, opens: 10, close: 16},
+    saturday : {isOpen: false, opens: null, close: null},
+    sunday : {isOpen: false, opens: null, close: null}
   },
   isOpen :  true,
   foodQueue : [
@@ -162,13 +162,13 @@ const tomsKillerPizza = {
    ],
   recomendedItem : menu[1],
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOpen: true, open: 12, close: 21},
-    wednesday : {isOpen: true, open: 12, close: 21},
-    thursday : {isOpen: true, open: 12, close: 21},
-    friday : {isOpen: true, open: 12, close: 21},
-    saturday : {isOpen: true, open: 12, close: 21},
-    sunday : {isOpen: false, open: null, close: null}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOpen: true, opens: 12, close: 21},
+    wednesday : {isOpen: true, opens: 12, close: 21},
+    thursday : {isOpen: true, opens: 12, close: 21},
+    friday : {isOpen: true, opens: 12, close: 21},
+    saturday : {isOpen: true, opens: 12, close: 21},
+    sunday : {isOpen: false, opens: null, close: null}
   },
   isOpen : true ,
   foodQueue : [
@@ -193,7 +193,7 @@ const tomsKillerPizza = {
     requestedPickUpTime : ,
   },
   {
-    customer : "Loc Nyuen ,
+    customer : "Loc Nguyen ,
     customerID : 0296215830,
     customerImg : ,
     food : [ "cheese", "volcano", "volcano", "garlic breadsticks"],
@@ -222,7 +222,7 @@ const saladTime = {
         description : "Part green salad, part antipasto salad, this recipe combines lettuce, celery, onion, peperoncini, olives and cherry tomatoes",
         prepTime : 8,
       },
-      { food : "Sundried Tomato Salad,
+      { food : "Sundried Tomato Salad",
         price : 9,
         description : "Sundried tomatos, roman lettus, grilled chicken with feta, pinenuts, crutons and an italian vinaigrette" ,
         prepTime : 9,
@@ -230,16 +230,38 @@ const saladTime = {
    ],
   recomendedItem : menu[2] ,
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOpen: false, open: null, close: null},
-    wednesday : {isOpen: true, open: 11, close: 21},
-    thursday : {isOpen: true, open: 11, close: 21},
-    friday : {isOpen: true, open: 11, close: 21},
-    saturday : {isOpen: true, open: 12, close: 22},
-    sunday : {isOpen: true, open: 12, close: 20}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOpen: false, opens: null, close: null},
+    wednesday : {isOpen: true, opens: 11, close: 21},
+    thursday : {isOpen: true, opens: 11, close: 21},
+    friday : {isOpen: true, opens: 11, close: 21},
+    saturday : {isOpen: true, opens: 12, close: 22},
+    sunday : {isOpen: true, opens: 12, close: 20}
   },
   isOpen : true,
-  foodQueue : [] ,
+  foodQueue : [
+    {
+      customer : "David Whitman",
+      customerID : 3849561003,
+      customerImg : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/192/3c4/28d16a9.jpg",
+      food : [ "Sundried Tomato Salad" ],
+      total : 9,
+      orderTime: 1245,
+      estimatedTime : 9,
+      requestedPickUpTime : null,
+    },
+    {
+      customer : "Vincent Volpin" ,
+      customerID : 9362479917,
+      customerImg : "https://pbs.twimg.com/profile_images/784068970/jameswglass.jpg",
+      food : ["Italian Salad","Italian Salad", "Greek Salad"],
+      total : 32.50 ,
+      orderTime: 1345,
+      estimatedTime : null ,
+      requestedPickUpTime : 1430,
+    }
+
+  ] ,
   currentLocation : null
 }
 
@@ -274,13 +296,13 @@ export default = {
    ],
   recomendedItem : ,
   schedule : {
-    monday : {isOpen: false, open: null, close: null},
-    tuesday : {isOpen: false, open: null, close: null},
-    wednesday : {isOpen: false, open: null, close: null},
-    thursday : {isOpen: false, open: null, close: null},
-    friday : {isOpen: false, open: null, close: null},
-    saturday : {isOpen: false, open: null, close: null},
-    sunday : {isOpen: false, open: null, close: null}
+    monday : {isOpen: false, opens: null, close: null},
+    tuesday : {isOpen: false, opens: null, close: null},
+    wednesday : {isOpen: false, opens: null, close: null},
+    thursday : {isOpen: false, opens: null, close: null},
+    friday : {isOpen: false, opens: null, close: null},
+    saturday : {isOpen: false, opens: null, close: null},
+    sunday : {isOpen: false, opens: null, close: null}
   },
   isOpen :  ,
   foodQueue : [] ,
