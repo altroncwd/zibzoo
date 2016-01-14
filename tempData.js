@@ -16,13 +16,13 @@ All vendor data will have the same basic format (for now, change as needed)
    ],
   recomendedItem : , //should only be able to refrence an item in their list
   schedule : {
-    monday : {open: false, open: null, close: null},
-    tuesday : {open: false, open: null, close: null},
-    wednesday : {open: false, open: null, close: null},  // what days they are normaly scheduled to be open
-    thursday : {open: false, open: null, close: null},   // open and close in military time
-    friday : {open: false, open: null, close: null},
-    saturday : {open: false, open: null, close: null},
-    sunday : {open: false, open: null, close: null}
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOen: false, open: null, close: null},
+    wednesday : {isOpen: false, open: null, close: null},  // what days they are normaly scheduled to be open
+    thursday : {isOpen: false, open: null, close: null},   // open and close in military time
+    friday : {isOpen: false, open: null, close: null},
+    saturday : {isOpen: false, open: null, close: null},
+    sunday : {isOpen: false, open: null, close: null}
   },
   isOpen :  ,// should only be set to true when the vendor logs in (boolean val)
   foodQueue : [] , // list of orders as they come in
@@ -66,13 +66,13 @@ const elliotsBurgers = {
    ],
   recomendedItem : menu[1], //should only be able to refrence an item in their list
   schedule : {
-    monday : {open: false, open: null, close: null},
-    tuesday : {open: true, open: 11, close: 15},
-    wednesday : {open: true, open: 11, close: 15},
-    thursday : {open: true, open: 11, close: 15},
-    friday : {open: true, open: 11, close: 15},
-    saturday : {open: false, open: null, close: null},
-    sunday : {open: false, open: null, close: null}
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOpen: true, open: 11, close: 15},
+    wednesday : {isOpen: true, open: 11, close: 15},
+    thursday : {isOpen: true, open: 11, close: 15},
+    friday : {isOpen: true, open: 11, close: 15},
+    saturday : {isOpen: false, open: null, close: null},
+    sunday : {isOpen: false, open: null, close: null}
   },
   isOpen : false, //should only be set to true when the vendor logs in
   foodQueue : [
@@ -104,13 +104,13 @@ const benjisStuffYourFace = {
    ],
   recomendedItem : menu[0],
   schedule : {
-    monday : {open: false, open: null, close: null},
-    tuesday : {open: true, open: 10, close: 16},
-    wednesday : {open: true, open: 10, close: 16},
-    thursday : {open: true, open: 10, close: 16},
-    friday : {open: true, open: 10, close: 16},
-    saturday : {open: false, open: null, close: null},
-    sunday : {open: false, open: null, close: null}
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOpen: true, open: 10, close: 16},
+    wednesday : {isOpen: true, open: 10, close: 16},
+    thursday : {isOpen: true, open: 10, close: 16},
+    friday : {isOpen: true, open: 10, close: 16},
+    saturday : {isOpen: false, open: null, close: null},
+    sunday : {isOpen: false, open: null, close: null}
   },
   isOpen :  true,
   foodQueue : [
@@ -162,13 +162,13 @@ const tomsKillerPizza = {
    ],
   recomendedItem : menu[1],
   schedule : {
-    monday : {open: false, open: null, close: null},
-    tuesday : {open: true, open: 12, close: 21},
-    wednesday : {open: true, open: 12, close: 21},
-    thursday : {open: true, open: 12, close: 21},
-    friday : {open: true, open: 12, close: 21},
-    saturday : {open: true, open: 12, close: 21},
-    sunday : {open: false, open: null, close: null}
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOpen: true, open: 12, close: 21},
+    wednesday : {isOpen: true, open: 12, close: 21},
+    thursday : {isOpen: true, open: 12, close: 21},
+    friday : {isOpen: true, open: 12, close: 21},
+    saturday : {isOpen: true, open: 12, close: 21},
+    sunday : {isOpen: false, open: null, close: null}
   },
   isOpen : true ,
   foodQueue : [
@@ -237,13 +237,13 @@ export default = {
    ],
   recomendedItem : ,
   schedule : {
-    monday : {open: false, open: null, close: null},
-    tuesday : {open: false, open: null, close: null},
-    wednesday : {open: false, open: null, close: null},
-    thursday : {open: false, open: null, close: null},
-    friday : {open: false, open: null, close: null},
-    saturday : {open: false, open: null, close: null},
-    sunday : {open: false, open: null, close: null}
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOpen: false, open: null, close: null},
+    wednesday : {isOpen: false, open: null, close: null},
+    thursday : {isOpen: false, open: null, close: null},
+    friday : {isOpen: false, open: null, close: null},
+    saturday : {isOpen: false, open: null, close: null},
+    sunday : {isOpen: false, open: null, close: null}
   },
   isOpen :  ,
   foodQueue : [] ,
