@@ -19,7 +19,7 @@
 1. Your pull request will be reviewed by another maintainer. This will help keep the codebase clean
    and of high quality and, equallyas important, to help you grow as a programmer. If your code
    reviewer requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer and push your fixes as a single new commit.
+1. Fix any issues raised by your code reviewer and push your fixes as a single new commit.
 1. Once the pull request has been approved, it will be merged by another member of the team. Do not
    merge your own commits.
 
