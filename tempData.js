@@ -204,6 +204,43 @@ const tomsKillerPizza = {
   },
 ] ,
   currentLocation : null,
+},
+
+const saladTime = {
+  fullName : "Salad Time",
+  description : "Get the best greens in town, its Salad Time!",
+  cuisine : ['salad', 'italian', 'greek'],
+  mainImg : "",
+  menu : [
+      { food : "Greek Salad",
+        price : 8.50,
+        description : "This is an incredibly good Greek salad recipe, nice and tangy and even better in the summer when you use fresh vegetables!",
+        prepTime : 8,
+      },
+      { food : "Italian Salad",
+        price : 8,
+        description : "Part green salad, part antipasto salad, this recipe combines lettuce, celery, onion, peperoncini, olives and cherry tomatoes",
+        prepTime : 8,
+      },
+      { food : "Sundried Tomato Salad,
+        price : 9,
+        description : "Sundried tomatos, roman lettus, grilled chicken with feta, pinenuts, crutons and an italian vinaigrette" ,
+        prepTime : 9,
+      }
+   ],
+  recomendedItem : menu[2] ,
+  schedule : {
+    monday : {isOpen: false, open: null, close: null},
+    tuesday : {isOpen: false, open: null, close: null},
+    wednesday : {isOpen: true, open: 11, close: 21},
+    thursday : {isOpen: true, open: 11, close: 21},
+    friday : {isOpen: true, open: 11, close: 21},
+    saturday : {isOpen: true, open: 12, close: 22},
+    sunday : {isOpen: true, open: 12, close: 20}
+  },
+  isOpen : true,
+  foodQueue : [] ,
+  currentLocation : null
 }
 
 export default = {
