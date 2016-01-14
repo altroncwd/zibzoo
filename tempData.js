@@ -31,6 +31,16 @@ All vendor data will have the same basic format (for now, change as needed)
 
 
 ======= TEMP ORDER OBJ ======
+Object orders should list the user information and what they ordered, picture if availible
+{
+  customer : ,  // name of the customer who ordered
+  customerID : , // some kinda id so we know who to update later?
+  customerImg : ,  // picture if availible
+  food : ,  // list of items they ordered
+  total : ,  // total cost
+  estimatedTime : , // time in min
+  requestedPickUpTime : , // time in military
+}
 
 
 ------------------------------------------------------------- */
@@ -148,7 +158,7 @@ export default = {
 
 
 /* ======= BLANK TEMPLATE: No comments =======
-
+  ------------ VENDOR OBJ -------------
 {
   fullName : "",
   description : ,
@@ -174,6 +184,18 @@ export default = {
   isOpen :  ,
   foodQueue : [] ,
   currentLocation : null
+}
+
+
+------------ VENDOR ORDER OBJ -------------
+{
+  customer : ,  // name of the customer who ordered
+  customerID : , // some kinda id so we know who to update later?
+  customerImg : ,  // picture if availible
+  food : ,  // list of items they ordered
+  total : ,  // total cost
+  estimatedTime : , // time in min
+  requestedPickUpTime : , // time in military
 }
 
 /*
