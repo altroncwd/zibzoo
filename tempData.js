@@ -39,6 +39,7 @@ Object orders should list the user information and what they ordered, picture if
   food : [ ],  // list of items they ordered
   total : ,  // total cost
   estimatedTime : , // time in min
+
   requestedPickUpTime : , // time in military
 }
 
@@ -125,10 +126,10 @@ const benjisStuffYourFace = {
       customer : "Jill Faith" ,
       customerID : 7593740285,
       customerImg : "https://pbs.twimg.com/profile_images/502176585038823424/PQREJrKH.jpeg",
-      food : [ ],
-      total : ,
-      estimatedTime : ,
-      requestedPickUpTime : ,
+      food : [ "Kangaroo Caraway Burger", "Kangaroo Caraway Burger", "Kangaroo Caraway Burger"],
+      total : 36 ,
+      estimatedTime : 20,
+      requestedPickUpTime : null,
     }
   ] ,
   currentLocation : null;
@@ -146,7 +147,7 @@ const tomsKillerPizza = {
         prepTime : 20 ,
       },
       { food : "volcano",
-        price : 14.50,
+        price : 18.00,
         description : "three cheese topped with jalapenos, red pepers, spicy italian sausage and a stuffed jalapeno creamcheese crust ",
         prepTime : 22 ,
       },
@@ -167,7 +168,35 @@ const tomsKillerPizza = {
     sunday : {open: false, open: null, close: null}
   },
   isOpen : true ,
-  foodQueue : [] ,
+  foodQueue : [
+  {
+    customer : "Jean Phillips",
+    customerID : 7584905647,
+    customerImg : null,
+    food : [ "garlic breadsticks" ],
+    total : 7,
+    estimatedTime : 15 ,
+    requestedPickUpTime : ,
+  },
+  {
+    customer : "Jessica Chang",
+    customerID : 9365936100,
+    customerImg : null,
+    food : [ "cheese", "garlic breadsticks"],
+    total : 21.50,
+    estimatedTime : 25,
+    requestedPickUpTime : ,
+  },
+  {
+    customer : "Loc Nyuen ,
+    customerID : 0296215830,
+    customerImg : ,
+    food : [ "cheese", "volcano", "volcano", "garlic breadsticks"],
+    total : 57.50 ,
+    estimatedTime : ,
+    requestedPickUpTime : 14 ,
+  },
+] ,
   currentLocation : null,
 }
 
