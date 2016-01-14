@@ -36,7 +36,7 @@ Object orders should list the user information and what they ordered, picture if
   customer : ,  // name of the customer who ordered
   customerID : , // some kinda id so we know who to update later?
   customerImg : ,  // picture if availible
-  food : ,  // list of items they ordered
+  food : [ ],  // list of items they ordered
   total : ,  // total cost
   estimatedTime : , // time in min
   requestedPickUpTime : , // time in military
@@ -74,7 +74,17 @@ const elliotsBurgers = {
     sunday : {open: false, open: null, close: null}
   },
   isOpen : false, //should only be set to true when the vendor logs in
-  foodQueue : [],
+  foodQueue : [
+    {
+      customer : "Clark Williams",
+      customerID : 4836759374,
+      customerImg : null,
+      food : [ "Burger", "Burger", "Fries"],
+      total : 19.50,
+      estimatedTime : 19,
+      requestedPickUpTime : null,
+    }
+  ],
   currentLocation : null
 },
 
@@ -101,7 +111,26 @@ const benjisStuffYourFace = {
     sunday : {open: false, open: null, close: null}
   },
   isOpen :  true,
-  foodQueue : [] ,
+  foodQueue : [
+    {
+      customer : "John Rice" ,
+      customerID : 9385620475,
+      customerImg : null,
+      food : [ "Kangaroo Caraway Burger"],
+      total : 12,
+      estimatedTime : 14,
+      requestedPickUpTime : null,
+    },
+    {
+      customer : "Jill Faith" ,
+      customerID : 7593740285,
+      customerImg : "https://pbs.twimg.com/profile_images/502176585038823424/PQREJrKH.jpeg",
+      food : [ ],
+      total : ,
+      estimatedTime : ,
+      requestedPickUpTime : ,
+    }
+  ] ,
   currentLocation : null;
 },
 
@@ -189,13 +218,13 @@ export default = {
 
 ------------ VENDOR ORDER OBJ -------------
 {
-  customer : ,  // name of the customer who ordered
-  customerID : , // some kinda id so we know who to update later?
-  customerImg : ,  // picture if availible
-  food : ,  // list of items they ordered
-  total : ,  // total cost
-  estimatedTime : , // time in min
-  requestedPickUpTime : , // time in military
+  customer : ,
+  customerID : ,
+  customerImg : ,
+  food : [ ],
+  total : ,
+  estimatedTime : ,
+  requestedPickUpTime : ,
 }
 
 /*
