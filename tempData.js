@@ -11,6 +11,7 @@ All vendor data will have the same basic format (for now, change as needed)
       { food : , // food item
         price : , // price
         description : , // any description they want to give the food
+        inStock : true,
         prepTime : ,   // avarage time it takes to make in mins
       }
    ],
@@ -36,11 +37,16 @@ Object orders should list the user information and what they ordered, picture if
   customer : ,  // name of the customer who ordered
   customerID : , // some kinda id so we know who to update later?
   customerImg : ,  // picture if availible
-  food : [ ],  // list of items they ordered
-  total : ,  // total cost
+  food : [  // list of items they ordered
+      { item: ,  // the item name
+        quantity:   // number of that item
+      }
+   ],
+  total : ,  // total cost of all items combine
   estimatedTime : , // time in min
   orderTime: ,  // time order is placed in millitary
   requestedPickUpTime : , // time in military
+  orderComplete:  // when the order is finished
 }
 
 
@@ -55,12 +61,14 @@ const elliotsBurgers = {
     { food : "Fries",
       price : 4.50,
       description : "thin cut, homestyle fries",
+      inStock : true,
       prepTime : 7
     },
     {
       food : "Burger",
       price : 7.50 ,
       description : "1/2lb all beef patty with lettus, tomato, and onions" ,
+      inStock : true,
       prepTime : 10
     }
    ],
@@ -80,11 +88,19 @@ const elliotsBurgers = {
       customer : "Clark Williams",
       customerID : 4836759374,
       customerImg : null,
-      food : [ "Burger", "Burger", "Fries"],
+      food : [
+        { item: "Burger",
+          quantity: 2
+        },
+        { item: "Fries",
+          quantity: 1
+        }
+      ],
       total : 19.50,
       orderTime: 12,
       estimatedTime : 19,
       requestedPickUpTime : null,
+      orderComplete: false,
     }
   ],
   currentLocation : null
@@ -99,6 +115,7 @@ const benjisStuffYourFace = {
       { food : "Kangaroo Caraway Burger",
         price : 12,
         description : "Roo burgers for the BBQ or cooked inside in the frypan. Serve in Turkish bread rolls with lettuce and tomato or add any burger fillings that you like..",
+        inStock : true,
         prepTime : 14,
       }
    ],
@@ -118,21 +135,31 @@ const benjisStuffYourFace = {
       customer : "John Rice" ,
       customerID : 9385620475,
       customerImg : null,
-      food : [ "Kangaroo Caraway Burger"],
+      food : [
+        { item: "Kangaroo Caraway Burger" ,
+          quantity: 1
+        }
+      ],
       total : 12,
       orderTime: 13,
       estimatedTime : 14,
       requestedPickUpTime : null,
+      orderComplete: false,
     },
     {
       customer : "Jill Faith" ,
       customerID : 7593740285,
       customerImg : "https://pbs.twimg.com/profile_images/502176585038823424/PQREJrKH.jpeg",
-      food : [ "Kangaroo Caraway Burger", "Kangaroo Caraway Burger", "Kangaroo Caraway Burger"],
+      food : [
+          { item:"Kangaroo Caraway Burger" ,
+            quantity: 3
+          }
+      ],
       total : 36 ,
       orderTime: 1310,
       estimatedTime : 20,
       requestedPickUpTime : null,
+      orderComplete: false,
     }
   ] ,
   currentLocation : null;
@@ -147,16 +174,19 @@ const tomsKillerPizza = {
       { food : "cheese",
         price : 14.50,
         description : "three cheese pizza with a garlic stuffed crust",
+        inStock : true,
         prepTime : 20 ,
       },
       { food : "volcano",
         price : 18.00,
         description : "three cheese topped with jalapenos, red pepers, spicy italian sausage and a stuffed jalapeno creamcheese crust ",
+        inStock : true,
         prepTime : 22 ,
       },
       { food : "garlic breadsticks",
         price : 7.0,
         description : "soft homemade breadsticks brushed with butter and our special mix of garlic and spices",
+        inStock : true,
         prepTime : 15 ,
       }
    ],
@@ -176,31 +206,53 @@ const tomsKillerPizza = {
     customer : "Jean Phillips",
     customerID : 7584905647,
     customerImg : null,
-    food : [ "garlic breadsticks" ],
+    food : [
+
+      "garlic breadsticks" ],
     total : 7,
     orderTime: 1215,
     estimatedTime : 15 ,
     requestedPickUpTime : ,
+    orderComplete: false,
   },
   {
     customer : "Jessica Chang",
     customerID : 9365936100,
     customerImg : null,
-    food : [ "cheese", "garlic breadsticks"],
+    food : [
+      { item: "cheese",
+        quantity: 1
+      },
+      { item: "garlic breadsticks,
+        quantity:1
+      }
+    ],
     total : 21.50,
     orderTime: 1216,
     estimatedTime : 25,
     requestedPickUpTime : ,
+    orderComplete: false,
   },
   {
     customer : "Loc Nguyen ,
     customerID : 0296215830,
     customerImg : ,
-    food : [ "cheese", "volcano", "volcano", "garlic breadsticks"],
+    food : [
+        { item: "cheese",
+        quantity:1
+      },
+      { item: "volcano",
+        quantity: 2
+      },
+      { item: "garlic breadsticks",
+        quantity:1
+      }
+    ],
     total : 57.50 ,
     orderTime: 1219,
     estimatedTime : ,
     requestedPickUpTime : 14 ,
+    orderComplete: false,
   },
 ] ,
   currentLocation : null,
@@ -215,16 +267,19 @@ const saladTime = {
       { food : "Greek Salad",
         price : 8.50,
         description : "This is an incredibly good Greek salad recipe, nice and tangy and even better in the summer when you use fresh vegetables!",
+        inStock : true,
         prepTime : 8,
       },
       { food : "Italian Salad",
         price : 8,
         description : "Part green salad, part antipasto salad, this recipe combines lettuce, celery, onion, peperoncini, olives and cherry tomatoes",
+        inStock : true,
         prepTime : 8,
       },
       { food : "Sundried Tomato Salad",
         price : 9,
         description : "Sundried tomatos, roman lettus, grilled chicken with feta, pinenuts, crutons and an italian vinaigrette" ,
+        inStock : true,
         prepTime : 9,
       }
    ],
@@ -244,21 +299,34 @@ const saladTime = {
       customer : "David Whitman",
       customerID : 3849561003,
       customerImg : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/192/3c4/28d16a9.jpg",
-      food : [ "Sundried Tomato Salad" ],
+      food : [
+        { item:"Sundried Tomato Salad" ,
+          quantity: 1
+        }
+      ],
       total : 9,
       orderTime: 1245,
       estimatedTime : 9,
       requestedPickUpTime : null,
+      orderComplete: false,
     },
     {
       customer : "Vincent Volpin" ,
       customerID : 9362479917,
       customerImg : "https://pbs.twimg.com/profile_images/784068970/jameswglass.jpg",
-      food : ["Italian Salad","Italian Salad", "Greek Salad"],
+      food : [
+        { item: "Italian Salad",
+          quantity: 2
+        },
+        { item: "Greek Salad",
+          quantity:1
+        }
+      ],
       total : 32.50 ,
       orderTime: 1345,
       estimatedTime : null ,
       requestedPickUpTime : 1430,
+      orderComplete: false,
     }
 
   ] ,
@@ -291,7 +359,8 @@ export default = {
       { food : ,
         price : ,
         description : ,
-        prepTime : ,
+        inStock : true,
+        prepTime :
       }
    ],
   recomendedItem : ,
@@ -305,7 +374,7 @@ export default = {
     sunday : {isOpen: false, opens: null, close: null}
   },
   isOpen :  ,
-  foodQueue : [] ,
+  foodQueue :  ,
   currentLocation : null
 }
 
@@ -315,7 +384,11 @@ export default = {
   customer : ,
   customerID : ,
   customerImg : ,
-  food : [ ],
+  food : [
+    { item: ,
+      quantity:
+    }
+   ],
   total : ,
   orderTime: ,
   estimatedTime : ,
