@@ -16,11 +16,11 @@ module.exports = {
         loaders: ['eslint'],
         include: path.resolve(ROOT_PATH, 'app')
       }
-    ]
+    ],
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      loaders: ['react-hot', 'babel']
     },
     {
       test: /\.scss$/,
