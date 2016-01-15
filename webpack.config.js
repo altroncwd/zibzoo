@@ -10,10 +10,21 @@ module.exports = {
     path.resolve(ROOT_PATH, 'app/main.js')
   ],
   module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['eslint'],
+        include: path.resolve(ROOT_PATH, 'app')
+      }
+    ]
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel'
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
     }],
   },
   resolve: {
