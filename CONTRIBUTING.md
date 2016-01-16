@@ -12,14 +12,14 @@
    - [doc] add Kamino coordinates to the Jedi Archives
    - [feat] add new algorithm to enable completion of Kessel Run in less than 12 parsecs
    - [fix] repair the hyperdrive, fixes #14
-   - [refactor] separate .escapeTheDeathStartAndJumpToHyperspeed() into two separate functions
+   - [refactor] separate .escapeTheDeathStartAndMakeTheJumpToHyperspace() into two separate functions
    - [test] add testing for pod racer ignition
 1. When the fix or feature is complete, rebase upstream changes into the feature branch, push to
    'origin', and submit a pull request to 'develop' with a description of your changes.
 1. Your pull request will be reviewed by another maintainer. This will help keep the codebase clean
    and of high quality and, equallyas important, to help you grow as a programmer. If your code
    reviewer requests you make a change you don't understand, ask them why.
-1. Fix any issues raised by your code reviwer and push your fixes as a single new commit.
+1. Fix any issues raised by your code reviewer and push your fixes as a single new commit.
 1. Once the pull request has been approved, it will be merged by another member of the team. Do not
    merge your own commits.
 
