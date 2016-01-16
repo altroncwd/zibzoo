@@ -8,7 +8,8 @@
     "start": "rm -rf app/dist && mkdir -p app/dist && watchify --extension=js -o app/dist/bundle.js app/main.js & nodemon server/server.js",
     "webserver": "nodemon server/server.js",
     "build": "node_modules/.bin/webpack",
-    "dev": "node_modules/.bin/webpack-dev-server"
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
