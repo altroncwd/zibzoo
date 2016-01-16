@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { actions as counterActions } from '../../redux/modules/counter';
 
 const mapStateToProps = (state) => ({
@@ -21,6 +22,7 @@ export class CounterView extends React.Component {
         <h1>{this.props.counter}</h1>
         <button onClick={handleIncrement}>increment</button>
         <button onClick={handleDecrement}>decrement</button>
+        <Link to="/hello">Let's Do Some Routing!</Link>
       </div>
     );
   }
