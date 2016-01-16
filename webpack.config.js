@@ -20,7 +20,11 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loaders: ['babel']
+      loader: 'babel',
+      query: {
+        cacheDirectory: true,
+        presets: ['es2015', 'react', 'stage-0']
+      }
     },
     {
       test: /\.scss$/,
@@ -42,10 +46,5 @@ module.exports = {
     inline: true,
     progress: true
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Listlogs'
-    })
-  ]
+  plugins: []
 };
