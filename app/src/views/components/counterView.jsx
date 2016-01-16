@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 export class CounterView extends React.Component {
   static propTypes = {
-    counter: PropTypes.any.isRequired,
+    counter: PropTypes.number.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired
   };
