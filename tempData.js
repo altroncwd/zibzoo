@@ -53,26 +53,33 @@ Object orders should list the user information and what they ordered, picture if
 ------------------------------------------------------------- */
 
 const elliotsBurgers = {
-  fullName : "Elliots Burgers",
+  id: 1,
+  fullName : "Elliot's Burgers",
   description : "Only the best food, just dont ask how its made",
-  cuisine : ["burgers", "fusion", "american""],
+  cuisine : ["burgers", "fusion", "american"],
   mainImg : "http://www.fastfoodlondon.co.uk/wp-content/uploads/2013/07/643918_695650526470_1380903060_n.jpg",
   menu : [
     { food : "Fries",
       price : 4.50,
-      description : "thin cut, homestyle fries",
+      description : "thin cut, homestyle fries to go with your jeans",
       inStock : true,
       prepTime : 7
     },
     {
       food : "Burger",
       price : 7.50 ,
-      description : "1/2lb all beef patty with lettus, tomato, and onions" ,
+      description : "1/6lb all beef patty (yeah baby) with lettuce, tomato, and onions" ,
       inStock : true,
       prepTime : 10
     }
    ],
-  recomendedItem : menu[1],
+  recomendedItem : { 
+    food : "Fries",
+    price : 4.50,
+    description : "thin cut, homestyle fries to go with your jeans",
+    inStock : true,
+    prepTime : 7
+  },
   schedule : {
     monday : {isOpen: false, opens: null, close: null},
     tuesday : {isOpen: true, opens: 11, close: 15},
@@ -104,9 +111,10 @@ const elliotsBurgers = {
     }
   ],
   currentLocation : null
-},
+};
 
 const benjisStuffYourFace = {
+  id: 2,
   fullName : "Benji's Stuff Your Face",
   description : "Food from the place where everything wants to eat you, now you can eat it",
   cuisine : ['Australian'],
@@ -119,7 +127,13 @@ const benjisStuffYourFace = {
         prepTime : 14,
       }
    ],
-  recomendedItem : menu[0],
+  recomendedItem : { 
+    food : "Kangaroo Caraway Burger",
+    price : 12,
+    description : "Roo burgers for the BBQ or cooked inside in the frypan. Serve in Turkish bread rolls with lettuce and tomato or add any burger fillings that you like..",
+    inStock : true,
+    prepTime : 14,
+  },
   schedule : {
     monday : {isOpen: false, opens: null, close: null},
     tuesday : {isOpen: true, opens: 10, close: 16},
@@ -162,10 +176,11 @@ const benjisStuffYourFace = {
       orderComplete: false,
     }
   ] ,
-  currentLocation : null;
-},
+  currentLocation : null
+};
 
 const tomsKillerPizza = {
+  id: 3,
   fullName : "Toms Killer Pizza",
   description : "The best pizza around, so good it might kill you",
   cuisine : ['pizza', 'italian', 'american'],
@@ -190,7 +205,13 @@ const tomsKillerPizza = {
         prepTime : 15 ,
       }
    ],
-  recomendedItem : menu[1],
+  recomendedItem : { 
+    food : "garlic breadsticks",
+    price : 7.0,
+    description : "soft homemade breadsticks brushed with butter and our special mix of garlic and spices",
+    inStock : true,
+    prepTime : 15,
+  },
   schedule : {
     monday : {isOpen: false, opens: null, close: null},
     tuesday : {isOpen: true, opens: 12, close: 21},
@@ -212,7 +233,7 @@ const tomsKillerPizza = {
     total : 7,
     orderTime: 1215,
     estimatedTime : 15 ,
-    requestedPickUpTime : ,
+    requestedPickUpTime : null,
     orderComplete: false,
   },
   {
@@ -223,20 +244,20 @@ const tomsKillerPizza = {
       { item: "cheese",
         quantity: 1
       },
-      { item: "garlic breadsticks,
+      { item: "garlic breadsticks",
         quantity:1
       }
     ],
     total : 21.50,
     orderTime: 1216,
     estimatedTime : 25,
-    requestedPickUpTime : ,
+    requestedPickUpTime : null,
     orderComplete: false,
   },
   {
-    customer : "Loc Nguyen ,
-    customerID : 0296215830,
-    customerImg : ,
+    customer : "Loc Nguyen",
+    customerID : 296215830,
+    customerImg : null,
     food : [
         { item: "cheese",
         quantity:1
@@ -248,17 +269,18 @@ const tomsKillerPizza = {
         quantity:1
       }
     ],
-    total : 57.50 ,
+    total : 57.50,
     orderTime: 1219,
-    estimatedTime : ,
-    requestedPickUpTime : 14 ,
+    estimatedTime : null,
+    requestedPickUpTime : 14,
     orderComplete: false,
   },
 ] ,
-  currentLocation : null,
-},
+  currentLocation : null
+};
 
 const saladTime = {
+  id: 4,
   fullName : "Salad Time",
   description : "Get the best greens in town, its Salad Time!",
   cuisine : ['salad', 'italian', 'greek'],
@@ -283,7 +305,13 @@ const saladTime = {
         prepTime : 9,
       }
    ],
-  recomendedItem : menu[2] ,
+  recomendedItem : { 
+    food : "Italian Salad",
+    price : 8,
+    description : "Part green salad, part antipasto salad, this recipe combines lettuce, celery, onion, peperoncini, olives and cherry tomatoes",
+    inStock : true,
+    prepTime : 8,
+  },
   schedule : {
     monday : {isOpen: false, opens: null, close: null},
     tuesday : {isOpen: false, opens: null, close: null},
@@ -300,7 +328,7 @@ const saladTime = {
       customerID : 3849561003,
       customerImg : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/2/000/192/3c4/28d16a9.jpg",
       food : [
-        { item:"Sundried Tomato Salad" ,
+        { item:"Sundried Tomato Salad",
           quantity: 1
         }
       ],
@@ -324,29 +352,20 @@ const saladTime = {
       ],
       total : 32.50 ,
       orderTime: 1345,
-      estimatedTime : null ,
+      estimatedTime : null,
       requestedPickUpTime : 1430,
       orderComplete: false,
     }
-
   ] ,
   currentLocation : null
 }
 
-export default = {
+export default [
   elliotsBurgers,
   benjisStuffYourFace,
-  tomsKillerPizza
-}
-
-
-
-
-
-
-
-
-
+  tomsKillerPizza,
+  saladTime
+]
 
 /* ======= BLANK TEMPLATE: No comments =======
   ------------ VENDOR OBJ -------------
@@ -393,6 +412,4 @@ export default = {
   orderTime: ,
   estimatedTime : ,
   requestedPickUpTime : ,
-}
-
-/*
+} */
