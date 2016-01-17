@@ -15,7 +15,7 @@
     "Ahmed Modan (https://github.com/ahmedmodan)",
     "Benji Marinacci (https://github.com/bcmarinacci)",
     "Christopher Decker (https://github.com/altroncwd)",
-    "Ian B. (https://github.com/ibari)",
+    "Ian Bari (https://github.com/ibari)",
     "Tom Bergen (https://github.com/tbergen1)"
   ],
   "license": "ISC",
@@ -25,35 +25,23 @@
   "homepage": "https://github.com/unforgitables/zibzoo#readme",
   "dependencies": {
     "angular": "^1.4.8",
-    "angular-foundation": "^0.8.0",
     "angular-ui-router": "^1.0.0-alpha0",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
     "browserify": "^13.0.0",
     "express": "^4.13.3",
-    "fastclick": "^1.0.6",
     "font-awesome": "^4.5.0",
     "foundation": "^4.2.1-1",
     "mongoose": "^4.3.6",
+    "node-sass": "^3.4.2",
     "passport": "^0.3.2",
     "socket.io": "^1.4.4",
-    "underscore": "^1.8.3",
-    "viewport-units-buggyfill": "^0.5.5"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browser-sync": "^2.11.0",
     "eslint": "^1.10.3",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-if": "^2.0.0",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-sass": "^2.1.1",
-    "gulp-uglify": "^1.5.1",
     "jasmine": "^2.4.1",
-    "karma": "^0.13.19",
-    "rimraf": "^2.5.0",
-    "run-sequence": "^1.1.5",
-    "yargs": "^3.32.0"
+    "karma": "^0.13.19"
   }
 }
