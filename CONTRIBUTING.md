@@ -9,6 +9,7 @@
    - navigation bar
 1. Only make commits to your feature branch, e.g.,
    - [cleanup] tidy up bantha poodoo
+   - [chore] travel to Toshi Station to pick up power converters
    - [doc] add Kamino coordinates to the Jedi Archives
    - [feat] add new algorithm to enable completion of Kessel Run in less than 12 parsecs
    - [fix] repair the hyperdrive, fixes #14
