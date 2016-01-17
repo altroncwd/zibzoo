@@ -1,0 +1,20 @@
+{
+  "name": "zibzoo",
+  "version": "0.0.1",
+  "description": "A food truck ordering and analytics app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unforgitables/zibzoo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unforgitables/zibzoo/issues"
+  },
+  "homepage": "https://github.com/unforgitables/zibzoo#readme"
+}
