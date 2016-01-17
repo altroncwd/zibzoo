@@ -4,6 +4,8 @@
   "description": "A food truck ordering and analytics app",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint client/app server",
+    "lint:fix": "npm run lint -- --fix --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
