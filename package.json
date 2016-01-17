@@ -11,7 +11,13 @@
     "url": "git+https://github.com/unforgitables/zibzoo.git"
   },
   "keywords": [],
-  "author": "",
+  "contributors": [
+    "Ahmed Modan (https://github.com/ahmedmodan)",
+    "Benji Marinacci (https://github.com/bcmarinacci)",
+    "Christopher Decker (https://github.com/altroncwd)",
+    "Ian Bari (https://github.com/ibari)",
+    "Tom Bergen (https://github.com/tbergen1)"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/unforgitables/zibzoo/issues"
