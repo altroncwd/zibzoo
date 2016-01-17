@@ -28,6 +28,7 @@
     "angular-ui-router": "^1.0.0-alpha0",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
+    "browserify": "^13.0.0",
     "express": "^4.13.3",
     "font-awesome": "^4.5.0",
     "foundation": "^4.2.1-1",
