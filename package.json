@@ -22,5 +22,25 @@
   "bugs": {
     "url": "https://github.com/unforgitables/zibzoo/issues"
   },
-  "homepage": "https://github.com/unforgitables/zibzoo#readme"
+  "homepage": "https://github.com/unforgitables/zibzoo#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^1.0.0-alpha0",
+    "bluebird": "^3.1.1",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "font-awesome": "^4.5.0",
+    "foundation": "^4.2.1-1",
+    "mongoose": "^4.3.6",
+    "node-sass": "^3.4.2",
+    "passport": "^0.3.2",
+    "socket.io": "^1.4.4",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.0",
+    "eslint": "^1.10.3",
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.19"
+  }
 }
