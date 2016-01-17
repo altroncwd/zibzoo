@@ -1,0 +1,46 @@
+{
+  "name": "zibzoo",
+  "version": "0.0.1",
+  "description": "A food truck ordering and analytics app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unforgitables/zibzoo.git"
+  },
+  "keywords": [],
+  "contributors": [
+    "Ahmed Modan (https://github.com/ahmedmodan)",
+    "Benji Marinacci (https://github.com/bcmarinacci)",
+    "Christopher Decker (https://github.com/altroncwd)",
+    "Ian Bari (https://github.com/ibari)",
+    "Tom Bergen (https://github.com/tbergen1)"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unforgitables/zibzoo/issues"
+  },
+  "homepage": "https://github.com/unforgitables/zibzoo#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^1.0.0-alpha0",
+    "bluebird": "^3.1.1",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "font-awesome": "^4.5.0",
+    "foundation": "^4.2.1-1",
+    "mongoose": "^4.3.6",
+    "node-sass": "^3.4.2",
+    "passport": "^0.3.2",
+    "socket.io": "^1.4.4",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.0",
+    "eslint": "^1.10.3",
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.19"
+  }
+}
