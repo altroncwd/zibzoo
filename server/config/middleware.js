@@ -3,16 +3,16 @@ var bodyParser = require('body-parser');
 module.exports = function(app, express) {
 
   app.use(bodyParser.json());
-  app.use(express.static(__dirname + './../../client'));
+  app.use(express.static(__dirname + '/../../client'));
 
-  var userRouter = express.Router();
-  var vendorRouter = express.Router();
+  var usersRouter = express.Router();
+  var vendorsRouter = express.Router();
 
-  app.use('/api/users', userRouter);
-  app.use('/api/vendors', vendorRouter);
+  app.use('/api/users', usersRouter);
+  app.use('/api/vendors', vendorsRouter);
 
-  require('./../routes/users/userRoutes.js')(userRouter);
-  require('./../routes/vendors/vendorRoutes.js')(vendorRouter);
+  require('../routes/users/usersRoutes.js')(usersRouter);
+  require('../routes/vendors/vendorsRoutes.js')(vendorsRouter);
 
 }
 
