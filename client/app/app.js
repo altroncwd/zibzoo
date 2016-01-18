@@ -1,4 +1,6 @@
-angular.module('zibzoo', [])
+angular.module('zibzoo', [
+  'mm.foundation'
+])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

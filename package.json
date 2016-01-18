@@ -35,7 +35,7 @@
     "express": "^4.13.3",
     "fastclick": "^1.0.6",
     "font-awesome": "^4.5.0",
-    "foundation": "^4.2.1-1",
+    "foundation-sites": "^5.5.2",
     "mongoose": "^4.3.6",
     "passport": "^0.3.2",
     "socket.io": "^1.4.4",
