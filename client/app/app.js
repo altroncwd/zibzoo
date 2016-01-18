@@ -1,6 +1,8 @@
 angular.module('zibzoo', [
   'ui.router',
-  'mm.foundation'
+  'mm.foundation',
+  'zibzoo.navbar.directive',
+  'zibzoo.landing'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -15,7 +17,7 @@ angular.module('zibzoo', [
       }
     })
     .state('anon.landing', {
-      templateUrl: '',
+      templateUrl: 'app/landing/landing.html',
       url: '/',
       controller: 'LandingController'
     })
