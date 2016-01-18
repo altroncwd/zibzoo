@@ -21,7 +21,7 @@ var paths = {
   ],
   // Sass will check these folders for files when you use @import.
   sass: [
-    'node_modules/foundation/scss'
+    'node_modules/foundation-sites/scss'
   ],
   // These files are for the app's JavaScript
   appJS: [
@@ -61,7 +61,7 @@ gulp.task('sass', function () {
       errLogToConsole: true
     }))
     .pipe($.autoprefixer({
-      browsers: ['last 2 versions', 'ie 10']
+      browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
     }))
     .pipe(gulp.dest('./client/build/assets/css/'))
   ;
