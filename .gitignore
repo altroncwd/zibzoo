@@ -5,6 +5,9 @@ logs
 *.log
 npm-debug.log*
 
+#typings
+tsd.json
+typings
 
 
 # Dependency directories
