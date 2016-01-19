@@ -21,7 +21,9 @@ var paths = {
   ],
   // Sass will check these folders for files when you use @import.
   sass: [
-    'node_modules/foundation-sites/scss'
+    'node_modules/foundation-sites/scss',
+    'node_modules/font-awesome/scss',
+    'node_modules/font-awesome/fonts'
   ],
   // These files are for the app's JavaScript
   appJS: [
