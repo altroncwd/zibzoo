@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint client/app server/",
     "lint:fix": "npm run lint -- --fix --quiet",
-    "test": "npm run test:client -- --no-auto-watch --single-run && npm run test:server-no-watch; exit 0",
-    "test:client": "karma start",
+    "test": "karma start --single-run --no-auto-watch --browsers PhantomJS && npm run test:server-no-watch; exit 0",
+    "test:client": "karma start --browsers Chrome",
     "test:server": "npm run test:server-no-watch -- --watch",
     "test:server-no-watch": "mocha test/server/**/*.js --reporter nyan"
   },
