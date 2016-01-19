@@ -1,0 +1,28 @@
+.vendor-grid-name {
+  position: relative;
+  top: -48px;
+  left: 5px;
+  width: 100%;
+  p {
+    color: white;
+    .wait-time {
+      font-size: 11px;
+      position: relative;
+      top: 9px;
+      right: 8px;
+      float: right;
+    }
+  }
+}
+.image-wrap {
+  img {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+  }
+  &:hover {
+  background-color: black;
+    img{
+      opacity: .8;
+    }
+  }
+}
