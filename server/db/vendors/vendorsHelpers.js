@@ -26,7 +26,7 @@ module.exports = {
     .catch(function(error) {
       console.log("Error adding vendor: ", error);
     });
-  }
+  },
 
   getVendor: function(vendorRecord) {
     Vendor.findOne({

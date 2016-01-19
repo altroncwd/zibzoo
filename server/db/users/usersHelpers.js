@@ -25,11 +25,11 @@ module.exports = {
     })
 
     .then(function(result) {
-      console.log('RESULT', typeof result);
+      console.log('RESULT', result.toObject());
       if(!result) {
         throw Error('Unable to save user');
       }
-      return result;
+      return result.toObject();
     })
     .catch(function(error) {
       console.log("Error adding user: ", error);
