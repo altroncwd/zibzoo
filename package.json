@@ -16,7 +16,7 @@
     "test:client": "karma start --browsers Chrome",
     "test:server": "npm run test:server-no-watch -- --watch",
     "test:server-no-watch": "mocha test/server/**/*.js --reporter nyan",
-    "postinstall": "gulp build --production"
+    "postinstall": "gulp build"
   },
   "repository": {
     "type": "git",
