@@ -1,7 +1,9 @@
 angular.module('zibzoo', [
+  'zibzoo.vendorsList',
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
+  'zibzoo.blockgrid.directive',
   'zibzoo.landing'
 ])
 
@@ -22,9 +24,9 @@ angular.module('zibzoo', [
       controller: 'LandingController'
     })
     .state('anon.vendors', {
-      templateUrl: '',
+      templateUrl: 'app/vendors/VendorsList/vendorsList.html',
       url: '/vendors',
-      controller: 'VendorsController',
+      controller: 'VendorsListController',
     })
     .state('anon.vendors.menu', {
       templateUrl: '',
