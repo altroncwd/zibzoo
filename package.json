@@ -4,8 +4,11 @@
   "description": "A food truck ordering and analytics app",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint client/app server/",
+    "lint": "esw client/app server/ test/",
     "lint:fix": "npm run lint -- --fix --quiet",
+    "start": "nodemon server/server.js & gulp & npm run lint:fix -- --watch & sleep 3 && npm run sync",
+    "stop": "killall node; killall gulp",
+    "sync": "browser-sync start --files \"client/**/**/*.css, client/**/**/*.html\" --proxy localhost:3000 --reload-delay 2000",
     "test": "karma start --single-run --no-auto-watch --browsers PhantomJS && npm run test:server-no-watch; exit 0",
     "test:client": "karma start --browsers Chrome",
     "test:server": "npm run test:server-no-watch -- --watch",
