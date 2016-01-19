@@ -16,7 +16,7 @@ angular.module('zibzoo', [
         access: false
       }
     })
-    .state('anon.landing', {
+    .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
       controller: 'LandingController'
@@ -74,4 +74,8 @@ angular.module('zibzoo', [
       url: '/orders',
       controller: 'FulfillmentController'
     });
+})
+
+.run(function ($rootScope, $state) {
+  $rootScope.$state = $state;
 });
