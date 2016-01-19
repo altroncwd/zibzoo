@@ -1,5 +1,5 @@
-var vendorsController = require('./vendorsController.js');
+// var vendorsController = require('./vendorsController.js');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-}
+};

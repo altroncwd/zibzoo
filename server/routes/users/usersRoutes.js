@@ -1,5 +1,5 @@
-var usersController = require('./usersController');
+// var usersController = require('./usersController');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-}
+};
