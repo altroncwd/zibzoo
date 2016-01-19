@@ -49,7 +49,7 @@ angular.module('zibzoo', [
       authenticate: true
     });
 
-    $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 })
 
 .run(function ($rootScope, $state) {
