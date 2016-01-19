@@ -25,8 +25,13 @@
       border-color: $white;
     }
 
+    .prefix {
+      line-height: 2.5rem;
+    }
+
     input[type="text"] {
       border-left: none;
+      padding-left: 0;
     }
 
     ::-webkit-input-placeholder {
