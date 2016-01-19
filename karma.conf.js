@@ -15,14 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // angular source
-      'node_modules/angular/angular.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      // client source
+      'client/build/**/*.js',
 
-      // client source files
-      'client/**/*.js',
-
-      // client test files
+      // client test
       'test/client/**/*.js'
     ],
 
