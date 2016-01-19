@@ -6,6 +6,7 @@ angular.module('zibzoo', [
   'zibzoo.blockgrid.directive',
   'zibzoo.landing',
   'zibzoo.vendorsList'
+  'zibzoo.vendors.directive',
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
