@@ -90,6 +90,7 @@ $include-html-global-classes: $include-html-classes;
 // $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 // $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+$font-family-cantarell: 'Cantarell', sans-serif;
 
 // We use these to define default font weights
 // $font-weight-normal: normal;
@@ -1411,8 +1412,8 @@ $topbar-height: rem-calc(50);
 // $to0pbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
-// $topbar-title-weight: $font-weight-normal;
-// $topbar-title-font-size: rem-calc(17);
+// $topbar-title-weight: $font-weight-bold;
+$topbar-title-font-size: rem-calc(20);
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $primary-color;
