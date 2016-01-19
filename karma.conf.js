@@ -19,7 +19,10 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
 
-      // client files
+      // client source files
+      'client/**/*.js',
+
+      // client test files
       'test/client/**/*.js'
     ],
 
