@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
 
 var menuSchema = new mongoose.Schema({
+  
+  menuName: String,
+
   created_by: {
     type: Schema.Types.ObjectId,
     ref: 'Vendor'
   },
+
   menuItemIds: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'MenuItems'

@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var menuItemSchema = new mongoose.Schema({
 
+  created_by: 
+
   foodName: {
     type: String,
     required: true
