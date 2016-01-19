@@ -4,78 +4,52 @@ angular.module('zibzoo', [
   'mm.foundation',
   'zibzoo.navbar.directive',
   'zibzoo.blockgrid.directive',
-  'zibzoo.landing'
+  'zibzoo.landing',
+  'zibzoo.vendorsList'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
-  $urlRouterProvider.otherwise('/');
-
   $stateProvider
-    .state('anon', {
-      abstract: true,
-      template: '<ui-view>',
-      data: {
-        access: false
-      }
-    })
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
       controller: 'LandingController'
     })
-    .state('anon.vendors', {
+    .state('vendors', {
       templateUrl: 'app/vendors/VendorsList/vendorsList.html',
       url: '/vendors',
       controller: 'VendorsListController',
     })
-    .state('anon.vendors.menu', {
-      templateUrl: '',
-      url: '/:vendorname',
-      controller: 'MenuController'
-    });
-
-  $stateProvider
-    .state('user', {
-      abstract: true,
-      template: '<ui-view>',
-      data: {
-        access: true
-      }
-    })
-    .state('user.home', {
-      templateUrl: '',
-      url: '/:username',
-      controller: 'UserController',
-    })
-    .state('user.order', {
-      templateUrl: '',
-      url: '/:orderID',
-      controller: 'OrderController'
-    });
-
-  $stateProvider
     .state('vendor', {
-      abstract: true,
-      template: 'ui-view',
-      data: {
-        access: true
-      }
+      templateUrl: 'app/vendors/vendor/vendor.html',
+      url: '/vendor/:vendorId',
+      controller: 'VendorController'
     })
-    .state('vendor.profile', {
-      templateUrl: '',
-      url: '/:profileID',
-      controller: 'ProfileController'
+    .state('vendor.menu', {
+      templateUrl: 'app/vendors/vendor/menu.html',
+      url: '/vendor/:vendorId/menu',
+      controller: 'VendorMenuController'
     })
-    .state('vendor.profile.menu', {
-      templateUrl: '',
-      url: '/:menuid',
-      controller: 'EditMenuController'
+    .state('merchant', {
+      templateUrl: 'app/merchants/merchant/merchant.html',
+      url: '/merchant/:merchantId/',
+      controller: 'MerchantController',
+      authenticate: true
     })
-    .state('vendor.profile.orders', {
-      templateUrl: '',
-      url: '/orders',
-      controller: 'FulfillmentController'
+    .state('merchant.menu', {
+      templateUrl: 'app/merchants/merchant/menu.html',
+      url: '/merchant/:merchantId/menu',
+      controller: 'MerchantMenuController',
+      authenticate: true
+    })
+    .state('merchant.orders', {
+      templateUrl: 'app/merchants/merchant/orders.html',
+      url: '/merchant/:merchantId/orders',
+      controller: 'MerchantOrdersController',
+      authenticate: true
     });
+
+    $urlRouterProvider.otherwise('/');
 })
 
 .run(function ($rootScope, $state) {
