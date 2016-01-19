@@ -3,10 +3,9 @@ angular.module('zibzoo', [
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
-  'zibzoo.blockgrid.directive',
-  'zibzoo.landing',
-  'zibzoo.vendorsList'
   'zibzoo.vendors.directive',
+  'zibzoo.landing',
+  'zibzoo.vendorsList',
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
