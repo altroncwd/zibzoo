@@ -1,8 +1,11 @@
 {
   "name": "zibzoo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A food truck ordering and analytics app",
-  "main": "index.js",
+  "main": "client/index.html",
+  "engines": {
+    "node": "5"
+  },
   "scripts": {
     "lint": "esw client/app server/ test/",
     "lint:fix": "npm run lint -- --fix --quiet",
@@ -32,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/unforgitables/zibzoo/issues"
   },
-  "homepage": "https://github.com/unforgitables/zibzoo#readme",
+  "homepage": "zibzoo.herokuapp.com",
   "dependencies": {
     "angular": "^1.4.8",
     "angular-foundation": "^0.8.0",
