@@ -1,16 +1,18 @@
 <div class="row">
-  <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-    <li class="vendors-grid" ng-repeat="vendor in vendors">
-      <a href="#" ui-sref="vendor({vendorId: vendor.id})">
-        <div class="image-wrap">
+  <div class="small-12 large-12 columns">
+    <ul class="vendors-grid small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+      <li ng-repeat="vendor in vendors">
+        <a href="#" ui-sref="vendor({vendorId: vendor.id})">
+          <div class="image-wrap">
             <img class="vendor-image" src="https://placehold.it/900x500" />
-        </div>
-        <span class="vendor-grid-name">
-          <p>{{vendor.name}} <br /> {{vendor.cuisine}}
-            <span class="wait-time">Estimated wait time: {{vendor.wait}}</span>
-          </p>
-        </span>
-      </a>
-    </li>
-  </ul>
+          </div>
+          <span class="vendor-name">
+            <p>{{vendor.name}} <br /> {{vendor.cuisine}}
+              <span class="wait-time">Estimated wait time: {{vendor.wait}}</span>
+            </p>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
