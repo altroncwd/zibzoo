@@ -3,6 +3,15 @@
     height: rem-calc(172);
     margin-bottom: 20px;
 
+    @media only screen and (max-width: $medium-breakpoint) {
+      height: rem-calc(224);
+
+      img {
+        width: 100%;
+        height: rem-calc(224);
+      }
+    }
+
     .vendor-name {
       position: relative;
       top: -48px;
