@@ -38,8 +38,17 @@ describe('VendorsListController', function () {
     it('should be an array', function () {
       expect(Array.isArray($scope.vendors)).to.be.true;
     });
-    xit('should have no contain no data', function () {
+    xit('should contain no data', function () {
       expect($scope.vendors.length).to.equal(0);
+    });
+  });
+
+  describe('$scope.getVendors', function () {
+    it('should be property on the scope', function () {
+      expect($scope).to.have.property('getVendors');
+    });
+    it('should be a function', function () {
+      expect(typeof $scope.getVendors).to.equal('function');
     });
   });
 });
