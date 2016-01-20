@@ -20,7 +20,7 @@ angular.module('zibzoo', [
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
-      controller: 'LandingController'
+      controller: 'VendorsListController'
     })
     .state('vendors', {
       templateUrl: 'app/vendors/VendorsList/vendorsList.html',
