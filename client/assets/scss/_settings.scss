@@ -103,11 +103,11 @@ $white       : #FFFFFF;
 // $white-smoke : #F5F5F5;
 // $silver      : #EFEFEF;
 // $smoke       : #EEEEEE;
-// $gainsboro   : #DDDDDD;
+$gainsboro   : #DDDDDD;
 // $iron        : #CCCCCC;
-// $base        : #AAAAAA;
+$base        : #AAAAAA;
 // $aluminum    : #999999;
-// $jumbo       : #888888;
+$jumbo       : #888888;
 // $monsoon     : #777777;
 // $steel       : #666666;
 // $charcoal    : #555555;
@@ -277,7 +277,7 @@ $primary-color: #ff6908;
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
 // $hr-border-style: solid;
-// $hr-border-color: $gainsboro;
+$hr-border-color: $base;
 // $hr-margin: rem-calc(20);
 
 // We use these to style lists
