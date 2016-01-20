@@ -18,5 +18,10 @@ describe('VendorsListController', function () {
       var controller = $controller('VendorsListController', { $scope: $scope });
       expect(Array.isArray($scope.vendors)).to.be.true;
     });
+    xit('should have no contain no data', function () {
+      var $scope = {};
+      var controller = $controller('VendorsListController', { $scope: $scope });
+      expect($scope.vendors.length).to.equal(0);
+    })
   });
 });
