@@ -64,16 +64,45 @@ module.exports = {
     });
   }
 
-  getMenu: function() {
-
+  getMenu: function(menuObj) {
+    Menu.findOne({
+      'created_by': vendorId,
+      'name': menuObj.name
+    })
+    .populate('MenuItemIds')
+    .then(function(menu) {
+      if(!menu) {
+        throw Error('Unable to retrieve menu');
+      }
+      return menu;
+    })
+    .catch(function(error) {
+      console.log("Error retrieving menu: ", error);
+      return error;
+    })
   }
 
-  deleteMenu: function() {
-
+  deleteMenu: function(menuObj) {
+    Menu.findById(menuObj.menuId)
+    .then(function(menu) {
+      menu.remove()
+    })
+    .catch(function(error){
+      console.log('Error deleting menu: ', error);
+      return error;
+    })
   }
 
-  deleteMenuItem: function() {
-    
+  deleteMenuItem: function(menuItemObj) {
+    MenuItem.findById(menuObj.menuItemId)
+    .then(function(menuItem) {
+      Menu.update({_id: menuItem._id}, {$pull: {menuItemIds: menuItem._id}});
+      return menuItem.remove();
+    })
+    .catch(function(error) {
+      console.log('Error deleting menu item: ', error);
+      return error;
+    })
   }
 
 }
