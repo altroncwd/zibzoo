@@ -3,6 +3,6 @@ angular.module('zibzoo.vendors.directive', [])
     return {
       restrict: 'E',
       templateUrl: 'app/components/vendors/_vendors.html',
-      require: ['^VendorListController', '^LandingController']
+      require: ['^VendorsListController', '^LandingController']
     };
   });
