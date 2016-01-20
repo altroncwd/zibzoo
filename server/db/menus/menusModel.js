@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var menuSchema = new mongoose.Schema({
-  
-  menuName: String,
+
+  name: String,
 
   created_by: {
     type: Schema.Types.ObjectId,
