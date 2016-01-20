@@ -1,0 +1,9 @@
+<div class="filterbox">
+  <a class="button dropdown" dropdown-toggle="#filter-dropdown">Filter by Cuisine Type</a>
+  <ul id="filter-dropdown" class="f-dropdown">
+    <li ng-repeat="vendor in vendors" ng-click="filter(vendor.cuisine)">
+      {{vendor.cuisine}}
+    </li>
+  </ul>
+  </ul>
+</div>

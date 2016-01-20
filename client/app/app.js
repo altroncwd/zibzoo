@@ -2,6 +2,8 @@ angular.module('zibzoo', [
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
+  'zibzoo.vendors.directive',
+  'zibzoo.filter-box.directive',
   'zibzoo.landing',
   'zibzoo.vendors.list',
   'zibzoo.vendors.factory',
