@@ -2,6 +2,8 @@ angular.module('zibzoo', [
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
+  'zibzoo.vendors.directive',
+  'zibzoo.filter-box.directive',
   'zibzoo.landing',
   'zibzoo.vendors.list',
   'zibzoo.vendors.factory',
@@ -18,7 +20,7 @@ angular.module('zibzoo', [
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
-      controller: 'LandingController'
+      controller: 'VendorsListController'
     })
     .state('vendors', {
       templateUrl: 'app/vendors/VendorsList/vendorsList.html',

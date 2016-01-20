@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 large-12 columns">
     <ul class="vendors-grid small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-      <li ng-repeat="vendor in vendors">
+      <li ng-repeat="vendor in vendors" ng-hide="selected.indexOf(vendor.cuisine) === -1">
         <a href="#" ui-sref="vendor({vendorId: vendor.id})">
           <div class="image-wrap">
             <img class="vendor-image" src="https://placehold.it/900x500" />
