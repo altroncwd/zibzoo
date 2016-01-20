@@ -11,7 +11,7 @@ module.exports = {
       })
       .then(function (user) {
         if (user) {
-          throw Error('User already exists!')
+          throw Error('User already exists.')
         }
         var newUser = new User({
           'name': userObj.name
@@ -21,7 +21,7 @@ module.exports = {
       })
       .then(function (result) {
         if (!result) {
-          throw Error('Unable to save user');
+          throw Error('Unable to save user.');
         }
 
         return result;
@@ -38,7 +38,7 @@ module.exports = {
       })
       .then(function (user) {
         if (!user) {
-          throw Error('User does not exist');
+          throw Error('User does not exist.');
         }
 
         return user;
