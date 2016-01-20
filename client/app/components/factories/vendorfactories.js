@@ -2,11 +2,10 @@ angular.module('zibzoo.vendorList.factory', [])
   .factory('vendors', ['$http', function ($http) {
     var vendors = {};
 
-    vendors.getVendors = function (params) {
+    vendors.getVendors = function () {
       return $http({
         method: 'GET',
-        url: 'api/vendors',
-        params: params
+        url: 'api/vendors'
       })
         .then(function (res) {
           return res;
