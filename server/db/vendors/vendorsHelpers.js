@@ -1,56 +1,50 @@
 var Vendor = require('./vendorsModel');
-var Promise = require('bluebird');
-Promise.promisifyAll(require('mongoose'));
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 module.exports = {
 
-  postVendor: function(vendorObj) {
-    Vendor.findOne({
-      'vendorName': vendorObj.vendorName
-    })
-    .then(function(vendor) {
-      if(vendor) {
-        throw Error('Vendor already exists!')
-      }
-      var newVendor = new Vendor({
-        'vendorName': vendorRecord.vendorName
+  postVendor: function (vendorObj) {
+    return Vendor
+      .findOne({
+        name: vendorObj.name
+      })
+      .then(function (vendor) {
+        if (vendor) {
+          throw Error('Vendor already exists.');
+        }
+
+        var newVendor = new Vendor(vendorObj);
+
+        return newVendor.save()
+      })
+      .then(function (result) {
+        if (!result) {
+          throw Error('Unable to save vendor.');
+        }
+
+        return result;
+      })
+      .catch(function (error) {
+        return error;
       });
-      newVendor.save()
-        .then(function(result) {
-          if(!result) {
-            throw Error('Unable to save vendor');
-          }
-          res.status(201).send(result);
-        })
-    })
-    .catch(function(error) {
-      console.log("Error adding vendor: ", error);
-    });
   },
 
-  getVendor: function(vendorRecord) {
-    Vendor.findOne({
-      'vendorName': vendorRecord.vendorName
-    })
-    .populate('menuIds')
-    .then(function(vendor) {
-      if(!vendor) {
-        throw Error('Vendor does not exist');
-      }
-      Vendor.populate(vendor, {
-        path: 'menuIds.menuItemIds',
-        model: 'MenuItems'
+  getVendor: function (vendorRecord) {
+    return Vendor
+      .findOne({
+        'vendorName': vendorRecord.vendorName
       })
-      .then(function(result) {
-        if(!result) {
-          throw Error('Error retrieving vendor');
+      .then(function (vendor) {
+        if (!vendor) {
+          throw Error('Vendor does not exist');
         }
-        res.status(200).send(result);
+
+        return vendor;
+      })
+      .catch(function (error) {
+        return error;
       });
-    })
-    .catch(function(error) {
-      console.log("Error retrieving vendor: ", error);
-    })
   }
 
 }
