@@ -68,6 +68,7 @@
     "chai-as-promised": "^5.2.0",
     "eslint": "^1.10.3",
     "eslint-watch": "^2.1.4",
+    "jasmine": "^2.4.1",
     "karma": "^0.13.19",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.2",
