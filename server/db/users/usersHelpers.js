@@ -7,14 +7,14 @@ module.exports = {
   postUser: function (userObj) {
     return User
       .findOne({
-        'name': userObj.name
+        name: userObj.name
       })
       .then(function (user) {
         if (user) {
           throw Error('User already exists.')
         }
         var newUser = new User({
-          'name': userObj.name
+          name: userObj.name
         });
 
         return newUser.save()
@@ -34,7 +34,7 @@ module.exports = {
   getUser: function (userObj) {
     return User
       .findOne({
-        'name': userObj.name
+        name: userObj.name
       })
       .then(function (user) {
         if (!user) {
@@ -46,6 +46,15 @@ module.exports = {
       .catch(function (error) {
         return error;
       });
+  },
+
+  deleteUser: function (userObj) {
+    return User.remove({
+      name: userObj.name
+    })
+    .catch(function (error) {
+      return error;
+    });
   }
 
 }
