@@ -1,5 +1,5 @@
-angular.module('zibzoo.merchantProfile', [])
-  .controller('MerchantController', ['$scope', function ($scope) {
+angular.module('zibzoo.merchant', [])
+  .controller('MerchantProfileController', ['$scope', function ($scope) {
 
    // themporary data for merchant page, html will need to be refactored for actual incoming data
     $scope.schedule= {

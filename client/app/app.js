@@ -7,7 +7,10 @@ angular.module('zibzoo', [
   'zibzoo.landing',
   'zibzoo.vendorsList',
   'zibzoo.vendor',
-  'zibzoo.merchantProfile'
+  'zibzoo.merchant',
+  'zibzoo.merchant.menu',
+  'zibzoo.merchant.menu.service',
+  'zibzoo.menuform.directive'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -31,21 +34,23 @@ angular.module('zibzoo', [
       templateUrl: 'app/vendors/vendor/menu.html',
       url: '/vendor/:vendorId/menu',
       controller: 'VendorMenuController'
-    })
+    });
+
+  $stateProvider
     .state('merchant', {
-      templateUrl: 'app/merchants/merchant/merchant.html',
+      templateUrl: 'app/merchants/profile/profile.html',
       url: '/merchant/:merchantId',
-      controller: 'MerchantController',
+      controller: 'MerchantProfileController',
       authenticate: true
     })
-    .state('merchant.menu', {
-      templateUrl: 'app/merchants/merchant/menu.html',
+    .state('menu', {
+      templateUrl: 'app/merchants/menu/menu.html',
       url: '/merchant/:merchantId/menu',
       controller: 'MerchantMenuController',
       authenticate: true
     })
-    .state('merchant.orders', {
-      templateUrl: 'app/merchants/merchant/orders.html',
+    .state('orders', {
+      templateUrl: 'app/merchants/orders/orders.html',
       url: '/merchant/:merchantId/orders',
       controller: 'MerchantOrdersController',
       authenticate: true
