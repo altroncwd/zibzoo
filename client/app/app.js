@@ -1,5 +1,4 @@
 angular.module('zibzoo', [
-  'zibzoo.vendorsList',
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
