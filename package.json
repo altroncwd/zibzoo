@@ -14,8 +14,7 @@
     "sync": "browser-sync start --files \"client/**/**/*.css, client/**/**/*.html\" --proxy localhost:3000 --reload-delay 2000",
     "test": "karma start --single-run --no-auto-watch --browsers PhantomJS && npm run test:server-no-watch; exit 0",
     "test:client": "karma start --browsers Chrome",
-    "test:server": "npm run test:server-no-watch -- --watch",
-    "test:server-no-watch": "mocha test/server/**/*.js --reporter nyan",
+    "test:server": "mocha test/server/**/*.js",
     "postinstall": "gulp build"
   },
   "repository": {
@@ -66,12 +65,14 @@
   "devDependencies": {
     "browser-sync": "^2.11.0",
     "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
     "eslint": "^1.10.3",
     "eslint-watch": "^2.1.4",
     "karma": "^0.13.19",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.1",
+    "karma-mocha-reporter": "^1.1.5",
     "karma-nyan-reporter": "^0.2.3",
     "karma-phantomjs-launcher": "^0.2.3",
     "karma-safari-launcher": "^0.1.1",
