@@ -6,7 +6,8 @@ angular.module('zibzoo', [
   'zibzoo.vendors.directive',
   'zibzoo.landing',
   'zibzoo.vendorsList',
-  'zibzoo.vendor'
+  'zibzoo.vendor',
+  'zibzoo.merchantProfile'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -33,7 +34,7 @@ angular.module('zibzoo', [
     })
     .state('merchant', {
       templateUrl: 'app/merchants/merchant/merchant.html',
-      url: '/merchant/:merchantId/',
+      url: '/merchant/:merchantId',
       controller: 'MerchantController',
       authenticate: true
     })
