@@ -6,6 +6,7 @@ angular.module('zibzoo', [
   'zibzoo.vendors.directive',
   'zibzoo.landing',
   'zibzoo.vendorsList',
+  'zibzoo.vendor'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
