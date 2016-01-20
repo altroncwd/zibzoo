@@ -7,14 +7,14 @@ module.exports = {
   postUser: function (userObj) {
     return User
       .findOne({
-        'username': userObj.username
+        'name': userObj.name
       })
       .then(function (user) {
         if (user) {
           throw Error('User already exists!')
         }
         var newUser = new User({
-          'username': userObj.username
+          'name': userObj.name
         });
 
         return newUser.save()
@@ -34,7 +34,7 @@ module.exports = {
   getUser: function (userObj) {
     return User
       .findOne({
-        'username': userObj.username
+        'name': userObj.name
       })
       .then(function (user) {
         if (!user) {
