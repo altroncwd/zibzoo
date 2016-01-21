@@ -1,0 +1,19 @@
+.reveal-modal {
+  &:focus {
+    outline: none;
+  }
+}
+
+.reveal-order-form {
+  h4 {
+    margin-bottom: 0;
+  }
+
+  .item-price {
+    margin: 0 0 rem-calc(8);
+  } 
+
+  .item-description {
+    color: $jumbo;
+  } 
+}
