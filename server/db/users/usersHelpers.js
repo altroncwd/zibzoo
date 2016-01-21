@@ -13,9 +13,8 @@ module.exports = {
         if (user) {
           throw Error('User already exists.')
         }
-        var newUser = new User({
-          name: userObj.name
-        });
+
+        var newUser = new User(userObj);
 
         return newUser.save()
       })
