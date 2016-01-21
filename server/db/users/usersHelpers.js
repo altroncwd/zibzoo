@@ -46,15 +46,6 @@ module.exports = {
       .catch(function (error) {
         return error;
       });
-  },
-
-  deleteUser: function (userObj) {
-    return User.remove({
-      name: userObj.name
-    })
-    .catch(function (error) {
-      return error;
-    });
   }
 
 }
