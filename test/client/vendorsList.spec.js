@@ -51,4 +51,22 @@ describe('VendorsListController', function () {
       expect(typeof $scope.getVendors).to.equal('function');
     });
   });
+  describe('$scope.filter', function () {
+    it('should be a property on the scope', function () {
+      expect($scope).to.have.property('filter');
+    });
+    it('should be a function', function () {
+      expect(typeof $scope.filter).to.equal('function');
+    });
+    it('should assign the  argument it takes in and set it an array assigned to $scope.selected',
+      function () {
+        $scope.filter('hello');
+        expect($scope.selected).to.deep.equal(['hello']);
+      });
+    xit('if argument does not exist it should not set any value to $scope.selected',
+      function () {
+        $scope.filter();
+        expect($scope.selected).to.equal(undefined);
+      });
+  });
 });
