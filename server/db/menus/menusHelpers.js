@@ -63,10 +63,9 @@ module.exports = {
         console.log('Error adding menu: ', error);
       });
   },
-  // TODO: vendorId is not defined
   getMenu: function (menuObj) {
     Menu.findOne({
-      'createdBy': vendorId,
+      'createdBy': menuObj.vendorId,
       'name': menuObj.name
     })
       .populate('MenuItemIds')
@@ -92,9 +91,8 @@ module.exports = {
         return error;
       });
   },
-  // TODO: menuObj is not defined
   deleteMenuItem: function (menuItemObj) {
-    MenuItem.findById(menuObj.menuItemId)
+    MenuItem.findById(menuItemObj.menuItemId)
       .then(function (menuItem) {
         Menu.update({ _id: menuItem._id }, { $pull: { menuItemIds: menuItem._id } });
         return menuItem.remove();
