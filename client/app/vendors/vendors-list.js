@@ -3,7 +3,9 @@ angular.module('zibzoo.vendors.list', [])
     $scope.vendors = vendors.tempData;
     $scope.selected;
     $scope.filter = function (cuisineType) {
-      $scope.selected = [cuisineType];
+      if (cuisineType) {
+        $scope.selected = [cuisineType];
+      }
     };
     $scope.getVendors = function () {
       vendors.getVendors()
