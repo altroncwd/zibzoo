@@ -38,6 +38,19 @@ angular.module('zibzoo.vendors.factory', [])
       imageUrl: 'https://placehold.it/1000x344'
     }];
 
+    vendors.postVendor = function (vendorObj) {
+      return $http({
+        method: 'POST',
+        url: 'api/vendors',
+        data: JSON.stringify(vendorObj)
+      })
+        .then(function (res) {
+          return res;
+        }, function (err) {
+          return err;
+        });
+    };
+
     vendors.getVendors = function () {
       return $http({
         method: 'GET',

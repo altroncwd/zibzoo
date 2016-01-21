@@ -3,6 +3,7 @@
     <form action="" >
       <h3> Vendor's Information</h3>
 <!----------------------------------Vendor Image and Description-------------------------------------------->
+<input type="text" ng-model="vendor.name" />
       <div class="row">
         <div class="small-4 large-4 columns">
           <img src={{img}} alt="">
@@ -10,8 +11,8 @@
         </div>
         <div class="small-8 large-8 columns">
           <h4>Description : </h4>
-          <textarea rows="7" cols="1" ng-model="description">
-              {{description}}
+          <textarea rows="7" cols="1" ng-model="vendor.description">
+              {{vendor.description}}
           </textarea>
           <h4>Vendor Image :</h4>
           <input type="file" name="pic" accept="image/*">
@@ -24,7 +25,7 @@
         <div class="large-12 columns">
           <h4>Cuisine :</h4>
           <ul class="inline-list">
-            <li ng-repeat="food in cuisine" > <button class="button round small">{{food}}</button> </li>
+            <li ng-repeat="food in cuisine" > <button class="button small" ng-click="vendor.cuisine = food">{{food}}</button> </li>
           </ul>
           <div class="large-12 columns">
             <select name="" id="" class="large-2 columns>
@@ -70,7 +71,7 @@
       </div>
 
 <!------------------------------Save Button--------------------------------------->
-      <button type="save">SAVE Profile</button>
+      <button ng-click="saveVendor(vendor) " type="save">SAVE Profile</button>
       <button ui-sref="menu({merchantId: 1})">Create Menu</button>
     </form>
   </div>

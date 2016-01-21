@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant', [])
-  .controller('MerchantProfileController', ['$scope', function ($scope) {
+  .controller('MerchantProfileController', ['$scope', 'vendors', function ($scope, vendors) {
 
     // themporary data for merchant page, html will need to be refactored for actual incoming data
     $scope.schedule = {
@@ -17,4 +17,24 @@ angular.module('zibzoo.merchant', [])
     $scope.hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     // '00' needs to be in string because its evaluated as 0
     $scope.min = ['00', 15, 30, 45];
+
+    // post vendor request
+    $scope.vendor = {
+      name: '',
+      description: '',
+      cuisine: '',
+      imageUrl: ''
+    };
+
+    $scope.saveVendor = function (vendorObj) {
+      console.log(vendorObj);
+      vendors.postVendor(vendorObj)
+        .then(function (data) {
+          console.log('Vendor saved successfuly', data);
+        }, function (err) {
+          console.error('Error saving vendor ', err);
+        });
+    };
+
+
   }]);
