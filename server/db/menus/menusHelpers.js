@@ -92,7 +92,7 @@ module.exports = {
         return error;
       });
   },
-  // TODO menuObj is not defined
+  // TODO: menuObj is not defined
   deleteMenuItem: function (menuItemObj) {
     MenuItem.findById(menuObj.menuItemId)
       .then(function (menuItem) {
