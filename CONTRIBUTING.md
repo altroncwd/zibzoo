@@ -37,7 +37,7 @@ git remote add upstream https://github.com/unforgitables/zibzoo.git
 ### Create a feature branch from 'develop'
 
 ```bash
-# Creates your branch and brings you there
+# Create your branch and go to it
 git checkout -b `your-feature-branch`
 ```
 
@@ -72,8 +72,8 @@ code merged into the main repository. First ensure that all changes have been co
 rebase upstream changes that were made to the 'develop' branch into your feature branch by running:
 
 ```bash
-git fetch upstream
-git rebase upstream/develop
+# Fetch `upstream develop` and rebase
+git pull --rebase upstream develop
 ```
 
 This will start the rebase process. You must commit all of your changes before doing this. If there
