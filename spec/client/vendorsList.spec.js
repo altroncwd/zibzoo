@@ -35,40 +35,40 @@ describe('VendorsListController', function () {
 
   describe('$scope.vendors', function () {
     it('should be a property on the scope', function () {
-      expect($scope).to.have.property('vendors');
+      expect($scope.vendors).toBeDefined();
     });
     it('should be an array', function () {
-      expect(Array.isArray($scope.vendors)).to.be.true;
+      expect(Array.isArray($scope.vendors)).toBe(true);
     });
     xit('should contain no data', function () {
-      expect($scope.vendors.length).to.equal(0);
+      expect($scope.vendors.length).toBe(0);
     });
   });
 
   describe('$scope.getVendors', function () {
     it('should be property on the scope', function () {
-      expect($scope).to.have.property('getVendors');
+      expect($scope.getVendors).toBeDefined();
     });
     it('should be a function', function () {
-      expect(typeof $scope.getVendors).to.equal('function');
+      expect(typeof $scope.getVendors).toBe('function');
     });
   });
   describe('$scope.filter', function () {
     it('should be a property on the scope', function () {
-      expect($scope).to.have.property('filter');
+      expect($scope.filter).toBeDefined();
     });
     it('should be a function', function () {
-      expect(typeof $scope.filter).to.equal('function');
+      expect(typeof $scope.filter).toBe('function');
     });
-    it('should assign the  argument it takes in and set it an array assigned to $scope.selected',
+    it('should assign the  argument it takes in and set it in an array assigned to $scope.selected',
       function () {
         $scope.filter('hello');
-        expect($scope.selected).to.deep.equal(['hello']);
+        expect($scope.selected).toEqual(['hello']);
       });
     it('if argument does not exist it should not set any value to $scope.selected',
       function () {
         $scope.filter();
-        expect($scope.selected).to.equal(undefined);
+        expect($scope.selected).toBeUndefined();
       });
   });
 });
