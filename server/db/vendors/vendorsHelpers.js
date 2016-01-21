@@ -30,14 +30,14 @@ module.exports = {
       });
   },
 
-  getVendor: function (vendorRecord) {
+  getVendor: function (vendorObj) {
     return Vendor
       .findOne({
-        'vendorName': vendorRecord.vendorName
+        name: vendorObj.name
       })
       .then(function (vendor) {
         if (!vendor) {
-          throw Error('Vendor does not exist');
+          throw Error('Vendor does not exist.');
         }
 
         return vendor;
