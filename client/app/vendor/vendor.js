@@ -14,7 +14,7 @@ angular.module('zibzoo.vendor', [])
     };
 
     $scope.open = function (item) {
-      var modalInstance = $modal.open({
+      $modal.open({
         templateUrl: 'app/vendor/_order-form.html',
         controller: 'OrderFormController',
         resolve: {
@@ -25,5 +25,5 @@ angular.module('zibzoo.vendor', [])
       });
     };
 
-    //$scope.getVendor($stateParams.vendorId);
+    // $scope.getVendor($stateParams.vendorId);
   }]);

@@ -36,7 +36,7 @@ angular.module('zibzoo.vendor.factory', [])
           name: 'Green Chile',
           description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit',
           price: 4.50
-        }   
+        }
       ]
     };
 
