@@ -3,32 +3,79 @@ var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017');
 
-describe('.postUser()', function () {
+describe('usersHelpers', function () {
   var mockUser = {
     name: 'Willy'
   }
 
-  it('should be a function', function () {
-    expect(typeof usersHelpers.postUser).toBe('function');
-  });
+  // Drop database before running tests
+  beforeAll(function (done) {
+    mongoose.connection.on('open', function () {
+      mongoose.connection.db.dropDatabase(function (error) {
+        if (error) {
+          throw error;
+        }
 
-  it('should store a new user in the database', function (done) {
-    var userPromise = usersHelpers.postUser(mockUser);
-
-    userPromise
-      .then(function (result) {
-        expect(result.name).toEqual('Willy');
         done();
       });
+    });
   });
 
-  it('should throw an error if a user already exists', function (done) {
-    var userPromise = usersHelpers.postUser(mockUser);
+  // Disconnect from database after all tests have run
+  afterAll(function () {
+    mongoose.disconnect();
+  });
 
-    userPromise
-      .then(function (result) {
-        expect(result.message).toEqual('User already exists.');
-        done();
-      });
+  describe('.postUser()', function () {
+    it('should be a function', function () {
+      expect(typeof usersHelpers.postUser).toBe('function');
+    });
+
+    it('should store a new user in the database', function (done) {
+      var postPromise = usersHelpers.postUser(mockUser);
+
+      postPromise
+        .then(function (result) {
+          expect(result.name).toBe('Willy');
+          done();
+        });
+    });
+
+    it('should return an error if a user already exists', function (done) {
+      var postPromise = usersHelpers.postUser(mockUser);
+
+      postPromise
+        .then(function (result) {
+          expect(result.message).toBe('User already exists.');
+          done();
+        });
+    });
+  });
+
+  describe('.getUser()', function () {
+    it('should be a function', function () {
+      expect(typeof usersHelpers.postUser).toBe('function');
+    });
+
+    it('should retreive a user from the database', function (done) {
+      var getPromise = usersHelpers.getUser(mockUser);
+
+      getPromise
+        .then(function (result) {
+          expect(result.name).toBe('Willy');
+          done();
+        });
+    });
+
+    it('should return an error if the user does not exist', function (done) {
+      mockUser.name = 'Little Willy'
+      var getPromise = usersHelpers.getUser(mockUser);
+
+      getPromise
+        .then(function (result) {
+          expect(result.message).toBe('User does not exist.');
+          done();
+        });
+    });
   });
 });
