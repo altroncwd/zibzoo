@@ -1,0 +1,18 @@
+<div class="row">
+  <i class="fa fa-shopping-cart fa-3x"></i>
+  <p class="cart-header">Your Cart</p>
+</div>
+<section class="menu">
+  <div class="row">
+    <div class="small-12 columns">
+      <ul class="menu-list">
+        <li ng-repeat="item in cart">
+          <p>
+            <span>{{item.name}}</span>
+            <span class="right">${{item.price}}</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

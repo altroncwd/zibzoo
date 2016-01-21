@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Mon Jan 18 2016 13:44:53 GMT-0800 (PST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,24 +10,31 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      // angular-files
+    // angular-files
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      // client source
-      'client/build/**/*.js',
+      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'node_modules/fastclick/lib/fastclick.js',
+      'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
+      'node_modules/angular-foundation/mm-foundation.js',
+      'node_modules/angular-foundation/mm-foundation-tpls.js',
+      'node_modules/lodash/lodash.js',
 
-      // client test
-      'test/client/**/*.js'
+    // client source
+      'client/**/*.js',
+    // client test
+      'spec/client/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      'client/build/**/*.js',
     ],
 
 
@@ -40,7 +47,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'mocha'],
+    reporters: ['progress', 'nyan', 'html'],
 
     // change Karma's debug.html to the mocha web reporter
     client: {
