@@ -5,7 +5,7 @@ angular.module('zibzoo.vendor.factory', [])
       name: 'Taco Loco',
       description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
       cuisine: 'Mexican',
-      wait: 9,
+      imageUrl: 'https://placehold.it/1000x344',
       menu: [
         {
           name: 'Chicken Fajita',
