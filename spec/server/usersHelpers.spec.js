@@ -1,6 +1,7 @@
-var usersHelpers = require('../server/db/users/usersHelpers.js');
+var usersHelpers = require('../../server/db/users/usersHelpers.js');
 var mongoose = require('mongoose');
 
+// Open connection -- NOTE: must be in first file in server/
 mongoose.connect('mongodb://localhost:27017');
 
 describe('usersHelpers', function () {
@@ -8,7 +9,7 @@ describe('usersHelpers', function () {
     name: 'Willy'
   }
 
-  // Drop database before running tests
+  // Drop database before running tests in top file -- NOTE: must be in first file in server/
   beforeAll(function (done) {
     mongoose.connection.on('open', function () {
       mongoose.connection.db.dropDatabase(function (error) {
@@ -19,11 +20,6 @@ describe('usersHelpers', function () {
         done();
       });
     });
-  });
-
-  // Disconnect from database after all tests have run
-  afterAll(function () {
-    mongoose.disconnect();
   });
 
   describe('.postUser()', function () {
