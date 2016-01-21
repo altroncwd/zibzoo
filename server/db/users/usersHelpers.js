@@ -11,12 +11,12 @@ module.exports = {
       })
       .then(function (user) {
         if (user) {
-          throw Error('User already exists.')
+          throw Error('User already exists.');
         }
 
         var newUser = new User(userObj);
 
-        return newUser.save()
+        return newUser.save();
       })
       .then(function (result) {
         if (!result) {
@@ -47,5 +47,5 @@ module.exports = {
       });
   }
 
-}
+};
 
