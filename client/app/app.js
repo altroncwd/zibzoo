@@ -3,7 +3,7 @@ angular.module('zibzoo', [
   'mm.foundation',
   'zibzoo.navbar.directive',
   'zibzoo.vendors.directive',
-  'zibzoo.filter-box.directive',
+  'zibzoo.filterbox.directive',
   'zibzoo.landing',
   'zibzoo.vendors.list',
   'zibzoo.vendors.factory',
@@ -23,19 +23,14 @@ angular.module('zibzoo', [
       controller: 'VendorsListController'
     })
     .state('vendors', {
-      templateUrl: 'app/vendors/VendorsList/vendorsList.html',
+      templateUrl: 'app/vendors/vendors-list.html',
       url: '/vendors',
       controller: 'VendorsListController',
     })
     .state('vendor', {
-      templateUrl: 'app/vendors/vendor/vendor.html',
+      templateUrl: 'app/vendor/vendor.html',
       url: '/vendor/:vendorId',
       controller: 'VendorController'
-    })
-    .state('vendor.menu', {
-      templateUrl: 'app/vendors/vendor/menu.html',
-      url: '/vendor/:vendorId/menu',
-      controller: 'VendorMenuController'
     });
 
   $stateProvider
