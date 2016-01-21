@@ -93,8 +93,8 @@ $include-html-global-classes: $include-html-classes;
 $font-family-cantarell: 'Cantarell', sans-serif;
 
 // We use these to define default font weights
-// $font-weight-normal: normal;
-// $font-weight-bold: bold;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
 
 $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
@@ -104,7 +104,7 @@ $white       : #FFFFFF;
 // $silver      : #EFEFEF;
 // $smoke       : #EEEEEE;
 $gainsboro   : #DDDDDD;
-// $iron        : #CCCCCC;
+$iron        : #CCCCCC;
 $base        : #AAAAAA;
 // $aluminum    : #999999;
 $jumbo       : #888888;
@@ -1136,7 +1136,7 @@ $hr-border-color: $base;
 // We use these to control the style of the modal itself.
 // $reveal-modal-bg: $white;
 // $reveal-position-top: rem-calc(100);
-// $reveal-default-width: 80%;
+$reveal-default-width: 60%;
 // $reveal-max-width: $row-width;
 // $reveal-modal-padding: rem-calc(20);
 // $reveal-box-shadow: 0 0 10px rgba($black,.4);
@@ -1146,7 +1146,7 @@ $hr-border-color: $base;
 // $reveal-close-top: rem-calc(10);
 // $reveal-close-side: rem-calc(22);
 // $reveal-close-color: $base;
-// $reveal-close-weight: $font-weight-bold;
+$reveal-close-weight: $font-weight-normal;
 
 // We use this to set the default radius used throughout the core.
 // $reveal-radius: $global-radius;
@@ -1154,7 +1154,7 @@ $hr-border-color: $base;
 
 // We use these to control the modal border
 // $reveal-border-style: solid;
-// $reveal-border-width: 1px;
+$reveal-border-width: 1px;
 // $reveal-border-color: $steel;
 
 // $reveal-modal-class: "reveal-modal";

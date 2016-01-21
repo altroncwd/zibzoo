@@ -9,6 +9,8 @@ angular.module('zibzoo', [
   'zibzoo.vendors.factory',
   'zibzoo.vendors.directive',
   'zibzoo.vendor',
+  'zibzoo.vendor.factory',
+  'zibzoo.vendor.orderform',
   'zibzoo.merchant',
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',

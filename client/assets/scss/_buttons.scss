@@ -1,0 +1,18 @@
+button, .button {
+  padding: .8rem 1.8rem 1rem 1.8rem;  
+}
+
+.quantity-bar {
+  .button {
+    color: $primary-color;
+    padding: rem-calc(8); 
+    width: rem-calc(34); 
+    height: 2.3125rem;
+    margin-bottom: 0;
+    background-color: $white;
+  }
+
+  input[type="text"] {
+    width: rem-calc(34);
+  }
+}

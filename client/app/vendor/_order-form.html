@@ -1,0 +1,19 @@
+<div class="reveal-order-form">
+  <h4>{{item.name}}</h4>
+  <p class="item-price">{{item.price | currency}}</p>
+  <p class="item-description">{{item.description}}</p>
+
+  <div class="row">
+    <ul class="button-group quantity-bar left">
+      <li>
+        <a class="button" ng-click="decrement()"><i class="fa fa-minus"></i></a>
+      </li>
+      <li><input type="text" value="{{quantity}}" ng-model="quantity" /></li>
+      <li>
+        <a class="button" ng-click="increment()"><i class="fa fa-plus"></i></a>
+      </li>
+    </ul>
+    <button class="button right" ng-click="addToCart()">Add To Cart</button>
+  </div>
+  <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+</div>

@@ -32,7 +32,8 @@ var paths = {
     'node_modules/fastclick/lib/fastclick.js',
     'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
     'node_modules/angular-foundation/mm-foundation.js',
-    'node_modules/underscore/underscore.js',
+    'node_modules/angular-foundation/mm-foundation-tpls.js',
+    'node_modules/lodash/lodash.js',
     'client/app/**/*.*js'
   ]
 }
