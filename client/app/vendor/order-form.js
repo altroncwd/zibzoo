@@ -19,7 +19,7 @@ angular.module('zibzoo.vendor.orderform', [])
 
     $scope.decrement = function () {
       if ($scope.quantity > 0) {
-        --$scope.quantity;  
+        --$scope.quantity;
       }
     };
   }]);
