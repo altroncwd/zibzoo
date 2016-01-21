@@ -1,4 +1,4 @@
-angular.module('zibzoo.merchant.menu.service', [])
+angular.module('zibzoo.merchant.menu.factory', [])
   .factory('menu', function() {
     var menu = {};
 
