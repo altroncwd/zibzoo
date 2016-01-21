@@ -1,4 +1,4 @@
-var vendorsHelpers = require('./../../db/vendors/vendorsHelpers.js')
+var vendorsHelpers = require('./../../db/vendors/vendorsHelpers.js');
 
 module.exports = {
 

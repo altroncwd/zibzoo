@@ -16,7 +16,7 @@ module.exports = {
 
         var newVendor = new Vendor(vendorObj);
 
-        return newVendor.save()
+        return newVendor.save();
       })
       .then(function (result) {
         if (!result) {
@@ -47,4 +47,4 @@ module.exports = {
       });
   }
 
-}
+};

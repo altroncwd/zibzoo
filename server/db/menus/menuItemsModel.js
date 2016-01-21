@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var menuItemSchema = new mongoose.Schema({
 
-  menuId:
+  // menuId:
 
   foodName: {
     type: String,

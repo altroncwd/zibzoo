@@ -1,4 +1,4 @@
-var usersHelpers = require('./../../db/users/usersHelpers.js')
+var usersHelpers = require('./../../db/users/usersHelpers.js');
 
 module.exports = {
 

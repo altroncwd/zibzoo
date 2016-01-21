@@ -4,7 +4,8 @@ var menuSchema = new mongoose.Schema({
 
   name: String,
 
-  created_by: {
+  // TODO: Schema is not defined
+  createdBy: {
     type: Schema.Types.ObjectId,
     ref: 'Vendor'
   },

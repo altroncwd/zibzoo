@@ -6,103 +6,103 @@ mongoose.Promise = require('bluebird');
 
 module.exports = {
 
-  postMenuItem: function(menuItemObj, menuId) {
+  postMenuItem: function (menuItemObj, menuId) {
     return MenuItem.findOne({
-      'created_by': menuItemObj.vendorId,
+      'createdBy': menuItemObj.vendorId,
       'foodName': menuItemObj.foodName
     })
-    .then(function(menuItem) {
-      if(menuItem) {
-        throw Error('Menu item already exists');
-      }
-      var newMenuItem = new MenuItem(menuItemObj);
+      .then(function (menuItem) {
+        if (menuItem) {
+          throw Error('Menu item already exists');
+        }
+        var newMenuItem = new MenuItem(menuItemObj);
 
-     return newMenuItem.save();
-    })
-    .then(function(result) {
-      if(!result) {
-        throw Error('Unable to save menu item');
-      }
-      Menu.update({
-        '_id': menuId
-      }, {
-        $push: { menuItemIds: result._id }
+        return newMenuItem.save();
+      })
+      .then(function (result) {
+        if (!result) {
+          throw Error('Unable to save menu item');
+        }
+        Menu.update({
+          '_id': menuId
+        }, {
+          $push: { menuItemIds: result._id }
+        });
+        return result;
+      })
+      .catch(function (error) {
+        console.log('Error adding menu item: ', error);
       });
-      return result;
-    })
-    .catch(function(error) {
-      console.log("Error adding menu item: ", error);
-    });
   },
 
-  postMenu: function(menuObj, vendorId) {
+  postMenu: function (menuObj, vendorId) {
     return Menu.findOne({
-      'created_by': vendorId,
+      'createdBy': vendorId,
       'menuName': menuObj.menuName
     })
-    .then(function(menu) {
-      if(menu) {
-        throw Error('Menu already exists');
-      }
-      var newMenu = new Menu(menuObj);
+      .then(function (menu) {
+        if (menu) {
+          throw Error('Menu already exists');
+        }
+        var newMenu = new Menu(menuObj);
 
-     return newMenu.save();
-    })
-    .then(function(result) {
-      if(!result) {
-        throw Error('Unable to save menu');
-      }
-      Vendor.update({
-        '_id': vendorId
-      }, {
-        $push: { menuIds: result._id }
+        return newMenu.save();
+      })
+      .then(function (result) {
+        if (!result) {
+          throw Error('Unable to save menu');
+        }
+        Vendor.update({
+          '_id': vendorId
+        }, {
+          $push: { menuIds: result._id }
+        });
+        return result;
+      })
+      .catch(function (error) {
+        console.log('Error adding menu: ', error);
       });
-      return result;
-    })
-    .catch(function(error) {
-      console.log("Error adding menu: ", error);
-    });
-  }
-
-  getMenu: function(menuObj) {
+  },
+  // TODO: vendorId is not defined
+  getMenu: function (menuObj) {
     Menu.findOne({
-      'created_by': vendorId,
+      'createdBy': vendorId,
       'name': menuObj.name
     })
-    .populate('MenuItemIds')
-    .then(function(menu) {
-      if(!menu) {
-        throw Error('Unable to retrieve menu');
-      }
-      return menu;
-    })
-    .catch(function(error) {
-      console.log("Error retrieving menu: ", error);
-      return error;
-    })
-  }
+      .populate('MenuItemIds')
+      .then(function (menu) {
+        if (!menu) {
+          throw Error('Unable to retrieve menu');
+        }
+        return menu;
+      })
+      .catch(function (error) {
+        console.log('Error retrieving menu: ', error);
+        return error;
+      });
+  },
 
-  deleteMenu: function(menuObj) {
+  deleteMenu: function (menuObj) {
     Menu.findById(menuObj.menuId)
-    .then(function(menu) {
-      menu.remove()
-    })
-    .catch(function(error){
-      console.log('Error deleting menu: ', error);
-      return error;
-    })
-  }
-
-  deleteMenuItem: function(menuItemObj) {
+      .then(function (menu) {
+        menu.remove();
+      })
+      .catch(function (error) {
+        console.log('Error deleting menu: ', error);
+        return error;
+      });
+  },
+  // TODO: menuObj is not defined
+  deleteMenuItem: function (menuItemObj) {
     MenuItem.findById(menuObj.menuItemId)
-    .then(function(menuItem) {
-      Menu.update({_id: menuItem._id}, {$pull: {menuItemIds: menuItem._id}});
-      return menuItem.remove();
-    })
-    .catch(function(error) {
-      console.log('Error deleting menu item: ', error);
-      return error;
-    })
+      .then(function (menuItem) {
+        Menu.update({ _id: menuItem._id }, { $pull: { menuItemIds: menuItem._id } });
+        return menuItem.remove();
+      })
+      .catch(function (error) {
+        console.log('Error deleting menu item: ', error);
+        return error;
+      });
   }
 
-}
+};
