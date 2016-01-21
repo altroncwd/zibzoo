@@ -11,7 +11,7 @@ angular.module('zibzoo', [
   'zibzoo.vendor',
   'zibzoo.merchant',
   'zibzoo.merchant.menu',
-  'zibzoo.merchant.menu.service',
+  'zibzoo.merchant.menu.factory',
   'zibzoo.menuform.directive'
 ])
 
