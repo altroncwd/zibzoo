@@ -6,31 +6,36 @@ angular.module('zibzoo.vendors.factory', [])
       id: 1,
       name: 'Burger Shop',
       cuisine: 'American',
-      wait: 9,
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
     },
     {
       id: 2,
       name: 'Pasta Shop',
       cuisine: 'Italian?',
-      wait: 15,
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
     },
     {
       id: 3,
       name: 'Soup Shop',
       cuisine: 'Soup',
-      wait: 0,
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
     },
     {
       id: 4,
       name: 'Thai Shop',
       cuisine: 'Thai',
-      wait: 60
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
     },
     {
       id: 5,
       name: 'Seafood Shop',
       cuisine: 'Seafood',
-      wait: 90
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
     }];
 
     vendors.getVendors = function () {
