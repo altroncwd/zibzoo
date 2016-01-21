@@ -63,7 +63,7 @@ describe('VendorsListController', function () {
         $scope.filter('hello');
         expect($scope.selected).to.deep.equal(['hello']);
       });
-    xit('if argument does not exist it should not set any value to $scope.selected',
+    it('if argument does not exist it should not set any value to $scope.selected',
       function () {
         $scope.filter();
         expect($scope.selected).to.equal(undefined);
