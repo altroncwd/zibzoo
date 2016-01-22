@@ -1,4 +1,4 @@
-angular.module('zibzoo.vendor.orderform', [])
+angular.module('zibzoo.order', [])
   .controller('OrderFormController', ['$scope', '$modalInstance', 'item', function ($scope, $modalInstance, item) {
     $scope.item = item;
     $scope.quantity = 1;
