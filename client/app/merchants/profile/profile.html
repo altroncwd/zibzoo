@@ -49,25 +49,27 @@
         <div class="large-1 columns">
           <label >Close</label> <input type="radio" name="{{keys}}"  >
         </div>
-        <div class="large-1 columns">
-          <select >
-            <option ng-repeat="hour in hour">{{hour}}</option>
-          </select>
-        </div>
-        <div class="large-1 columns">
-          <select >
+        <div ng-selected='open' class="large-5 columns end">
+          <div class="large-2 columns">
+            <select >
+              <option ng-repeat="hour in hour">{{hour}}</option>
+            </select>
+          </div>
+          <div class="large-2 columns">
+            <select >
+              <option ng-repeat="min in min">{{min}}</option>
+            </select>
+          </div>
+          <div class="large-2 columns">
+            <select >
+              <option ng-repeat="hour in hour">{{hour}}</option>
+            </select>
+          </div>
+          <div class="large-2 columns end ">
+            <select >
             <option ng-repeat="min in min">{{min}}</option>
-          </select>
-        </div>
-        <div class="large-1 columns">
-          <select >
-            <option ng-repeat="hour in hour">{{hour}}</option>
-          </select>
-        </div>
-        <div class="large-1 columns end ">
-          <select >
-           <option ng-repeat="min in min">{{min}}</option>
-          </select>
+            </select>
+          </div>
         </div>
       </div>
 
