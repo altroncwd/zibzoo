@@ -9,7 +9,7 @@ var vendorSchema = new mongoose.Schema({
   cuisine: [String],
   imageUrl: String,
   location: String,
-  menuItemIds: [{
+  menuIds: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Menu'
   }]

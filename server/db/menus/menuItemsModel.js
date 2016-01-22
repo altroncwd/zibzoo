@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 var menuItemSchema = new mongoose.Schema({
 
-  // menuId:
+  menuId: mongoose.Schema.Types.ObjectId,
 
-  foodName: {
+  name: {
     type: String,
     required: true
   },
@@ -20,6 +20,8 @@ var menuItemSchema = new mongoose.Schema({
     type: Boolean,
     require: true
   },
+
+  calories: Number,
 
   isGlutenFree: Boolean,
 
