@@ -1,21 +1,22 @@
 <div class="row">
-  <div class="small-12 large-12 columns">
-    <form action="" >
+  <div class="small-12 large-12 columns" >
+    <form novalidate class="css-form">
       <h3> Vendor's Information</h3>
 <!----------------------------------Vendor Image and Description-------------------------------------------->
-<input type="text" ng-model="vendor.name" />
+      <input type="text" ng-model="vendor.name" ng-model-options="{ updateOn: 'blur' }" required />
+      <!----------------------Name Input-------------------------->
       <div class="row">
         <div class="small-4 large-4 columns">
           <img src={{img}} alt="">
         <!--Should display the vendor profile picture or a default if non provided-->
         </div>
         <div class="small-8 large-8 columns">
-          <h4>Description : </h4>
-          <textarea rows="7" cols="1" ng-model="vendor.description">
+          <h4>Description </h4>
+          <textarea rows="7" cols="1" ng-model="vendor.description" type="text" ng-model-options="{ updateOn: 'blur' }" required >
               {{vendor.description}}
           </textarea>
-          <h4>Vendor Image :</h4>
-          <input type="file" name="pic" accept="image/*">
+          <h4>Vendor Image</h4>
+          <input type="file" name="pic" accept="image/*" ng-model-options="{ updateOn: 'blur' }" required />
         </div>
       <div>
 <!----------------------------------Cuisine Listing--------------------------------------------
@@ -23,7 +24,7 @@
 ---------------------------------------------------------------------------------------------->
       <div class="row">
         <div class="large-12 columns">
-          <h4>Cuisine :</h4>
+          <h4>Cuisine</h4>
           <ul class="inline-list">
             <li ng-repeat="food in cuisine" > <button class="button small" ng-click="vendor.cuisine = food">{{food}}</button> </li>
           </ul>
@@ -72,7 +73,8 @@
 
 <!------------------------------Save Button--------------------------------------->
       <button ng-click="saveVendor(vendor) " type="save">SAVE Profile</button>
-      <button ui-sref="menu({merchantId: 1})">Create Menu</button>
+      <button ng-show="merchantId" ui-sref="menu({merchantId: merchantId})">Create Menu</button>
+
     </form>
   </div>
 </div>

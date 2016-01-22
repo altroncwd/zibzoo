@@ -19,6 +19,7 @@ angular.module('zibzoo.merchant', [])
     $scope.min = ['00', 15, 30, 45];
 
     // post vendor request
+    console.log('VENDORS : : ', vendors);
     $scope.vendor = {
       name: '',
       description: '',
@@ -26,11 +27,15 @@ angular.module('zibzoo.merchant', [])
       imageUrl: ''
     };
 
+    $scope.merchantId;
+
     $scope.saveVendor = function (vendorObj) {
-      console.log(vendorObj);
+      // console.log(vendorObj);
+
       vendors.postVendor(vendorObj)
         .then(function (data) {
           console.log('Vendor saved successfuly', data);
+          $scope.merchantId = data.data._id;
         }, function (err) {
           console.error('Error saving vendor ', err);
         });
