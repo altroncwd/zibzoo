@@ -29,6 +29,7 @@ describe('menusHelpers', function () {
 
 
   describe('.postMenu()', function () {
+
     beforeAll(function (done) {
       vendorsHelpers.postVendor(mockVendor)
         .then(function (result) {
@@ -58,22 +59,22 @@ describe('menusHelpers', function () {
 
       getVendorPromise
         .then(function (result) {
-          expect(result.menuIds).toBeDefined();
-          expect(result.menuIds[0]).toBe(typeof newMenuId);
+          expect(result.menuIds.length).toBe(1);
+          expect(result.menuIds[0]).toEqual(newMenuId);
           done();
         });
     });
   });
 
-  xdescribe('.getMenu()', function () {
+  describe('.postMenuItem()', function () {
     it('should be a function', function () {
       expect(typeof menusHelpers.postMenu).toBe('function');
     });
 
-    it('should retreive a menu from the database', function (done) {
-      var getPromise = menusHelpers.getMenu(mockMenu);
+    it('should store a new menu item in the database', function (done) {
+      var postMenuItemPromise = menusHelpers.postMenuItem(mockMenu);
 
-      getPromise
+      postMenuItemPromise
         .then(function (result) {
           expect(result.name).toBe('Willy');
           done();
