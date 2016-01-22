@@ -44,10 +44,14 @@ angular.module('zibzoo.vendors.factory', [])
         url: 'api/vendors',
         data: JSON.stringify(vendorObj)
       })
-        .then(function (res) {
-          return res;
-        }, function (err) {
-          return err;
+        .success(function (data, status, headers, config) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+          );
         });
     };
 
