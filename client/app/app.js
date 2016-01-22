@@ -5,6 +5,9 @@ angular.module('zibzoo', [
   'zibzoo.vendors.directive',
   'zibzoo.filterbox.directive',
   'zibzoo.cart',
+  'zibzoo.auth',
+  'zibzoo.auth.factory',
+  'zibzoo.user.factory',
   'zibzoo.landing',
   'zibzoo.vendors.list',
   'zibzoo.vendors.factory',
@@ -39,6 +42,18 @@ angular.module('zibzoo', [
       templateUrl: 'app/users/cart/cart.html',
       url: '/cart',
       controller: 'CartController'
+    });
+
+  $stateProvider
+    .state('signup', {
+      templateUrl: 'app/auth/signup.html',
+      url: '/signup',
+      controller: 'AuthController'
+    })
+    .state('signin', {
+      templateUrl: 'app/auth/signin.html',
+      url: '/signin',
+      controller: 'AuthController'
     });
 
   $stateProvider
