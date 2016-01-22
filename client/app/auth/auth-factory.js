@@ -2,6 +2,8 @@ angular.module('zibzoo.auth.factory', [])
   .factory('Auth', ['$http', '$state', '$window', 'User', function ($http, $state, $window, User) {
     var auth = {};
 
+    auth.currentUser = User.data;
+
     auth.signin = function (user) {
       return $http({
         method: 'POST',

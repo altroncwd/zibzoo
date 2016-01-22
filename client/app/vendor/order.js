@@ -1,11 +1,15 @@
 angular.module('zibzoo.order', [])
-  .controller('OrderFormController', ['$scope', '$modalInstance', 'item', function ($scope, $modalInstance, item) {
+  .controller('OrderFormController', ['$scope', '$modalInstance', 'item', 'User', function ($scope, $modalInstance, item, User) {
     $scope.item = item;
     $scope.quantity = 1;
 
     $scope.addToCart = function () {
-      console.log('Item ordered: ', $scope.item);
-      console.log('Quantity ordered: ', $scope.quantity);
+      var order = {
+        item: $scope.item,
+        quantity: $scope.quantity
+      }
+
+      User.data.orders.push(order);
       $modalInstance.close();
     };
 

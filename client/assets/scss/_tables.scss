@@ -1,0 +1,11 @@
+.table-cart {
+  width: 100%;
+
+  .name, .quantity {
+    width: 30%;
+  }
+
+  .price, actions {
+    width: 20%;
+  }
+}

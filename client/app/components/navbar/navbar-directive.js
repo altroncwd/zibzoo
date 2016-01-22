@@ -6,6 +6,7 @@ angular.module('zibzoo.navbar.directive', [])
       controller: function ($scope, $rootScope) {
         $scope.isAuth = Auth.isAuth;
         $scope.signout = Auth.signout;
+        $scope.items = Auth.currentUser.orders;
 
         $scope.open = function () {
           $modal.open({
