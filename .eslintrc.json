@@ -9,6 +9,7 @@
   },
   "globals": {
     "angular": false,
+    "inject": true,
     "_": false
   },
   "rules": {
