@@ -29,6 +29,15 @@ angular.module('zibzoo.merchant', [])
 
     $scope.merchantId;
 
+    $scope.remove = function (index) {
+      console.log(index);
+      $scope.cuisine.splice(index, 1);
+    };
+
+    $scope.addCuisine = function (food) {
+      $scope.cuisine.push(food);
+    };
+
     $scope.saveVendor = function (vendorObj) {
       // console.log(vendorObj);
 
