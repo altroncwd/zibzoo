@@ -2,7 +2,7 @@
 // Generated on Mon Jan 18 2016 13:44:53 GMT-0800 (PST)
 
 module.exports = function (config) {
-  config.set({
+  var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -27,6 +27,7 @@ module.exports = function (config) {
 
     // client source
       'client/**/*.js',
+
     // client test
       'spec/client/**/*.js'
     ],
@@ -49,14 +50,6 @@ module.exports = function (config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'nyan', 'html'],
 
-    // change Karma's debug.html to the mocha web reporter
-    client: {
-      mocha: {
-        reporter: 'html',
-        ui: 'bdd'
-      }
-    },
-
 
     // web server port
     port: 9876,
@@ -77,7 +70,16 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [],
+    browsers: ['Chrome'],
+
+
+    // Custom Chrome settings for Travis CI
+    customLaunchers: {
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
 
 
     // Continuous Integration mode
@@ -87,5 +89,11 @@ module.exports = function (config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['ChromeTravisCi'];
+  }
+
+  config.set(configuration);
+};
