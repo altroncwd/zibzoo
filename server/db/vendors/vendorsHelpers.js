@@ -32,15 +32,28 @@ module.exports = {
 
   getVendor: function (vendorObj) {
     return Vendor
-      .findOne({
-        name: vendorObj.name
-      })
+    .findOne(vendorObj)
       .then(function (vendor) {
         if (!vendor) {
           throw Error('Vendor does not exist.');
         }
 
         return vendor;
+      })
+      .catch(function (error) {
+        return error;
+      });
+  },
+
+  getVendors: function (vendorObj) {
+    return Vendor
+      .find(vendorObj)
+      .then(function (vendors) {
+        if (!vendors) {
+          throw Error('Vendors do not exist.');
+        }
+
+        return vendors;
       })
       .catch(function (error) {
         return error;
