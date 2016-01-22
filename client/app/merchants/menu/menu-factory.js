@@ -1,9 +1,5 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-<<<<<<< 2848f4752342d52ee8fc0007df30a3c4927b3ba3
-  .factory('menu', function() {
-=======
   .factory('menu', function () {
->>>>>>> [cleanup] lint files
     var menu = {};
 
     menu.items = [

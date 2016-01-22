@@ -39,7 +39,7 @@ angular.module('zibzoo.merchant', [])
     };
 
     $scope.saveVendor = function (vendorObj) {
-      // console.log(vendorObj);
+      console.log(vendorObj);
 
       vendors.postVendor(vendorObj)
         .then(function (data) {

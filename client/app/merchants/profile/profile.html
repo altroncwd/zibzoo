@@ -26,7 +26,8 @@
         <div class="large-12 columns">
           <h4>Cuisine</h4>
           <ul class="inline-list">
-            <li ng-click="remove($index)" ng-repeat="food in cuisine" > <button class="button small" ng-click="vendor.cuisine = food">{{food}}</button> </li>
+            <!--ng-click="remove($index)"-- for removing cuisine---->
+            <li ng-repeat="food in cuisine" > <button class="button small" ng-click="vendor.cuisine = food">{{food}}</button> </li>
           </ul>
           <div class="large-12 columns">
             <select name="" id="" class="large-2 columns>
