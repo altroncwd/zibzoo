@@ -3,7 +3,7 @@ angular.module('zibzoo.user.factory', [])
     var user = {};
 
     user.data = {
-      orders: {}
+      orders: []
     };
 
     return user;

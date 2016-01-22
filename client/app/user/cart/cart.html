@@ -1,18 +1,31 @@
 <div class="row">
-  <i class="fa fa-shopping-cart fa-3x"></i>
-  <p class="cart-header">Your Cart</p>
-</div>
-<section class="menu">
-  <div class="row">
-    <div class="small-12 columns">
-      <ul class="menu-list">
-        <li ng-repeat="item in cart">
-          <p>
-            <span>{{item.name}}</span>
-            <span class="right">${{item.price}}</span>
-          </p>
-        </li>
-      </ul>
-    </div>
+  <div class="large-12 columns">
+    <section>
+      <header class="section-header">
+        <h3 class="subheader">Your Shopping Cart</h3><hr>
+      </header>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th class="name">Item</th>
+            <th class="quantity">Quantity</th>
+            <th class="price">Price</th>
+            <th class="actions">Remove Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="order in cart">
+            <td class="name">{{order.item.name}}</td>
+            <td class="quantity">{{order.quantity}}</td>
+            <td class="price">{{order.item.price | currency}}</td>
+            <td class="actions">
+              <a ng-click="removeItem($index)" title="Remove item"><i class="fa fa-times"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="#" class="button" ng-show="cart.length > 0">Checkout</a>
+    </section>
   </div>
-</section>
+</div>
+

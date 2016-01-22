@@ -37,11 +37,6 @@ angular.module('zibzoo', [
       templateUrl: 'app/vendor/vendor.html',
       url: '/vendor/:vendorId',
       controller: 'VendorController'
-    })
-    .state('cart', {
-      templateUrl: 'app/users/cart/cart.html',
-      url: '/cart',
-      controller: 'CartController'
     });
 
   $stateProvider
@@ -54,6 +49,11 @@ angular.module('zibzoo', [
       templateUrl: 'app/auth/signin.html',
       url: '/signin',
       controller: 'AuthController'
+    })
+    .state('cart', {
+      templateUrl: 'app/user/cart/cart.html',
+      url: '/cart',
+      controller: 'CartController'
     });
 
   $stateProvider
