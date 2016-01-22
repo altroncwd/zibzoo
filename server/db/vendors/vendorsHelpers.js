@@ -33,12 +33,20 @@ module.exports = {
   getVendor: function (vendorObj) {
     return Vendor
     .findOne(vendorObj)
+    .populate('menuIds')
       .then(function (vendor) {
         if (!vendor) {
           throw Error('Vendor does not exist.');
         }
 
-        return vendor;
+        return Vendor.populate(vendor.menuIds, {
+          path: 'menuItemIds',
+          model: 'MenuItem'
+        });
+        // return vendor;
+      })
+      .then(function (result) {
+        return result;
       })
       .catch(function (error) {
         return error;
@@ -48,12 +56,21 @@ module.exports = {
   getVendors: function (vendorObj) {
     return Vendor
       .find(vendorObj)
+      .populate('menuIds')
       .then(function (vendors) {
         if (!vendors) {
           throw Error('Vendors do not exist.');
         }
 
-        return vendors;
+        return Vendor.populate(vendors, {
+          path: 'menuIds.menuItemIds',
+          model: 'MenuItem'
+        });
+
+        // return vendors;
+      })
+      .then(function (results) {
+        return results;
       })
       .catch(function (error) {
         return error;

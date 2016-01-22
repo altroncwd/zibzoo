@@ -1,49 +1,19 @@
 var Menu = require('./menusModel');
 var MenuItem = require('./menuItemsModel');
-var Vendor = require('./../vendors/vendorsModel');
+var Vendor = require('./../vendors/vendorsModel.js');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 module.exports = {
 
-  postMenuItem: function (menuItemObj, menuId) {
-    return MenuItem.findOne({
-      'createdBy': menuItemObj.vendorId,
-      'foodName': menuItemObj.foodName
-    })
-      .then(function (menuItem) {
-        if (menuItem) {
-          throw Error('Menu item already exists');
-        }
-        var newMenuItem = new MenuItem(menuItemObj);
-
-        return newMenuItem.save();
-      })
-      .then(function (result) {
-        if (!result) {
-          throw Error('Unable to save menu item');
-        }
-        Menu.update({
-          '_id': menuId
-        }, {
-          $push: { menuItemIds: result._id }
-        });
-        return result;
-      })
-      .catch(function (error) {
-        console.log('Error adding menu item: ', error);
-      });
-  },
-
-  postMenu: function (menuObj, vendorId) {
-    return Menu.findOne({
-      'createdBy': vendorId,
-      'menuName': menuObj.menuName
-    })
+  postMenu: function (menuObj) {
+    return Menu
+      .findOne(menuObj)
       .then(function (menu) {
         if (menu) {
           throw Error('Menu already exists');
         }
+
         var newMenu = new Menu(menuObj);
 
         return newMenu.save();
@@ -52,17 +22,60 @@ module.exports = {
         if (!result) {
           throw Error('Unable to save menu');
         }
-        Vendor.update({
-          '_id': vendorId
-        }, {
-          $push: { menuIds: result._id }
-        });
+
+        Vendor.update(
+          { _id: menuObj.vendorId },
+          { $push: { menuIds: result._id } },
+          function (error) {
+            if (error) {
+              throw Error('Unable to update vendor.');
+            }
+          }
+        );
+
         return result;
       })
       .catch(function (error) {
-        console.log('Error adding menu: ', error);
+
+        return error;
       });
   },
+
+  // TODO: Removed menu item existence check in favor of client-side implementation
+  postMenuItems: function (menuItemObj) {
+    var menuItems = menuItemObj.items.length;
+    var itemModels = [];
+    for (var i = 0; i < menuItems; i++) {
+      var newMenuItem = new MenuItem(menuItemObj.items[i]);
+      itemModels.push(newMenuItem);
+    }
+    return MenuItem.create(itemModels)
+      .then(function (items) {
+        if (items.length === 0) {
+          throw Error('Unable to save menu items');
+        }
+        var itemIds = [];
+        for (var numItems = 0; numItems < items.length; numItems++) {
+          itemIds.push(items[numItems]._id);
+        }
+        Menu.update(
+          { '_id': menuItemObj.menuId },
+          { $push: { menuItemIds: { $each: itemIds } } },
+          function (error, numRecords) {
+            if (error) {
+              throw Error('Unable to update menu.');
+            }
+          }
+        );
+
+        return items;
+      })
+      .catch(function (error) {
+
+        return error;
+      });
+  },
+
   getMenu: function (menuObj) {
     Menu.findOne({
       'createdBy': menuObj.vendorId,
@@ -73,10 +86,11 @@ module.exports = {
         if (!menu) {
           throw Error('Unable to retrieve menu');
         }
+
         return menu;
       })
       .catch(function (error) {
-        console.log('Error retrieving menu: ', error);
+
         return error;
       });
   },
@@ -87,10 +101,11 @@ module.exports = {
         menu.remove();
       })
       .catch(function (error) {
-        console.log('Error deleting menu: ', error);
+
         return error;
       });
   },
+
   deleteMenuItem: function (menuItemObj) {
     MenuItem.findById(menuItemObj.menuItemId)
       .then(function (menuItem) {
@@ -98,7 +113,7 @@ module.exports = {
         return menuItem.remove();
       })
       .catch(function (error) {
-        console.log('Error deleting menu item: ', error);
+
         return error;
       });
   }

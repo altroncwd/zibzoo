@@ -1,26 +1,9 @@
 var usersHelpers = require('../../server/db/users/usersHelpers.js');
-var mongoose = require('mongoose');
-
-// Open connection -- NOTE: must be in first file in server/
-mongoose.connect('mongodb://localhost:27017');
 
 describe('usersHelpers', function () {
   var mockUser = {
     name: 'Willy'
-  }
-
-  // Drop database before running tests in top file -- NOTE: must be in first file in server/
-  beforeAll(function (done) {
-    mongoose.connection.on('open', function () {
-      mongoose.connection.db.dropDatabase(function (error) {
-        if (error) {
-          throw error;
-        }
-
-        done();
-      });
-    });
-  });
+  };
 
   describe('.postUser()', function () {
     it('should be a function', function () {
@@ -64,7 +47,7 @@ describe('usersHelpers', function () {
     });
 
     it('should return an error if the user does not exist', function (done) {
-      mockUser.name = 'Little Willy'
+      mockUser.name = 'Little Willy';
       var getPromise = usersHelpers.getUser(mockUser);
 
       getPromise
