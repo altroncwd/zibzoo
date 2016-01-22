@@ -1,11 +1,17 @@
-.table-cart {
+.cart-table {
   width: 100%;
 
-  .name, .quantity {
-    width: 30%;
+  .name {
+    width: 40%;
   }
 
-  .price, actions {
+  .quantity {
     width: 20%;
+    text-align: center;
+  }
+
+  .price, .actions {
+    width: 20%;
+    text-align: center;
   }
 }
