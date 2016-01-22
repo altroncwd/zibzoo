@@ -1,27 +1,9 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', function () {
+  .factory('menu', ['$http', '$stateParams', function ($http, $stateParams) {
     var menu = {};
+    console.log($stateParams);
 
-    menu.items = [
-      // { food: 'cheese',
-      //   price: 14.50,
-      //   description: 'three cheese pizza with a garlic stuffed crust',
-      //   inStock: true,
-      //   prepTime: 20,
-      // },
-      // { food: 'volcano',
-      //   price: 18.00,
-      //   description: 'three cheese topped with jalapenos, red pepers, spicy italian sausage and a stuffed jalapeno creamcheese crust ',
-      //   inStock: true,
-      //   prepTime: 22,
-      // },
-      // { food: 'garlic breadsticks',
-      //   price: 7.0,
-      //   description: 'soft homemade breadsticks brushed with butter and our special mix of garlic and spices',
-      //   inStock: true,
-      //   prepTime: 15,
-      // }
-    ];
+    menu.items = [];
 
     menu.addItem = function (food, price, calories, description, prepTime) {
       var item = {
@@ -30,14 +12,33 @@ angular.module('zibzoo.merchant.menu.factory', [])
         description: description,
         inStock: true,
         prepTime: prepTime,
+        merchantId: $stateParams.merchantId
+
       };
-      console.log(item);
       menu.items.unshift(item);
     };
-    // menu.remove = function (index) {
-    //   var removeFromDb = menu.items.splice(index, 1);
-    // };
-    // Only for test use
+    
+    menu.remove = function (index) {
+      var removeFromDb = menu.items.splice(index, 1);
+    };
+
+    menu.saveMenu = function (menuItemsObject) {
+      return $http({
+        method: 'POST',
+        url: 'api/vendors/menuItems',
+        data: JSON.stringify(menuItemsObject)
+      })
+        .success(function (data, status, headers, config) {
+          console.log(data);
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+            );
+        });
+    };
     menu.log = function (x) {
       console.log('testing');
       console.log(x);
@@ -46,4 +47,4 @@ angular.module('zibzoo.merchant.menu.factory', [])
     // menu.addItem();
 
     return menu;
-  });
+  }]);

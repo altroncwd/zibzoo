@@ -10,6 +10,19 @@ angular.module('zibzoo.menuform.directive', [])
         $scope.addItem = function (food, price, calories, description, prepTime) {
           $scope.menu.addItem(food, price, calories, description, prepTime);
         };
+        console.log($scope.menu);
+        $scope.saveMenuItems = function (menuItems) {
+          var allItems = {
+            items: menuItems
+          };
+          $scope.menu.saveMenu(allItems)
+            .then(function (data) {
+              console.log(data);
+            })
+            .catch(function (error) {
+              $scope.status = error.status;
+            });
+        };
 
       }
     };
