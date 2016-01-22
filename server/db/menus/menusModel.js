@@ -2,12 +2,7 @@ var mongoose = require('mongoose');
 
 var menuSchema = new mongoose.Schema({
 
-  name: String,
-
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Vendor'
-  },
+  vendorId: String,
 
   menuItemIds: [{
     type: mongoose.Schema.Types.ObjectId,
