@@ -3,14 +3,12 @@ describe('VendorsListController', function () {
   var $rootScope;
   var $location;
   var createController;
-  // TODO: $httpBackend is defined but never used
   var $httpBackend;
   var Vendors;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
   beforeEach(module('zibzoo'));
-  // TODO: inject is not defined
   beforeEach(inject(function ($injector) {
 
     $rootScope = $injector.get('$rootScope');
