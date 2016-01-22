@@ -10,11 +10,11 @@ angular.module('zibzoo.vendors.list', [])
     $scope.getVendors = function () {
       vendors.getVendors()
         .then(function (data) {
-          $scope.vendors = data;
+          $scope.vendors = data.data;
         })
         .catch(function (error) {
-          console.error('Error getting Vendors: ', error);
+          $scope.status = error.status;
         });
     };
-    // $scope.getVendors();
+    $scope.getVendors();
   }]);
