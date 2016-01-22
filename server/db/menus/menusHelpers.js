@@ -6,6 +6,35 @@ mongoose.Promise = require('bluebird');
 
 module.exports = {
 
+  postMenu: function (menuObj) {
+    return Menu
+      .findOne(menuObj)
+      .then(function (menu) {
+        if (menu) {
+          throw Error('Menu already exists');
+        }
+
+        var newMenu = new Menu(menuObj);
+
+        return newMenu.save();
+      })
+      .then(function (result) {
+        if (!result) {
+          throw Error('Unable to save menu');
+        }
+
+        Vendor.update(
+          { '_id': menuObj.vendorId },
+          { $push: { menuIds: result._id }
+        });
+
+        return result;
+      })
+      .catch(function (error) {
+        return error;
+      });
+  },
+
   postMenuItem: function (menuItemObj, menuId) {
     return MenuItem.findOne({
       'createdBy': menuItemObj.vendorId,
@@ -26,8 +55,8 @@ module.exports = {
         Menu.update({
           '_id': menuId
         }, {
-          $push: { menuItemIds: result._id }
-        });
+            $push: { menuItemIds: result._id }
+          });
         return result;
       })
       .catch(function (error) {
@@ -35,34 +64,6 @@ module.exports = {
       });
   },
 
-  postMenu: function (menuObj, vendorId) {
-    return Menu.findOne({
-      'createdBy': vendorId,
-      'menuName': menuObj.menuName
-    })
-      .then(function (menu) {
-        if (menu) {
-          throw Error('Menu already exists');
-        }
-        var newMenu = new Menu(menuObj);
-
-        return newMenu.save();
-      })
-      .then(function (result) {
-        if (!result) {
-          throw Error('Unable to save menu');
-        }
-        Vendor.update({
-          '_id': vendorId
-        }, {
-          $push: { menuIds: result._id }
-        });
-        return result;
-      })
-      .catch(function (error) {
-        console.log('Error adding menu: ', error);
-      });
-  },
   getMenu: function (menuObj) {
     Menu.findOne({
       'createdBy': menuObj.vendorId,
