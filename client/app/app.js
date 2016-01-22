@@ -11,7 +11,7 @@ angular.module('zibzoo', [
   'zibzoo.vendors.directive',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
-  'zibzoo.vendor.orderform',
+  'zibzoo.order',
   'zibzoo.merchant',
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',
@@ -36,7 +36,7 @@ angular.module('zibzoo', [
       controller: 'VendorController'
     })
     .state('cart', {
-      templateUrl: 'app/cart/cart.html',
+      templateUrl: 'app/users/cart/cart.html',
       url: '/cart',
       controller: 'CartController'
     });
