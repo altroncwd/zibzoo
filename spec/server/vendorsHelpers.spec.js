@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 describe('vendorsHelpers', function () {
   var mockVendor = {
     name: "Willy's Chili"
-  }
+  };
 
   // Disconnect from database after all tests have run -- NOTE: must be in last file in server/
   afterAll(function () {
@@ -53,7 +53,7 @@ describe('vendorsHelpers', function () {
     });
 
     it('should return an error if the vendor does not exist', function (done) {
-      mockVendor.name = "Little Willy's Chili"
+      mockVendor.name = "Little Willy's Chili";
       var getPromise = vendorsHelpers.getVendor(mockVendor);
 
       getPromise
