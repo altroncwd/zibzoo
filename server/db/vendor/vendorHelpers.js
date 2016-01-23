@@ -32,15 +32,13 @@ module.exports = {
 
   getOneVendor: function (vendorObj) {
     return Vendor
-    .findOne({
-      _id: vendorObj._id
-    })
-    .populate('menuItems')
+      .find(vendorObj)
+      .populate('menuItems')
       .then(function (vendor) {
-        if (!vendor) {
+        if (vendor.length === 0) {
           throw Error('Vendor does not exist.');
         }
-
+        // console.log('VENDOR MENU ITEMS: ', vendor[0].menuItems);
         return vendor;
       })
       .catch(function (error) {

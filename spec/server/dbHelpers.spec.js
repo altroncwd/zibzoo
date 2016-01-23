@@ -2,7 +2,7 @@ var menuItemHelpers = require('../../server/db/menuItem/menuItemHelpers.js');
 var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
 var mongoose = require('mongoose');
 
-// Open a connection to local MongoDB
+// Open a local connection to MongoDB
 mongoose.connect('mongodb://localhost:27017');
 
 
@@ -77,8 +77,8 @@ describe('The database helper function,', function () {
     it('should retrieve an existing vendor from the database.', function (done) {
       vendorHelpers.getOneVendor(mockVendor)
         .then(function (vendor) {
-          expect(vendor._id).toEqual(mockVendor._id);
-          expect(vendor.name).toBe(mockVendor.name);
+          expect(vendor[0]._id).toEqual(mockVendor._id);
+          expect(vendor[0].name).toBe(mockVendor.name);
           done();
         });
     });
@@ -112,10 +112,10 @@ describe('The database helper function,', function () {
     });
 
     it('should update the vendor with the new menu item _id.', function (done) {
-      vendorHelpers.getOneVendor(mockVendor)
+      vendorHelpers.getOneVendor({ _id: mockVendor._id })
         .then(function (vendor) {
-          expect(vendor.menuItems.length).toBe(1);
-          expect(vendor.menuItems[0].name).toEqual(mockMenuItem.name);
+          expect(vendor[0].menuItems.length).toBe(1);
+          expect(vendor[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
           done();
         });
     });
