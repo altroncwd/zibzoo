@@ -3,7 +3,7 @@ var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
 var mongoose = require('mongoose');
 
 // Open a local connection to MongoDB
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost/zibzoo');
 
 
 describe('The database helper function,', function () {
