@@ -13,7 +13,7 @@ module.exports = {
       .save()
       .then(function (menuItem) {
         if (!menuItem) {
-          throw Error('Unable to save menu item.');
+          throw new Error('Unable to save menu item.');
         }
 
         Vendor.update(
@@ -21,10 +21,10 @@ module.exports = {
           { $push: { menuItems: menuItem._id } },
           function (error) {
             if (error) {
-              throw Error('Unable to update vendor.');
+              throw new Error('Unable to update vendor.');
             }
           }
-        );
+          );
 
         return menuItem;
       })
@@ -35,10 +35,14 @@ module.exports = {
   },
 
   deleteMenuItem: function (menuItemObj) {
-    MenuItem.findById(menuItemObj.menuItemId)
-      .then(function (menuItem) {
-        MenuItem.update({ _id: menuItem._id }, { $pull: { menuItemIds: menuItem._id } });
-        return menuItem.remove();
+    return MenuItem.remove({ _id: menuItemObj._id })
+      .then(function (docsAffectedObj) {
+        if (!docsAffectedObj.result.n) {
+          throw new Error('Menu item cannot be deleted because it may not exist.');
+        }
+
+        Vendor.update({ _id: menuItemObj.vendorId }, { $pull: { menuItems: menuItemObj._id } });
+        return docsAffectedObj;
       })
       .catch(function (error) {
 
