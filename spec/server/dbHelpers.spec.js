@@ -68,31 +68,31 @@ describe('The database helper function,', function () {
   }); // postVendor()
 
 
-  describe('getOneVendor(),', function () {
+  describe('getVendors(),', function () {
 
     it('should be a function.', function () {
       expect(typeof vendorHelpers.postVendor).toBe('function');
     });
 
     it('should retrieve an existing vendor from the database.', function (done) {
-      vendorHelpers.getOneVendor(mockVendor)
-        .then(function (vendor) {
-          expect(vendor[0]._id).toEqual(mockVendor._id);
-          expect(vendor[0].name).toBe(mockVendor.name);
+      vendorHelpers.getVendors(mockVendor)
+        .then(function (vendors) {
+          expect(vendors[0]._id).toEqual(mockVendor._id);
+          expect(vendors[0].name).toBe(mockVendor.name);
           done();
         });
     });
 
     it('should return an error if a vendor does not exist.', function (done) {
       // query the database with a non-existent _id
-      vendorHelpers.getOneVendor({ _id: '56a2c39e63edefd81df25ad2' })
+      vendorHelpers.getVendors({ _id: '56a2c39e63edefd81df25ad2' })
         .then(function (error) {
-          expect(error.message).toBe('Vendor does not exist.');
+          expect(error.message).toBe('Unable to find vendor(s).');
           done();
         });
     });
 
-  }); // getOneVendor()
+  }); // getVendors()
 
 
   describe('postMenuItem(),', function () {
@@ -112,7 +112,7 @@ describe('The database helper function,', function () {
     });
 
     it('should update the vendor with the new menu item _id.', function (done) {
-      vendorHelpers.getOneVendor({ _id: mockVendor._id })
+      vendorHelpers.getVendors({ _id: mockVendor._id })
         .then(function (vendor) {
           expect(vendor[0].menuItems.length).toBe(1);
           expect(vendor[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);

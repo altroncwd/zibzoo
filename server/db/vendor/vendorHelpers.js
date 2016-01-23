@@ -30,43 +30,19 @@ module.exports = {
       });
   },
 
-  getOneVendor: function (vendorObj) {
-    return Vendor
-      .find(vendorObj)
-      .populate('menuItems')
-      .then(function (vendor) {
-        if (vendor.length === 0) {
-          throw Error('Vendor does not exist.');
-        }
-        // console.log('VENDOR MENU ITEMS: ', vendor[0].menuItems);
-        return vendor;
-      })
-      .catch(function (error) {
-
-        return error;
-      });
-  },
-
   getVendors: function (vendorObj) {
     return Vendor
       .find(vendorObj)
-      .populate('menuIds')
+      .populate('menuItems')
       .then(function (vendors) {
-        if (!vendors) {
-          throw Error('Vendors do not exist.');
+        if (vendors.length === 0) {
+          throw Error('Unable to find vendor(s).');
         }
 
-        return Vendor.populate(vendors, {
-          path: 'menuIds.menuItemIds',
-          model: 'MenuItem'
-        });
-
-        // return vendors;
-      })
-      .then(function (results) {
-        return results;
+        return vendors;
       })
       .catch(function (error) {
+
         return error;
       });
   }
