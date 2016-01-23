@@ -30,25 +30,21 @@ module.exports = {
       });
   },
 
-  getVendor: function (vendorObj) {
+  getOneVendor: function (vendorObj) {
     return Vendor
-    .findOne(vendorObj)
-    .populate('menuIds')
+    .findOne({
+      _id: vendorObj._id
+    })
+    .populate('menuItems')
       .then(function (vendor) {
         if (!vendor) {
           throw Error('Vendor does not exist.');
         }
 
-        return Vendor.populate(vendor.menuIds, {
-          path: 'menuItemIds',
-          model: 'MenuItem'
-        });
-        // return vendor;
-      })
-      .then(function (result) {
-        return result;
+        return vendor;
       })
       .catch(function (error) {
+
         return error;
       });
   },
