@@ -18,7 +18,6 @@ angular.module('zibzoo', [
   'zibzoo.merchant',
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',
-  'zibzoo.menuform.directive',
   'zibzoo.merchant.order.factory',
   'zibzoo.merchant.order'
 ])
