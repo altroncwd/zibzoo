@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var vendorSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   description: String,
   cuisine: [String],
   imageUrl: String,
