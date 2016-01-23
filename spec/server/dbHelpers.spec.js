@@ -28,7 +28,8 @@ describe('The database helper function,', function () {
 
   // Global testing variables
   var mockVendor = {
-    name: "Willy's Chili"
+    name: "Willy's Chili",
+    cuisine: ['Italian', 'Thai', 'Japanese']
   };
 
   var mockMenuItem = {
@@ -74,13 +75,30 @@ describe('The database helper function,', function () {
       expect(typeof vendorHelpers.postVendor).toBe('function');
     });
 
-    it('should retrieve an existing vendor from the database.', function (done) {
-      vendorHelpers.getVendors(mockVendor)
+    it('should retrieve a specfic existing vendor from the database.', function (done) {
+      vendorHelpers.getVendors({ _id: mockVendor._id })
         .then(function (vendors) {
           expect(vendors[0]._id).toEqual(mockVendor._id);
           expect(vendors[0].name).toBe(mockVendor.name);
           done();
         });
+    });
+
+    it('should retreive multiple existing vendors from the database', function (done) {
+      var secondMockVendor = {
+        name: 'Bengi and The Mongoose',
+        cuisine: ['Italian', 'Japanese']
+      };
+
+      vendorHelpers.postVendor(secondMockVendor)
+        .then(function (vendor) {
+          return vendorHelpers.getVendors({ cuisine: 'Japanese' });
+        })
+        .then(function (vendors) {
+          expect(vendors.length).toBe(2);
+          done();
+        });
+
     });
 
     it('should return an error if a vendor does not exist.', function (done) {
