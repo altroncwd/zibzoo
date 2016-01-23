@@ -42,7 +42,7 @@ describe('The database helper function,', function () {
   describe('postVendor(),', function () {
 
     it('should be a function.', function () {
-      expect(typeof vendorHelpers.postVendor).toBe('function');
+      expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
     });
 
     it('should store a new vendor in the database.', function (done) {
@@ -72,7 +72,7 @@ describe('The database helper function,', function () {
   describe('getVendors(),', function () {
 
     it('should be a function.', function () {
-      expect(typeof vendorHelpers.postVendor).toBe('function');
+      expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
     });
 
     it('should retrieve a specfic existing vendor from the database.', function (done) {
@@ -116,7 +116,7 @@ describe('The database helper function,', function () {
   describe('postMenuItem(),', function () {
 
     it('should be a function.', function () {
-      expect(typeof vendorHelpers.postVendor).toBe('function');
+      expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
     });
 
     it('should store a new menuItem in the database.', function (done) {
@@ -135,9 +135,9 @@ describe('The database helper function,', function () {
 
     it('should update the vendor with the new menu item _id.', function (done) {
       vendorHelpers.getVendors({ _id: mockVendor._id })
-        .then(function (vendorList) {
-          expect(vendorList[0].menuItems.length).toBe(1);
-          expect(vendorList[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
+        .then(function (vendors) {
+          expect(vendors[0].menuItems.length).toBe(1);
+          expect(vendors[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
           done();
         });
     });
@@ -147,7 +147,7 @@ describe('The database helper function,', function () {
   describe('deleteMenuItem(),', function () {
 
     it('should be a function.', function () {
-      expect(typeof menuItemHelpers.deleteMenuItem).toBe('function');
+      expect(menuItemHelpers.deleteMenuItem).toEqual(jasmine.any(Function));
     });
 
     it('should delete an existing menu item.', function (done) {
@@ -160,8 +160,8 @@ describe('The database helper function,', function () {
 
     it('should remove the menu item reference from the corresponding vendor', function (done) {
       vendorHelpers.getVendors(mockVendor)
-        .then(function (vendorList) {
-          expect(vendorList[0].menuItems.length).toBe(0);
+        .then(function (vendors) {
+          expect(vendors[0].menuItems.length).toBe(0);
           done();
         });
     });
