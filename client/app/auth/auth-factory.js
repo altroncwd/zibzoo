@@ -22,7 +22,7 @@ angular.module('zibzoo.auth.factory', [])
         data: user
       })
       .then(function (res) {
-        return res.data.token;
+        return res.data;
       });
     };
 
@@ -31,6 +31,7 @@ angular.module('zibzoo.auth.factory', [])
     };
 
     auth.signout = function () {
+      User.clearUser();
       $window.localStorage.removeItem('com.zibzoo');
       $state.go('landing');
     };

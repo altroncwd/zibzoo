@@ -6,5 +6,11 @@ angular.module('zibzoo.user.factory', [])
       orders: []
     };
 
+    user.clearUser = function () {
+      user.data = {
+        orders: []
+      };
+    };
+
     return user;
   }]);
