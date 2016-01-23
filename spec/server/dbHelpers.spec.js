@@ -3,7 +3,7 @@ var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
 var mongoose = require('mongoose');
 
 // Open a local connection to MongoDB
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost/zibzoo');
 
 
 describe('The database helper function,', function () {
@@ -26,7 +26,7 @@ describe('The database helper function,', function () {
     mongoose.disconnect();
   });
 
-  // Global testing variables
+  // Shared testing variables
   var mockVendor = {
     name: "Willy's Chili",
     cuisine: ['Italian', 'Thai', 'Japanese']
@@ -49,7 +49,7 @@ describe('The database helper function,', function () {
       vendorHelpers.postVendor(mockVendor)
         .then(function (vendor) {
 
-          // save vendor _id in mockVendor and mockMenuItem
+          // save `vendor._id` in `mockVendor` and `mockMenuItem` for future tests
           mockVendor._id = vendor._id;
           mockMenuItem.vendorId = vendor._id;
 
@@ -102,7 +102,7 @@ describe('The database helper function,', function () {
     });
 
     it('should return an error if a vendor does not exist.', function (done) {
-      // query the database with a non-existent _id
+      // query the database with a non-existent `_id`
       vendorHelpers.getVendors({ _id: '56a2c39e63edefd81df25ad2' })
         .then(function (error) {
           expect(error.message).toBe('Unable to find vendor(s).');
@@ -122,6 +122,10 @@ describe('The database helper function,', function () {
     it('should store a new menuItem in the database.', function (done) {
       menuItemHelpers.postMenuItem(mockMenuItem)
         .then(function (menuItem) {
+
+          // save `menuItem._id` in `mockMenuItem` for future tests
+          mockMenuItem._id = menuItem._id;
+
           expect(menuItem._id).toBeDefined();
           expect(menuItem.vendorId).toBe(mockMenuItem.vendorId);
           expect(menuItem.name).toBe(mockMenuItem.name);
@@ -131,13 +135,45 @@ describe('The database helper function,', function () {
 
     it('should update the vendor with the new menu item _id.', function (done) {
       vendorHelpers.getVendors({ _id: mockVendor._id })
-        .then(function (vendor) {
-          expect(vendor[0].menuItems.length).toBe(1);
-          expect(vendor[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
+        .then(function (vendorList) {
+          expect(vendorList[0].menuItems.length).toBe(1);
+          expect(vendorList[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
           done();
         });
     });
 
   }); // postMenuItem()
+
+  describe('deleteMenuItem(),', function () {
+
+    it('should be a function.', function () {
+      expect(typeof menuItemHelpers.deleteMenuItem).toBe('function');
+    });
+
+    it('should delete an existing menu item.', function (done) {
+      menuItemHelpers.deleteMenuItem(mockMenuItem)
+        .then(function (docsAffectedObj) {
+          expect(docsAffectedObj.result.n).toBe(1);
+          done();
+        });
+    });
+
+    it('should remove the menu item reference from the corresponding vendor', function (done) {
+      vendorHelpers.getVendors(mockVendor)
+        .then(function (vendorList) {
+          expect(vendorList[0].menuItems.length).toBe(0);
+          done();
+        });
+    });
+
+    it('should throw an error if the menu item was not deleted', function (done) {
+      menuItemHelpers.deleteMenuItem(mockMenuItem)
+        .then(function (error) {
+          expect(error.message).toBe('Menu item cannot be deleted because it may not exist.');
+          done();
+        });
+    });
+
+  }); // deleteMenuItem()
 
 }); // Database helper functions

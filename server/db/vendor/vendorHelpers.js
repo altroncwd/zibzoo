@@ -11,7 +11,7 @@ module.exports = {
       })
       .then(function (vendor) {
         if (vendor) {
-          throw Error('Vendor already exists.');
+          throw new Error('Vendor already exists.');
         }
 
         var newVendor = new Vendor(vendorObj);
@@ -20,12 +20,13 @@ module.exports = {
       })
       .then(function (result) {
         if (!result) {
-          throw Error('Unable to save vendor.');
+          throw new Error('Unable to save vendor.');
         }
 
         return result;
       })
       .catch(function (error) {
+
         return error;
       });
   },
@@ -36,7 +37,7 @@ module.exports = {
       .populate('menuItems')
       .then(function (vendors) {
         if (vendors.length === 0) {
-          throw Error('Unable to find vendor(s).');
+          throw new Error('Unable to find vendor(s).');
         }
 
         return vendors;
