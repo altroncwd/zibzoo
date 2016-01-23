@@ -1,4 +1,4 @@
-var vendorsHelpers = require('./../../db/vendors/vendorsHelpers.js');
+var vendorHelpers = require('./../../db/vendor/vendorHelpers.js');
 
 module.exports = {
   // TODO: Add password hashing
@@ -7,7 +7,7 @@ module.exports = {
       name: req.body.username,
       password: req.body.password
     };
-    vendorsHelpers.postVendor(vendor)
+    vendorHelpers.postVendor(vendor)
       .then(function (result) {
         res.status(201).send(result);
       })
@@ -20,7 +20,7 @@ module.exports = {
     var vendor = {
       username: req.body.username
     };
-    vendorsHelpers.getVendor(vendor)
+    vendorHelpers.getVendor(vendor)
       .then(function (result) {
         res.status(200).send(result);
       })
@@ -31,7 +31,7 @@ module.exports = {
 
   retrieveVendor: function (req, res) {
     var vendor = req.query;
-    vendorsHelpers.getVendor(vendor)
+    vendorHelpers.getVendor(vendor)
       .then(function (result) {
         res.status(200).send(result);
       })
