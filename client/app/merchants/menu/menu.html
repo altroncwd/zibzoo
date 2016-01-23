@@ -9,14 +9,14 @@
       <!-- Bar for adding new food items-----------add these to css styles later----------->
       <div class="small-12 large-12 columns" ng-show="show">
         <div class="small-5 large-5 columns">
-          <input type="text" style="width: 300px" ng-model="menuItem.food" placeholder="Name" />
+          <input type="text" style="width: 300px" ng-model="menuItem.name" placeholder="Name" />
         </div>
         <div class="small-2 large-2 columns">
           <input type="number" style="width: 100px" ng-model="menuItem.price" required placeholder="Price" />
         </div>
-        <div class="small-3 large-3 columns">
+        <!--<div class="small-3 large-3 columns">
           <input type="number" style="width: 100px" ng-model="menuItem.prepTime" placeholder="Prep Time" />
-        </div>
+        </div>-->
         <textarea name="" id="" cols="30" rows="5" ng-model="menuItem.description" placeholder="Description"></textarea>
         <button class="button" ng-click="clearItem()">Cancel</button>
         <button class="button" ng-click="saveMenuItem(menuItem)" style="float:right"> Add to Menu</button>

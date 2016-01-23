@@ -33,7 +33,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
       return $http({
         method: 'POST',
         url: 'api/vendor/menuItems',
-        data: JSON.stringify(menuItemObject)
+        data: menuItemObject
       })
         .success(function (data, status, headers, config) {
           return data;

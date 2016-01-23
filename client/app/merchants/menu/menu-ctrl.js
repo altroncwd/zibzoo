@@ -4,10 +4,14 @@ angular.module('zibzoo.merchant.menu', [])
     $scope.menu = menu;
 
     $scope.menuItem = {
-      food: '',
-      price: '',
+      name: '',
       description: '',
-      prepTime: '',
+      price: '',
+      inStock: '',
+      isGlutenFree: false,
+      isVegan: false,
+      isDairyFree: false,
+      isVegetarian: false
     };
 
     $scope.clearItem = function () {
@@ -20,7 +24,7 @@ angular.module('zibzoo.merchant.menu', [])
 
     $scope.deleteMenuItem = function (menuItemIndex) {
       var toDelete = $scope.menu.remove(menuItemIndex);
-      $scope.menu.deleteMenuItem({ _id: toDelete })
+      $scope.menu.deleteMenuItem({ vendorId: toDelete })
         .then(function (data) {
           console.log(data);
         })
@@ -30,7 +34,7 @@ angular.module('zibzoo.merchant.menu', [])
     };
 
     $scope.saveMenuItem = function (menuItem) {
-      angular.extend(menuItem, { _id: $stateParams.merchantId });
+      angular.extend(menuItem, { vendorId: $stateParams.merchantId });
       $scope.menu.addItem(menuItem);
       $scope.clearItem();
       $scope.menu.saveMenuItem(menuItem)
@@ -46,7 +50,9 @@ angular.module('zibzoo.merchant.menu', [])
       $scope.menu.items = [];
       vendor.getVendor($stateParams.merchantId)
         .then(function (data) {
-          $scope.menu.items = data.data.menuItems;
+          if (data.data) {
+            $scope.menu.items = data.data.menuItems;
+          }
         })
         .catch(function (error) {
           $scope.status = error.status;
