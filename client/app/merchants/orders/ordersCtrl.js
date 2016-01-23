@@ -12,7 +12,6 @@ angular.module('zibzoo.merchant.order', [])
     };
 
     $scope.finishedOrder = function (index, userId) {
-      // I assume i'll need some kinda id to ping the user later
       // console.log('index : ', index, 'id : ', userId);
       order.splice(index,1);
     };
