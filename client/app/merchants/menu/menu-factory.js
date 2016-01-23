@@ -8,10 +8,12 @@ angular.module('zibzoo.merchant.menu.factory', [])
 
     menu.addItem = function (menuItem) {
       angular.extend(menuItem, { merchantId: $stateParams.merchantId });
+      // fix to add to createdItems
       menu.items.unshift(menuItem);
     };
 
     menu.remove = function (index) {
+      // fix for removal from createdItems
       menu.removedItems.push(menu.items.splice(index, 1));
     };
 

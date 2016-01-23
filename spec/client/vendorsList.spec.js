@@ -12,9 +12,8 @@ describe('VendorsListController', function () {
   beforeEach(inject(function ($injector) {
 
     $rootScope = $injector.get('$rootScope');
-    $httpBackend = $injector.get('$httpBackend'); // not used in the tests right now
+    $httpBackend = $injector.get('$httpBackend');
     Vendors = $injector.get('vendors');
-    $location = $injector.get('$location'); // not used in the tests right now
 
     $scope = $rootScope.$new();
 
