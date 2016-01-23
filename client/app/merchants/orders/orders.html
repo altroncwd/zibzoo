@@ -1,29 +1,36 @@
 <div class="row">
   <div class="small-12 large-12 columns" >
 
-  <h3>Orders</h3>
+  <div class="small-12 large-12 columns">
+    <div class="small-6 large-6 columns">
+      <h3 class="subheader">Orders</h3>
+    </div>
+    <div class="small-6 large-6 columns">
+      <h3 style="float:right" class="subheader">Total orders : {{ordersList.length}}</h3>
+    </div>
+
+  </div>
   <hr>
-    <div ng-repeat="orders in ordersList" style="border: 5px solid #ff6600; background-color:#ffd1b3; border-radius: 10px; margin-top:10px; padding-top:20px " class="small-12 large-12 columns">
+    <div ng-repeat="orders in ordersList" style="border: 5px solid #ff6600; background-color:#ffd1b3; border-radius: 10px; margin-top:10px; padding-top:20px" class="small-12 large-12 columns">
       <div class="small-12 large-12 columns">
         <div class="small-6 large-6 columns">
           <h3>{{$index+1}}</h3>
         </div>
         <div class="small-6 large-6 columns">
-          <h3>Pickup Name : {{orders.name}}</h3>
+          <h3> {{orders.name}}</h3>
         </div>
       </div>
       <div class="small-9 large-9 columns">
-        <!--{{orders.food}}-->
         <ul class="inline-list">
           <li ng-repeat="food in orders.food">
-           <button ng-click="log('Hello')" class="button small radius">
+           <button ng-click="itemFinished(orders, $index, $parent.$index)" class="button small radius">
               {{food.item}} : {{food.quantity}}
            </button>
           </li>
         </ul>
       </div>
       <div class="small-3 large-3 columns">
-        <button class="button large radius">Order Done</button>
+        <button ng-click="finishedOrder($index,orders.ID)" class="button large radius">Order Done</button>
       </div>
 
     </div>
