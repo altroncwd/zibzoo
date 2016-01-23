@@ -26,7 +26,7 @@
 
 <!------------- End of the add item bar ------------->
 
-  <div ng-repeat="item in menu.items" class="fadeIn small- large-12 columns" style="border: 5px solid #ff6600; background-color:#ffd1b3; border-radius: 10px; margin-top:10px; padding-top:20px ">
+  <div ng-repeat="item in menu.items track by $index" class="fadeIn small- large-12 columns" style="border: 5px solid #ff6600; background-color:#ffd1b3; border-radius: 10px; margin-top:10px; padding-top:20px ">
     <div class="small-3 large-4 columns">
       <h4>{{item.food}}</h4>
     </div>
@@ -42,7 +42,7 @@
     <div class="small-3 large-3 columns" >
       <ul class="inline-list" style="float:right">
         <li>
-        <!--<li><button class="button tiny" ng-click="menu.remove($index)">Remove</button></li>-->
+        <li><button class="button tiny" ng-click="menu.remove($index)">Remove</button></li>
       <!--<button class="button tiny" >Edit</button></li>----------------Edit Button------>
       </ul>
     </div>

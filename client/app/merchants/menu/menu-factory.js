@@ -17,9 +17,9 @@ angular.module('zibzoo.merchant.menu.factory', [])
       };
       menu.items.unshift(item);
     };
-    
+
     menu.remove = function (index) {
-      var removeFromDb = menu.items.splice(index, 1);
+      menu.items.splice(index, 1);
     };
 
     menu.saveMenu = function (menuItemsObject) {
