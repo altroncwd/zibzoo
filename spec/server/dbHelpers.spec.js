@@ -30,6 +30,12 @@ describe('Database helper functions', function () {
     name: "Willy's Chili"
   };
 
+  var mockMenuItem = {
+    name: 'Willy Con Carne',
+    price: 7,
+    inStock: true
+  };
+
   describe('postVendor()', function () {
 
     it('should be a function', function () {
@@ -39,6 +45,8 @@ describe('Database helper functions', function () {
     it('should store a new vendor in the database', function (done) {
       vendorHelpers.postVendor(mockVendor)
         .then(function (vendor) {
+          // save vendorId in mockMenuItem
+          mockMenuItem.vendorId = vendor._id;
           expect(vendor.name).toBe("Willy's Chili");
           done();
         });
@@ -61,11 +69,17 @@ describe('Database helper functions', function () {
     });
 
     it('should store a new menuItem in the database', function (done) {
+      menuItemHelpers.postMenuItem(mockMenuItem)
+        .then(function (menuItem) {
+          expect(menuItem.vendorId).toBe(mockMenuItem.vendorId);
+          expect(menuItem.name).toBe('Willy Con Carne');
+          done();
+        });
     });
 
   }); // postMenuItem()
 
-  describe('getVendor()', function () {
+  xdescribe('getVendor()', function () {
 
     it('should be a function', function () {
       expect(typeof vendorHelpers.postVendor).toBe('function');
@@ -92,6 +106,11 @@ describe('Database helper functions', function () {
     });
 
   }); // getVendor()
+
+
+
+
+
 
 }); // Database helper functions
 
