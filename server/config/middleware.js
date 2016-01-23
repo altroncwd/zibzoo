@@ -5,12 +5,12 @@ module.exports = function (app, express) {
   app.use(express.static(__dirname + '/../../client'));
 
   var usersRouter = express.Router();
-  var vendorsRouter = express.Router();
+  var vendorRouter = express.Router();
 
   app.use('/api/users', usersRouter);
-  app.use('/api/vendors', vendorsRouter);
+  app.use('/api/vendor', vendorRouter);
 
   require('../routes/users/usersRoutes.js')(usersRouter);
-  require('../routes/vendors/vendorsRoutes.js')(vendorsRouter);
+  require('../routes/vendor/vendorRoutes.js')(vendorRouter);
 };
 
