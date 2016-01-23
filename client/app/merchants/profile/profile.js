@@ -21,7 +21,7 @@ angular.module('zibzoo.merchant', [])
     // post vendor request
     console.log('VENDORS : : ', vendors);
     $scope.vendor = {
-      name: '',
+      username: '',
       description: '',
       cuisine: '',
       imageUrl: ''
