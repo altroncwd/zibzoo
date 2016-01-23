@@ -1,18 +1,14 @@
 var mongoose = require('mongoose');
 
-var vendorSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: true
-  },
+var Schema = mongoose.Schema;
+
+var vendorSchema = new Schema({
+  name: { type: String, required: true, unique: true },
   description: String,
   cuisine: [String],
   imageUrl: String,
   location: String,
-  menuIds: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Menu'
-  }]
+  menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
 module.exports = mongoose.model('Vendor', vendorSchema);
