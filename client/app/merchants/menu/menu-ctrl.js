@@ -7,7 +7,8 @@ angular.module('zibzoo.merchant.menu', [])
       name: '',
       description: '',
       price: '',
-      inStock: '',
+      inStock: true,
+      calories: 0,
       isGlutenFree: false,
       isVegan: false,
       isDairyFree: false,
@@ -24,7 +25,7 @@ angular.module('zibzoo.merchant.menu', [])
 
     $scope.deleteMenuItem = function (menuItemIndex) {
       var toDelete = $scope.menu.remove(menuItemIndex);
-      $scope.menu.deleteMenuItem({ vendorId: toDelete })
+      $scope.menu.deleteMenuItem({ _id: toDelete._id })
         .then(function (data) {
           console.log(data);
         })
