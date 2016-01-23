@@ -1,25 +1,18 @@
 angular.module('zibzoo.merchant.menu.factory', [])
   .factory('menu', ['$http', '$stateParams', function ($http, $stateParams) {
     var menu = {};
-    console.log($stateParams);
 
     menu.items = [];
+    menu.createdItems = [];
+    menu.removedItems = [];
 
-    menu.addItem = function (food, price, calories, description, prepTime) {
-      var item = {
-        food: food,
-        price: price,
-        description: description,
-        inStock: true,
-        prepTime: prepTime,
-        merchantId: $stateParams.merchantId
-
-      };
-      menu.items.unshift(item);
+    menu.addItem = function (menuItem) {
+      angular.extend(menuItem, { merchantId: $stateParams.merchantId });
+      menu.items.unshift(menuItem);
     };
 
     menu.remove = function (index) {
-      menu.items.splice(index, 1);
+      menu.removedItems.push(menu.items.splice(index, 1));
     };
 
     menu.saveMenu = function (menuItemsObject) {
@@ -39,12 +32,6 @@ angular.module('zibzoo.merchant.menu.factory', [])
             );
         });
     };
-    menu.log = function (x) {
-      console.log('testing');
-      console.log(x);
-    };
-    // initialize
-    // menu.addItem();
 
     return menu;
   }]);

@@ -6,11 +6,30 @@ angular.module('zibzoo.menuform.directive', [])
       scope: {
         menu: '='
       },
+
       controller: function ($scope) {
-        $scope.addItem = function (food, price, calories, description, prepTime) {
-          $scope.menu.addItem(food, price, calories, description, prepTime);
+        $scope.menuItem = {
+          food: '',
+          price: '',
+          description: '',
+          prepTime: '',
         };
-        console.log($scope.menu);
+
+        $scope.clearItem = function () {
+          for (var key in $scope.menuItem) {
+            if (key) {
+              $scope.menuItem = '';
+            }
+          }
+        };
+
+        $scope.addItem = function (menuItem) {
+          if ($scope.menuItem) {
+            $scope.menu.addItem(menuItem);
+            $scope.clearItem();
+          }
+        };
+
         $scope.saveMenuItems = function (menuItems) {
           var allItems = {
             items: menuItems
@@ -23,7 +42,6 @@ angular.module('zibzoo.menuform.directive', [])
               $scope.status = error.status;
             });
         };
-
       }
     };
   });
