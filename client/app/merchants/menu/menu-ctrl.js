@@ -3,24 +3,21 @@ angular.module('zibzoo.merchant.menu', [])
 
     $scope.menu = menu;
 
-    $scope.menuItem = {
-      name: '',
-      description: '',
-      price: '',
-      inStock: true,
-      calories: 0,
-      isGlutenFree: false,
-      isVegan: false,
-      isDairyFree: false,
-      isVegetarian: false
-    };
+    $scope.menuItem;
 
     $scope.clearItem = function () {
-      for (var key in $scope.menuItem) {
-        if (key) {
-          $scope.menuItem = '';
-        }
-      }
+      $scope.menuItem = {
+        name: '',
+        description: '',
+        price: '',
+        inStock: true,
+        calories: 0,
+        isGlutenFree: false,
+        isVegan: false,
+        isDairyFree: false,
+        isVegetarian: false
+      };
+
     };
 
     $scope.deleteMenuItem = function (menuItemIndex) {
@@ -59,5 +56,6 @@ angular.module('zibzoo.merchant.menu', [])
           $scope.status = error.status;
         });
     };
+    $scope.clearItem();
     $scope.getMenu();
   }]);
