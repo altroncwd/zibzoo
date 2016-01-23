@@ -1,4 +1,4 @@
-var Vendor = require('./vendorsModel');
+var Vendor = require('./vendorModel');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
