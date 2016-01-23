@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var menuItemSchema = new Schema({
-  vendorId: Schema.Types.ObjectId,
+  vendorId: { type: Schema.Types.ObjectId, required: true },
   name: { type: String, required: true },
   description: String,
   price: { type: Number, required: true },
