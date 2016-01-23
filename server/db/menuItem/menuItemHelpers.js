@@ -6,26 +6,19 @@ mongoose.Promise = require('bluebird');
 
 module.exports = {
 
-  postMenuItem: function (menuObj) {
-    return MenuItem
-      .findOne(menuObj)
-      .then(function (menu) {
-        if (menu) {
-          throw Error('Menu already exists');
-        }
+  postMenuItem: function (menuItemObj) {
+    var newMenuItem = new MenuItem(menuItemObj);
 
-        var newMenu = new MenuItem(menuObj);
-
-        return newMenu.save();
-      })
-      .then(function (result) {
-        if (!result) {
-          throw Error('Unable to save menu');
+    return newMenuItem
+      .save()
+      .then(function (menuItem) {
+        if (!menuItem) {
+          throw Error('Unable to save menu item.');
         }
 
         Vendor.update(
-          { _id: menuObj.vendorId },
-          { $push: { menuIds: result._id } },
+          { _id: menuItemObj.vendorId },
+          { $push: { menuItems: menuItem._id } },
           function (error) {
             if (error) {
               throw Error('Unable to update vendor.');
@@ -33,7 +26,7 @@ module.exports = {
           }
         );
 
-        return result;
+        return menuItem;
       })
       .catch(function (error) {
 
