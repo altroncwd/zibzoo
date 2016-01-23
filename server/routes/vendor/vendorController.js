@@ -7,7 +7,7 @@ module.exports = {
       name: req.body.username,
       password: req.body.password
     };
-    vendorHelpers.postVendor(vendor)
+    vendorHelpers.postVendors(vendor)
       .then(function (result) {
         res.status(201).send(result);
       })
@@ -20,7 +20,7 @@ module.exports = {
     var vendor = {
       username: req.body.username
     };
-    vendorHelpers.getVendor(vendor)
+    vendorHelpers.getVendors(vendor)
       .then(function (result) {
         res.status(200).send(result);
       })
@@ -31,7 +31,7 @@ module.exports = {
 
   retrieveVendor: function (req, res) {
     var vendor = req.query;
-    vendorHelpers.getVendor(vendor)
+    vendorHelpers.getVendors(vendor)
       .then(function (result) {
         res.status(200).send(result);
       })
