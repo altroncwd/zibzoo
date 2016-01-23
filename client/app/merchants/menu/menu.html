@@ -19,7 +19,7 @@
         </div>
         <textarea name="" id="" cols="30" rows="5" ng-model="menuItem.description" placeholder="Description"></textarea>
         <button class="button" ng-click="clearItem()">Cancel</button>
-        <button class="button" ng-click="addItem(menuItem)" style="float:right"> Add to Menu</button>
+        <button class="button" ng-click="saveMenuItem(menuItem)" style="float:right"> Add to Menu</button>
       </div>
 
       <!------------- End of the add item bar ------------->
@@ -38,7 +38,7 @@
           <ul class="inline-list" style="float:right">
             <li>
               <li>
-                <button class="button tiny" ng-click="menu.remove($index)">Remove</button>
+                <button class="button tiny" ng-click="deleteMenuItem($index)">Remove</button>
               </li>
               <!--<button class="button tiny" >Edit</button></li>----------------Edit Button------>
           </ul>

@@ -3,28 +3,39 @@ angular.module('zibzoo.merchant.menu.factory', [])
     var menu = {};
 
     menu.items = [];
-    menu.createdItems = [];
-    menu.removedItems = [];
 
     menu.addItem = function (menuItem) {
-      angular.extend(menuItem, { merchantId: $stateParams.merchantId });
-      // fix to add to createdItems
       menu.items.unshift(menuItem);
     };
 
     menu.remove = function (index) {
-      // fix for removal from createdItems
-      menu.removedItems.push(menu.items.splice(index, 1));
+      return menu.items.splice(index, 1);
     };
 
-    menu.saveMenu = function (menuItemsObject) {
+    menu.deleteMenuItem = function (menuItemId) {
+      return $http({
+        method: 'DELETE',
+        url: 'api/vendor/menuItems',
+        data: JSON.stringify(menuItemId)
+      })
+        .success(function (data) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+            );
+        });
+    };
+
+    menu.saveMenuItem = function (menuItemObject) {
       return $http({
         method: 'POST',
-        url: 'api/vendors/menuItems',
-        data: JSON.stringify(menuItemsObject)
+        url: 'api/vendor/menuItems',
+        data: JSON.stringify(menuItemObject)
       })
         .success(function (data, status, headers, config) {
-          console.log(data);
           return data;
         })
         .error(function (data, status) {
