@@ -147,15 +147,13 @@ describe('MerchantMenuController', function () {
     it('should make a get request by calling vendor.getVendor', function () {
       spyOn(vendor, 'getVendor').and.callThrough();
       var data = {
-        data: {
-          menuItems: [{}, {}, {}, {}]
-        }
+        menuItems: [{}, {}, {}, {}]
       };
       $httpBackend.expectGET('/api/vendor').respond(data);
       $scope.getMenu(4567890);
       $httpBackend.flush();
       expect($scope.vendor.getVendor).toHaveBeenCalled();
-      expect($scope.menu.items).toEqual([{}, {}, {}, {}]);
+      expect($scope.menu.items).toEqual(data.menuItems);
     });
   });
 });

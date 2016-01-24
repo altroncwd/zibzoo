@@ -49,8 +49,8 @@ angular.module('zibzoo.merchant.menu', [])
       $scope.menu.items = [];
       vendor.getVendor(merchantId)
         .then(function (data) {
-          if (data.data) {
-            $scope.menu.items = data.data.menuItems;
+          if (data.menuItems) {
+            $scope.menu.items = data.menuItems;
           }
         })
         .catch(function (error) {
