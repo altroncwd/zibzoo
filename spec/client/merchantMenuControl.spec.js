@@ -145,7 +145,7 @@ describe('MerchantMenuController', function () {
       expect(typeof $scope.getMenu).toBe('function');
     });
     it('should make a get request by calling vendor.getVendor', function () {
-      spyOn(vendor, 'getVendor').and.callThrough();
+      spyOn($scope.vendor, 'getVendor').and.callThrough();
       var data = {
         menuItems: [{}, {}, {}, {}]
       };

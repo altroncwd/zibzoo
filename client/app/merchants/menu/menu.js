@@ -47,7 +47,7 @@ angular.module('zibzoo.merchant.menu', [])
 
     $scope.getMenu = function (merchantId) {
       $scope.menu.items = [];
-      vendor.getVendor(merchantId)
+      $scope.vendor.getVendor(merchantId)
         .then(function (data) {
           if (data.menuItems) {
             $scope.menu.items = data.menuItems;
