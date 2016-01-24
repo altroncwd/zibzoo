@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-var dbUri = process.env.MONGOLAB_URI || 'mongodb://localhost/zibzoo';
+var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/zibzoo';
 
-mongoose.connect(dbUri);
+mongoose.connect(uri);
 
 mongoose.connection.once('open', function () {
   console.log('Connected to mongoDB.');

@@ -4,6 +4,6 @@ module.exports = function (app) {
 
   app.post('/', vendorController.signUp);
   app.get('/', vendorController.signIn);
-  app.get('/retrieve', vendorController.retrieveVendor);
+  app.get('/retrieve', vendorController.retrieveVendors);
 
 };
