@@ -4,7 +4,7 @@ describe('VendorsListController', function () {
   var $location;
   var createController;
   var $httpBackend;
-  var Vendors;
+  var vendors;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies
@@ -13,7 +13,7 @@ describe('VendorsListController', function () {
 
     $rootScope = $injector.get('$rootScope');
     $httpBackend = $injector.get('$httpBackend');
-    Vendors = $injector.get('vendors');
+    vendors = $injector.get('vendors');
 
     $scope = $rootScope.$new();
 
@@ -22,7 +22,7 @@ describe('VendorsListController', function () {
     createController = function () {
       return $controller('VendorsListController', {
         $scope: $scope,
-        Vendors: Vendors,
+        Vendors: vendors,
         $location: $location
       });
     };

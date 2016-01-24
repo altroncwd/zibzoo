@@ -2,35 +2,33 @@ angular.module('zibzoo.merchant.menu', [])
   .controller('MerchantMenuController', ['$scope', 'menu', 'vendor', '$stateParams', function ($scope, menu, vendor, $stateParams) {
 
     $scope.menu = menu;
+    $scope.vendor = vendor;
 
-    $scope.menuItem = {
-      name: '',
-      description: '',
-      price: '',
-      inStock: true,
-      calories: 0,
-      isGlutenFree: false,
-      isVegan: false,
-      isDairyFree: false,
-      isVegetarian: false
-    };
+    $scope.menuItem;
 
     $scope.clearItem = function () {
-      for (var key in $scope.menuItem) {
-        if (key) {
-          $scope.menuItem = '';
-        }
-      }
+      $scope.menuItem = {
+        name: '',
+        description: '',
+        price: '',
+        inStock: true,
+        calories: 0,
+        isGlutenFree: false,
+        isVegan: false,
+        isDairyFree: false,
+        isVegetarian: false
+      };
+
     };
 
     $scope.deleteMenuItem = function (menuItemIndex) {
       var toDelete = $scope.menu.remove(menuItemIndex);
       $scope.menu.deleteMenuItem({ _id: toDelete._id })
         .then(function (data) {
-          console.log(data);
+          $scope.deleteStatus = data.status;
         })
         .catch(function (error) {
-          $scope.status = error.status;
+          $scope.deleteStatus = error.status;
         });
     };
 
@@ -40,24 +38,25 @@ angular.module('zibzoo.merchant.menu', [])
       $scope.clearItem();
       $scope.menu.saveMenuItem(menuItem)
         .then(function (data) {
-          console.log(data);
+          $scope.saveStatus = data.status;
         })
         .catch(function (error) {
-          $scope.status = error.status;
+          $scope.saveStatus = error.status;
         });
     };
 
-    $scope.getMenu = function (merchandId) {
+    $scope.getMenu = function (merchantId) {
       $scope.menu.items = [];
-      vendor.getVendor($stateParams.merchantId)
+      $scope.vendor.getVendor(merchantId)
         .then(function (data) {
-          if (data.data) {
-            $scope.menu.items = data.data.menuItems;
+          if (data.menuItems) {
+            $scope.menu.items = data.menuItems;
           }
         })
         .catch(function (error) {
           $scope.status = error.status;
         });
     };
-    $scope.getMenu();
+    $scope.clearItem();
+    $scope.getMenu($stateParams.merchantId);
   }]);
