@@ -104,6 +104,6 @@ angular.module('zibzoo', [
     if (toState && toState.authenticate && !Auth.isAuth()) {
       event.preventDefault();
       $state.go('landing');
-    } 
+    }
   });
 });
