@@ -16,7 +16,7 @@ module.exports = {
     })
     .then(function (user) {
       if (user) {
-        res.status(403).send({error: 'User already exists'});
+        res.status(403).send({ error: 'User already exists' });
         next(new Error('User already exists'));
       }
 
@@ -26,7 +26,7 @@ module.exports = {
         isVendor: isVendor
       };
 
-      var newUser = new User(newUser);
+      newUser = new User(newUser);
       return newUser.save();
     })
     .then(function (user) {
@@ -51,12 +51,12 @@ module.exports = {
     })
     .then(function (user) {
       if (!user) {
-        res.status(401).send({error: 'User does not exist'});
+        res.status(401).send({ error: 'User does not exist' });
         next(new Error('User does not exist'));
       }
 
       return user.checkPassword(password)
-        .then(function(isMatch) {
+        .then(function (isMatch) {
           if (isMatch) {
             res.json({
               id: user._id,

@@ -1,5 +1,5 @@
 angular.module('zibzoo.navbar.directive', [])
-  .directive('navbar', ['Auth', '$modal', function(Auth, $modal) {
+  .directive('navbar', ['Auth', '$modal', function (Auth, $modal) {
     return {
       restrict: 'E',
       templateUrl: 'app/components/navbar/_navbar.html',

@@ -13,12 +13,13 @@ angular.module('zibzoo.merchant.order', [])
 
     $scope.finishedOrder = function (index, userId) {
       // console.log('index : ', index, 'id : ', userId);
-      order.splice(index,1);
+      order.splice(index, 1);
     };
 
-    var incomingOrders = function (orderObj) {
-      order.push(orderObj);
-    };
+    // TODO: incomingOrders is defined but never used
+    // var incomingOrders = function (orderObj) {
+    //   order.push(orderObj);
+    // };
 
 
   }]);

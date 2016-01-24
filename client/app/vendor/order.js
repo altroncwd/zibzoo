@@ -7,7 +7,7 @@ angular.module('zibzoo.order', [])
       var order = {
         item: $scope.item,
         quantity: $scope.quantity
-      }
+      };
 
       User.data.orders.push(order);
       $modalInstance.close();
