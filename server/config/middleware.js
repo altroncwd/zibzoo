@@ -4,13 +4,13 @@ module.exports = function (app, express) {
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
-  var usersRouter = express.Router();
-  var vendorsRouter = express.Router();
+  var userRouter = express.Router();
+  var vendorRouter = express.Router();
 
-  app.use('/api/users', usersRouter);
-  app.use('/api/vendors', vendorsRouter);
+  app.use('/api/user', userRouter);
+  app.use('/api/vendor', vendorRouter);
 
-  require('../routes/users/usersRoutes.js')(usersRouter);
-  require('../routes/vendors/vendorsRoutes.js')(vendorsRouter);
+  require('../routes/user/userRoutes.js')(userRouter);
+  require('../routes/vendor/vendorRoutes.js')(vendorRouter);
 };
 

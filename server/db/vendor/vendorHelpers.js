@@ -1,4 +1,4 @@
-var Vendor = require('./vendorsModel');
+var Vendor = require('./vendorModel');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -11,7 +11,7 @@ module.exports = {
       })
       .then(function (vendor) {
         if (vendor) {
-          throw Error('Vendor already exists.');
+          throw new Error('Vendor already exists.');
         }
 
         var newVendor = new Vendor(vendorObj);
@@ -20,29 +20,30 @@ module.exports = {
       })
       .then(function (result) {
         if (!result) {
-          throw Error('Unable to save vendor.');
+          throw new Error('Unable to save vendor.');
         }
 
         return result;
       })
       .catch(function (error) {
+
         return error;
       });
   },
 
-  getVendor: function (vendorObj) {
+  getVendors: function (vendorObj) {
     return Vendor
-      .findOne({
-        name: vendorObj.name
-      })
-      .then(function (vendor) {
-        if (!vendor) {
-          throw Error('Vendor does not exist.');
+      .find(vendorObj)
+      .populate('menuItems')
+      .then(function (vendors) {
+        if (vendors.length === 0) {
+          throw new Error('Unable to find vendor(s).');
         }
 
-        return vendor;
+        return vendors;
       })
       .catch(function (error) {
+
         return error;
       });
   }

@@ -5,6 +5,9 @@ angular.module('zibzoo', [
   'zibzoo.vendors.directive',
   'zibzoo.filterbox.directive',
   'zibzoo.cart',
+  'zibzoo.auth',
+  'zibzoo.auth.factory',
+  'zibzoo.user.factory',
   'zibzoo.landing',
   'zibzoo.vendors.list',
   'zibzoo.vendors.factory',
@@ -15,7 +18,8 @@ angular.module('zibzoo', [
   'zibzoo.merchant',
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',
-  'zibzoo.menuform.directive'
+  'zibzoo.merchant.order.factory',
+  'zibzoo.merchant.order'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -28,15 +32,27 @@ angular.module('zibzoo', [
     .state('vendors', {
       templateUrl: 'app/vendors/vendors-list.html',
       url: '/vendors',
-      controller: 'VendorsListController',
+      controller: 'VendorsListController'
     })
     .state('vendor', {
       templateUrl: 'app/vendor/vendor.html',
       url: '/vendor/:vendorId',
       controller: 'VendorController'
+    });
+
+  $stateProvider
+    .state('signup', {
+      templateUrl: 'app/auth/signup.html',
+      url: '/signup',
+      controller: 'AuthController'
+    })
+    .state('signin', {
+      templateUrl: 'app/auth/signin.html',
+      url: '/signin',
+      controller: 'AuthController'
     })
     .state('cart', {
-      templateUrl: 'app/users/cart/cart.html',
+      templateUrl: 'app/user/cart/cart.html',
       url: '/cart',
       controller: 'CartController'
     });
@@ -64,6 +80,30 @@ angular.module('zibzoo', [
   $urlRouterProvider.otherwise('/');
 })
 
-.run(function ($rootScope, $state) {
+.factory('AttachTokens', function ($window) {
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem('com.zibzoo');
+
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+
+  return attach;
+})
+
+.run(function ($rootScope, $state, Auth) {
   $rootScope.$state = $state;
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    if (toState && toState.authenticate && !Auth.isAuth()) {
+      event.preventDefault();
+      $state.go('landing');
+    } 
+  });
 });

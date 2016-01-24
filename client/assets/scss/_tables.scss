@@ -1,0 +1,25 @@
+.cart-table {
+  width: 100%;
+
+  .name {
+    width: 30%;
+  }
+
+  .description {
+    width: 40%;
+  }
+
+  .quantity {
+    width: 10%;
+    text-align: center;
+  }
+
+  .price, .actions {
+    width: 10%;
+    text-align: center;
+
+    > a .fa {
+      color: $jet;
+    }
+  }
+}

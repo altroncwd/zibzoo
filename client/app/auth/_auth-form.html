@@ -1,0 +1,60 @@
+<div class="medium-6 medium-offset-3 columns">
+  <div class="row">
+    <div class="large-12 columns">
+      <tabset>
+        <tab heading="Login" active="tab.active">
+          <p class="error" ng-show="error">{{error}}</p>
+          <form name="signinForm" ng-submit="signinForm.$valid && signin(user)" novalidate>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>Email
+                  <input type="email" name="email" ng-model="user.username">
+                </label>
+              </div>
+              <div class="large-12 columns">
+                <label>Password
+                  <input type="password" name="password" ng-model="user.password">
+                </label>
+              </div>
+              <div class="large-6 columns">
+                <input id="remember-me" type="checkbox" ng-model="user.remember"><label for="remember-me">Remember Me</label>
+              </div>
+              <div class="large-12 columns">
+                <button class="button expand large">Login</button>
+              </div>
+            </div>
+          </form>
+        </tab>
+        <tab heading="Sign Up"> 
+          <p class="error" ng-show="error">{{error}}</p>
+          <form name="signupForm" ng-submit="signupForm.$valid && signup(user)" novalidate>
+            <div class="row">
+              <div class="large-12 columns">
+                <label>Email
+                  <input type="email" name="email" ng-model="user.username">
+                </label>
+              </div>
+              <div class="large-12 columns">
+                <label>Password (6 char minimum)
+                  <input type="password" name="password" ng-model="user.password">
+                </label>
+              </div>
+              <div class="large-12 columns">
+                <label>Confirm Password
+                  <input type="password" name="confirmPassword" ng-model="user.confirmPassword">
+                </label>
+              </div>
+              <div class="large-6 columns">
+                <input id="isVendor" name="isVendor" type="checkbox" ng-model="user.isVendor"><label for="isVendor">Are you a vendor?</label>
+              </div>
+              <div class="large-12 columns">
+                <button class="button expand large">Sign Up</button>
+              </div>
+            </div>
+          </form>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

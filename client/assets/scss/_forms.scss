@@ -1,0 +1,28 @@
+.css-form input.ng-invalid.ng-touched {
+    background-color: #fee6e8;
+}
+
+.css-form input.ng-valid.ng-touched {
+    background-color: #e6feea;
+}
+
+.css-form textarea.ng-invalid.ng-touched {
+  background-color: #fee6e8;
+}
+
+.css-form textarea.ng-valid.ng-touched {
+  background-color: #e6feea;
+}
+
+.error {
+  color: $alert-color;
+}
+
+.ng-invalid.ng-dirty { 
+  color: $alert-color;
+  border-color: $alert-color;
+
+  &:focus {
+    border-color: $alert-color;
+  }
+}

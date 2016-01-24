@@ -1,49 +1,50 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', function() {
+  .factory('menu', ['$http', '$stateParams', function ($http, $stateParams) {
     var menu = {};
 
-    menu.items = [
-      { food : "cheese",
-        price : 14.50,
-        description : "three cheese pizza with a garlic stuffed crust",
-        inStock : true,
-        prepTime : 20 ,
-      },
-      { food : "volcano",
-        price : 18.00,
-        description : "three cheese topped with jalapenos, red pepers, spicy italian sausage and a stuffed jalapeno creamcheese crust ",
-        inStock : true,
-        prepTime : 22 ,
-      },
-      { food : "garlic breadsticks",
-        price : 7.0,
-        description : "soft homemade breadsticks brushed with butter and our special mix of garlic and spices",
-        inStock : true,
-        prepTime : 15 ,
-      }
-    ];
+    menu.items = [];
 
-    menu.addItem = function(food, price, calories, description, prepTime) {
-      var item = {
-        food: food,
-        price: price,
-        description: description,
-        inStock: true,
-        prepTime: prepTime ,
-      };
-      console.log(item);
-      menu.items.unshift(item);
+    menu.addItem = function (menuItem) {
+      menu.items.unshift(menuItem);
     };
-    menu.remove = function (index){
-      var removeFromDb = menu.items.splice(index,1);
+
+    menu.remove = function (index) {
+      return menu.items.splice(index, 1);
     };
-    // Only for test use
-    menu.log = function(x){
-      console.log("testing");
-      console.log(x);
-    }
-    // initialize
-    // menu.addItem();
+
+    menu.deleteMenuItem = function (menuItemId) {
+      return $http({
+        method: 'DELETE',
+        url: 'api/vendor/menuItems',
+        data: JSON.stringify(menuItemId)
+      })
+        .success(function (data) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+            );
+        });
+    };
+
+    menu.saveMenuItem = function (menuItemObject) {
+      return $http({
+        method: 'POST',
+        url: 'api/vendor/menuItems',
+        data: menuItemObject
+      })
+        .success(function (data, status, headers, config) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+            );
+        });
+    };
 
     return menu;
-  });
+  }]);

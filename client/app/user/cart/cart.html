@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="large-12 columns">
+    <section>
+      <header class="section-header">
+        <h3 class="subheader">Your Shopping Cart</h3><hr>
+      </header>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th class="name">Item</th>
+            <th class="description">Description</th>
+            <th class="quantity">Quantity</th>
+            <th class="price">Price</th>
+            <th class="actions">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="order in cart">
+            <td class="name">{{order.item.name}}</td>
+            <td class="description">{{order.item.description}}</td>
+            <td class="quantity">{{order.quantity}}</td>
+            <td class="price">{{order.item.price | currency}}</td>
+            <td class="actions">
+              <a ng-click="removeItem($index)" title="Remove item"><i class="fa fa-times"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="#" class="button" ng-show="cart.length > 0">Checkout</a>
+    </section>
+  </div>
+</div>
+
