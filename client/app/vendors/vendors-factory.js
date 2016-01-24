@@ -41,7 +41,7 @@ angular.module('zibzoo.vendors.factory', [])
     vendors.postVendor = function (vendorObj) {
       return $http({
         method: 'POST',
-        url: 'api/vendor',
+        url: 'api/vendors',
         data: JSON.stringify(vendorObj)
       })
         .success(function (data, status, headers, config) {
@@ -58,7 +58,7 @@ angular.module('zibzoo.vendors.factory', [])
     vendors.getVendors = function () {
       return $http({
         method: 'GET',
-        url: 'api/vendor'
+        url: 'api/vendors'
       })
       .success(function (data, status, headers, config) {
         return data;

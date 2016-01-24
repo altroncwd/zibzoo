@@ -28,7 +28,7 @@ describe('VendorsListController', function () {
     };
     var fakeVendors = [{}, {}, {}];
     $httpBackend.whenGET('app/landing/landing.html').respond(fakeVendors);
-    $httpBackend.whenGET('api/vendor').respond(fakeVendors);
+    $httpBackend.whenGET('api/vendors').respond(fakeVendors);
     createController();
     $httpBackend.flush();
   }));
@@ -88,7 +88,7 @@ describe('VendorsListController', function () {
       });
     it('should expect to throw an error when an error code is received',
       function () {
-        $httpBackend.expectGET('api/vendor').respond(500);
+        $httpBackend.expectGET('api/vendors').respond(500);
         createController();
         $httpBackend.flush();
         expect($scope.status).toBe(500);
