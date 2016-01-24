@@ -17,14 +17,10 @@ var userSchema = new Schema({
 userSchema.pre('validate', function (next) {
   var user = this;
 
-  if (!user.isModified('password')) {
-    return next();
-  }
-
-  bcrypt.genSalt()
+  bcrypt.genSaltAsync()
     .then(function (salt) {
       user.salt = salt;
-      return bcrypt.hash(user.password, salt, null);
+      return bcrypt.hashAsync(user.password, salt);
     })
     .then(function (hashedPassword) {
       user.password = hashedPassword;
