@@ -1,5 +1,5 @@
-//var usersHelpers = require('./../../db/users/usersHelpers.js');
-var User = require('../../db/users/usersModel.js');
+// var userHelpers = require('./../../db/user/userHelpers.js');
+var User = require('../../db/user/userModel.js');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -18,7 +18,7 @@ module.exports = {
       if (user) {
         res.status(403).send({error: 'User already exists'});
         next(new Error('User already exists'));
-      } 
+      }
 
       var newUser = {
         username: username,
