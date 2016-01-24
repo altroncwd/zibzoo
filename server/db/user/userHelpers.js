@@ -1,4 +1,4 @@
-var User = require('./usersModel.js');
+var User = require('./userModel.js');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -7,11 +7,11 @@ module.exports = {
   postUser: function (userObj) {
     return User
       .findOne({
-        name: userObj.name
+        username: userObj.username
       })
       .then(function (user) {
         if (user) {
-          throw Error('User already exists.');
+          throw new Error('User already exists.');
         }
 
         var newUser = new User(userObj);
@@ -20,7 +20,7 @@ module.exports = {
       })
       .then(function (result) {
         if (!result) {
-          throw Error('Unable to save user.');
+          throw new Error('Unable to save user.');
         }
 
         return result;
@@ -33,11 +33,11 @@ module.exports = {
   getUser: function (userObj) {
     return User
       .findOne({
-        name: userObj.name
+        username: userObj.username
       })
       .then(function (user) {
         if (!user) {
-          throw Error('User does not exist.');
+          throw new Error('User does not exist.');
         }
 
         return user;
