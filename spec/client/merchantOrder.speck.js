@@ -22,7 +22,7 @@
 //     // don't know if I need this but i'm sure the routes will need to change even if i do
 //     var fakeVendors = [{}, {}, {}];
 //     $httpBackend.whenGET('app/landing/landing.html').respond(fakeVendors);
-//     $httpBackend.whenGET('api/vendors').respond(fakeVendors);
+//     $httpBackend.whenGET('api/vendor').respond(fakeVendors);
 //     createController();
 //     $httpBackend.flush();
 //   }));
