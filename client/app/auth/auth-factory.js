@@ -7,7 +7,7 @@ angular.module('zibzoo.auth.factory', [])
     auth.signin = function (user) {
       return $http({
         method: 'POST',
-        url: '/api/users/signin',
+        url: '/api/user/signin',
         data: user
       })
       .then(function (res) {
@@ -18,7 +18,7 @@ angular.module('zibzoo.auth.factory', [])
     auth.signup = function (user) {
       return $http({
         method: 'POST',
-        url: '/api/users/signup',
+        url: '/api/user/signup',
         data: user
       })
       .then(function (res) {
