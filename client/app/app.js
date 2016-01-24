@@ -32,7 +32,7 @@ angular.module('zibzoo', [
     .state('vendors', {
       templateUrl: 'app/vendors/vendors-list.html',
       url: '/vendors',
-      controller: 'VendorsListController',
+      controller: 'VendorsListController'
     })
     .state('vendor', {
       templateUrl: 'app/vendor/vendor.html',
@@ -80,6 +80,30 @@ angular.module('zibzoo', [
   $urlRouterProvider.otherwise('/');
 })
 
-.run(function ($rootScope, $state) {
+.factory('AttachTokens', function ($window) {
+  var attach = {
+    request: function (object) {
+      var jwt = $window.localStorage.getItem('com.zibzoo');
+
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+
+  return attach;
+})
+
+.run(function ($rootScope, $state, Auth) {
   $rootScope.$state = $state;
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    if (toState && toState.authenticate && !Auth.isAuth()) {
+      event.preventDefault();
+      $state.go('landing');
+    } 
+  });
 });
