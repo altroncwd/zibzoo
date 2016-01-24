@@ -5,7 +5,7 @@ angular.module('zibzoo.auth', [])
 
     $scope.signin = function (data) {
       Auth.signin(data)
-        .then(function (user) { 
+        .then(function (user) {
           User.data = user;
           $window.localStorage.setItem('com.zibzoo', user.token);
 
@@ -34,9 +34,9 @@ angular.module('zibzoo.auth', [])
     };
 
     $scope.routeUser = function (user) {
-      (user.isVendor) ? $state.go('merchant', { merchantId : user.id }) 
-                      : $state.go('landing');  
-    }
+      (user.isVendor) ? $state.go('merchant', { merchantId: user.id })
+                      : $state.go('landing');
+    };
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
