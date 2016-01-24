@@ -1,10 +1,9 @@
 describe('MerchantMenuController', function () {
   var $scope;
   var $rootScope;
-  var $location;
   var createController;
   var $httpBackend;
-  var Vendors;
+  var vendor;
   var menu;
 
   beforeEach(module('zibzoo'));
@@ -12,7 +11,7 @@ describe('MerchantMenuController', function () {
 
     $rootScope = $injector.get('$rootScope');
     $httpBackend = $injector.get('$httpBackend');
-    Vendors = $injector.get('vendors');
+    vendor = $injector.get('vendor');
     menu = $injector.get('menu');
 
     $scope = $rootScope.$new();
@@ -22,13 +21,25 @@ describe('MerchantMenuController', function () {
     createController = function () {
       return $controller('MerchantMenuController', {
         $scope: $scope,
-        Vendors: Vendors,
+        vendor: vendor,
         menu: menu
       });
     };
 
+    var fakeData = [{}, {}, {}, {}];
+    $httpBackend.whenGET('/api/vendor').respond(fakeData);
+    $httpBackend.whenGET('app/landing/landing.html').respond(fakeData);
+    $httpBackend.whenPOST('api/vendor/menuItems').respond(201);
+    $httpBackend.whenDELETE('api/vendor/menuItems').respond(204);
+
     createController();
+    $httpBackend.flush();
   }));
+
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
 
   describe('$scope.menu', function () {
     it('should be a property on the $scope', function () {
@@ -87,8 +98,64 @@ describe('MerchantMenuController', function () {
     it('should be called by $scope.saveMenuItem', function () {
       spyOn($scope, 'clearItem');
       $scope.saveMenuItem({ name: 'hello' });
+      $httpBackend.flush();
       expect($scope.clearItem).toHaveBeenCalled();
     });
+  });
 
+  describe('$scope.deleteMenuItem', function () {
+    it('should be a function on the scope object', function () {
+      expect(typeof $scope.deleteMenuItem).toBe('function');
+    });
+    it('should make a delete request by calling $scope.menu.deleteMenuItem', function () {
+      spyOn($scope.menu, 'deleteMenuItem').and.callThrough();
+      $scope.deleteMenuItem(5);
+      $httpBackend.flush();
+      expect($scope.deleteStatus).toEqual(204);
+      expect($scope.menu.deleteMenuItem).toHaveBeenCalled();
+    });
+    it('should throw an error when an error code is recieved', function () {
+      $httpBackend.expectDELETE('api/vendor/menuItems').respond(500);
+      $scope.deleteMenuItem(88);
+      $httpBackend.flush();
+      expect($scope.deleteStatus).toEqual(500);
+    });
+  });
+
+  describe('$scope.saveMenuItem', function () {
+    it('should be a function on the scope object', function () {
+      expect(typeof $scope.saveMenuItem).toBe('function');
+    });
+    it('should make a post request calling $scope.menu.saveMenutItem', function () {
+      spyOn($scope.menu, 'saveMenuItem').and.callThrough();
+      $scope.saveMenuItem({ name: 'fajita' });
+      $httpBackend.flush();
+      expect($scope.menu.saveMenuItem).toHaveBeenCalled();
+      expect($scope.saveStatus).toEqual(201);
+    });
+    it('should throw an error when an error code is recieved', function () {
+      $httpBackend.expectPOST('api/vendor/menuItems').respond(500);
+      $scope.saveMenuItem({ name: 'willys fajita' });
+      $httpBackend.flush();
+      expect($scope.saveStatus).toEqual(500);
+    });
+  });
+  describe('$scope.getMenu', function () {
+    it('should be a function on th scope object', function () {
+      expect(typeof $scope.getMenu).toBe('function');
+    });
+    it('should make a get request by calling vendor.getVendor', function () {
+      spyOn(vendor, 'getVendor').and.callThrough();
+      var data = {
+        data: {
+          menuItems: [{}, {}, {}, {}]
+        }
+      };
+      $httpBackend.expectGET('/api/vendor').respond(data);
+      $scope.getMenu(4567890);
+      $httpBackend.flush();
+      expect($scope.vendor.getVendor).toHaveBeenCalled();
+      expect($scope.menu.items).toEqual([{}, {}, {}, {}]);
+    });
   });
 });
