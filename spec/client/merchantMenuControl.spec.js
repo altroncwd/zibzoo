@@ -154,6 +154,7 @@ describe('MerchantMenuController', function () {
       $httpBackend.flush();
       expect($scope.vendor.getVendor).toHaveBeenCalled();
       expect($scope.menu.items).toEqual(data.menuItems);
+
     });
   });
 });
