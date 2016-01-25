@@ -6,7 +6,7 @@ angular.module('zibzoo.vendor', [])
     $scope.getVendor = function (params) {
       vendor.getVendor(params)
         .then(function (data) {
-          $scope.vendor = data;
+          $scope.vendor = data.data;
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);

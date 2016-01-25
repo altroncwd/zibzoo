@@ -15,16 +15,16 @@ angular.module('zibzoo.merchant.menu.factory', [])
     menu.deleteMenuItem = function (menuItemId) {
       return $http({
         method: 'DELETE',
-        url: 'api/vendor/menuItems',
-        data: JSON.stringify(menuItemId)
+        url: 'api/menu',
+        data: menuItemId
       })
         .success(function (data) {
           return data;
         })
         .error(function (data, status) {
           console.error(
-            JSON.stringify(data),
-            JSON.stringify(status)
+            data,
+            status
             );
         });
     };
@@ -32,7 +32,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
     menu.saveMenuItem = function (menuItemObject) {
       return $http({
         method: 'POST',
-        url: 'api/vendor/menuItems',
+        url: 'api/menu',
         data: menuItemObject
       })
         .success(function (data, status, headers, config) {

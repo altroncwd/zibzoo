@@ -1,6 +1,6 @@
 angular.module('zibzoo.vendors.list', [])
-  .controller('VendorsListController', ['$scope', 'vendors', function ($scope, vendors) {
-    $scope.vendors = vendors.tempData;
+  .controller('VendorsListController', ['$scope', 'vendor', function ($scope, vendor) {
+    $scope.vendors = vendor.tempData;
     $scope.selected;
     $scope.filter = function (cuisineType) {
       if (cuisineType) {
@@ -8,7 +8,8 @@ angular.module('zibzoo.vendors.list', [])
       }
     };
     $scope.getVendors = function () {
-      vendors.getVendors()
+      var allVendors = {};
+      vendor.getVendor(allVendors)
         .then(function (data) {
           $scope.vendors = data.data;
         })

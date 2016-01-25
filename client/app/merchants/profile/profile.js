@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant', [])
-  .controller('MerchantProfileController', ['$scope', 'vendors', function ($scope, vendors) {
+  .controller('MerchantProfileController', ['$scope', 'vendor', function ($scope, vendor) {
 
     // themporary data for merchant page, html will need to be refactored for actual incoming data
     $scope.schedule = {
@@ -12,14 +12,14 @@ angular.module('zibzoo.merchant', [])
       Sunday: { isOpen: false, opens: null, close: null }
     };
     $scope.img = 'http://rlv.zcache.com/i_love_food_trucks_square_sticker-r21025c827b5f4cb9823264e110552eeb_v9wf3_8byvr_324.jpg';
-    $scope.cuisine = ['American', 'Burger', 'Fusion', 'Asian', 'Spicy'];
+    $scope.cuisines = ['American', 'Burger', 'Fusion', 'Asian', 'Spicy'];
     $scope.description = 'The best pizza around, so good it might kill you';
     $scope.hour = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     // '00' needs to be in string because its evaluated as 0
     $scope.min = ['00', 15, 30, 45];
 
     // post vendor request
-    console.log('VENDORS : : ', vendors);
+    // console.log('VENDORS : : ', vendors);
     $scope.vendor = {
       username: '',
       description: '',
@@ -41,7 +41,7 @@ angular.module('zibzoo.merchant', [])
     $scope.saveVendor = function (vendorObj) {
       console.log(vendorObj);
 
-      vendors.postVendor(vendorObj)
+      vendor.saveVendor(vendorObj)
         .then(function (data) {
           console.log('Vendor saved successfuly', data);
           $scope.merchantId = data.data._id;
