@@ -40,17 +40,74 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     };
 
+    vendor.tempData = [{
+      id: 1,
+      name: 'Burger Shop',
+      cuisine: 'American',
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
+    },
+    {
+      id: 2,
+      name: 'Pasta Shop',
+      cuisine: 'Italian?',
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
+    },
+    {
+      id: 3,
+      name: 'Soup Shop',
+      cuisine: 'Soup',
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
+    },
+    {
+      id: 4,
+      name: 'Thai Shop',
+      cuisine: 'Thai',
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
+    },
+    {
+      id: 5,
+      name: 'Seafood Shop',
+      cuisine: 'Seafood',
+      description: 'this is a shop that sells food aka a restaurant',
+      imageUrl: 'https://placehold.it/1000x344'
+    }];
+
     vendor.getVendor = function (params) {
       return $http({
         method: 'GET',
-        url: '/api/vendors',
+        url: 'api/vendors',
         params: params
       })
-      .then(function (res) {
-        return res.data;
-      }, function (res) {
-        console.error('Error: ', res);
+      .success(function (data, status, headers, config) {
+        return data;
+      })
+      .error(function (data, status) {
+        console.error(
+          data,
+          status
+          );
       });
+    };
+
+    vendor.postVendor = function (vendorObj) {
+      return $http({
+        method: 'POST',
+        url: 'api/vendors',
+        data: vendorObj
+      })
+        .success(function (data, status, headers, config) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            data,
+            status
+          );
+        });
     };
 
     return vendor;

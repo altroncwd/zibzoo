@@ -10,7 +10,6 @@ angular.module('zibzoo', [
   'zibzoo.user.factory',
   'zibzoo.landing',
   'zibzoo.vendors.list',
-  'zibzoo.vendors.factory',
   'zibzoo.vendors.directive',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
@@ -104,6 +103,6 @@ angular.module('zibzoo', [
     if (toState && toState.authenticate && !Auth.isAuth()) {
       event.preventDefault();
       $state.go('landing');
-    } 
+    }
   });
-});
+  });
