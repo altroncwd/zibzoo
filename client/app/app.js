@@ -105,4 +105,4 @@ angular.module('zibzoo', [
       $state.go('landing');
     }
   });
-  });
+});
