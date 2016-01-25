@@ -51,7 +51,7 @@ describe('The', function () {
         expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
       });
 
-      it('should store a new vendor in the database.', function (done) {
+      it('should store a new vendor in the database and return the document.', function (done) {
         vendorHelpers.postVendor(mockVendor)
           .then(function (vendor) {
 
@@ -80,7 +80,7 @@ describe('The', function () {
         expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
       });
 
-      it('should retrieve a specfic, existing vendor from the database.', function (done) {
+      it('should retrieve a specfic, existing vendor from the database and return the document.', function (done) {
         vendorHelpers.getVendors({ _id: mockVendor._id })
           .then(function (vendors) {
             expect(vendors[0]._id).toEqual(mockVendor._id);
@@ -89,7 +89,7 @@ describe('The', function () {
           });
       });
 
-      it('should retrieve multiple existing vendors from the database.', function (done) {
+      it('should retrieve multiple existing vendors from the database and return the documents.', function (done) {
         var secondMockVendor = {
           name: 'Bengi and The Mongoose',
           cuisine: ['Italian', 'Japanese']
@@ -127,7 +127,7 @@ describe('The', function () {
         expect(vendorHelpers.postVendor).toEqual(jasmine.any(Function));
       });
 
-      it('should store a new menuItem in the database.', function (done) {
+      it('should store a new menuItem in the database and return the document.', function (done) {
         menuItemHelpers.postMenuItem(mockMenuItem)
           .then(function (menuItem) {
 
@@ -158,7 +158,7 @@ describe('The', function () {
         expect(menuItemHelpers.deleteMenuItem).toEqual(jasmine.any(Function));
       });
 
-      it('should delete an existing menu item.', function (done) {
+      it('should delete an existing menu item and return the number of documents affected.', function (done) {
         menuItemHelpers.deleteMenuItem(mockMenuItem)
           .then(function (docsAffectedObj) {
             expect(docsAffectedObj.result.n).toBe(1);
@@ -194,7 +194,7 @@ describe('The', function () {
         expect(userHelpers.postUser).toEqual(jasmine.any(Function));
       });
 
-      it('store a new user in the database.', function (done) {
+      it('store a new user in the database and return the document.', function (done) {
         userHelpers.postUser(mockUser)
           .then(function (user) {
 
@@ -222,7 +222,7 @@ describe('The', function () {
         expect(userHelpers.getUser).toEqual(jasmine.any(Function));
       });
 
-      it('should retrieve a specific, existing user from the database.', function (done) {
+      it('should retrieve a specific, existing user from the database and return the document.', function (done) {
         userHelpers.getUser(mockUser)
           .then(function (user) {
             expect(user._id).toEqual(mockUser._id);
