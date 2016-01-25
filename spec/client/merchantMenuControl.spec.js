@@ -145,15 +145,15 @@ describe('MerchantMenuController', function () {
       expect(typeof $scope.getMenu).toBe('function');
     });
     // THIS TEST PASSES LOCALLY BUT FAILS ON TRAVIS CI
-    xit('should make a get request by calling vendor.getVendor', function () {
-      spyOn($scope.vendor, 'getVendor').and.callThrough();
+    xit('should make a get request by calling vendor.getVendors', function () {
+      spyOn($scope.vendor, 'getVendors').and.callThrough();
       var data = {
         menuItems: [{}, {}, {}, {}]
       };
       $httpBackend.expectGET('api/vendors').respond(data);
       $scope.getMenu(4567890);
       $httpBackend.flush();
-      expect($scope.vendor.getVendor).toHaveBeenCalled();
+      expect($scope.vendor.getVendors).toHaveBeenCalled();
       expect($scope.menu.items).toEqual(data.menuItems);
 
     });

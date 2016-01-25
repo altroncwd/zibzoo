@@ -1,4 +1,4 @@
-describe('VendorsListController', function () {
+describe('VendorsController', function () {
   var $scope;
   var $rootScope;
   var $location;
@@ -20,7 +20,7 @@ describe('VendorsListController', function () {
     var $controller = $injector.get('$controller');
 
     createController = function () {
-      return $controller('VendorsListController', {
+      return $controller('VendorsController', {
         $scope: $scope,
         vendor: vendor,
         $location: $location

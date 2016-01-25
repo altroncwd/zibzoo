@@ -4,9 +4,9 @@ angular.module('zibzoo.vendor', [])
     $scope.items  = _.chunk($scope.vendor.menu, 2);
 
     $scope.getVendor = function (params) {
-      vendor.getVendor(params)
-        .then(function (data) {
-          $scope.vendor = data.data;
+      vendor.getVendors(params)
+        .then(function (vendor) {
+          $scope.vendor = vendor.data;
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);
@@ -25,5 +25,5 @@ angular.module('zibzoo.vendor', [])
       });
     };
 
-    // $scope.getVendor($stateParams.vendorId);
+    //$scope.getVendor($stateParams.vendorId);
   }]);
