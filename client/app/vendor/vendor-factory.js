@@ -76,7 +76,7 @@ angular.module('zibzoo.vendor.factory', [])
       imageUrl: 'https://placehold.it/1000x344'
     }];
 
-    vendor.getVendor = function (params) {
+    vendor.getVendors = function (params) {
       return $http({
         method: 'GET',
         url: 'api/vendors',
@@ -86,27 +86,21 @@ angular.module('zibzoo.vendor.factory', [])
         return data;
       })
       .error(function (data, status) {
-        console.error(
-          data,
-          status
-          );
+        console.error(data, status);
       });
     };
 
-    vendor.saveVendor = function (vendorObj) {
+    vendor.saveVendor = function (vendor) {
       return $http({
         method: 'POST',
         url: 'api/vendors',
-        data: vendorObj
+        data: vendor
       })
         .success(function (data, status, headers, config) {
           return data;
         })
         .error(function (data, status) {
-          console.error(
-            data,
-            status
-          );
+          console.error(data, status);
         });
     };
 

@@ -9,7 +9,7 @@ angular.module('zibzoo', [
   'zibzoo.auth.factory',
   'zibzoo.user.factory',
   'zibzoo.landing',
-  'zibzoo.vendors.list',
+  'zibzoo.vendors',
   'zibzoo.vendors.directive',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
@@ -26,12 +26,12 @@ angular.module('zibzoo', [
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
-      controller: 'VendorsListController'
+      controller: 'VendorsController'
     })
     .state('vendors', {
-      templateUrl: 'app/vendors/vendors-list.html',
+      templateUrl: 'app/vendors/vendors.html',
       url: '/vendors',
-      controller: 'VendorsListController'
+      controller: 'VendorsController'
     })
     .state('vendor', {
       templateUrl: 'app/vendor/vendor.html',
