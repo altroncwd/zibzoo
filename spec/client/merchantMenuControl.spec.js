@@ -27,7 +27,7 @@ describe('MerchantMenuController', function () {
     };
 
     var fakeData = [{}, {}, {}, {}];
-    $httpBackend.whenGET('/api/vendors').respond(fakeData);
+    $httpBackend.whenGET('api/vendors').respond(fakeData);
     $httpBackend.whenGET('app/landing/landing.html').respond(fakeData);
     $httpBackend.whenPOST('api/menu').respond(201);
     $httpBackend.whenDELETE('api/menu').respond(204);
@@ -145,17 +145,17 @@ describe('MerchantMenuController', function () {
       expect(typeof $scope.getMenu).toBe('function');
     });
     // THIS TEST PASSES LOCALLY BUT FAILS ON TRAVIS CI
-    // it('should make a get request by calling vendor.getVendor', function () {
-    //   spyOn($scope.vendor, 'getVendor').and.callThrough();
-    //   var data = {
-    //     menuItems: [{}, {}, {}, {}]
-    //   };
-    //   $httpBackend.expectGET('/api/vendor').respond(data);
-    //   $scope.getMenu(4567890);
-    //   $httpBackend.flush();
-    //   expect($scope.vendor.getVendor).toHaveBeenCalled();
-    //   expect($scope.menu.items).toEqual(data.menuItems);
+    xit('should make a get request by calling vendor.getVendor', function () {
+      spyOn($scope.vendor, 'getVendor').and.callThrough();
+      var data = {
+        menuItems: [{}, {}, {}, {}]
+      };
+      $httpBackend.expectGET('api/vendors').respond(data);
+      $scope.getMenu(4567890);
+      $httpBackend.flush();
+      expect($scope.vendor.getVendor).toHaveBeenCalled();
+      expect($scope.menu.items).toEqual(data.menuItems);
 
-    // });
+    });
   });
 });
