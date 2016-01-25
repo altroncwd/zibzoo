@@ -1,24 +1,13 @@
 angular.module('zibzoo.navbar.directive', [])
-  .directive('navbar', ['Auth', '$modal', function (Auth, $modal) {
+  .directive('navbar', ['Auth', function (Auth) {
     return {
       restrict: 'E',
       templateUrl: 'app/components/navbar/_navbar.html',
-      controller: function ($scope, $rootScope) {
+      controller: function ($scope) {
         $scope.isAuth = Auth.isAuth;
+        $scope.signin = Auth.open;
         $scope.signout = Auth.signout;
         $scope.items = Auth.currentUser.orders;
-
-        $scope.open = function () {
-          $modal.open({
-            templateUrl: 'app/auth/_auth-form.html',
-            controller: 'AuthController',
-            resolve: {
-              user: function () {
-                return {};
-              }
-            }
-          });
-        };
       }
     };
   }]);
