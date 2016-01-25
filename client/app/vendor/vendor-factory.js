@@ -43,7 +43,7 @@ angular.module('zibzoo.vendor.factory', [])
     vendor.getVendor = function (params) {
       return $http({
         method: 'GET',
-        url: '/api/vendor',
+        url: '/api/vendors',
         params: params
       })
       .then(function (res) {
