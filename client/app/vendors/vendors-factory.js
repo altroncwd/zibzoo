@@ -41,16 +41,16 @@ angular.module('zibzoo.vendors.factory', [])
     vendors.postVendor = function (vendorObj) {
       return $http({
         method: 'POST',
-        url: 'api/vendors',
-        data: JSON.stringify(vendorObj)
+        url: 'api/vendors'
+        data: vendorObj
       })
         .success(function (data, status, headers, config) {
           return data;
         })
         .error(function (data, status) {
           console.error(
-            JSON.stringify(data),
-            JSON.stringify(status)
+            data,
+            status
           );
         });
     };
@@ -65,8 +65,8 @@ angular.module('zibzoo.vendors.factory', [])
       })
       .error(function (data, status) {
         console.error(
-          JSON.stringify(data),
-          JSON.stringify(status)
+          data,
+          status
           );
       });
     };
