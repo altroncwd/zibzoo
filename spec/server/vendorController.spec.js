@@ -22,10 +22,10 @@ describe('The vendor controller, ', function () {
       expect(vendorControllers.signUp).toEqual(jasmine.any(Function));
     });
 
-    it('should invoke postVendor()', function () {
-      spyOn(vendorHelpers, 'postVendor').and.callThrough();
+    it('should invoke saveVendor()', function () {
+      spyOn(vendorHelpers, 'saveVendor').and.callThrough();
       vendorControllers.signUp(request, response);
-      expect(vendorHelpers.postVendor).toHaveBeenCalled();
+      expect(vendorHelpers.saveVendor).toHaveBeenCalled();
     });
 
   }); // signUp()

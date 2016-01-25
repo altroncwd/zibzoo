@@ -41,7 +41,7 @@ angular.module('zibzoo.merchant', [])
     $scope.saveVendor = function (vendorObj) {
       console.log(vendorObj);
 
-      vendor.postVendor(vendorObj)
+      vendor.saveVendor(vendorObj)
         .then(function (data) {
           console.log('Vendor saved successfuly', data);
           $scope.merchantId = data.data._id;
