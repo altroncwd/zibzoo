@@ -6,6 +6,7 @@ angular.module('zibzoo.auth', [])
     $scope.signin = function (data) {
       Auth.signin(data)
         .then(function (user) {
+          user.orders = User.data.orders;
           User.data = user;
           $window.localStorage.setItem('com.zibzoo', user.token);
 
@@ -20,8 +21,7 @@ angular.module('zibzoo.auth', [])
     $scope.signup = function (data) {
       Auth.signup(data)
         .then(function (user) {
-          console.log('user: ', user);
-
+          user.orders = User.data.orders;
           User.data = user;
           $window.localStorage.setItem('com.zibzoo', user.token);
 
