@@ -1,8 +1,15 @@
 angular.module('zibzoo.auth.factory', [])
-  .factory('Auth', ['$http', '$state', '$window', 'User', function ($http, $state, $window, User) {
+  .factory('Auth', ['$http', '$state', '$window', '$modal', 'User', function ($http, $state, $window, $modal, User) {
     var auth = {};
 
     auth.currentUser = User.data;
+
+    auth.open = function () {
+      $modal.open({
+        templateUrl: 'app/auth/_auth-form.html',
+        controller: 'AuthController'
+      });
+    };
 
     auth.signin = function (user) {
       return $http({

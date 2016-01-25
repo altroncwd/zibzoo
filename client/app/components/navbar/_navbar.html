@@ -8,7 +8,7 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li><a href="" ng-click="open()" ng-show="!isAuth()">Login</a></li>
+        <li><a href="" ng-click="signin()" ng-show="!isAuth()">Login</a></li>
         <li><a href="" ng-click="signout()" ng-show="isAuth()">Logout</a></li>
         <li>
           <a ui-sref="cart" ng-model="items" ng-show="isAuth() && items.length > 0">
