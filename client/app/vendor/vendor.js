@@ -1,5 +1,5 @@
 angular.module('zibzoo.vendor', [])
-  .controller('VendorController', ['$scope', '$stateParams', 'vendor', '$modal', function ($scope, $stateParams, vendor, $modal) {
+  .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', function ($scope, $stateParams, $modal, vendor, Auth) {
     $scope.vendor = vendor;
     $scope.items  = _.chunk($scope.vendor.menu, 2);
 
@@ -13,16 +13,20 @@ angular.module('zibzoo.vendor', [])
         });
     };
 
-    $scope.open = function (item) {
-      $modal.open({
-        templateUrl: 'app/vendor/_order-form.html',
-        controller: 'OrderFormController',
-        resolve: {
-          item: function () {
-            return item;
+    $scope.order = function (item) {
+      if (Auth.isAuth()) {
+        $modal.open({
+          templateUrl: 'app/vendor/_order-form.html',
+          controller: 'OrderFormController',
+          resolve: {
+            item: function () {
+              return item;
+            }
           }
-        }
-      });
+        });
+      } else {
+        Auth.openModal();
+      }
     };
 
     //$scope.getVendor($stateParams.vendorId);

@@ -1,44 +1,47 @@
 angular.module('zibzoo.auth', [])
-  .controller('AuthController', ['$scope', '$window', '$state', 'Auth', 'User', '$modalInstance', function ($scope, $window, $state, Auth, User, $modalInstance) {
-    $scope.user = User.data;
+  .controller('AuthController', ['$rootScope', '$scope', '$window', '$state', '$modalInstance', 'Auth', function ($rootScope, $scope, $window, $state, $modalInstance, Auth) {
+    $scope.user = Auth.currentUser;
     $scope.error = null;
+
+    $rootScope.$on('user:updated', function (event) {
+      $scope.user = Auth.currentUser;
+    });
 
     $scope.signin = function (data) {
       Auth.signin(data)
         .then(function (user) {
-          user.orders = User.data.orders;
-          $scope.user = user;
-          $window.localStorage.setItem('com.zibzoo', user.token);
+          Auth.setUser(user);
 
           $scope.cancel();
-          $scope.routeUser(user);
+          $window.localStorage.setItem('com.zibzoo', user.token);
+          $scope.redirectUser(user);
         })
         .catch(function (error) {
-          $scope.error = error.data.error;
+          $scope.error = error.data;
         });
     };
 
     $scope.signup = function (data) {
       Auth.signup(data)
         .then(function (user) {
-          user.orders = User.data.orders;
-          User.data = user;
-          $window.localStorage.setItem('com.zibzoo', user.token);
+          Auth.setUser(user);
 
           $scope.cancel();
-          $scope.routeUser(user);
+          $window.localStorage.setItem('com.zibzoo', user.token);
+          $scope.redirectUser(user);
         })
         .catch(function (error) {
           $scope.error = error.data.error;
         });
     };
 
-    $scope.routeUser = function (user) {
-      (user.isVendor) ? $state.go('merchant', { merchantId: user.id })
-                      : $state.go('landing');
-    };
-
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
+    };
+
+    $scope.redirectUser = function (user) {
+      if (user.isVendor) {
+        $state.go('merchant', { merchantId: user.id });  
+      } 
     };
   }]);
