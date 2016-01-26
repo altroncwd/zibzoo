@@ -1,7 +1,7 @@
 angular.module('zibzoo.merchant.order', [])
-  .controller('MerchantOrdersController', ['$scope', 'order', function ($scope, order) {
+  .controller('MerchantOrdersController', ['$scope', 'order', 'Socket', function ($scope, order, Socket) {
     $scope.ordersList = order;
-
+    Socket.emit();
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
       // console.log(currentOrder, index, parentIndex);
       currentOrder.food.splice(index, 1);

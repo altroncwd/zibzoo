@@ -1,4 +1,5 @@
 angular.module('zibzoo', [
+  'zibzoo.socketFactory',
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
@@ -96,8 +97,10 @@ angular.module('zibzoo', [
   return attach;
 })
 
-.run(function ($rootScope, $state, Auth) {
+.run(function ($rootScope, $state, Auth, Socket) {
   $rootScope.$state = $state;
+
+  setInterval(function () {Socket.emit('hello', { darrin: 'cool' });}, 2000);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState && toState.authenticate && !Auth.isAuth()) {

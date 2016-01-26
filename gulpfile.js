@@ -27,6 +27,7 @@ var paths = {
   ],
   // These files are for the app's JavaScript
   appJS: [
+    'node_modules/socket.io-client/socket.io.js',
     'node_modules/angular/angular.js',
     'node_modules/angular-ui-router/release/angular-ui-router.js',
     'node_modules/fastclick/lib/fastclick.js',
