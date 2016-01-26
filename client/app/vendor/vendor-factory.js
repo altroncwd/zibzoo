@@ -104,5 +104,19 @@ angular.module('zibzoo.vendor.factory', [])
         });
     };
 
+    vendor.updateVendor = function (vendorObj) {
+      return $http({
+        method: 'UPDATE',
+        url: 'api/vendors',
+        data: vendorObj
+      })
+        .success(function (data) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(data, status);
+        });
+    };
+
     return vendor;
   }]);

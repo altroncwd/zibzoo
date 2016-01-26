@@ -36,12 +36,14 @@ angular.module('zibzoo.merchant', [])
       $scope.cuisine.push(food);
     };
 
-    $scope.saveVendor = function (vendorObj) {
-      vendor.saveVendor(vendorObj)
+    $scope.updateVendor = function (updatedVendor) {
+      vendor.updateVendor(updatedVendor)
         .then(function (data) {
-          console.log('Vendor saved successfuly', data);
-        }, function (err) {
-          console.error('Error saving vendor ', err);
+          $scope.updateStatus = data.status;
+          console.log('vendor updated successfully', data);
+        })
+        .catch(function (error) {
+          $scope.updateStatus = error.status;
         });
     };
 
@@ -59,7 +61,7 @@ angular.module('zibzoo.merchant', [])
           $scope.loadStatus = error.status;
         });
     };
-    $scope.loadVendor($scope.merchantId);
 
+    $scope.loadVendor($scope.merchantId);
 
   }]);
