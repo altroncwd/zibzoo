@@ -8,7 +8,7 @@ module.exports = function (app, express) {
   var vendorRouter = express.Router();
 
   app.use('/api/user', userRouter);
-  app.use('/api/vendor', vendorRouter);
+  app.use('/api/vendors', vendorRouter);
 
   require('../routes/user/userRoutes.js')(userRouter);
   require('../routes/vendor/vendorRoutes.js')(vendorRouter);
