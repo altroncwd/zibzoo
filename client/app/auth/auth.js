@@ -7,7 +7,7 @@ angular.module('zibzoo.auth', [])
       Auth.signin(data)
         .then(function (user) {
           user.orders = User.data.orders;
-          User.data = user;
+          $scope.user = user;
           $window.localStorage.setItem('com.zibzoo', user.token);
 
           $scope.cancel();
