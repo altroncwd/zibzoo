@@ -28,7 +28,8 @@ describe('The', function () {
 
   // Global testing variables
   var mockVendor = {
-    name: "Willy's Chili",
+    username: 'willy',
+    password: 'rawr',
     cuisine: ['Italian', 'Thai', 'Japanese']
   };
 
@@ -39,7 +40,7 @@ describe('The', function () {
   };
 
   var mockUser = {
-    username: 'Sam Samwise',
+    username: 'samwise',
     password: 'rawr'
   };
 
@@ -59,7 +60,7 @@ describe('The', function () {
             mockVendor._id = vendor._id;
             mockMenuItem.vendorId = vendor._id;
 
-            expect(vendor.name).toBe(mockVendor.name);
+            expect(vendor.username).toBe(mockVendor.username);
             done();
           });
       });
@@ -84,14 +85,15 @@ describe('The', function () {
         vendorHelpers.getVendors({ _id: mockVendor._id })
           .then(function (vendors) {
             expect(vendors[0]._id).toEqual(mockVendor._id);
-            expect(vendors[0].name).toBe(mockVendor.name);
+            expect(vendors[0].username).toBe(mockVendor.username);
             done();
           });
       });
 
       it('should retrieve multiple existing vendors from the database and return the documents.', function (done) {
         var secondMockVendor = {
-          name: 'Bengi and The Mongoose',
+          username: 'Bengi and The Mongoose',
+          password: 'rawr',
           cuisine: ['Italian', 'Japanese']
         };
 
@@ -145,7 +147,7 @@ describe('The', function () {
         vendorHelpers.getVendors({ _id: mockVendor._id })
           .then(function (vendors) {
             expect(vendors[0].menuItems.length).toBe(1);
-            expect(vendors[0].menuItems[0].toObject().name).toEqual(mockMenuItem.name);
+            expect(vendors[0].menuItems[0].name).toEqual(mockMenuItem.name);
             done();
           });
       });
@@ -167,7 +169,7 @@ describe('The', function () {
       });
 
       it('should remove the menu item reference from the corresponding vendor.', function (done) {
-        vendorHelpers.getVendors(mockVendor)
+        vendorHelpers.getVendors({ _id: mockVendor._id })
           .then(function (vendors) {
             expect(vendors[0].menuItems.length).toBe(0);
             done();
