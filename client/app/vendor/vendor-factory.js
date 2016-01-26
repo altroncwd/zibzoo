@@ -90,11 +90,11 @@ angular.module('zibzoo.vendor.factory', [])
       });
     };
 
-    vendor.saveVendor = function (vendor) {
+    vendor.saveVendor = function (vendorObj) {
       return $http({
         method: 'POST',
         url: 'api/vendors',
-        data: vendor
+        data: vendorObj
       })
         .success(function (data, status, headers, config) {
           return data;
