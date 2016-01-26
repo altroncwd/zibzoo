@@ -18,7 +18,10 @@ angular.module('zibzoo.merchant.menu', [])
         isDairyFree: false,
         isVegetarian: false
       };
+    };
 
+    $scope.toggle = function (model) {
+      model = !model;
     };
 
     $scope.deleteMenuItem = function (menuItemIndex) {
