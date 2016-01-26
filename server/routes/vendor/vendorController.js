@@ -1,7 +1,7 @@
 var vendorHelpers = require('./../../db/vendor/vendorHelpers.js');
 
 module.exports = {
-  // TODO: Add password hashing
+
   signUp: function (req, res) {
     var vendor = {
       name: req.body.username,
