@@ -3,11 +3,15 @@ angular.module('zibzoo.navbar.directive', [])
     return {
       restrict: 'E',
       templateUrl: 'app/components/navbar/_navbar.html',
-      controller: function ($scope) {
+      controller: function ($rootScope, $scope) {
         $scope.isAuth = Auth.isAuth;
-        $scope.signin = Auth.open;
+        $scope.signin = Auth.openModal;
         $scope.signout = Auth.signout;
         $scope.items = Auth.currentUser.orders;
+
+        $rootScope.$on('user:updated', function (event) {
+          $scope.items = Auth.currentUser.orders;
+        });
       }
     };
   }]);

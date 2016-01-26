@@ -12,7 +12,7 @@
       <div class="row" ng-repeat="row in items">
         <div class="small-12 large-6 columns" ng-repeat="item in row">
           <ul class="menu-list">
-            <li ng-click="open(item)">
+            <li ng-click="order(item)">
               <p>
                 <span>{{item.name}}</span>
                 <span class="right">{{item.price | currency}}</span>

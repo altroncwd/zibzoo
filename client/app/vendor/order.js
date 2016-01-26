@@ -9,8 +9,8 @@ angular.module('zibzoo.order', [])
         quantity: $scope.quantity
       };
 
-      User.data.orders.push(order);
-      $modalInstance.close();
+      User.addOrder(order);
+      $scope.cancel();
     };
 
     $scope.cancel = function () {
