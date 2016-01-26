@@ -7,7 +7,7 @@ module.exports = {
   postVendor: function (vendorObj) {
     return Vendor
       .findOne({
-        name: vendorObj.name
+        username: vendorObj.username
       })
       .then(function (vendor) {
         if (vendor) {
