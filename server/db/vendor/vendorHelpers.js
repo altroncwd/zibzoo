@@ -30,6 +30,22 @@ module.exports = {
       });
   },
 
+  getVendors: function (vendorObj) {
+    return Vendor
+      .find(vendorObj)
+      .populate('menuItems')
+      .then(function (vendors) {
+        if (vendors.length === 0) {
+          throw new Error('Unable to find vendor(s).');
+        }
+
+        return vendors;
+      })
+      .catch(function (error) {
+        return error;
+      });
+  },
+
   updateVendor: function (vendorObj) {
     return Vendor.update(
       { _id: vendorObj._id },
@@ -41,22 +57,6 @@ module.exports = {
       })
       .then(function (affectedDocsObj) {
         return affectedDocsObj.result.n;
-      })
-      .catch(function (error) {
-        return error;
-      });
-  },
-
-  getVendors: function (vendorObj) {
-    return Vendor
-      .find(vendorObj)
-      .populate('menuItems')
-      .then(function (vendors) {
-        if (vendors.length === 0) {
-          throw new Error('Unable to find vendor(s).');
-        }
-
-        return vendors;
       })
       .catch(function (error) {
         return error;
