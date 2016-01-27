@@ -52,16 +52,6 @@ module.exports = {
     return payload;
   },
 
-  authSignUp: function (queryResult, res) {
-    if (queryResult.email) {
-      var userInfo = queryResult;
-      userInfo.token = module.exports.issueToken(userInfo._id);
-      res.status(201).send(userInfo);
-    } else {
-      res.status(403).send(queryResult.message);
-    }
-  },
-
   handleSignInAuth: function (queryResultArr, req, res) {
     var password = req.body.password;
 
