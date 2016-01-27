@@ -11,7 +11,6 @@ angular.module('zibzoo.auth', [])
       Auth.signin(data)
         .then(function (user) {
           Auth.setUser(user);
-
           $scope.cancel();
           $window.localStorage.setItem('com.zibzoo', user.token);
           $scope.redirectUser(user);
@@ -25,7 +24,6 @@ angular.module('zibzoo.auth', [])
       Auth.signup(data)
         .then(function (user) {
           Auth.setUser(user);
-
           $scope.cancel();
           $window.localStorage.setItem('com.zibzoo', user.token);
           $scope.redirectUser(user);
