@@ -7,7 +7,7 @@ module.exports = {
   postCustomer: function (customerObj) {
     return Customer
       .findOne({
-        customername: customerObj.customername
+        email: customerObj.email
       })
       .then(function (customer) {
         if (customer) {
@@ -33,7 +33,7 @@ module.exports = {
   getCustomer: function (customerObj) {
     return Customer
       .findOne({
-        customername: customerObj.customername
+        email: customerObj.email
       })
       .then(function (customer) {
         if (!customer) {
