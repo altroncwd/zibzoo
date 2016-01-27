@@ -1,12 +1,12 @@
 angular.module('zibzoo.vendor', [])
   .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', function ($scope, $stateParams, $modal, vendor, Auth) {
-    $scope.vendor = vendor;
+    $scope.vendor = vendor.vendor;
     $scope.items  = _.chunk($scope.vendor.menu, 2);
 
     $scope.getVendor = function (params) {
       vendor.getVendors(params)
-        .then(function (vendor) {
-          $scope.vendor = vendor.data;
+        .then(function (data) {
+          $scope.vendor = data.data;
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);

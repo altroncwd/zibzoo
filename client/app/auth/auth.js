@@ -1,5 +1,5 @@
 angular.module('zibzoo.auth', [])
-  .controller('AuthController', ['$rootScope', '$scope', '$window', '$state', '$modalInstance', 'Auth', function ($rootScope, $scope, $window, $state, $modalInstance, Auth) {
+  .controller('AuthController', ['$rootScope', '$scope', '$window', '$state', '$modalInstance', 'Auth', 'vendor', function ($rootScope, $scope, $window, $state, $modalInstance, Auth, vendor) {
     $scope.user = Auth.currentUser;
     $scope.error = null;
 
@@ -10,8 +10,8 @@ angular.module('zibzoo.auth', [])
     $scope.signin = function (data) {
       Auth.signin(data)
         .then(function (user) {
+          vendor.vendor = user;
           Auth.setUser(user);
-
           $scope.cancel();
           $window.localStorage.setItem('com.zibzoo', user.token);
           $scope.redirectUser(user);
@@ -41,7 +41,7 @@ angular.module('zibzoo.auth', [])
 
     $scope.redirectUser = function (user) {
       if (user.isVendor) {
-        $state.go('merchant', { merchantId: user.id });  
-      } 
+        $state.go('orders', { merchantId: user.id });
+      }
     };
   }]);
