@@ -1,5 +1,5 @@
 angular.module('zibzoo.user.factory', [])
-  .factory('User', ['$rootScope', '$http', function ($rootScope, $http) {
+  .factory('User', ['$rootScope', '$http', '$window', function ($rootScope, $http, $window) {
     var user = {};
 
     user.data = { orders: [],
@@ -8,6 +8,7 @@ angular.module('zibzoo.user.factory', [])
 
     user.setData = function (data) {
       angular.extend(user.data, data);
+      $window.localStorage.setItem('_id', JSON.stringify(user.data));
       $rootScope.$broadcast('user:updated');
     };
 
@@ -19,6 +20,15 @@ angular.module('zibzoo.user.factory', [])
     user.resetUser = function () {
       user.data = { orders: [] };
       $rootScope.$broadcast('user:updated');
+    };
+
+    user.getFromLocal = function () {
+      user.data = JSON.parse($window.localStorage.getItem('_id'));
+    };
+
+    user.setNewToLocal = function () {
+      $window.localStorage.removeItem('_id');
+      $window.localStorage.setItem('_id', JSON.stringify(user.data));
     };
 
     return user;

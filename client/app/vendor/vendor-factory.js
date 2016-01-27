@@ -52,8 +52,6 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     };
 
-    vendor.sections = ['Appetizers', 'Entrees', 'Desserts', 'Drinks'];
-
     vendor.tempData = [{
       id: 1,
       name: 'Burger Shop',

@@ -1,7 +1,9 @@
 angular.module('zibzoo.merchant.menu', [])
   .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', 'vendor', function ($scope, menu, User, $stateParams, vendor) {
 
-    $scope.selectSections = vendor.sections;
+    User.getFromLocal();
+
+    $scope.selectSections = menu.sections;
     $scope.vendor = User.data;
     $scope.menu = menu;
     $scope.menu.items = User.data.menuItems || [];
@@ -28,6 +30,7 @@ angular.module('zibzoo.merchant.menu', [])
 
     $scope.deleteMenuItem = function (menuItemIndex) {
       var toDelete = $scope.menu.remove(menuItemIndex);
+      User.setNewToLocal();
       $scope.menu.deleteMenuItem({ _id: toDelete._id })
         .then(function (data) {
           $scope.deleteStatus = data.status;

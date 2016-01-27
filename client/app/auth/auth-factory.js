@@ -34,6 +34,7 @@ angular.module('zibzoo.auth.factory', [])
       User.resetUser();
 
       $window.localStorage.removeItem('com.zibzoo');
+      $window.localStorage.removeItem('_id');
       $state.go('landing');
     };
 
