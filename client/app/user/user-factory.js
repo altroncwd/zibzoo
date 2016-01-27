@@ -5,8 +5,7 @@ angular.module('zibzoo.user.factory', [])
     user.data = { orders: [] };
 
     user.setData = function (data) {
-      data.orders = user.data.orders;
-      user.data = data;
+      angular.extend(user.data, data);
       $rootScope.$broadcast('user:updated');
     };
 

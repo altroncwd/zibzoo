@@ -74,4 +74,24 @@ describe('VendorsController', function () {
         expect($scope.selected).toBeUndefined();
       });
   });
+
+  describe('$scope.getVendors', function () {
+    it('should be property on the scope', function () {
+      expect($scope.getVendors).toBeDefined();
+    });
+    it('should be a function', function () {
+      expect(typeof $scope.getVendors).toBe('function');
+    });
+    it('should be invoked and make an api call on page load and set the result of that data to $scope.vendors',
+      function () {
+        expect($scope.vendors).toEqual([{}, {}, {}]);
+      });
+    it('should expect to throw an error when an error code is received',
+      function () {
+        $httpBackend.expectGET('api/vendors').respond(500);
+        createController();
+        $httpBackend.flush();
+        expect($scope.status).toBe(500);
+      });
+  });
 });
