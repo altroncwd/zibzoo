@@ -140,22 +140,4 @@ describe('MerchantMenuController', function () {
       expect($scope.saveStatus).toEqual(500);
     });
   });
-  describe('$scope.getMenu', function () {
-    it('should be a function on th scope object', function () {
-      expect(typeof $scope.getMenu).toBe('function');
-    });
-    // THIS TEST PASSES LOCALLY BUT FAILS ON TRAVIS CI
-    xit('should make a get request by calling vendor.getVendors', function () {
-      spyOn($scope.vendor, 'getVendors').and.callThrough();
-      var data = {
-        menuItems: [{}, {}, {}, {}]
-      };
-      $httpBackend.expectGET('api/vendors').respond(data);
-      $scope.getMenu(4567890);
-      $httpBackend.flush();
-      expect($scope.vendor.getVendors).toHaveBeenCalled();
-      expect($scope.menu.items).toEqual(data.menuItems);
-
-    });
-  });
 });
