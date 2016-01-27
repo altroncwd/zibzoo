@@ -5,6 +5,7 @@ describe('MerchantMenuController', function () {
   var $httpBackend;
   var user;
   var menu;
+  var vendor;
 
   beforeEach(module('zibzoo'));
   beforeEach(inject(function ($injector) {
@@ -13,6 +14,7 @@ describe('MerchantMenuController', function () {
     $httpBackend = $injector.get('$httpBackend');
     user = $injector.get('User');
     menu = $injector.get('menu');
+    vendor = $injector.get('vendor');
 
     $scope = $rootScope.$new();
 
@@ -22,7 +24,8 @@ describe('MerchantMenuController', function () {
       return $controller('MerchantMenuController', {
         $scope: $scope,
         user: user,
-        menu: menu
+        menu: menu,
+        vendor: vendor
       });
     };
 
@@ -38,6 +41,16 @@ describe('MerchantMenuController', function () {
   afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  describe('$scope.selectSections', function () {
+    it('should be a property on the scope object', function () {
+      expect($scope.selectSections).toBeDefined();
+    });
+    it('should be an array set to vendor.sections', function () {
+      expect(Array.isArray($scope.selectSections)).toBe(true);
+      expect($scope.selectSections).toEqual(vendor.sections);
+    });
   });
 
   describe('$scope.vendor', function () {
