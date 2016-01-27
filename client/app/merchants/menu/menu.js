@@ -1,8 +1,9 @@
 angular.module('zibzoo.merchant.menu', [])
   .controller('MerchantMenuController', ['$scope', 'menu', 'vendor', '$stateParams', function ($scope, menu, vendor, $stateParams) {
 
-    $scope.menu = menu;
     $scope.vendor = vendor;
+    $scope.menu = menu;
+    $scope.menu.items = vendor.vendor.menuItems;
 
     $scope.menuItem;
 
@@ -36,7 +37,7 @@ angular.module('zibzoo.merchant.menu', [])
     };
 
     $scope.saveMenuItem = function (menuItem) {
-      angular.extend(menuItem, { vendorId: $stateParams.merchantId });
+      angular.extend(menuItem, { _id: $stateParams.merchantId });
       $scope.menu.addItem(menuItem);
       $scope.clearItem();
       $scope.menu.saveMenuItem(menuItem)
@@ -47,22 +48,5 @@ angular.module('zibzoo.merchant.menu', [])
           $scope.saveStatus = error.status;
         });
     };
-
-    $scope.getMenu = function (merchantId) {
-      var id = {
-        _id: merchantId
-      };
-      $scope.menu.items = [];
-      $scope.vendor.getVendors(id)
-        .then(function (response) {
-          if (response.data.menuItems) {
-            $scope.menu.items = response.data.menuItems;
-          }
-        })
-        .catch(function (error) {
-          $scope.status = error.status;
-        });
-    };
     $scope.clearItem();
-    $scope.getMenu($stateParams.merchantId);
   }]);
