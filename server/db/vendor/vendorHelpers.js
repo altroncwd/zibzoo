@@ -49,14 +49,14 @@ module.exports = {
   updateVendor: function (vendorObj) {
     return Vendor.update(
       { _id: vendorObj._id },
-      { $set: vendorObj.propertiesToUpdate },
-      function (error) {
-        if (error) {
-          throw new Error('Unable to update vendor data.');
-        }
-      })
+      { $set: vendorObj.propertiesToUpdate })
       .then(function (affectedDocsObj) {
-        return affectedDocsObj.result.n;
+        var docsModified = affectedDocsObj.nModified;
+        if (!docsModified) {
+          throw new Error('No vendors were updated.');
+        }
+
+        return docsModified;
       })
       .catch(function (error) {
         return error;
