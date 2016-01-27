@@ -1,5 +1,5 @@
 angular.module('zibzoo.auth', [])
-  .controller('AuthController', ['$rootScope', '$scope', '$window', '$state', '$modalInstance', 'Auth', 'vendor', function ($rootScope, $scope, $window, $state, $modalInstance, Auth, vendor) {
+  .controller('AuthController', ['$rootScope', '$scope', '$window', '$state', '$modalInstance', 'Auth', function ($rootScope, $scope, $window, $state, $modalInstance, Auth) {
     $scope.user = Auth.currentUser;
     $scope.error = null;
 
@@ -10,8 +10,8 @@ angular.module('zibzoo.auth', [])
     $scope.signin = function (data) {
       Auth.signin(data)
         .then(function (user) {
-          // user.menuItems = [{ name: 'this is food' }];
           Auth.setUser(user);
+
           $scope.cancel();
           $window.localStorage.setItem('com.zibzoo', user.token);
           $scope.redirectUser(user);
