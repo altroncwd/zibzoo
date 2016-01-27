@@ -4,6 +4,7 @@ var Promise = require('bluebird');
 Promise.promisifyAll(bcrypt);
 
 module.exports = {
+
   hashPassword: function (next) {
     var _this = this;
 
@@ -25,4 +26,5 @@ module.exports = {
     var savedPassword = this.password;
     return bcrypt.compareAsync(submittedPassword, savedPassword);
   }
+  
 };
