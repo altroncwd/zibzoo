@@ -5,17 +5,16 @@ logs
 *.log
 npm-debug.log*
 
-#typings
+# typings
 tsd.json
 typings
 
-
 # Dependency directories
 node_modules
-
-
-#Build
 build
 
-#IDE Stuff
+# Secret
+env.json
+
+# IDE Stuff
 **/.idea

@@ -13,10 +13,6 @@ angular.module('zibzoo.order', [])
       $scope.cancel();
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
     $scope.increment = function () {
       ++$scope.quantity;
     };
@@ -25,5 +21,9 @@ angular.module('zibzoo.order', [])
       if ($scope.quantity > 0) {
         --$scope.quantity;
       }
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
     };
   }]);

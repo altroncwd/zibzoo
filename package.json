@@ -60,12 +60,14 @@
     "rimraf": "^2.5.0",
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.4",
+    "stripe": "^4.2.0",
     "viewport-units-buggyfill": "^0.5.5",
     "yargs": "^3.32.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
     "browser-sync": "^2.11.0",
+    "env": "0.0.2",
     "eslint": "^1.10.3",
     "eslint-watch": "^2.1.4",
     "jasmine": "^2.4.1",
