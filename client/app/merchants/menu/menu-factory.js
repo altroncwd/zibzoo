@@ -1,8 +1,8 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', ['$http', '$stateParams', function ($http, $stateParams) {
+  .factory('menu', ['$http', '$stateParams', 'User', function ($http, $stateParams, User) {
     var menu = {};
 
-    menu.items = [];
+    menu.items = User.data.menuItems;
 
     menu.addItem = function (menuItem) {
       menu.items.unshift(menuItem);
