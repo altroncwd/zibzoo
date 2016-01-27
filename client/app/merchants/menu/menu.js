@@ -1,6 +1,7 @@
 angular.module('zibzoo.merchant.menu', [])
-  .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', function ($scope, menu, User, $stateParams) {
+  .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', 'vendor', function ($scope, menu, User, $stateParams, vendor) {
 
+    $scope.selectSections = vendor.sections;
     $scope.vendor = User.data;
     $scope.menu = menu;
     $scope.menu.items = User.data.menuItems || [];
