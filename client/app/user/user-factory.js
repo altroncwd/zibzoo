@@ -2,7 +2,9 @@ angular.module('zibzoo.user.factory', [])
   .factory('User', ['$rootScope', '$http', function ($rootScope, $http) {
     var user = {};
 
-    user.data = { orders: [] };
+    user.data = { orders: [],
+                menuItems: []
+                };
 
     user.setData = function (data) {
       angular.extend(user.data, data);
