@@ -1,7 +1,9 @@
-// var userHelpers = require('./../../db/user/userHelpers.js');
 var User = require('../../db/user/userModel.js');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
+var env = require('env');
+var SWIPE_API_KEY = process.env.SWIPE_API_KEY || env.SWIPE_TEST_API_KEY;
+
 mongoose.Promise = require('bluebird');
 
 module.exports = {
