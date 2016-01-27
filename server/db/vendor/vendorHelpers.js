@@ -7,7 +7,7 @@ module.exports = {
   postVendor: function (vendorObj) {
     return Vendor
       .findOne({
-        username: vendorObj.username
+        email: vendorObj.email
       })
       .then(function (vendor) {
         if (vendor) {
@@ -26,7 +26,23 @@ module.exports = {
         return result;
       })
       .catch(function (error) {
+        return error;
+      });
+  },
 
+  updateVendor: function (vendorObj) {
+    return Vendor.update(
+      { _id: vendorObj._id },
+      { $set: vendorObj.propertiesToUpdate },
+      function (error) {
+        if (error) {
+          throw new Error('Unable to update vendor data.');
+        }
+      })
+      .then(function (affectedDocsObj) {
+        return affectedDocsObj.result.n;
+      })
+      .catch(function (error) {
         return error;
       });
   },
@@ -43,7 +59,6 @@ module.exports = {
         return vendors;
       })
       .catch(function (error) {
-
         return error;
       });
   }
