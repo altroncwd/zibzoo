@@ -11,6 +11,14 @@
         <div class="small-5 large-5 columns">
           <input type="text" style="width: 300px" ng-model="menuItem.name" placeholder="Name" />
         </div>
+        <div>
+          <a class="button dropdown" dropdown-toggle="#filter-dropdown">Menu Section</a>
+          <ul id="filter-dropdown" class="f-dropdown">
+            <li ng-repeat="section in vendor.sections">
+              {{section}}
+            </li>
+          </ul>
+        </div>
         <div class="small-2 large-2 columns">
           <input type="number" style="width: 100px" ng-model="menuItem.price" required placeholder="Price" />
         </div>
@@ -36,6 +44,8 @@
       <div ng-repeat="item in menu.items track by $index" class="fadeIn small- large-12 columns" style="background-color:#ffd1b3; margin-top:10px; padding-top:20px ">
         <div class="small-3 large-4 columns">
           <h4>{{item.name}}</h4>
+          <i class="fa fa-leaf" ng-show="item.isVegetarian || item.isVegan"></i>
+          <i class="fa fa-pagelines" ng-show="item.isVegan"></i>
         </div>
         <div class="small-2 large-2 columns">
           <p>Price : ${{item.price}}</p>

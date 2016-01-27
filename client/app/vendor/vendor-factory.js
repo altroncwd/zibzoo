@@ -1,12 +1,24 @@
 angular.module('zibzoo.vendor.factory', [])
   .factory('vendor', ['$http', function ($http) {
-    var vendor = {
+
+    var vendor = {};
+
+    vendor.vendor = {
+      // Initial vendor state before login comment out when dummy data
+      // no longer needed
+      // username: '',
+      // description: '',
+      // cuisine: '',
+      // imageUrl: '',
+      // location: '',
+      // menuItems: [],
       id: 1,
-      name: 'Taco Loco',
+      username: 'Taco Loco',
       description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
       cuisine: 'Mexican',
       imageUrl: 'https://placehold.it/1000x344',
-      menu: [
+      location: 'SF',
+      menuItems: [
         {
           name: 'Chicken Fajita',
           description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit',
@@ -39,6 +51,8 @@ angular.module('zibzoo.vendor.factory', [])
         }
       ]
     };
+
+    vendor.sections = ['Appetizers', 'Entrees', 'Desserts', 'Drinks'];
 
     vendor.tempData = [{
       id: 1,
