@@ -74,7 +74,7 @@ angular.module('zibzoo', [
       templateUrl: 'app/merchants/orders/orders.html',
       url: '/merchant/:merchantId/orders',
       controller: 'MerchantOrdersController',
-      authenticate: true
+      authenticate: false
     });
 
   $urlRouterProvider.otherwise('/');
@@ -99,8 +99,6 @@ angular.module('zibzoo', [
 
 .run(function ($rootScope, $state, Auth, Socket) {
   $rootScope.$state = $state;
-
-  setInterval(function () {Socket.emit('hello', { darrin: 'cool' });}, 2000);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState && toState.authenticate && !Auth.isAuth()) {

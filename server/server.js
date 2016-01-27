@@ -22,8 +22,15 @@ console.log('server listening on ', port);
 io.on('connect', function (socket) {
   console.log('Hyperdrive socket now connected');
 
-  socket.on('hello', function (x) {
-    console.log('hi', x);
+  socket.on('order finished', function (UserIdNumber, test) {
+    console.log('User Id#:', UserIdNumber, ': Order has finnished   ', test);
+    // for pining a user, i have a user number, if its stored as a number, i could +'' to convert it to a string
+    socket.emit(UserIdNumber, 'Your order is ready for pickup');
+  });
+
+  socket.on('incoming order', function (orderObject) {
+    // the orderObject must be an object that contains the basic order format in addition to a vendorId number
+    socket.emit(orderObject.vendorId, orderObject);
   });
 
 });
