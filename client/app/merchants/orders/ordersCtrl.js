@@ -16,7 +16,9 @@ angular.module('zibzoo.merchant.order', [])
       order.splice(index, 1);
     };
 
-    Socket.on($stateParams.merchantId, function (newOrder) {
+    var listenOn = $stateParams.merchantId.toString();
+
+    Socket.on(listenOn, function (newOrder) {
       incomingOrders(newOrder);
     });
 
@@ -24,6 +26,19 @@ angular.module('zibzoo.merchant.order', [])
       order.push(orderObj);
     };
 
+    // setInterval(function () {  // testing function
+    //   console.log('PLACING A NEW ORDER');
+    //   Socket.emit('incoming order', {
+    //     vendorId: listenOn,
+    //     name: 'Benjamin Button',
+    //     ID: 123425667,
+    //     food: [
+    //       { item: 'burger',
+    //         quantity: 25
+    //       }
+    //     ]
+    //   });
+    // }, 4000);
 
   }]);
     /* -----------------NOTE's To Self-----------------
