@@ -33,7 +33,7 @@ describe('MerchantMenuController', function () {
     $httpBackend.whenGET('app/landing/landing.html').respond(fakeData);
     $httpBackend.whenPOST('api/menu').respond(201);
     $httpBackend.whenDELETE('api/menu').respond(204);
-
+    user.setData({});
     createController();
     $httpBackend.flush();
   }));
@@ -49,7 +49,7 @@ describe('MerchantMenuController', function () {
     });
     it('should be an array set to vendor.sections', function () {
       expect(Array.isArray($scope.selectSections)).toBe(true);
-      expect($scope.selectSections).toEqual(vendor.sections);
+      expect($scope.selectSections).toEqual(menu.sections);
     });
   });
 
