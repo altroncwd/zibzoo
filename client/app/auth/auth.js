@@ -10,7 +10,7 @@ angular.module('zibzoo.auth', [])
     $scope.signin = function (data) {
       Auth.signin(data)
         .then(function (user) {
-          vendor.vendor = user;
+          // user.menuItems = [{ name: 'this is food' }];
           Auth.setUser(user);
           $scope.cancel();
           $window.localStorage.setItem('com.zibzoo', user.token);
