@@ -4,10 +4,16 @@ angular.module('zibzoo.order', [])
     $scope.quantity = 1;
 
     $scope.addToCart = function () {
-      item.vendorId = vendor.id;
-      item.quantity = $scope.quantity;
+      var order = {
+        vendor: {
+          id: vendor.id,
+          name: vendor.name
+        },
+        item: item,
+        quantity: $scope.quantity
+      }
 
-      User.addOrder(item);
+      User.addOrder(order);
       $scope.cancel();
     };
 
