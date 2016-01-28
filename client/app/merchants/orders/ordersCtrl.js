@@ -1,6 +1,6 @@
 angular.module('zibzoo.merchant.order', [])
-  .controller('MerchantOrdersController', ['$scope', 'order', 'Socket', '$stateParams', function ($scope, order, Socket, $stateParams) {
-    $scope.ordersList = order;
+  .controller('MerchantOrdersController', ['$scope', 'Order', 'Socket', '$stateParams', function ($scope, Order, Socket, $stateParams) {
+    $scope.ordersList = Order;
 
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
       // console.log(currentOrder, index, parentIndex);
@@ -11,20 +11,17 @@ angular.module('zibzoo.merchant.order', [])
     };
 
     $scope.finishedOrder = function (index, userId) {
-      Socket.emit('order finished', userId);
+      // Socket.emit('order finished', userId);     // refactor for email notification instead
       // console.log('index : ', index, 'id : ', userId);
-      order.splice(index, 1);
+
+      Order.splice(index, 1);
     };
 
     var listenOn = $stateParams.merchantId.toString();
 
     Socket.on(listenOn, function (newOrder) {
-      incomingOrders(newOrder);
+      Order.push(newOrder);
     });
-
-    var incomingOrders = function (orderObj) {
-      order.push(orderObj);
-    };
 
     // setInterval(function () {  // testing function
     //   console.log('PLACING A NEW ORDER');
