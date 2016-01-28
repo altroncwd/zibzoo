@@ -1,6 +1,6 @@
 var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
 var menuItemHelpers = require('../../server/db/menuItem/menuItemHelpers.js');
-var customerHelpers = require('../../server/db/customer/customerHelpers.js');
+var userHelpers = require('../../server/db/user/userHelpers.js');
 var mongoose = require('mongoose');
 
 // Open a local connection to MongoDB
@@ -28,10 +28,9 @@ describe('The', function () {
 
   // Global testing variables
   var mockVendor = {
-    email: 'willy@chili.com',
+    username: 'willy',
     password: 'rawr',
-    name: "Willy's Chili",
-    cuisine: 'Japanese'
+    cuisine: ['Italian', 'Thai', 'Japanese']
   };
 
   var mockMenuItem = {
@@ -40,11 +39,9 @@ describe('The', function () {
     inStock: true
   };
 
-  var mockCustomer = {
-    // _id:
-    email: 'sam@samwise.com',
+  var mockUser = {
+    username: 'samwise',
     password: 'rawr'
-    // salt:
   };
 
   describe('vendor helper function,', function () {
@@ -63,7 +60,7 @@ describe('The', function () {
             mockVendor._id = vendor._id;
             mockMenuItem.vendorId = vendor._id;
 
-            expect(vendor.email).toBe(mockVendor.email);
+            expect(vendor.username).toBe(mockVendor.username);
             done();
           });
       });
@@ -71,7 +68,7 @@ describe('The', function () {
       it('should return an error if a vendor already exists.', function (done) {
         vendorHelpers.postVendor(mockVendor)
           .then(function (error) {
-            expect(error.message).toBe(mockVendor.email + ' already exists.');
+            expect(error.message).toBe('Vendor already exists.');
             done();
           });
       });
@@ -88,16 +85,16 @@ describe('The', function () {
         vendorHelpers.getVendors({ _id: mockVendor._id })
           .then(function (vendors) {
             expect(vendors[0]._id).toEqual(mockVendor._id);
-            expect(vendors[0].email).toBe(mockVendor.email);
+            expect(vendors[0].username).toBe(mockVendor.username);
             done();
           });
       });
 
       it('should retrieve multiple existing vendors from the database and return the documents.', function (done) {
         var secondMockVendor = {
-          email: 'Bengi and The Mongoose',
+          username: 'Bengi and The Mongoose',
           password: 'rawr',
-          cuisine: 'Japanese'
+          cuisine: ['Italian', 'Japanese']
         };
 
         vendorHelpers.postVendor(secondMockVendor)
@@ -121,50 +118,6 @@ describe('The', function () {
       });
 
     }); // getVendors()
-
-    describe('updateVendor(),', function () {
-
-      it('should be a function.', function () {
-        expect(vendorHelpers.updateVendor).toEqual(jasmine.any(Function));
-      });
-
-      it('should update an existing vendor.', function (done) {
-        var update = {
-          _id: mockVendor._id,
-          propertiesToUpdate: {
-            name: "Freddy's Fajitas",
-            cuisine: 'Italian'
-          }
-        };
-
-        vendorHelpers.updateVendor(update)
-          .then(function (affectedDocsObj) {
-            return vendorHelpers.getVendors({ _id: mockVendor._id });
-          })
-          .then(function (vendor) {
-            expect(vendor[0].name).toBe(update.propertiesToUpdate.name);
-            expect(vendor[0].cuisine).toBe(update.propertiesToUpdate.cuisine);
-            done();
-          });
-      });
-
-
-      it('should return an error if no vendors were modified.', function (done) {
-        var update = {
-          _id: mockVendor._id,
-          propertiesToUpdate: {
-            invalidProperty: 'Mwahahaha!'
-          }
-        };
-
-        vendorHelpers.updateVendor(update)
-          .then(function (error) {
-            expect(error.message).toBe('No users were updated.');
-            done();
-          });
-      });
-
-    }); // updateVendor()
 
   }); // Vendor helper functions
 
@@ -235,105 +188,62 @@ describe('The', function () {
 
   }); // Menu item helper functions
 
-  describe('customer helper function,', function () {
+  describe('user helper function,', function () {
 
-    describe('postCustomer(),', function () {
-
-      it('should be a function.', function () {
-        expect(customerHelpers.postCustomer).toEqual(jasmine.any(Function));
-      });
-
-      it('store a new customer in the database and return the document.', function (done) {
-        customerHelpers.postCustomer(mockCustomer)
-          .then(function (customer) {
-
-            // save `customer._id` in `mockCustomer` for future tests
-            mockCustomer._id = customer._id;
-
-            expect(customer.email).toBe(mockCustomer.email);
-            done();
-          });
-      });
-
-      it('should return an error if the customer already exists.', function (done) {
-        customerHelpers.postCustomer(mockCustomer)
-          .then(function (error) {
-            expect(error.message).toBe(mockCustomer.email + ' already exists.');
-            done();
-          });
-      });
-
-    }); // postCustomer()
-
-    describe('getCustomer(),', function () {
+    describe('postUser(),', function () {
 
       it('should be a function.', function () {
-        expect(customerHelpers.getCustomer).toEqual(jasmine.any(Function));
+        expect(userHelpers.postUser).toEqual(jasmine.any(Function));
       });
 
-      it('should retrieve a specific, existing customer from the database and return the document.', function (done) {
-        customerHelpers.getCustomer(mockCustomer)
-          .then(function (customer) {
-            expect(customer._id).toEqual(mockCustomer._id);
-            expect(customer.email).toBe(mockCustomer.email);
+      it('store a new user in the database and return the document.', function (done) {
+        userHelpers.postUser(mockUser)
+          .then(function (user) {
+
+            // save `user._id` in `mockUser` for future tests
+            mockUser._id = user._id;
+
+            expect(user.username).toBe(mockUser.username);
             done();
           });
       });
 
-      it('should return an error if the customer does not exist.', function (done) {
-        // query the database with a non-existent email
-        customerHelpers.getCustomer({ email: 'Non-existent email', password: 'not rawr' })
+      it('should return an error if the user already exists.', function (done) {
+        userHelpers.postUser(mockUser)
           .then(function (error) {
-            expect(error.message).toBe('Customer does not exist.');
+            expect(error.message).toBe('User already exists.');
             done();
           });
       });
 
-    }); // getCustomer()
+    }); // postUser()
 
-    describe('updateCustomer(),', function () {
+    describe('getUser(),', function () {
 
       it('should be a function.', function () {
-        expect(customerHelpers.updateCustomer).toEqual(jasmine.any(Function));
+        expect(userHelpers.getUser).toEqual(jasmine.any(Function));
       });
 
-      it('should update an existing customer.', function (done) {
-        var update = {
-          _id: mockCustomer._id,
-          propertiesToUpdate: {
-            name: 'Bengi Mongoose'
-          }
-        };
-
-        customerHelpers.updateCustomer(update)
-          .then(function (affectedDocsObj) {
-            return customerHelpers.getCustomer({ email: mockCustomer.email });
-          })
-          .then(function (customer) {
-            expect(customer.name).toBe(update.propertiesToUpdate.name);
-            expect(customer.cuisine).toBe(update.propertiesToUpdate.cuisine);
+      it('should retrieve a specific, existing user from the database and return the document.', function (done) {
+        userHelpers.getUser(mockUser)
+          .then(function (user) {
+            expect(user._id).toEqual(mockUser._id);
+            expect(user.username).toBe(mockUser.username);
             done();
           });
       });
 
-
-      it('should return an error if no customers were modified.', function (done) {
-        var update = {
-          _id: mockCustomer._id,
-          propertiesToUpdate: {
-            invalidProperty: 'Mwahahaha!'
-          }
-        };
-
-        customerHelpers.updateCustomer(update)
+      it('should return an error if the user does not exist.', function (done) {
+        // query the database with a non-existent username
+        userHelpers.getUser({ username: 'Non-existent username', password: 'not rawr' })
           .then(function (error) {
-            expect(error.message).toBe('No users were updated.');
+            expect(error.message).toBe('User does not exist.');
             done();
           });
       });
 
-    }); // updateCustomer()
+    }); // getUser()
 
-  }); // Customer helper functions
+  }); // User helper functions
 
 }); // Database helper functions

@@ -1,23 +1,23 @@
-var dbUtils = require('../../server/utils/db.utils.js');
+var utils = require('../../server/config/utilities.js');
 
-var mockUser = {
+var mockUser2 = {
   username: 'willy',
   password: 'willylikeschilly123'
 };
 
-var unhashedPassword = mockUser.password;
-var hashUserPassword = dbUtils.hashPassword.bind(mockUser);
-var compareUserPassword = dbUtils.comparePassword.bind(mockUser);
+var unhashedPassword = mockUser2.password;
+var hashUserPassword = utils.hashPassword.bind(mockUser2);
+var compareUserPassword = utils.comparePassword.bind(mockUser2);
 
 describe('hashPassword()', function () {
   it('should be a function', function () {
-    expect(dbUtils.hashPassword).toEqual(jasmine.any(Function));
+    expect(utils.hashPassword).toEqual(jasmine.any(Function));
   });
 
   it('should hash a password', function (done) {
     hashUserPassword(function () {
-      expect(mockUser.password).toEqual(jasmine.any(String));
-      expect(mockUser.password).not.toBe(unhashedPassword);
+      expect(mockUser2.password).toEqual(jasmine.any(String));
+      expect(mockUser2.password).not.toBe(unhashedPassword);
       done();
     });
   });
@@ -25,7 +25,7 @@ describe('hashPassword()', function () {
 
 describe('comparePassword()', function () {
   it('should be a function', function () {
-    expect(dbUtils.comparePassword).toEqual(jasmine.any(Function));
+    expect(utils.comparePassword).toEqual(jasmine.any(Function));
   });
 
   it('should be able to compare passwords', function (done) {
