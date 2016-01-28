@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 
 module.exports = function (app, express) {
+
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../../client'));
 
@@ -12,5 +13,5 @@ module.exports = function (app, express) {
 
   require('../routes/user/userRoutes.js')(userRouter);
   require('../routes/vendor/vendorRoutes.js')(vendorRouter);
-};
 
+};
