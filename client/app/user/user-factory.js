@@ -19,7 +19,10 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.resetUser = function () {
-      user.data = { orders: [] };
+      user.data = {
+        orders: [],
+        menuItems: []
+      };
       $rootScope.$broadcast('user:updated');
     };
 
