@@ -1,44 +1,29 @@
-var vendorHelpers = require('./../../db/vendor/vendorHelpers.js');
+var authUtils = require('../../utils/auth.utils.js');
+var controllerUtils = require('../../utils/controller.utils.js');
+var vendorHelpers = require('../../db/vendor/vendorHelpers.js');
+
 
 module.exports = {
-  // TODO: Add password hashing
-  signUp: function (req, res) {
-    var vendor = {
-      name: req.body.username,
-      password: req.body.password
-    };
 
-    vendorHelpers.postVendor(vendor)
-      .then(function (result) {
-        res.status(201).send(result);
-      })
-      .catch(function (error) {
-        res.status(401).send(error);
-      });
+  signUp: function (req, res) {
+    authUtils.authorizeEntry(req, res, 201, 403, vendorHelpers.postVendor);
   },
 
   signIn: function (req, res) {
-    var vendor = {
-      username: req.body.username
-    };
-
-    vendorHelpers.getVendors(vendor)
-      .then(function (result) {
-        res.status(200).send(result);
-      })
-      .catch(function (error) {
-        res.status(404).send(error);
-      });
+    authUtils.authorizeEntry(req, res, 200, 404, vendorHelpers.getVendors);
   },
 
   retrieveVendors: function (req, res) {
-    var vendor = req.query;
-    vendorHelpers.getVendors(vendor)
+    vendorHelpers.getVendors(req.body)
       .then(function (result) {
-        res.status(200).send(result);
-      })
-      .catch(function (error) {
-        res.status(404).send(error);
+        controllerUtils.sendResponse(result, res, 200, 404);
+      });
+  },
+
+  updateVendor: function (req, res) {
+    vendorHelpers.updateVendor(req.body)
+      .then(function (result) {
+        controllerUtils.sendResponse(result, res, 304, 404);
       });
   }
 

@@ -1,23 +1,22 @@
 var mongoose = require('mongoose');
-var utils = require('../../config/utilities.js');
+var dbUtils = require('../../utils/db.utils.js');
 
 var Schema = mongoose.Schema;
 
 var vendorSchema = new Schema({
-  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  salt: { type: String, required: true },
-  isVendor: { type: Boolean, default: true },
+  salt: { type: String },
   name: String,
+  isVendor: Boolean,
   description: String,
-  cuisine: [String],
+  cuisine: String,
   imageUrl: String,
   location: String,
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
-vendorSchema.pre('validate', utils.hashPassword);
-
-vendorSchema.methods.checkPassword = utils.comparePassword;
+vendorSchema.pre('validate', dbUtils.hashPassword);
+vendorSchema.methods.checkPassword = dbUtils.comparePassword;
 
 module.exports = mongoose.model('Vendor', vendorSchema);

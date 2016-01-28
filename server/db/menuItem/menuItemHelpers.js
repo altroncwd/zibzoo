@@ -1,3 +1,4 @@
+var dbUtils = require('../../utils/db.utils.js');
 var MenuItem = require('./menuItemModel');
 var Vendor = require('./../vendor/vendorModel.js');
 var mongoose = require('mongoose');
@@ -23,13 +24,11 @@ module.exports = {
             if (error) {
               throw new Error('Unable to update vendor.');
             }
-          }
-          );
+          });
 
         return menuItem;
       })
       .catch(function (error) {
-
         return error;
       });
   },
@@ -45,9 +44,12 @@ module.exports = {
         return docsAffectedObj;
       })
       .catch(function (error) {
-
         return error;
       });
+  },
+
+  updateMenuItem: function (menuItemObj) {
+    return dbUtils.updateRecord(menuItemObj, MenuItem);
   }
 
 };
