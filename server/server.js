@@ -6,7 +6,9 @@ var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/zibzoo';
 // ------------ Socket Start -------------------
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-// ------------ Socket End ---------------------
+// ------- Socket End / Mailer Start -----------
+var mail = require('./mailer/mailer');
+// ------------ Mailer End ---------------------
 mongoose.connect(uri);
 
 mongoose.connection.once('open', function () {
@@ -16,6 +18,8 @@ mongoose.connection.once('open', function () {
 require('./config/middleware.js')(app, express);
 
 server.listen(port);
+
+mail.sendMail();
 
 console.log('server listening on ', port);
 // ----------- Socket Connection ----------------------
