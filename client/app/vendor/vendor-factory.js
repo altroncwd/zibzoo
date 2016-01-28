@@ -3,15 +3,7 @@ angular.module('zibzoo.vendor.factory', [])
 
     var vendor = {};
 
-    vendor.vendor = {
-      // Initial vendor state before login comment out when dummy data
-      // no longer needed
-      // username: '',
-      // description: '',
-      // cuisine: '',
-      // imageUrl: '',
-      // location: '',
-      // menuItems: [],
+    vendor.data = {
       id: 1,
       username: 'Taco Loco',
       description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
