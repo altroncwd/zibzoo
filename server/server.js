@@ -30,7 +30,7 @@ io.on('connect', function (socket) {
   socket.on('incoming order', function (orderObject) {
     // See Notes Below
     var createIndividualOrder = {};
-    for (var vendorId in orderObject) {
+    for (var vendorId in orderObject.orders) {
       createIndividualOrder.username = orderObject.username; // email
       createIndividualOrder.id = orderObject.id;    // users id
       createIndividualOrder.name = orderObject.name;
