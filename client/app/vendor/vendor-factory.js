@@ -1,6 +1,5 @@
 angular.module('zibzoo.vendor.factory', [])
   .factory('vendor', ['$http', function ($http) {
-
     var vendor = {};
 
     vendor.data = {

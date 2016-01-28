@@ -21,6 +21,9 @@ angular.module('zibzoo.vendor', [])
           resolve: {
             item: function () {
               return item;
+            },
+            vendor: function () {
+              return $scope.vendor;
             }
           }
         });

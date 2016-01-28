@@ -2,9 +2,10 @@ angular.module('zibzoo.user.factory', [])
   .factory('User', ['$rootScope', '$http', '$window', function ($rootScope, $http, $window) {
     var user = {};
 
-    user.data = { orders: [],
-                menuItems: []
-                };
+    user.data = { 
+      orders: [],
+      menuItems: []
+    };
 
     user.setData = function (data) {
       angular.extend(user.data, data);
@@ -13,7 +14,7 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.addOrder = function (order) {
-      user.data.orders.push(order);
+      user.data.orders.push(order);  
       $rootScope.$broadcast('user:updated');
     };
 
