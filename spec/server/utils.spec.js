@@ -1,4 +1,4 @@
-var utils = require('../../server/config/utilities.js');
+var dbUtils = require('../../server/utils/db.utils.js');
 
 var mockUser = {
   username: 'willy',
@@ -6,12 +6,12 @@ var mockUser = {
 };
 
 var unhashedPassword = mockUser.password;
-var hashUserPassword = utils.hashPassword.bind(mockUser);
-var compareUserPassword = utils.comparePassword.bind(mockUser);
+var hashUserPassword = dbUtils.hashPassword.bind(mockUser);
+var compareUserPassword = dbUtils.comparePassword.bind(mockUser);
 
 describe('hashPassword()', function () {
   it('should be a function', function () {
-    expect(utils.hashPassword).toEqual(jasmine.any(Function));
+    expect(dbUtils.hashPassword).toEqual(jasmine.any(Function));
   });
 
   it('should hash a password', function (done) {
@@ -25,7 +25,7 @@ describe('hashPassword()', function () {
 
 describe('comparePassword()', function () {
   it('should be a function', function () {
-    expect(utils.comparePassword).toEqual(jasmine.any(Function));
+    expect(dbUtils.comparePassword).toEqual(jasmine.any(Function));
   });
 
   it('should be able to compare passwords', function (done) {

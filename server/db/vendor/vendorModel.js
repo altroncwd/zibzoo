@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var utils = require('../../config/utilities.js');
+var dbUtils = require('../../utils/db.utils.js');
 
 var Schema = mongoose.Schema;
 
@@ -15,7 +15,7 @@ var vendorSchema = new Schema({
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
-vendorSchema.pre('validate', utils.hashPassword);
-vendorSchema.methods.checkPassword = utils.comparePassword;
+vendorSchema.pre('validate', dbUtils.hashPassword);
+vendorSchema.methods.checkPassword = dbUtils.comparePassword;
 
 module.exports = mongoose.model('Vendor', vendorSchema);

@@ -1,33 +1,13 @@
+var dbUtils = require('../../utils/db.utils.js');
 var Customer = require('./customerModel.js');
 var mongoose = require('mongoose');
+
 mongoose.Promise = require('bluebird');
 
 module.exports = {
 
   postCustomer: function (customerObj) {
-    return Customer
-      .findOne({
-        email: customerObj.email
-      })
-      .then(function (customer) {
-        if (customer) {
-          throw new Error('Customer already exists.');
-        }
-
-        var newCustomer = new Customer(customerObj);
-
-        return newCustomer.save();
-      })
-      .then(function (result) {
-        if (!result) {
-          throw new Error('Unable to save customer.');
-        }
-
-        return result;
-      })
-      .catch(function (error) {
-        return error;
-      });
+    return dbUtils.postUser(customerObj, Customer);
   },
 
   getCustomer: function (customerObj) {
@@ -45,6 +25,10 @@ module.exports = {
       .catch(function (error) {
         return error;
       });
+  },
+
+  updateCustomer: function (customerObj) {
+    return dbUtils.updateUser(customerObj, Customer);
   }
 
 };

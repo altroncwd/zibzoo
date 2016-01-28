@@ -1,33 +1,13 @@
+var dbUtils = require('../../utils/db.utils.js');
 var Vendor = require('./vendorModel');
 var mongoose = require('mongoose');
+
 mongoose.Promise = require('bluebird');
 
 module.exports = {
 
   postVendor: function (vendorObj) {
-    return Vendor
-      .findOne({
-        email: vendorObj.email
-      })
-      .then(function (vendor) {
-        if (vendor) {
-          throw new Error('Vendor already exists.');
-        }
-
-        var newVendor = new Vendor(vendorObj);
-
-        return newVendor.save();
-      })
-      .then(function (result) {
-        if (!result) {
-          throw new Error('Unable to save vendor.');
-        }
-
-        return result;
-      })
-      .catch(function (error) {
-        return error;
-      });
+    return dbUtils.postUser(vendorObj, Vendor);
   },
 
   getVendors: function (vendorObj) {
@@ -47,19 +27,7 @@ module.exports = {
   },
 
   updateVendor: function (vendorObj) {
-    return Vendor.update(
-      { _id: vendorObj._id },
-      { $set: vendorObj.propertiesToUpdate })
-      .then(function (affectedDocsObj) {
-        if (affectedDocsObj.nModified === 0) {
-          throw new Error('No vendors were updated.');
-        }
-
-        return affectedDocsObj;
-      })
-      .catch(function (error) {
-        return error;
-      });
+    return dbUtils.updateUser(vendorObj, Vendor);
   }
 
 };

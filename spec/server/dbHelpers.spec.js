@@ -28,7 +28,7 @@ describe('The', function () {
 
   // Global testing variables
   var mockVendor = {
-    email: 'willy',
+    email: 'willy@chili.com',
     password: 'rawr',
     name: "Willy's Chili",
     cuisine: 'Japanese'
@@ -42,7 +42,7 @@ describe('The', function () {
 
   var mockCustomer = {
     // _id:
-    email: 'samwise',
+    email: 'sam@samwise.com',
     password: 'rawr'
     // salt:
   };
@@ -71,7 +71,7 @@ describe('The', function () {
       it('should return an error if a vendor already exists.', function (done) {
         vendorHelpers.postVendor(mockVendor)
           .then(function (error) {
-            expect(error.message).toBe('Vendor already exists.');
+            expect(error.message).toBe(mockVendor.email + ' already exists.');
             done();
           });
       });
@@ -140,11 +140,6 @@ describe('The', function () {
         vendorHelpers.updateVendor(update)
           .then(function (affectedDocsObj) {
             expect(affectedDocsObj.nModified).toBe(1);
-            return vendorHelpers.getVendors({ _id: update._id });
-          })
-          .then(function (vendor) {
-            expect(vendor[0].name).toBe(update.propertiesToUpdate.name);
-            expect(vendor[0].cuisine).toBe(update.propertiesToUpdate.cuisine);
             done();
           });
       });
@@ -160,7 +155,7 @@ describe('The', function () {
 
         vendorHelpers.updateVendor(update)
           .then(function (error) {
-            expect(error.message).toBe('No vendors were updated.');
+            expect(error.message).toBe('No users were updated.');
             done();
           });
       });
@@ -259,7 +254,7 @@ describe('The', function () {
       it('should return an error if the customer already exists.', function (done) {
         customerHelpers.postCustomer(mockCustomer)
           .then(function (error) {
-            expect(error.message).toBe('Customer already exists.');
+            expect(error.message).toBe(mockCustomer.email + ' already exists.');
             done();
           });
       });
@@ -291,6 +286,45 @@ describe('The', function () {
       });
 
     }); // getCustomer()
+
+    describe('updateCustomer(),', function () {
+
+      it('should be a function.', function () {
+        expect(customerHelpers.updateCustomer).toEqual(jasmine.any(Function));
+      });
+
+      it('should update an existing vendor and return the number of modified vendors.', function (done) {
+        var update = {
+          _id: mockCustomer._id,
+          propertiesToUpdate: {
+            name: 'Sam Samwise',
+          }
+        };
+
+        customerHelpers.updateCustomer(update)
+          .then(function (affectedDocsObj) {
+            expect(affectedDocsObj.nModified).toBe(1);
+            done();
+          });
+      });
+
+
+      it('should return an error if no vendors were modified.', function (done) {
+        var update = {
+          _id: mockCustomer._id,
+          propertiesToUpdate: {
+            invalidProperty: 'Mwahahaha!'
+          }
+        };
+
+        customerHelpers.updateCustomer(update)
+          .then(function (error) {
+            expect(error.message).toBe('No users were updated.');
+            done();
+          });
+      });
+
+    }); // updateCustomer()
 
   }); // Customer helper functions
 

@@ -1,4 +1,4 @@
-var utils = require('../../config/utilities.js');
+var authUtils = require('../../utils/auth.utils.js');
 
 module.exports = {
 
@@ -12,7 +12,7 @@ module.exports = {
     cb(userCredentials)
       .then(function (result) {
         if (result.email) {
-          result.token = utils.issueToken(result._id);
+          result.token = authUtils.issueToken(result._id);
           res.status(successStatus).send(result);
         } else {
           res.status(failureStatus).send(result.message);
