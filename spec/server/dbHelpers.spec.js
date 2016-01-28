@@ -128,7 +128,7 @@ describe('The', function () {
         expect(vendorHelpers.updateVendor).toEqual(jasmine.any(Function));
       });
 
-      it('should update an existing vendor and return the number of modified vendors.', function (done) {
+      it('should update an existing vendor.', function (done) {
         var update = {
           _id: mockVendor._id,
           propertiesToUpdate: {
@@ -139,7 +139,11 @@ describe('The', function () {
 
         vendorHelpers.updateVendor(update)
           .then(function (affectedDocsObj) {
-            expect(affectedDocsObj.nModified).toBe(1);
+            return vendorHelpers.getVendors({ _id: mockVendor._id });
+          })
+          .then(function (vendor) {
+            expect(vendor[0].name).toBe(update.propertiesToUpdate.name);
+            expect(vendor[0].cuisine).toBe(update.propertiesToUpdate.cuisine);
             done();
           });
       });
@@ -293,23 +297,27 @@ describe('The', function () {
         expect(customerHelpers.updateCustomer).toEqual(jasmine.any(Function));
       });
 
-      it('should update an existing vendor and return the number of modified vendors.', function (done) {
+      it('should update an existing customer.', function (done) {
         var update = {
           _id: mockCustomer._id,
           propertiesToUpdate: {
-            name: 'Sam Samwise',
+            name: 'Bengi Mongoose'
           }
         };
 
         customerHelpers.updateCustomer(update)
           .then(function (affectedDocsObj) {
-            expect(affectedDocsObj.nModified).toBe(1);
+            return customerHelpers.getCustomer({ email: mockCustomer.email });
+          })
+          .then(function (customer) {
+            expect(customer.name).toBe(update.propertiesToUpdate.name);
+            expect(customer.cuisine).toBe(update.propertiesToUpdate.cuisine);
             done();
           });
       });
 
 
-      it('should return an error if no vendors were modified.', function (done) {
+      it('should return an error if no customers were modified.', function (done) {
         var update = {
           _id: mockCustomer._id,
           propertiesToUpdate: {
