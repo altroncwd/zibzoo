@@ -16,10 +16,8 @@
             {{vendor.description}}
           </textarea>
           <h4>Vendor Image</h4>
-          <div class="row">
-            <input type="file" fileModel="fileupload" />
-            <button ng-click="uploadFile()">Upload</button>
-          </div>
+
+          <div class="button" ngf-select="upload($file)">Upload New Profile Image </div>
         </div>
         <div>
 

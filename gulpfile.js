@@ -2,10 +2,10 @@
 // 1. LIBRARIES
 // - - - - - - - - - - - - - - -
 
-var $        = require('gulp-load-plugins')();
-var argv     = require('yargs').argv;
-var gulp     = require('gulp');
-var rimraf   = require('rimraf');
+var $ = require('gulp-load-plugins')();
+var argv = require('yargs').argv;
+var gulp = require('gulp');
+var rimraf = require('rimraf');
 var sequence = require('run-sequence');
 
 // Check for --production flag
@@ -31,6 +31,8 @@ var paths = {
     'node_modules/angular-ui-router/release/angular-ui-router.js',
     'node_modules/fastclick/lib/fastclick.js',
     'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
+    'node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js',
+    'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
     'node_modules/angular-foundation/mm-foundation.js',
     'node_modules/angular-foundation/mm-foundation-tpls.js',
     'node_modules/socket.io-client/socket.io.js',
@@ -38,23 +40,23 @@ var paths = {
     'node_modules/lodash/lodash.js',
     'client/app/**/*.*js'
   ]
-}
+};
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
 
 // Cleans the build directory
-gulp.task('clean', function(cb) {
+gulp.task('clean', function (cb) {
   rimraf('./client/build', cb);
 });
 
 // Copies everything in the client assets folder except Sass
-gulp.task('copy', function() {
+gulp.task('copy', function () {
   return gulp.src(paths.assets, {
     base: './client/'
   })
     .pipe(gulp.dest('./client/build'))
-  ;
+    ;
 });
 
 // Compiles Sass
@@ -69,13 +71,13 @@ gulp.task('sass', function () {
       browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
     }))
     .pipe(gulp.dest('./client/build/assets/css/'))
-  ;
+    ;
 });
 
 // Compiles and copies all the app's JavaScript
-gulp.task('uglify', ['uglify:app'])
+gulp.task('uglify', ['uglify:app']);
 
-gulp.task('uglify:app', function() {
+gulp.task('uglify:app', function () {
   var uglify = $.if(isProduction, $.uglify()
     .on('error', function (e) {
       console.log(e);
@@ -85,11 +87,11 @@ gulp.task('uglify:app', function() {
     .pipe(uglify)
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('./client/build/assets/js/'))
-  ;
+    ;
 });
 
 // Builds entire app once
-gulp.task('build', function(cb) {
+gulp.task('build', function (cb) {
   sequence('clean', ['copy', 'sass', 'uglify'], cb);
 });
 

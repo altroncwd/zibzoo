@@ -1,5 +1,5 @@
-angular.module('zibzoo.merchant', [])
-  .controller('MerchantProfileController', ['$scope', 'vendor', '$stateParams', 'User', function ($scope, vendor, $stateParams, User) {
+angular.module('zibzoo.merchant', ['ngFileUpload'])
+  .controller('MerchantProfileController', ['$scope', 'vendor', '$stateParams', 'User', 'Upload', function ($scope, vendor, $stateParams, User, Upload) {
 
     User.getFromLocal();
 
@@ -19,5 +19,12 @@ angular.module('zibzoo.merchant', [])
         .catch(function (error) {
           $scope.updateStatus = error.status;
         });
+    };
+
+    $scope.upload = function (file) {
+      Upload.upload({
+        url: 'api/vendors/image',
+        data: { file: file, _id: $scope.merchantId }
+      });
     };
   }]);
