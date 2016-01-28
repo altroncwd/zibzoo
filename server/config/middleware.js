@@ -13,6 +13,5 @@ module.exports = function (app, express) {
 
   require('../routes/user/userRoutes.js')(userRouter);
   require('../routes/vendor/vendorRoutes.js')(vendorRouter);
-  
-};
 
+};
