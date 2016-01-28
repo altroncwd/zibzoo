@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.order.factory', [])
-  .factory('order', function () {
+  .factory('Order', function () {
     var order = [
       { name: 'Benji Chambers',
         ID: 123425667,

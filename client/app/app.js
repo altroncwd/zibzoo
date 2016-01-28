@@ -1,4 +1,5 @@
 angular.module('zibzoo', [
+  'zibzoo.socketFactory',
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
@@ -73,7 +74,7 @@ angular.module('zibzoo', [
       templateUrl: 'app/merchants/orders/orders.html',
       url: '/merchant/:merchantId/orders',
       controller: 'MerchantOrdersController',
-      authenticate: true
+      authenticate: false
     });
 
   $urlRouterProvider.otherwise('/');
@@ -96,7 +97,7 @@ angular.module('zibzoo', [
   return attach;
 })
 
-.run(function ($rootScope, $state, Auth) {
+.run(function ($rootScope, $state, Auth, Socket) {
   $rootScope.$state = $state;
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
