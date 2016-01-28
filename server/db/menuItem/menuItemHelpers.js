@@ -23,7 +23,8 @@ module.exports = {
             if (error) {
               throw new Error('Unable to update vendor.');
             }
-          });
+          }
+          );
 
         return menuItem;
       })
