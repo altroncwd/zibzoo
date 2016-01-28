@@ -51,12 +51,11 @@ module.exports = {
       { _id: vendorObj._id },
       { $set: vendorObj.propertiesToUpdate })
       .then(function (affectedDocsObj) {
-        var docsModified = affectedDocsObj.nModified;
-        if (!docsModified) {
+        if (affectedDocsObj.nModified === 0) {
           throw new Error('No vendors were updated.');
         }
 
-        return docsModified;
+        return affectedDocsObj;
       })
       .catch(function (error) {
         return error;

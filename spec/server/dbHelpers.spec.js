@@ -138,8 +138,8 @@ describe('The', function () {
         };
 
         vendorHelpers.updateVendor(update)
-          .then(function (vendorsUpdated) {
-            expect(vendorsUpdated).toBe(1);
+          .then(function (affectedDocsObj) {
+            expect(affectedDocsObj.nModified).toBe(1);
             return vendorHelpers.getVendors({ _id: update._id });
           })
           .then(function (vendor) {
