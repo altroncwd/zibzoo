@@ -5,7 +5,7 @@ angular.module('zibzoo.cart', [])
     $scope.groupOrders = function (orders) {
       _.chain(orders)
       .groupBy('vendor.id')
-      .map(function(value, key) {
+      .map(function (value, key) {
         console.log('value: ', value);
         console.log('key: ', key);
         // return {
@@ -16,7 +16,7 @@ angular.module('zibzoo.cart', [])
         // }
       })
       .value();
-    }
+    };
 
     $scope.removeItem = function (index) {
       $scope.cart.splice(index, 1);
