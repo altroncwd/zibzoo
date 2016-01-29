@@ -8,6 +8,7 @@ angular.module('zibzoo.auth', [])
     });
 
     $scope.signin = function (data, userType) {
+      data.isVendor = (userType === 'vendors');
       Auth.signin(data, userType)
         .then(function (user) {
           Auth.setUser(user);
@@ -22,7 +23,6 @@ angular.module('zibzoo.auth', [])
 
     $scope.signup = function (data) {
       var userType = (data.isVendor) ? 'vendors' : 'customer';
-
       Auth.signup(data, userType)
         .then(function (user) {
           Auth.setUser(user);
@@ -41,7 +41,7 @@ angular.module('zibzoo.auth', [])
 
     $scope.redirectUser = function (user) {
       if (user.isVendor) {
-        $state.go('orders', { merchantId: user.id });
+        $state.go('orders', { merchantId: user._id });
       }
     };
   }]);
