@@ -45,7 +45,8 @@ module.exports = {
   authorizeEntry: function (req, res, successStatus, failureStatus, cb) {
     var userCredentials = {
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      isVendor: req.body.isVendor
     };
 
     cb(userCredentials, 'email')

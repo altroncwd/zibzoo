@@ -3,11 +3,15 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
 
     User.getFromLocal();
 
-    $scope.img = 'http://rlv.zcache.com/i_love_food_trucks_square_sticker-r21025c827b5f4cb9823264e110552eeb_v9wf3_8byvr_324.jpg';
+    $scope.img = 'https://placehold.it/1000x344';
     $scope.cuisines = ['American', 'Burger', 'Fusion', 'Asian', 'Spicy'];
     $scope.vendor = User.data;
 
     $scope.merchantId = $stateParams.merchantId;
+
+    $scope.setImage = function () {
+      $scope.img = User.data.imageUrl;
+    };
 
     $scope.updateVendor = function (updatedVendor) {
       User.setNewToLocal();
@@ -25,6 +29,15 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
       Upload.upload({
         url: 'api/vendors/image',
         data: { file: file, _id: $scope.merchantId }
-      });
+      })
+        .then(function (response) {
+          User.setData(response.data.propertiesToUpdate);
+          User.setNewToLocal();
+          User.getFromLocal();
+          $scope.setImage();
+        });
     };
+
+    $scope.setImage();
+
   }]);
