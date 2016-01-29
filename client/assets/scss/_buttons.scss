@@ -16,3 +16,14 @@ button, .button {
     width: rem-calc(34);
   }
 }
+
+.button-group-auth {
+  li {
+    padding-bottom: 4px;
+    
+    .button {
+      padding-top: 12px;
+      padding-bottom: 13px;
+    }
+  }
+}
