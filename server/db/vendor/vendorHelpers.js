@@ -52,7 +52,7 @@ module.exports = {
   uploadImage: function (imagePath) {
     return cloudinary.uploader.upload(imagePath)
       .then(function (response) {
-        console.log(response);
+        return response;
       });
   }
 };
