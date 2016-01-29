@@ -4,11 +4,10 @@ var app = express();
 var mongoose = require('mongoose');
 var port = process.env.PORT;
 var uri = process.env.MONGOLAB_URI;
-// ------------ Socket Start -------------------
 var server = require('http').createServer(app);
 var io = require('./sockets/socket.js')(server);
 
-module.exports = io;
+module.exports = io;  // simpley aquire the server to have access to the socket
 
 mongoose.connect(uri);
 
