@@ -11,6 +11,16 @@ module.exports = {
   },
 
   getVendors: function (vendorObj) {
+    if (arguments.length > 1) {
+      var searchParams = {};
+
+      for (var i = 1; i < arguments.length; i++) {
+        searchParams[arguments[i]] = vendorObj[arguments[i]];
+      }
+
+      vendorObj = searchParams;
+    }
+
     return Vendor
       .find(vendorObj)
       .populate('menuItems')
