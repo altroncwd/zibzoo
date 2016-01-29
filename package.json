@@ -59,6 +59,7 @@
     "lodash": "^4.0.0",
     "mongoose": "^4.3.6",
     "ng-file-upload": "^11.2.3",
+    "nodemailer": "^2.0.0",
     "passport": "^0.3.2",
     "rimraf": "^2.5.0",
     "run-sequence": "^1.1.5",
