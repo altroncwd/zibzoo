@@ -1,10 +1,16 @@
+var configuration = require('../../utils/image.utils.js');
+var cloudinary = require('cloudinary');
 var dbUtils = require('../../utils/db.utils.js');
 var Vendor = require('./vendorModel');
 var mongoose = require('mongoose');
+var Promise = require('bluebird');
 
 require('../menuItem/menuItemModel.js');
 
-mongoose.Promise = require('bluebird');
+mongoose.Promise = Promise;
+
+cloudinary.config(configuration);
+Promise.promisify(cloudinary.uploader.upload);
 
 module.exports = {
 
@@ -41,6 +47,12 @@ module.exports = {
 
   updateVendor: function (vendorObj) {
     return dbUtils.updateRecord(vendorObj, Vendor);
-  }
+  },
 
+  uploadImage: function (imagePath) {
+    return cloudinary.uploader.upload(imagePath)
+      .then(function (response) {
+        console.log(response);
+      });
+  }
 };

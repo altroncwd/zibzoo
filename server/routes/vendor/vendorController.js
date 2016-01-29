@@ -25,6 +25,11 @@ module.exports = {
       .then(function (result) {
         controllerUtils.sendResponse(result, res, 304, 404);
       });
+  },
+
+  upload: function (req, res) {
+    vendorHelpers.uploadImage(req.files.file.path);
+    delete req.files.file;
   }
 
 };
