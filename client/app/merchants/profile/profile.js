@@ -31,12 +31,13 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         data: { file: file, _id: $scope.merchantId }
       })
         .then(function (response) {
-          console.log(response);
           User.setData(response.data.propertiesToUpdate);
           User.setNewToLocal();
           User.getFromLocal();
           $scope.setImage();
         });
     };
+
+    $scope.setImage();
 
   }]);
