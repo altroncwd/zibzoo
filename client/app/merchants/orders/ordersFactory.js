@@ -2,6 +2,7 @@ angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', function () {
     var order = [
       { name: 'Benji Chambers',
+        username: 'christopher.w.decker@gmail.com',
         ID: 123425667,
         food: [
           { item: 'burger',
@@ -10,6 +11,7 @@ angular.module('zibzoo.merchant.order.factory', [])
         ]
       },
       { name: 'Tom Kilr',
+        username: 'christopher.w.decker@gmail.com',
         ID: 2098347523,
         food: [
           { item: 'Pizza',
@@ -18,6 +20,7 @@ angular.module('zibzoo.merchant.order.factory', [])
         ]
       },
       { name: 'Joe Pentagast',
+        username: 'christopher.w.decker@gmail.com',
         ID: 283470524,
         food: [
           { item: 'hotdog',
@@ -29,6 +32,7 @@ angular.module('zibzoo.merchant.order.factory', [])
         ]
       },
       { name: 'Sam Samwise',
+        username: 'christopher.w.decker@gmail.com',
         ID: 1234345634567,
         food: [
           { item: 'volcano pizza',

@@ -7,8 +7,8 @@ var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/zibzoo';
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 // ------- Socket End / Mailer Start -----------
-var mail = require('./mailer/mailer');
-// ------------ Mailer End ---------------------
+var mail = require('./mailer/mailer');  // (nodemailer)
+// ------------ Mailer End  ---------------------
 mongoose.connect(uri);
 
 mongoose.connection.once('open', function () {
@@ -19,17 +19,17 @@ require('./config/middleware.js')(app, express);
 
 server.listen(port);
 
-mail.sendMail();
-
 console.log('server listening on ', port);
 // ----------- Socket Connection ----------------------
 io.on('connect', function (socket) {
   console.log('Hyperdrive socket now connected');
 
-  // socket.on('order finished', function (UserIdNumber) {
-  //   console.log('User Id#:', UserIdNumber, ': Order has finnished   ');
-  //   socket.emit(UserIdNumber, 'Your order is ready for pickup');
-  // });
+  socket.on('order finished', function (finishedOrder) {
+    // console.log('User Id#:', finishedOrder.ID, ': SERVER SIDE');
+    // console.log('User email:', finishedOrder.username, ': SERVER SIDE');
+
+    mail.sendMail(finishedOrder.username);
+  });
 
   socket.on('incoming order', function (orderObject) {
     // See Notes Below
