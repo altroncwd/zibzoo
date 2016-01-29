@@ -48,11 +48,17 @@ module.exports = {
       password: req.body.password
     };
 
-    cb(userCredentials)
+    cb(userCredentials, 'email')
       .then(function (result) {
-        if (result._id) {
+        // Handle a vendor result
+        if (result[0]) {
+          result.token = issueToken(result[0]._id);
+          res.status(successStatus).send(result);
+        // Handle a customer result
+        } else if (result._id) {
           result.token = issueToken(result._id);
           res.status(successStatus).send(result);
+        // Handle a general rejection
         } else {
           res.status(failureStatus).send(result.message);
         }
