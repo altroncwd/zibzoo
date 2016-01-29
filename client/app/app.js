@@ -1,5 +1,4 @@
 angular.module('zibzoo', [
-  'zibzoo.socketFactory',
   'ui.router',
   'mm.foundation',
   'zibzoo.navbar.directive',
@@ -19,7 +18,8 @@ angular.module('zibzoo', [
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',
   'zibzoo.merchant.order.factory',
-  'zibzoo.merchant.order'
+  'zibzoo.merchant.order',
+  'zibzoo.socketFactory'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {

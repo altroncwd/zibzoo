@@ -61,6 +61,7 @@
     "run-sequence": "^1.1.5",
     "socket.io": "^1.4.4",
     "stripe": "^4.2.0",
+    "underscore": "^1.8.3",
     "viewport-units-buggyfill": "^0.5.5",
     "yargs": "^3.32.0"
   },

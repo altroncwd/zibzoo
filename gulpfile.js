@@ -27,13 +27,14 @@ var paths = {
   ],
   // These files are for the app's JavaScript
   appJS: [
-    'node_modules/socket.io-client/socket.io.js',
     'node_modules/angular/angular.js',
     'node_modules/angular-ui-router/release/angular-ui-router.js',
     'node_modules/fastclick/lib/fastclick.js',
     'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
     'node_modules/angular-foundation/mm-foundation.js',
     'node_modules/angular-foundation/mm-foundation-tpls.js',
+    'node_modules/socket.io-client/socket.io.js',
+    'node_modules/underscore/underscore.js',
     'node_modules/lodash/lodash.js',
     'client/app/**/*.*js'
   ]
