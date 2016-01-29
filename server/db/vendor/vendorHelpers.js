@@ -2,6 +2,8 @@ var dbUtils = require('../../utils/db.utils.js');
 var Vendor = require('./vendorModel');
 var mongoose = require('mongoose');
 
+require('../menuItem/menuItemModel.js');
+
 mongoose.Promise = require('bluebird');
 
 module.exports = {
@@ -10,6 +12,7 @@ module.exports = {
     return dbUtils.postUser(vendorObj, Vendor);
   },
 
+  // NOTE: returns an array
   getVendors: function (vendorObj) {
     if (arguments.length > 1) {
       var searchParams = {};
