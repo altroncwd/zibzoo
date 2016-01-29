@@ -4,11 +4,11 @@
       <tabset>
         <tab heading="Login" active="tab.active">
           <p class="error" ng-show="error">{{error}}</p>
-          <form name="signinForm" ng-submit="signinForm.$valid && signin(user)" novalidate>
+          <form name="signinForm" ng-submit="signinForm.$valid" novalidate>
             <div class="row">
               <div class="large-12 columns">
                 <label>Email
-                  <input type="email" name="email" ng-model="user.username">
+                  <input type="email" name="email" ng-model="user.email">
                 </label>
               </div>
               <div class="large-12 columns">
@@ -20,7 +20,14 @@
                 <input id="remember-me" type="checkbox" ng-model="user.remember"><label for="remember-me">Remember Me</label>
               </div>
               <div class="large-12 columns">
-                <button class="button expand large">Login</button>
+                <ul class="stack button-group button-group-auth">
+                  <li><button type="submit" 
+                              class="button expand"
+                              ng-click="signin(user, 'customer')">Login as Customer</button></li>
+                  <li><button type="submit" 
+                              class="button expand"
+                              ng-click="signin(user, 'vendors')">Login as Vendor</button></li>
+                </ul>
               </div>
             </div>
           </form>
@@ -31,7 +38,7 @@
             <div class="row">
               <div class="large-12 columns">
                 <label>Email
-                  <input type="email" name="email" ng-model="user.username">
+                  <input type="email" name="email" ng-model="user.email">
                 </label>
               </div>
               <div class="large-12 columns">
@@ -48,7 +55,9 @@
                 <input id="isVendor" name="isVendor" type="checkbox" ng-model="user.isVendor"><label for="isVendor">Are you a vendor?</label>
               </div>
               <div class="large-12 columns">
-                <button class="button expand large">Sign Up</button>
+                <ul class="stack button-group button-group-auth">
+                  <li><button class="button expand">Sign Up</button></li>
+                </ul>
               </div>
             </div>
           </form>

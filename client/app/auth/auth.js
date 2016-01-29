@@ -7,8 +7,8 @@ angular.module('zibzoo.auth', [])
       $scope.user = Auth.currentUser;
     });
 
-    $scope.signin = function (data) {
-      Auth.signin(data)
+    $scope.signin = function (data, userType) {
+      Auth.signin(data, userType)
         .then(function (user) {
           Auth.setUser(user);
           $scope.cancel();
@@ -21,7 +21,9 @@ angular.module('zibzoo.auth', [])
     };
 
     $scope.signup = function (data) {
-      Auth.signup(data)
+      var userType = (data.isVendor) ? 'vendors' : 'customer';
+
+      Auth.signup(data, userType)
         .then(function (user) {
           Auth.setUser(user);
           $scope.cancel();

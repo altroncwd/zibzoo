@@ -8,10 +8,10 @@ angular.module('zibzoo.auth.factory', [])
       auth.currentUser = User.data;
     });
 
-    auth.signin = function (user) {
+    auth.signin = function (user, userType) {
       return $http({
         method: 'POST',
-        url: '/api/user/signin',
+        url: '/api/' + userType + '/signin',
         data: user
       })
       .then(function (res) {
@@ -19,10 +19,10 @@ angular.module('zibzoo.auth.factory', [])
       });
     };
 
-    auth.signup = function (user) {
+    auth.signup = function (user, userType) {
       return $http({
         method: 'POST',
-        url: '/api/user/signup',
+        url: '/api/' + userType + '/signup',
         data: user
       })
       .then(function (res) {
