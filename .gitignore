@@ -13,7 +13,8 @@ typings
 node_modules
 build
 
-# Secret
+# environment variables
+.env
 env.json
 
 # IDE Stuff

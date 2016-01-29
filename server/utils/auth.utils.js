@@ -1,6 +1,6 @@
 var jwt = require('jwt-simple');
 
-var secret = process.env.TOKEN_SECRET || 'bengi and the mongoose';
+var secret = process.env.TOKEN_SECRET;
 
 function issueToken(payload) {
   var token = jwt.encode(payload, secret);
