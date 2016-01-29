@@ -10,10 +10,11 @@ angular.module('zibzoo.merchant.order', [])
       }
     };
 
-    $scope.finishedOrder = function (index, userId) {
-      // Socket.emit('order finished', userId);     // refactor for email notification instead
-      // console.log('index : ', index, 'id : ', userId);
+    $scope.finishedOrder = function (index, order) {
+      // console.log('index : ', index, 'id : ', order.id);
+      // console.log('username aka email : ', order.username);
 
+      Socket.emit('order finished', order);
       Order.splice(index, 1);
     };
 

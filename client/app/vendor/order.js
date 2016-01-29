@@ -11,7 +11,7 @@ angular.module('zibzoo.order', [])
         },
         item: item,
         quantity: $scope.quantity
-      }
+      };
 
       User.addOrder(order);
       $scope.cancel();
