@@ -31,6 +31,21 @@ module.exports = {
     //   }
     // };
 
+    // stripe charge example
+    // var stripe = require('stripe')(api_key);
+
+    // stripe.charges.create({
+    //   amount: 1600,
+    //   currency: 'usd',
+    //   customer: customer.id
+    // }, function (err, charge) {
+    //   if (err) {
+    //     // bad things
+    //   } else {
+    //     // successful charge
+    //   }
+    // });
+
     for (var order in ordersToCharge) {
       if (ordersToCharge.hasOwnProperty(order)) {
         // asynchronously get vendor's stripeKey
