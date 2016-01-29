@@ -23,6 +23,8 @@ module.exports = function (config) {
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/fastclick/lib/fastclick.js',
       'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
+      'node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js',
+      'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
       'node_modules/angular-foundation/mm-foundation.js',
       'node_modules/angular-foundation/mm-foundation-tpls.js',
       'node_modules/lodash/lodash.js',

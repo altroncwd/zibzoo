@@ -10,6 +10,7 @@ angular.module('zibzoo', [
   'zibzoo.user.factory',
   'zibzoo.landing',
   'zibzoo.vendors',
+  'zibzoo.image-uploader.directive',
   'zibzoo.vendors.directive',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
