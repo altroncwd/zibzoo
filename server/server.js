@@ -1,8 +1,9 @@
+require('dotenv').config();
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var port = process.env.PORT || 3000;
-var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/zibzoo';
+var port = process.env.PORT;
+var uri = process.env.MONGOLAB_URI;
 // ------------ Socket Start -------------------
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);

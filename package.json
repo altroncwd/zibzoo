@@ -71,7 +71,7 @@
   "devDependencies": {
     "angular-mocks": "^1.4.9",
     "browser-sync": "^2.11.0",
-    "env": "0.0.2",
+    "dotenv": "^2.0.0",
     "eslint": "^1.10.3",
     "eslint-watch": "^2.1.4",
     "jasmine": "^2.4.1",
