@@ -4,12 +4,11 @@ var app = express();
 var mongoose = require('mongoose');
 var port = process.env.PORT;
 var uri = process.env.MONGOLAB_URI;
-// ------------ Socket Start -------------------
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-// ------- Socket End / Mailer Start -----------
-var mail = require('./mailer/mailer');  // (nodemailer)
-// ------------ Mailer End  ---------------------
+var io = require('./sockets/socket.js')(server);
+
+module.exports = io;  // simpley aquire the server to have access to the socket
+
 mongoose.connect(uri);
 
 mongoose.connection.once('open', function () {
@@ -21,40 +20,3 @@ require('./config/middleware.js')(app, express);
 server.listen(port);
 
 console.log('server listening on ', port);
-// ----------- Socket Connection ----------------------
-io.on('connect', function (socket) {
-  console.log('Hyperdrive socket now connected');
-
-  socket.on('order finished', function (finishedOrder) {
-    // console.log('User Id#:', finishedOrder.ID, ': SERVER SIDE');
-    // console.log('User email:', finishedOrder.username, ': SERVER SIDE');
-
-    mail.sendMail(finishedOrder.username);
-  });
-
-  socket.on('incoming order', function (orderObject) {
-    // See Notes Below
-    var createIndividualOrder = {};
-    for (var vendorId in orderObject.orders) {
-      createIndividualOrder.username = orderObject.username; // email
-      createIndividualOrder.id = orderObject.id;    // users id
-      createIndividualOrder.name = orderObject.name;
-      createIndividualOrder.food = orderObject.orders.vendorId;   // the list food items
-      socket.emit(vendorId, createIndividualOrder);
-      createIndividualOrder = {};  // wipe the item after as a saftey mesure
-    }
-  });
-
-});
-/* ----------------------------------------------------
- orderObject format
- {  id: xxxxxxxxxx, (userId)
-    name: John Doe,   (the users name)
-    username: xxxxxxxx@xxxxmail.com,
-    order: {
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ],
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ],
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ]
-    }
- }
----------------------------------------------------- */
