@@ -8,10 +8,10 @@ module.exports = function (server) {
     console.log('Hyperdrive socket now connected');
 
     socket.on('order finished', function (finishedOrder) {
-      // console.log('User Id#:', finishedOrder.ID, ': SERVER SIDE');
-      // console.log('User email:', finishedOrder.username, ': SERVER SIDE');
+      console.log('User email:', finishedOrder.username, ': SERVER SIDE');
 
-      mail.sendMail(finishedOrder.username);
+      // Uncomment the line below for emails to work
+      // mail.sendMail(finishedOrder.username);
     });
 
     // socket.on('incoming order', function (orderObject) {

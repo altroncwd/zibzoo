@@ -13,10 +13,7 @@ angular.module('zibzoo.merchant.order', [])
     $scope.finishedOrder = function (index, order) {
       // console.log('index : ', index, 'ID : ', order.ID);
       // console.log('username aka email : ', order.username);
-
-
-      // -----------Uncomment the line below for emails to work -----
-      // Socket.emit('order finished', order);
+      Socket.emit('order finished', order);
       Order.splice(index, 1);
       // set up a db call place the finished order in the db
     };
