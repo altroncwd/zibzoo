@@ -20,3 +20,17 @@ require('./config/middleware.js')(app, express);
 server.listen(port);
 
 console.log('server listening on ', port);
+
+// ------------------------------------------------
+// Server side socket test for vendor order list
+// ------------------------------------------------
+// setInterval(function () {
+//   console.log('Set timeout emit');
+//   io.sockets.emit('1', {
+//     username: '___UserEmail___@gmail.com',
+//     ID: 283470524,
+//     food: [{ item: 'hotdog', quantity: 1 },
+//            { item: 'corndog', quantity: 7 }
+//     ]
+//   });
+// }, 3000);

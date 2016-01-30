@@ -28,7 +28,6 @@ module.exports = function (server) {
 
   });
 
-
   return io;
 
 };
@@ -46,4 +45,7 @@ module.exports = function (server) {
       vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ex... ]
     }
  }
+
+   Current Problems
+ > if you open two separate pages, they scroll together....
 ---------------------------------------------------- */

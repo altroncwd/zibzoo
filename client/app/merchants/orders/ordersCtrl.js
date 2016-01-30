@@ -20,7 +20,7 @@ angular.module('zibzoo.merchant.order', [])
     };
 
     var listenOn = $stateParams.merchantId.toString();
-
+            // listenOn should be the merchants ID number
     Socket.on(listenOn, function (newOrder) {
       console.log('made it back to the client');
       newOrder.orderNumber = Order.total++;
