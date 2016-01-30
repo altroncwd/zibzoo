@@ -14,6 +14,7 @@ angular.module('zibzoo.merchant.order', [])
       // console.log('index : ', index, 'ID : ', order.ID);
       // console.log('username aka email : ', order.username);
       Socket.emit('order finished', order);
+      Order.callDbOrderFinished(order); // call to update the db
       Order.splice(index, 1);
       // set up a db call place the finished order in the db
     };

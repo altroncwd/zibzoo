@@ -14,18 +14,6 @@ module.exports = function (server) {
       // mail.sendMail(finishedOrder.username);
     });
 
-    // socket.on('incoming order', function (orderObject) {
-    //   // See Notes Below
-    //   var createIndividualOrder = {};
-    //   createIndividualOrder.username = orderObject.username; // email
-    //   createIndividualOrder.id = orderObject.id;    // users id
-    //   for (var vendorId in orderObject.orders) {
-    //     createIndividualOrder.food = orderObject.orders[vendorId];   // the list food items
-    //     socket.broadcast.emit(vendorId, createIndividualOrder);
-    //     createIndividualOrder = [];  // wipe the item after as a saftey mesure
-    //   }
-    // });
-
   });
 
   return io;

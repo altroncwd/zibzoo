@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.order.factory', [])
-  .factory('Order', function () {
+  .factory('Order', ['$window', function ($window) {
     var order = [
       { orderNumber: 1,
         username: '___UserEmail___@gmail.com',
@@ -49,7 +49,44 @@ angular.module('zibzoo.merchant.order.factory', [])
     ];
     order.total = 4;  // currently set to static data
     // place for functions
+    order.setLocalStorage = function () {
+      $window.localStorage.setItem('orders', JSON.stringifty(order));
+    };
 
+    order.callDbOrderFinished = function (order) {
+     // update the server info with the order id?
+
+     // if the server comes back with no matching item
+       // set /(or add) active key to false (aka finished)
+       // and then do a post request with the missing item
+    };
     // place for returns
     return order;
-  });
+  }]);
+
+
+
+
+
+/*
+> if the server side goes down we save everything in local storage
+> if an order gets complete and the server is down we save that order in local storage in a finished order list
+> if vendor side crashes and orders come through
+  > que the db, remove any finished orders saved in local storage from the db
+  > que the db, get all orders that are not finished
+
+> if the server went down
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
