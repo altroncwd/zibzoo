@@ -9,7 +9,7 @@ var vendorSchema = new Schema({
   salt: { type: String },
   name: String,
   isVendor: Boolean,
-  stripeKey: String,
+  stripeApiKey: String,
   description: String,
   cuisine: String,
   imageUrl: String,
