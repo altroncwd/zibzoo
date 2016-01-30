@@ -5,7 +5,7 @@ angular.module('zibzoo.vendor.factory', [])
     vendor.data = {};
 
     vendor.tempData = [{
-      id: 1421341,
+      _id: 1421341,
       name: 'Burger Shop',
       cuisine: 'American',
       description: 'this is a shop that sells food aka a restaurant',
@@ -44,7 +44,7 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     },
     {
-      id: 2563684,
+      _id: 2563684,
       name: 'Pasta Shop',
       cuisine: 'Italian?',
       description: 'this is a shop that sells food aka a restaurant',
@@ -83,7 +83,7 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     },
     {
-      id: 3974567,
+      _id: 3974567,
       name: 'Soup Shop',
       cuisine: 'Soup',
       description: 'this is a shop that sells food aka a restaurant',
@@ -122,7 +122,7 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     },
     {
-      id: 4234666,
+      _id: 4234666,
       name: 'Thai Shop',
       cuisine: 'Thai',
       description: 'this is a shop that sells food aka a restaurant',
@@ -161,7 +161,7 @@ angular.module('zibzoo.vendor.factory', [])
       ]
     },
     {
-      id: 59567856,
+      _id: 59567856,
       name: 'Seafood Shop',
       cuisine: 'Seafood',
       description: 'this is a shop that sells food aka a restaurant',

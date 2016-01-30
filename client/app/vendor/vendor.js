@@ -1,13 +1,14 @@
 angular.module('zibzoo.vendor', [])
   .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', function ($scope, $stateParams, $modal, vendor, Auth) {
     // $scope.vendor = vendor.data;
-    $scope.vendor = function (data) {
+    $scope.vendor = function (data) {  // for temp data
       for (var i = 0; i < data.length; i++) {
-        if (data[i].id == $stateParams.vendorId) {
+        if (data[i]._id == $stateParams.vendorId) {
           return data[i];
         }
       }
     }(vendor.tempData) || [];
+    $scope.items  = _.chunk($scope.vendor.menuItems, 2); // for temp data
 
     $scope.getVendor = function (params) {
       vendor.getVendors(params)
@@ -39,6 +40,7 @@ angular.module('zibzoo.vendor', [])
       }
     };
 
-    // $scope.getVendor({ _id: $stateParams.vendorId });
+    $scope.getVendor({ _id: $stateParams.vendorId });
+    //$scope.getVendor($stateParams.vendorId); // for temp data
 
   }]);
