@@ -3,19 +3,31 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
 
     User.getFromLocal();
 
-    $scope.img = 'https://placehold.it/1000x344';
     $scope.cuisines = ['American', 'Burger', 'Fusion', 'Asian', 'Spicy'];
     $scope.vendor = User.data;
 
     $scope.merchantId = $stateParams.merchantId;
 
-    $scope.setImage = function () {
-      $scope.img = User.data.imageUrl;
+    $scope.diff = {
+      _id: $scope.merchantId,
+      propertiesToUpdate: {}
+    };
+
+
+    $scope.setImage = function (imageUrl) {
+      $scope.img = imageUrl;
     };
 
     $scope.updateVendor = function (updatedVendor) {
+
+      var updated = $scope.vendor;
+      User.resetUser();
+      User.getFromLocal();
+      var oldVendor = User.data;
+      $scope.diff.propertiesToUpdate = User.objectDiff(updated, oldVendor);
+      User.setData($scope.vendor);
       User.setNewToLocal();
-      vendor.updateVendor(updatedVendor)
+      vendor.updateVendor($scope.diff)
         .then(function (data) {
           $scope.updateStatus = data.status;
           console.log('vendor updated successfully', data);
@@ -34,10 +46,10 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
           User.setData(response.data.propertiesToUpdate);
           User.setNewToLocal();
           User.getFromLocal();
-          $scope.setImage();
+          $scope.setImage(User.data.imageUrl);
         });
     };
 
-    $scope.setImage();
+    $scope.setImage('https://placehold.it/1000x344');
 
   }]);
