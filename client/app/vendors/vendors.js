@@ -12,12 +12,12 @@ angular.module('zibzoo.vendors', [])
     $scope.getVendors = function (params) {
       vendor.getVendors(params)
         .then(function (vendors) {
-          $scope.vendors = vendors.data;
+          vendor.setData($scope, vendors.data);
         })
         .catch(function (error) {
           $scope.status = error.status;
         });
     };
 
-    $scope.getVendors({});
+    // $scope.getVendors({});
   }]);
