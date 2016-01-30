@@ -55,14 +55,18 @@ ZibZoo
 
 ```
 # Features
-- User accounts
-- Vendor accounts
+Users :
+- Create a account
 - Display food trucks
 - Filter results by cuisine
 - Place orders from multiple food trucks
 - Checkout orders and pay via Stripe
-- Vendor order display que with live updates
 - Email notification when your order is ready
+
+Vendors :
+- Create a vendor account
+- Automaticaly accept payments for online orders
+- Vendor order display que with live updates
 - Create a profile and easily update menu
 
 # In Progress
