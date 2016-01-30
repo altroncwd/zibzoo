@@ -3,7 +3,7 @@ angular.module('zibzoo.vendor', [])
     // $scope.vendor = vendor.data;
     $scope.vendor = function (data) {
       for (var i = 0; i < data.length; i++) {
-        if (data[i].id === $stateParams.vendorId) {
+        if (data[i].id == $stateParams.vendorId) {
           return data[i];
         }
       }
@@ -39,5 +39,5 @@ angular.module('zibzoo.vendor', [])
       }
     };
 
-   // $scope.getVendor($stateParams.vendorId);
+   //$scope.getVendor($stateParams.vendorId);
   }]);

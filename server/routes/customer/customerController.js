@@ -1,6 +1,7 @@
 var authUtils = require('../../utils/auth.utils.js');
 var controllerUtils = require('../../utils/controller.utils.js');
 var customerHelpers = require('../../db/customer/customerHelpers.js');
+var _ = require('underscore');
 
 module.exports = {
 
@@ -19,39 +20,30 @@ module.exports = {
       });
   },
 
-  chargeCustomer: function (req, res) {
-    var ordersToCharge = req.body.orders;
+  charge: function (req, res) {
+    var customerId = process.env.STRIPE_CUSTOMER_ID; // test customer id
+    var email = req.body.email;
+    var orders = req.body.orders;
 
-    // var chargeReq = {
-    //   customerId: '98g9hg9a2e6',
-    //   customerEmail: 'customer@customer.com',
-    //   orders: {
-    //     'asdfasgoi24': [{ /* order 1 information */ }, { /* order 2 information */ }],
-    //     'q89qfhwo347': [{ /* order 1 information */ }, { /* order 2 information */ }]
-    //   }
-    // };
+    for (var vendorId in orders) {
+      if (!orders.hasOwnProperty(vendorId)) continue;
 
-    // stripe charge example
-    // var stripe = require('stripe')(api_key);
+      var stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY);
+      var amount = _.reduce(orders[vendorId], function (total, order) {
+        return total + order.item.price;
+      }, 0);
 
-    // stripe.charges.create({
-    //   amount: 1600,
-    //   currency: 'usd',
-    //   customer: customer.id
-    // }, function (err, charge) {
-    //   if (err) {
-    //     // bad things
-    //   } else {
-    //     // successful charge
-    //   }
-    // });
-
-    for (var order in ordersToCharge) {
-      if (ordersToCharge.hasOwnProperty(order)) {
-        // asynchronously get vendor's stripeKey
-        // then asynchronously call stripe.charge(vendorApiKey)
-        // handle the result
-      }
+      stripe.charges.create({
+        amount: amount,
+        currency: 'usd',
+        customer: customerId
+      }, function (err, charge) {
+        if (err) {
+          controllerUtils.sendHttpResponse(err, res, 500, 500);
+        } else {
+          controllerUtils.sendHttpResponse(charge, res, 200, 500);
+        }
+      });
     }
   }
 

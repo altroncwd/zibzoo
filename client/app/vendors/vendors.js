@@ -19,5 +19,5 @@ angular.module('zibzoo.vendors', [])
         });
     };
 
-    // $scope.getVendors({});
+    $scope.getVendors({});
   }]);
