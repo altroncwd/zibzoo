@@ -1,5 +1,5 @@
 angular.module('zibzoo.cart', [])
-  .controller('CartController', ['$scope', '$modal', 'User', 'Socket', function ($scope, $modal, User, Socket) {
+  .controller('CartController', ['$scope', '$modal', 'User', function ($scope, $modal, User) {
     $scope.cart = User.data.orders;
     $scope.total = getTotal(); 
 
