@@ -8,7 +8,7 @@ var vendorSchema = new Schema({
   password: { type: String, required: true },
   salt: { type: String },
   name: String,
-  isVendor: Boolean,
+  isVendor: { type: Boolean, default: true },
   stripeApiKey: String,
   description: String,
   cuisine: String,
