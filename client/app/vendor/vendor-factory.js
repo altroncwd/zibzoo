@@ -2,7 +2,7 @@ angular.module('zibzoo.vendor.factory', [])
   .factory('vendor', ['$http', function ($http) {
     var vendor = {};
 
-    vendor.data = { };
+    vendor.data = {};
 
     vendor.tempData = [{
       id: 1421341,
@@ -220,12 +220,12 @@ angular.module('zibzoo.vendor.factory', [])
         url: 'api/vendors',
         data: vendorObj
       })
-        .success(function (data, status, headers, config) {
-          return data;
-        })
-        .error(function (data, status) {
-          console.error(data, status);
-        });
+      .success(function (data, status, headers, config) {
+        return data;
+      })
+      .error(function (data, status) {
+        console.error(data, status);
+      });
     };
 
     vendor.updateVendor = function (vendorObj) {
@@ -235,12 +235,12 @@ angular.module('zibzoo.vendor.factory', [])
         url: 'api/vendors',
         data: vendorObj
       })
-        .success(function (data) {
-          return data;
-        })
-        .error(function (data, status) {
-          console.error(data, status);
-        });
+      .success(function (data) {
+        return data;
+      })
+      .error(function (data, status) {
+        console.error(data, status);
+      });
     };
 
     return vendor;

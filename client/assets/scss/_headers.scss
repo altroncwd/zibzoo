@@ -1,5 +1,16 @@
 .section-header {
-  margin-top: rem-calc(30);
+  h3 {
+    margin-bottom: rem-calc(10);
+  }
+
+  hr {
+    margin-top: 0;
+    margin-bottom: rem-calc(30);
+  }
+
+  &.main {
+    margin-top: rem-calc(30); 
+  }
 }
 
 .hero {

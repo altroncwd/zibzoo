@@ -8,13 +8,11 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.setData = function (data) {
-      angular.extend(user.data, data);
-      $window.localStorage.setItem('_id', JSON.stringify(user.data));
-      $rootScope.$broadcast('user:updated');
-    };
+      data.orders = user.data.orders;
+      data.menuItems = user.data.menuItems;
+      user.data = data;
 
-    user.addOrder = function (order) {
-      user.data.orders.push(order);
+      $window.localStorage.setItem('_id', JSON.stringify(user.data));
       $rootScope.$broadcast('user:updated');
     };
 
@@ -24,6 +22,24 @@ angular.module('zibzoo.user.factory', [])
         menuItems: []
       };
       $rootScope.$broadcast('user:updated');
+    };
+
+    user.addOrder = function (order) {
+      user.data.orders.push(order);
+      $rootScope.$broadcast('user:updated');
+    };
+
+    user.charge = function (orders) {
+      console.log('orders: ', orders);
+      
+      return $http({
+        method: 'POST',
+        url: '/api/customer/charge',
+        data: orders
+      })
+      .then(function (res) {
+        return res.data;
+      });
     };
 
     user.getFromLocal = function () {

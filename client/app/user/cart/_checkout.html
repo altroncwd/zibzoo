@@ -1,0 +1,20 @@
+<div class="medium-6 medium-offset-3 columns">
+  <div class="row">
+    <div class="large-12 columns">
+      <header class="section-header">
+        <h3 class="subheader">Checkout</h3><hr>
+      </header>
+      <div class="row">
+        <div class="small-6 columns">
+          <p><strong>Order Total</strong></p>
+        </div>
+        <div class="small-6 columns">
+          <p class="right" ng-model="cart">{{ total | currency }}</p>
+        </div>
+      </div>
+      <button class="button expand success"
+              ng-click="charge()">Confirm and Pay</button>
+    </div>
+  </div>
+</div>
+<a class="close-reveal-modal" ng-click="cancel()">&#215;</a>

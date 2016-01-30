@@ -1,26 +1,44 @@
 angular.module('zibzoo.cart', [])
-  .controller('CartController', ['$scope', 'User', 'Socket', function ($scope, User, Socket) {
+  .controller('CartController', ['$scope', '$modal', 'User', 'Socket', function ($scope, $modal, User, Socket) {
     $scope.cart = User.data.orders;
-
-    $scope.groupOrders = function (orders) {
-      _.chain(orders)
-      .groupBy('vendor.id')
-      .map(function (value, key) {
-        console.log('value: ', value);
-        console.log('key: ', key);
-        // return {
-        //   // type: key,
-        //   // foods: _.pluck(value, 'food')
-        //   console.log('value: ', value);
-        //   console.log('key: ', key);
-        // }
-      })
-      .value();
-    };
+    $scope.total = getTotal(); 
 
     $scope.removeItem = function (index) {
       $scope.cart.splice(index, 1);
     };
 
-    $scope.groupOrders(User.data.orders);
+    $scope.checkout = function () {
+      $modalInstance = $modal.open({
+        templateUrl: 'app/user/cart/_checkout.html',
+        controller: 'CartController'
+      });
+    };
+
+    $scope.charge = function () {
+      var orders = {
+        _id: User.data._id,
+        email: User.data.email,
+        orders: _.groupBy(User.data.orders, 'vendor.id')
+      };
+
+      User.charge(orders)
+        .then(function (result) {
+          User.data.orders.length = 0;
+          $scope.cancel();
+          console.log('result: ', result);
+        })
+        .catch(function (error) {
+          console.log('error: ', error);
+        });
+    };
+
+    function getTotal () {
+      return _.reduce(User.data.orders, function (total, order) {
+        return total + order.item.price;
+      }, 0);   
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
   }]);
