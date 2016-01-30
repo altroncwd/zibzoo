@@ -32,7 +32,7 @@ angular.module('zibzoo.merchant.order.factory', [])
         ]
       },
       { orderNumber: 4,
-        username: '___UserEmail___@gmail.com',
+        username: 'christopher.w.decker@gmail.com',
         ID: 1234345634567,
         food: [
           { item: 'volcano pizza',
