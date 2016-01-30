@@ -57,7 +57,7 @@ module.exports = {
           token = issueToken(result[0]._id);
           res.status(successStatus).send({
             _id: result[0]._id,
-            email: result[0]._email,
+            email: result[0].email,
             isVendor: result[0].isVendor,
             menuItems: result[0].menuItems,
             token: token
@@ -67,7 +67,7 @@ module.exports = {
           token = issueToken(result._id);
           res.status(successStatus).send({
             _id: result._id,
-            email: result._email,
+            email: result.email,
             isVendor: result.isVendor,
             token: token
           });
