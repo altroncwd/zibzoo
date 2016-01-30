@@ -35,5 +35,15 @@ angular.module('zibzoo.user.factory', [])
       $window.localStorage.setItem('_id', JSON.stringify(user.data));
     };
 
+    user.objectDiff = function (version2, version1) {
+      var diffUser = {};
+      for (var key in version2) {
+        if ((!Array.isArray(version2[key])) && (version2[key] !== version1[key] || !version1[key])) {
+          diffUser[key] = version2[key];
+        }
+      }
+      return diffUser;
+    };
+
     return user;
   }]);

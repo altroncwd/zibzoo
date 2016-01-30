@@ -30,6 +30,7 @@ module.exports = {
   upload: function (req, res) {
     vendorHelpers.uploadImage(req.files.file.path)
       .then(function (result) {
+        console.log(result.url);
         var updateObj = {
           _id: req.body._id,
           propertiesToUpdate: {
@@ -43,7 +44,7 @@ module.exports = {
           .catch(function (error) {
             console.error('Unable to update vendor');
           });
-        controllerUtils.sendResponse(updateObj, res, 200, 500);
+        controllerUtils.sendHttpResponse(updateObj, res, 200, 500);
       });
     delete req.files.file;
   }

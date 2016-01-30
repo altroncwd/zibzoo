@@ -41,7 +41,7 @@ angular.module('zibzoo.merchant.menu', [])
     };
 
     $scope.saveMenuItem = function (menuItem) {
-      angular.extend(menuItem, { _id: $stateParams.merchantId });
+      angular.extend(menuItem, { vendorId: $stateParams.merchantId });
       $scope.menu.addItem(menuItem);
       $scope.clearItem();
       $scope.menu.saveMenuItem(menuItem)
