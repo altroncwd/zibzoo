@@ -16,14 +16,14 @@ module.exports = {
   retrieveVendors: function (req, res) {
     vendorHelpers.getVendors(req.body)
       .then(function (result) {
-        controllerUtils.sendResponse(result, res, 200, 404);
+        controllerUtils.sendHttpResponse(result, res, 200, 404);
       });
   },
 
   updateVendor: function (req, res) {
     vendorHelpers.updateVendor(req.body)
       .then(function (result) {
-        controllerUtils.sendResponse(result, res, 304, 404);
+        controllerUtils.sendHttpResponse(result, res, 304, 404);
       });
   },
 

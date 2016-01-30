@@ -1,10 +1,10 @@
 module.exports = {
 
-  sendResponse: function (result, res, successStatus, failureStatus) {
-    if (result._id) {
-      res.status(successStatus).send(result);
+  sendHttpResponse: function (queryResult, httpResponse, successStatus, failureStatus) {
+    if (!(queryResult instanceof Error)) {
+      httpResponse.status(successStatus).send(queryResult);
     } else {
-      res.status(failureStatus).send(result.message);
+      httpResponse.status(failureStatus).send(queryResult.message);
     }
   }
 

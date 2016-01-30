@@ -15,7 +15,7 @@ module.exports = {
   updateCustomer: function (req, res) {
     customerHelpers.updateCustomer(req.body)
       .then(function (result) {
-        controllerUtils.sendResponse(result, res, 304, 404);
+        controllerUtils.sendHttpResponse(result, res, 304, 404);
       });
   },
 
