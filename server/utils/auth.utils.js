@@ -51,14 +51,26 @@ module.exports = {
 
     cb(userCredentials, 'email')
       .then(function (result) {
+        var token;
         // Handle a vendor result
         if (result[0]) {
-          result.token = issueToken(result[0]._id);
-          res.status(successStatus).send(result);
+          token = issueToken(result[0]._id);
+          res.status(successStatus).send({
+            _id: result[0]._id,
+            email: result[0]._email,
+            isVendor: result[0].isVendor,
+            menuItems: result[0].menuItems,
+            token: token
+          });
         // Handle a customer result
         } else if (result._id) {
-          result.token = issueToken(result._id);
-          res.status(successStatus).send(result);
+          token = issueToken(result._id);
+          res.status(successStatus).send({
+            _id: result._id,
+            email: result._email,
+            isVendor: result.isVendor,
+            token: token
+          });
         // Handle a general rejection
         } else {
           res.status(failureStatus).send(result.message);
