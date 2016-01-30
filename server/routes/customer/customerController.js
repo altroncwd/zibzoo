@@ -34,7 +34,7 @@ module.exports = {
       }, 0);
 
       stripe.charges.create({
-        amount: amount,
+        amount: amount * 100,
         currency: 'usd',
         customer: customerId
       }, function (err, charge) {
