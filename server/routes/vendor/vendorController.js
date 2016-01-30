@@ -14,7 +14,7 @@ module.exports = {
   },
 
   retrieveVendors: function (req, res) {
-    vendorHelpers.getVendors(req.body)
+    vendorHelpers.getVendors(req.query)
       .then(function (result) {
         controllerUtils.sendHttpResponse(result, res, 200, 404);
       });

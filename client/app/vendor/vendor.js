@@ -8,12 +8,12 @@ angular.module('zibzoo.vendor', [])
         }
       }
     }(vendor.tempData) || [];
-    $scope.items  = _.chunk($scope.vendor.menuItems, 2);
 
     $scope.getVendor = function (params) {
       vendor.getVendors(params)
         .then(function (data) {
-          $scope.vendor = data.data;
+          vendor.setData($scope, data.data[0]);
+          $scope.items  = _.chunk($scope.vendor.menuItems, 2);
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);
@@ -39,5 +39,6 @@ angular.module('zibzoo.vendor', [])
       }
     };
 
-   //$scope.getVendor($stateParams.vendorId);
+    // $scope.getVendor({ _id: $stateParams.vendorId });
+
   }]);

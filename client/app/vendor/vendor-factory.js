@@ -1,5 +1,5 @@
 angular.module('zibzoo.vendor.factory', [])
-  .factory('vendor', ['$http', function ($http) {
+  .factory('vendor', ['$http', '$state', function ($http, $state) {
     var vendor = {};
 
     vendor.data = {};
@@ -201,6 +201,7 @@ angular.module('zibzoo.vendor.factory', [])
     }];
 
     vendor.getVendors = function (params) {
+      console.log('this is the obj that get passed into the params of getVendors', params);
       return $http({
         method: 'GET',
         url: 'api/vendors',
@@ -241,6 +242,14 @@ angular.module('zibzoo.vendor.factory', [])
       .error(function (data, status) {
         console.error(data, status);
       });
+    };
+
+    vendor.setData = function (scope, vendorData) {
+      if ($state.is('vendor')) {
+        scope.vendor = vendorData;
+      } else {
+        scope.vendors = vendorData;
+      }
     };
 
     return vendor;

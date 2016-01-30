@@ -60,6 +60,10 @@ module.exports = {
             email: result[0].email,
             isVendor: result[0].isVendor,
             menuItems: result[0].menuItems,
+            imageUrl: result[0].imageUrl,
+            name: result[0].name,
+            cuisine: result[0].cuisine,
+            description: result[0].description,
             token: token
           });
         // Handle a customer result

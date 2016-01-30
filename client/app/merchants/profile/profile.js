@@ -13,9 +13,10 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
       propertiesToUpdate: {}
     };
 
+    $scope.img = 'https://placehold.it/1000x344';
 
-    $scope.setImage = function (imageUrl) {
-      $scope.img = imageUrl;
+    $scope.setImage = function (l) {
+      $scope.img = User.data.imageUrl;
     };
 
     $scope.updateVendor = function (updatedVendor) {
@@ -46,10 +47,10 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
           User.setData(response.data.propertiesToUpdate);
           User.setNewToLocal();
           User.getFromLocal();
-          $scope.setImage(User.data.imageUrl);
+          $scope.setImage();
         });
     };
 
-    $scope.setImage('https://placehold.it/1000x344');
+    $scope.setImage();
 
   }]);
