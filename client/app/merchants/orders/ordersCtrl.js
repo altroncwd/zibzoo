@@ -16,27 +16,17 @@ angular.module('zibzoo.merchant.order', [])
 
       Socket.emit('order finished', order);
       Order.splice(index, 1);
+      // set up a db call place the finished order in the db
     };
 
     var listenOn = $stateParams.merchantId.toString();
 
     Socket.on(listenOn, function (newOrder) {
+      console.log('made it back to the client');
+      newOrder.orderNumber = Order.total++;
       Order.push(newOrder);
+      // set the total to local storage to persist
     });
-
-    // setInterval(function () {  // testing function
-    //   console.log('PLACING A NEW ORDER');
-    //   Socket.emit('incoming order', {
-    //     vendorId: listenOn,
-    //     name: 'Benjamin Button',
-    //     ID: 123425667,
-    //     food: [
-    //       { item: 'burger',
-    //         quantity: 25
-    //       }
-    //     ]
-    //   });
-    // }, 4000);
 
   }]);
     /* -----------------NOTE's To Self-----------------

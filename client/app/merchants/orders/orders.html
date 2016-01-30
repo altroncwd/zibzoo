@@ -2,11 +2,14 @@
   <div class="small-12 large-12 columns" >
 
   <div class="small-12 large-12 columns">
-    <div class="small-6 large-6 columns">
+    <div class="small-4 large-4 columns">
       <h3 class="subheader">Orders</h3>
     </div>
-    <div class="small-6 large-6 columns">
-      <h3 style="float:right" class="subheader">Total orders : {{ordersList.length}}</h3>
+    <div class="small-4 large-4 columns">
+      <h3 class="subheader">Number of Orders : {{ordersList.length}}</h3>
+    </div>
+    <div class="small-4 large-4 columns">
+      <h3 style="float:right" class="subheader">Total orders : {{ordersList.total}}</h3>
     </div>
 
   </div>
@@ -17,7 +20,7 @@
           <h3>{{$index+1}}</h3>
         </div>
         <div class="small-6 large-6 columns">
-          <h3> {{orders.name}}</h3>
+          <h3> Order # {{orders.orderNumber}}</h3>
         </div>
       </div>
       <div class="small-9 large-9 columns">

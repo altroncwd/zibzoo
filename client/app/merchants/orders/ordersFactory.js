@@ -1,7 +1,7 @@
 angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', function () {
     var order = [
-      { name: 'Benji Chambers',
+      { orderNumber: 1,
         username: '___UserEmail___@gmail.com',
         ID: 123425667,
         food: [
@@ -10,7 +10,7 @@ angular.module('zibzoo.merchant.order.factory', [])
           }
         ]
       },
-      { name: 'Tom Kilr',
+      { orderNumber: 2,
         username: '___UserEmail___@gmail.com',
         ID: 2098347523,
         food: [
@@ -19,7 +19,7 @@ angular.module('zibzoo.merchant.order.factory', [])
           }
         ]
       },
-      { name: 'Joe Pentagast',
+      { orderNumber: 3,
         username: '___UserEmail___@gmail.com',
         ID: 283470524,
         food: [
@@ -31,7 +31,7 @@ angular.module('zibzoo.merchant.order.factory', [])
           }
         ]
       },
-      { name: 'Sam Samwise',
+      { orderNumber: 4,
         username: '___UserEmail___@gmail.com',
         ID: 1234345634567,
         food: [
@@ -47,7 +47,7 @@ angular.module('zibzoo.merchant.order.factory', [])
         ]
       },
     ];
-
+    order.total = 4;  // currently set to static data
     // place for functions
 
     // place for returns
