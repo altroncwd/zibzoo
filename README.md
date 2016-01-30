@@ -2,15 +2,45 @@
 
 [![Build Status](https://travis-ci.org/unforgitables/zibzoo.svg?branch=master)](https://travis-ci.org/unforgitables/zibzoo)
 
-A web application
+A food truck ordering web application and anyalics platform for vendors.
 
 ## installation
 
 ## Choice of Technologies
-
+- Angular
+- Foundation
+- Express
+- Gulp
+- Mongod
+- MongoDB
+- BlueBird
+- NPM
+- SASS
+- Bcrypt
+- Socket.io
+- Nodemailer
+- Cloudinary
+- Stripe
+- Karma
+- Jasmine
 
 ## File Structure
+```
+ZibZoo
+  |-client
+  |---app             # Views / Controllers / Factories
+  |---assets          # SASS files
+  |---build           # SASS files
+  |-server
+  |---config          # Middleware
+  |---db
+  |---mailer          # NodeMailer files
+  |---routes
+  |---sockets         # Socket.io files
+  |---utils
+  |-spec              # Jasmine / Karma testing files
 
+```
 ## Features
 ## In Progress
 
