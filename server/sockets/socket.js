@@ -34,6 +34,4 @@ module.exports = function (server) {
     }
  }
 
-   Current Problems
- > if you open two separate pages, they scroll together....
 ---------------------------------------------------- */
