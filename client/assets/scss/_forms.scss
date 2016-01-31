@@ -30,23 +30,5 @@
 .menuFormInput {
   li {
     padding-bottom: 0;
-
-    @media only screen and (max-width: $small-breakpoint) {
-       label {
-         float: none;
-         background-color: #cde;
-       }
-    }
-
-    .menuItemDescription {
-      width: 200px;
-    }
-
-    .menuItemPrice {
-      width: 80px;
-    }
-    .menuItemSection {
-      width: 100px;
-    }
   }
 }
