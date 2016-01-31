@@ -51,6 +51,4 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         });
     };
 
-    $scope.setImage();
-
   }]);

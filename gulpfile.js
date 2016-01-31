@@ -35,6 +35,7 @@ var paths = {
     'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
     'node_modules/angular-foundation/mm-foundation.js',
     'node_modules/angular-foundation/mm-foundation-tpls.js',
+    'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
     'node_modules/socket.io-client/socket.io.js',
     'node_modules/underscore/underscore.js',
     'node_modules/lodash/lodash.js',

@@ -201,7 +201,6 @@ angular.module('zibzoo.vendor.factory', [])
     }];
 
     vendor.getVendors = function (params) {
-      console.log('this is the obj that get passed into the params of getVendors', params);
       return $http({
         method: 'GET',
         url: 'api/vendors',
@@ -230,7 +229,6 @@ angular.module('zibzoo.vendor.factory', [])
     };
 
     vendor.updateVendor = function (vendorObj) {
-      console.log('this is the vendorObj being passed in ', vendorObj);
       return $http({
         method: 'PUT',
         url: 'api/vendors',

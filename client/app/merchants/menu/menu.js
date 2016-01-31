@@ -1,4 +1,4 @@
-angular.module('zibzoo.merchant.menu', [])
+angular.module('zibzoo.merchant.menu', ['dndLists'])
   .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', 'vendor', function ($scope, menu, User, $stateParams, vendor) {
 
     User.getFromLocal();
@@ -15,6 +15,7 @@ angular.module('zibzoo.merchant.menu', [])
         name: '',
         description: '',
         price: '',
+        section: '',
         inStock: true,
         calories: 0,
         isGlutenFree: false,
@@ -52,5 +53,7 @@ angular.module('zibzoo.merchant.menu', [])
           $scope.saveStatus = error.status;
         });
     };
+
     $scope.clearItem();
+
   }]);
