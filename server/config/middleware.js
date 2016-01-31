@@ -1,3 +1,4 @@
+var utils = require('./utils.js');
 var bodyParser = require('body-parser');
 
 module.exports = function (app, express) {
@@ -10,10 +11,10 @@ module.exports = function (app, express) {
   var menuRouter = express.Router();
   var orderRouter = express.Router();
 
-  app.use('/api/customer', customerRouter);
-  app.use('/api/vendors', vendorRouter);
+  app.use('/api/customer', utils.hasToken, customerRouter);
+  app.use('/api/vendors', utils.hasToken, vendorRouter);
   app.use('/api/menu', menuRouter);
-  app.use('/api/orders', orderRouter);
+  app.use('/api/orders', utils.hasToken, orderRouter);
 
   require('../routes/customer/customerRoutes.js')(customerRouter);
   require('../routes/vendor/vendorRoutes.js')(vendorRouter);
