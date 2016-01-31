@@ -1,71 +1,77 @@
 <div class="row">
-  <div class="small-12 large-12 columns">
+  <header class="section-header main">
     <h2 class="subheader">Manage Menu</h2>
-
+  </header>
+  <div class="small-12 columns">
     <a class="add-link" ng-click="show=true" style="float:right">
       <i class="fa fa-plus"></i> Add Item
     </a>
-    <div class="small-12 large-12 columns">
-      <!-- Bar for adding new food items-----------add these to css styles later----------->
-      <div class="small-12 large-12 columns" ng-show="show">
-        <div class="small-5 large-5 columns">
-          <input type="text" style="width: 300px" ng-model="menuItem.name" placeholder="Name" />
-        </div>
-        <div>
-          <a class="button dropdown" dropdown-toggle="#filter-dropdown">Menu Section</a>
-          <ul id="filter-dropdown" class="f-dropdown">
-            <li ng-repeat="section in selectSections">
-              {{section}}
-            </li>
-          </ul>
-        </div>
-        <div class="small-2 large-2 columns">
-          <input type="number" style="width: 100px" ng-model="menuItem.price" required placeholder="Price" />
-        </div>
-        <textarea name="" id="" cols="30" rows="5" ng-model="menuItem.description" placeholder="Description"></textarea>
-        <label>
-          <input type="checkbox" ng-model="menuItem.isGlutenFree" ng-change="toggle(menuItem.isGlutenFree)"> Gluten Free
-        </label>
-        <label>
-          <input type="checkbox" ng-model="menuItem.isVegan" ng-change="toggle(menuItem.isVegan)"> Vegan
-        </label>
-        <label>
-          <input type="checkbox" ng-model="menuItem.isDairyFree" ng-change="toggle(menuItem.isDairyFree)"> Dairy Free
-        </label>
-        <label>
-          <input type="checkbox" ng-model="menuItem.isVegetarian" ng-change="toggle(menuItem.isVegetarian)"> Vegetarian
-        </label>
-        <button class="button" ng-click="clearItem()">Cancel</button>
-        <button class="button" ng-click="saveMenuItem(menuItem)" style="float:right"> Add to Menu</button>
-      </div>
-
-      <!------------- End of the add item bar ------------->
-
-      <div ng-repeat="item in menu.items track by $index" class="fadeIn small- large-12 columns" style="background-color:#ffd1b3; margin-top:10px; padding-top:20px ">
-        <div class="small-3 large-4 columns">
-          <h4>{{item.name}}</h4>
-          <i class="fa fa-leaf" ng-show="item.isVegetarian || item.isVegan"></i>
-          <i class="fa fa-pagelines" ng-show="item.isVegan"></i>
-        </div>
-        <div class="small-2 large-2 columns">
-          <p>Price : ${{item.price}}</p>
-        </div>
-        <div class="small-3 large-3 columns">
-          <ul class="inline-list" style="float:right">
-            <li>
-              <li>
-                <button class="button tiny" ng-click="deleteMenuItem($index)">Remove</button>
-              </li>
-          </ul>
-        </div>
-        <div class="small-9 large-9 columns">
-          <p>{{item.description}}</p>
-        </div>
-        <div class="small-3 large-3 columns" style="text-align:right; padding-top:10px">
-          <!--<button class="button">Out of Stock</button>-->
-        </div>
-      </div>
-      <button ng-show="menu.items.length" ng-click="saveMenuItems(menu.items)">Save Menu</button>
-    </div>
   </div>
+
+  <div class="small-12 columns">
+    <form class="menuFormInput" ng-submit="saveMenuItem(menuItem)" ng-show="show" data-abide>
+      <ul class="small-block-grid-1 medium-block-grid-4">
+        <li>
+          <div>
+            <label>
+              Name <small>required</small>
+              <input type="text" class="menuItemName" ng-model="menuItem.name" required>
+            </label>
+            <small class="error">Name is required</small>
+          </div>
+        </li>
+        <li>
+          <label>
+            Description
+            <input class="menuItemDescription" ng-model="menuItem.description" type="text" />
+          </label>
+        </li>
+        <li>
+          <label class="right">
+            Menu Section <small>required</small>
+            <div>
+              <select class="menuItemSection" name="" required>
+                <option ng-repeat="section in selectSections" value="{{section}}">{{section}}</option>
+              </select>
+            </div>
+          </label>
+        </li>
+        <li>
+          <label>
+            Price <small>required</small>
+            <input type="number" class="menuItemPrice" min="0" ng-model="menuItem.price" required/>
+          </label>
+        </li>
+      </ul>
+      <label>
+        <input type="checkbox" ng-model="menuItem.isGlutenFree" ng-change="toggle(menuItem.isGlutenFree)"> Gluten Free
+      </label>
+      <label>
+        <input type="checkbox" ng-model="menuItem.isVegan" ng-change="toggle(menuItem.isVegan)"> Vegan
+      </label>
+      <label>
+        <input type="checkbox" ng-model="menuItem.isDairyFree" ng-change="toggle(menuItem.isDairyFree)"> Dairy Free
+      </label>
+      <label>
+        <input type="checkbox" ng-model="menuItem.isVegetarian" ng-change="toggle(menuItem.isVegetarian)"> Vegetarian
+      </label>
+      <div>
+        <button class="button" type="submit"> Add to Menu</button>
+        <button class="button" ng-click="clearItem()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="small-12 columns">
+    <ul class="menu-list">
+      <li ng-repeat="item in menu.items track by $index" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move"
+      dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+        {{item.name}}
+        <i class="fa fa-leaf" ng-show="item.isVegetarian || item.isVegan"></i>
+        <i class="fa fa-pagelines" ng-show="item.isVegan"></i>
+        <span class="right">${{item.price}}</span>
+      </li>
+    </ul>
+  </div>
+
 </div>

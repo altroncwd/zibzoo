@@ -4,7 +4,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
 
     menu.items = User.data.menuItems;
 
-    menu.sections = ['Appetizers', 'Entrees', 'Desserts', 'Drinks'];
+    menu.sections = ['', 'Appetizers', 'Entrees', 'Desserts', 'Drinks'];
 
     menu.addItem = function (menuItem) {
       User.data.menuItems.unshift(menuItem);

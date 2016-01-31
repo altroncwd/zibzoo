@@ -8,6 +8,7 @@ var menuItemSchema = new Schema({
   description: String,
   price: { type: Number, required: true },
   inStock: { type: Boolean, required: true },
+  section: String,
   calories: Number,
   isGlutenFree: Boolean,
   isVegan: Boolean,
