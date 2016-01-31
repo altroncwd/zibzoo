@@ -25,7 +25,7 @@ module.exports = function (config) {
       'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
       'node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js',
       'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
-      'node_modules/angular-drag-and-drop-lists.min.js',
+      'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
       'node_modules/angular-foundation/mm-foundation.js',
       'node_modules/angular-foundation/mm-foundation-tpls.js',
       'node_modules/lodash/lodash.js',
