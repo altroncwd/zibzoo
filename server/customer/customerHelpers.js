@@ -1,4 +1,4 @@
-var dbUtils = require('../../utils/db.utils.js');
+var dbUtils = require('../config/db.utils.js');
 var Customer = require('./customerModel.js');
 var mongoose = require('mongoose');
 

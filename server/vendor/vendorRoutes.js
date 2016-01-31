@@ -1,6 +1,7 @@
-var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty();
 var vendorController = require('./vendorController.js');
+var multiparty = require('connect-multiparty');
+
+var multipartyMiddleware = multiparty();
 
 module.exports = function (app) {
 

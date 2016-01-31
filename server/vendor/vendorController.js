@@ -1,6 +1,6 @@
-var authUtils = require('../../utils/auth.utils.js');
-var controllerUtils = require('../../utils/controller.utils.js');
-var vendorHelpers = require('../../db/vendor/vendorHelpers.js');
+var authUtils = require('../config/auth.utils.js');
+var controllerUtils = require('../config/controller.utils.js');
+var vendorHelpers = require('./vendor/vendorHelpers.js');
 
 
 module.exports = {

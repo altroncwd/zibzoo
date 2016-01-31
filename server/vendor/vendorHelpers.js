@@ -1,7 +1,7 @@
-var configuration = require('../../utils/image.utils.js');
-var cloudinary = require('cloudinary');
-var dbUtils = require('../../utils/db.utils.js');
+var dbUtils = require('../config/db.utils.js');
+var imageUtils = require('../config/image.utils.js');
 var Vendor = require('./vendorModel');
+var cloudinary = require('cloudinary');
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
@@ -9,7 +9,7 @@ require('../menuItem/menuItemModel.js');
 
 mongoose.Promise = Promise;
 
-cloudinary.config(configuration);
+cloudinary.config(imageUtils);
 Promise.promisify(cloudinary.uploader.upload);
 
 module.exports = {

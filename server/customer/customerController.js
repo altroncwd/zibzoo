@@ -1,6 +1,6 @@
-var authUtils = require('../../utils/auth.utils.js');
-var controllerUtils = require('../../utils/controller.utils.js');
-var customerHelpers = require('../../db/customer/customerHelpers.js');
+var authUtils = require('../config/auth.utils.js');
+var controllerUtils = require('../config/controller.utils.js');
+var customerHelpers = require('./customerHelpers.js');
 var _ = require('underscore');
 
 module.exports = {

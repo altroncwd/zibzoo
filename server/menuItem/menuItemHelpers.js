@@ -1,6 +1,6 @@
-var dbUtils = require('../../utils/db.utils.js');
+var dbUtils = require('../config/db.utils.js');
 var MenuItem = require('./menuItemModel');
-var Vendor = require('./../vendor/vendorModel.js');
+var Vendor = require('../vendor/vendorModel.js');
 var mongoose = require('mongoose');
 
 mongoose.Promise = require('bluebird');

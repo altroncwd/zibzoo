@@ -1,6 +1,6 @@
-var dbUtils = require('../../server/utils/db.utils.js');
-var authUtils = require('../../server/utils/auth.utils.js');
-var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
+var authUtils = require('../../server/config/auth.utils.js');
+var dbUtils = require('../../server/config/db.utils.js');
+var vendorHelpers = require('../../server/vendor/vendorHelpers.js');
 var httpMocks = require('node-mocks-http');
 
 var mockUser = {

@@ -1,6 +1,6 @@
-var vendorHelpers = require('../../server/db/vendor/vendorHelpers.js');
-var menuItemHelpers = require('../../server/db/menuItem/menuItemHelpers.js');
-var customerHelpers = require('../../server/db/customer/customerHelpers.js');
+var customerHelpers = require('../../server/customer/customerHelpers.js');
+var menuItemHelpers = require('../../server/menuItem/menuItemHelpers.js');
+var vendorHelpers = require('../../server/vendor/vendorHelpers.js');
 var mongoose = require('mongoose');
 
 // Open a local connection to MongoDB

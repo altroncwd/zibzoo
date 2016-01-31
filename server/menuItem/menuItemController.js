@@ -1,5 +1,5 @@
-var menuItemHelpers = require('../../db/menuItem/menuItemHelpers.js');
-var controllerUtils = require('../../utils/controller.utils.js');
+var controllerUtils = require('../config/controller.utils.js');
+var menuItemHelpers = require('./menuItemHelpers.js');
 
 module.exports = {
 

@@ -1,5 +1,5 @@
+var mail = require('./mailer.js');  // (nodemailer)
 var sockets = require('socket.io');
-var mail = require('../mailer/mailer');  // (nodemailer)
 
 module.exports = function (server) {
   var io = sockets(server);

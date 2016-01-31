@@ -1,9 +1,9 @@
-var Order = require('../../db/order/orderModel.js');
-var controllerUtils = require('../../utils/controller.utils.js');
-var mongoose = require('mongoose');
+var controllerUtils = require('../config/controller.utils.js');
+var Order = require('./orderModel.js');
 var Promise = require('bluebird');
+var mongoose = require('mongoose');
 
-require('../../db/menuItem/menuItemModel.js');
+require('../menuItem/menuItemModel.js');
 
 mongoose.Promise = Promise;
 

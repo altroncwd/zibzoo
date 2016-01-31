@@ -41,7 +41,6 @@ module.exports = {
     }
   },
 
-  // Jeff, this one is for you <3
   authorizeEntry: function (req, res, successStatus, failureStatus, cb) {
     var userCredentials = {
       email: req.body.email,
