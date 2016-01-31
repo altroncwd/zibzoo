@@ -42,19 +42,27 @@
             <input type="number" class="menuItemPrice" min="0" ng-model="menuItem.price" required/>
           </label>
         </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isGlutenFree" ng-change="toggle(menuItem.isGlutenFree)"> Gluten Free
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isVegan" ng-change="toggle(menuItem.isVegan)"> Vegan
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isDairyFree" ng-change="toggle(menuItem.isDairyFree)"> Dairy Free
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isVegetarian" ng-change="toggle(menuItem.isVegetarian)"> Vegetarian
+          </label>
+        </li>
       </ul>
-      <label>
-        <input type="checkbox" ng-model="menuItem.isGlutenFree" ng-change="toggle(menuItem.isGlutenFree)"> Gluten Free
-      </label>
-      <label>
-        <input type="checkbox" ng-model="menuItem.isVegan" ng-change="toggle(menuItem.isVegan)"> Vegan
-      </label>
-      <label>
-        <input type="checkbox" ng-model="menuItem.isDairyFree" ng-change="toggle(menuItem.isDairyFree)"> Dairy Free
-      </label>
-      <label>
-        <input type="checkbox" ng-model="menuItem.isVegetarian" ng-change="toggle(menuItem.isVegetarian)"> Vegetarian
-      </label>
       <div>
         <button class="button" type="submit"> Add to Menu</button>
         <button class="button" ng-click="clearItem()">Cancel</button>
