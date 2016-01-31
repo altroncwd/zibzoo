@@ -1,25 +1,57 @@
-var authUtils = require('../config/auth.utils.js');
-var controllerUtils = require('../config/controller.utils.js');
-var customerHelpers = require('./customerHelpers.js');
+var Customer = require('./customerModel.js');
+var utils = require('../config/utils.js');
+var Promise = require('bluebird');
+var mongoose = require('mongoose');
 var _ = require('underscore');
+
+
+// Promisify libraries
+mongoose.Promise = Promise;
+
+
+function _findCustomerByEmail(customerObj) {
+  return Customer
+    .findOne({
+      email: customerObj.email
+    })
+    .then(function (customer) {
+      if (!customer) {
+        throw new Error('Customer does not exist.');
+      }
+
+      return customer;
+    })
+    .catch(function (error) {
+      return error;
+    });
+}
+
 
 module.exports = {
 
-  signUp: function (req, res) {
-    authUtils.authorizeEntry(req, res, 201, 403, customerHelpers.postCustomer);
-  },
-
   signIn: function (req, res) {
-    authUtils.authorizeEntry(req, res, 200, 404, customerHelpers.getCustomer);
+    // TODO: add signIn() with _findCustomrByEmail
   },
 
-  updateCustomer: function (req, res) {
-    customerHelpers.updateCustomer(req.body)
-      .then(function (result) {
-        controllerUtils.sendHttpResponse(result, res, 304, 404);
+  signUp: function (req, res) {
+    var customer = req.body;
+
+    utils.findUserByEmail(customer, Customer)
+      .then(function (savedCustomer) {
+        utils.sendHttpResponse(savedCustomer, res, 201, 403);
       });
   },
 
+  updateCustomer: function (req, res) {
+    var customer = req.body;
+
+    utils.modifyOneRecordById(customer)
+      .then(function (docsAffected) {
+        utils.sendHttpResponse(docsAffected, res, 304, 404);
+      });
+  },
+
+  // TODO: refactor
   charge: function (req, res) {
     var customerId = process.env.STRIPE_CUSTOMER_ID; // test customer id
     var email = req.body.email;
@@ -39,9 +71,9 @@ module.exports = {
         customer: customerId
       }, function (err, charge) {
         if (err) {
-          controllerUtils.sendHttpResponse(err, res, 500, 500);
+          utils.sendHttpResponse(err, res, 500, 500);
         } else {
-          controllerUtils.sendHttpResponse(charge, res, 200, 500);
+          utils.sendHttpResponse(charge, res, 200, 500);
         }
       });
     }
@@ -49,3 +81,8 @@ module.exports = {
 
 };
 
+
+// Export private functions for testing
+if (process.env.NODE_ENV !== 'production') {
+  module.exports._findCustomerByEmail = _findCustomerByEmail;
+}
