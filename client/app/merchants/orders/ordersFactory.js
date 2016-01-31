@@ -1,55 +1,72 @@
 angular.module('zibzoo.merchant.order.factory', [])
-  .factory('Order', function () {
-    var order = [
-      { name: 'Benji Chambers',
-        username: '___UserEmail___@gmail.com',
-        ID: 123425667,
-        food: [
-          { item: 'burger',
-            quantity: 2
-          }
-        ]
-      },
-      { name: 'Tom Kilr',
-        username: '___UserEmail___@gmail.com',
-        ID: 2098347523,
-        food: [
-          { item: 'Pizza',
-            quantity: 2
-          }
-        ]
-      },
-      { name: 'Joe Pentagast',
-        username: '___UserEmail___@gmail.com',
-        ID: 283470524,
-        food: [
-          { item: 'hotdog',
-            quantity: 1
-          },
-          { item: 'corndog',
-            quantity: 7
-          }
-        ]
-      },
-      { name: 'Sam Samwise',
-        username: '___UserEmail___@gmail.com',
-        ID: 1234345634567,
-        food: [
-          { item: 'volcano pizza',
-            quantity: 1
-          },
-          { item: 'cheese bread',
-            quantity: 2
-          },
-          { item: 'pasta',
-            quantity: 3
-          }
-        ]
-      },
-    ];
+  .factory('Order', ['$window', function ($window) {
+    var order = [];
+    order.total = 0;
 
-    // place for functions
+    var setLocalStorage = function () {
+      var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
+      modifiedToken.timeStamp = $window.Date.now();
+      modifiedToken.orders = order;
+      modifiedToken.total = order.total;
+      // console.log('New modified token', modifiedToken);
+      $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
+    };
 
-    // place for returns
-    return order;
-  });
+    var callDbOrderFinished = function (finishedOrderObj) {
+     // update the server info with the order id?
+
+     // if the server comes back with no matching item
+       // set /(or add) active key to false (aka finished)
+       // and then do a post request with the missing item
+    };
+
+    var persistLocalData = function () {
+      var persist = JSON.parse($window.localStorage.getItem('_id'));
+      if (persist !== null) {
+        if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
+          console.log('Persisted total: ', persist);
+          for (var i = 0; i < persist.orders.length; i++) {
+            delete persist.orders[i].$$hashKey;  // need to remove this or ng-repeate breaks
+            var temp = persist.orders[i];
+            order.push(temp);
+          }
+          order.total = persist.total;
+        }
+      }
+    };
+
+    persistLocalData();
+
+    return {
+      order: order,
+      setLocalStorage: setLocalStorage,
+      callDbOrderFinished: callDbOrderFinished,
+    };
+  }]);
+
+
+
+
+
+/*
+> if the server side goes down we save everything in local storage
+> if an order gets complete and the server is down we save that order in local storage in a finished order list
+> if vendor side crashes and orders come through
+  > que the db, remove any finished orders saved in local storage from the db
+  > que the db, get all orders that are not finished
+
+> if the server went down
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+

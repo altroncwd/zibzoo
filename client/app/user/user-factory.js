@@ -31,7 +31,7 @@ angular.module('zibzoo.user.factory', [])
 
     user.charge = function (orders) {
       console.log('orders: ', orders);
-      
+
       return $http({
         method: 'POST',
         url: '/api/customer/charge',

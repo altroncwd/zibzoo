@@ -1,7 +1,7 @@
 angular.module('zibzoo.cart', [])
   .controller('CartController', ['$scope', '$modal', 'User', function ($scope, $modal, User) {
     $scope.cart = User.data.orders;
-    $scope.total = getTotal(); 
+    $scope.total = getTotal();
 
     $scope.removeItem = function (index) {
       $scope.cart.splice(index, 1);
@@ -32,11 +32,11 @@ angular.module('zibzoo.cart', [])
         });
     };
 
-    function getTotal () {
+    function getTotal() {
       return _.reduce(User.data.orders, function (total, order) {
         return total + order.item.price;
-      }, 0);   
-    };
+      }, 0);
+    }
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');

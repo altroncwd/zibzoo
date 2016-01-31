@@ -8,23 +8,10 @@ module.exports = function (server) {
     console.log('Hyperdrive socket now connected');
 
     socket.on('order finished', function (finishedOrder) {
-      // console.log('User Id#:', finishedOrder.ID, ': SERVER SIDE');
-      // console.log('User email:', finishedOrder.username, ': SERVER SIDE');
+      console.log('User email:', finishedOrder.username, ': SERVER SIDE');
 
-      mail.sendMail(finishedOrder.username);
-    });
-
-    socket.on('incoming order', function (orderObject) {
-      // See Notes Below
-      var createIndividualOrder = {};
-      for (var vendorId in orderObject.orders) {
-        createIndividualOrder.username = orderObject.username; // email
-        createIndividualOrder.id = orderObject.id;    // users id
-        createIndividualOrder.name = orderObject.name;
-        createIndividualOrder.food = orderObject.orders.vendorId;   // the list food items
-        io.emit(vendorId, createIndividualOrder);
-        createIndividualOrder = {};  // wipe the item after as a saftey mesure
-      }
+      // Uncomment the line below for emails to work
+      // mail.sendMail(finishedOrder.username);
     });
 
   });
@@ -46,4 +33,5 @@ module.exports = function (server) {
       vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ex... ]
     }
  }
+
 ---------------------------------------------------- */
