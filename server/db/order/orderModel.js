@@ -9,7 +9,7 @@ var orderSchema = new Schema({
   isActive: Boolean,
   latitude: String,
   longitude: String,
-  menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }],
+  menuItems: [Schema.Types.Mixed],
   customerInfo: { type: Schema.Types.ObjectId, ref: 'Customer' },
   vendorInfo: { type: Schema.Types.ObjectId, ref: 'Vendor' }
 });
