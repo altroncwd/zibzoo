@@ -10,6 +10,11 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
 
     $scope.menuItem;
 
+    $scope.models = {
+      selected: null,
+      lists: {}
+    };
+
     $scope.clearItem = function () {
       $scope.menuItem = {
         name: '',
@@ -27,6 +32,10 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
 
     $scope.toggle = function (model) {
       model = !model;
+    };
+
+    $scope.setSection = function (section) {
+      $scope.menuItem.section = section;
     };
 
     $scope.deleteMenuItem = function (menuItemIndex) {
@@ -54,6 +63,18 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         });
     };
 
+    $scope.setMenuToDnD = function (menuItems) {
+      menuItems.forEach(function (item) {
+        if ($scope.models.lists[item.section]) {
+          $scope.models.lists[item.section].push(item);
+        } else {
+          $scope.models.lists[item.section] = [item];
+        }
+      });
+    };
+
     $scope.clearItem();
+
+    $scope.setMenuToDnD($scope.menu.items);
 
   }]);

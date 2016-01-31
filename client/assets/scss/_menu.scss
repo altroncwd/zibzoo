@@ -1,0 +1,27 @@
+.menuDrag ul[dnd-list],
+.menuDrag ul[dnd-list] > li {
+  position: relative;
+}
+
+.menuDrag ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+.menuDrag ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+.menuDrag ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ff6908;
+    min-height: 42px;
+}
+
+.menuDrag ul[dnd-list] li {
+    background-color: #fff;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
