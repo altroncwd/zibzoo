@@ -1,5 +1,7 @@
 angular.module('zibzoo.merchant.order', [])
-  .controller('MerchantOrdersController', ['$scope', 'Order', 'Socket', '$stateParams', function ($scope, Order, Socket, $stateParams) {
+  .controller('MerchantOrdersController', ['$scope', 'Order', 'Socket', '$stateParams', '$window', function ($scope, Order, Socket, $stateParams, $window) {
+    // Order.persistLocalTotal();
+
     $scope.ordersList = Order;
 
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
@@ -25,8 +27,11 @@ angular.module('zibzoo.merchant.order', [])
       console.log('made it back to the client');
       newOrder.orderNumber = Order.total++;
       Order.push(newOrder);
+      Order.setLocalStorage();
+      console.log('New token', JSON.parse($window.localStorage.getItem('_id')));
       // set the total to local storage to persist
     });
+
 
   }]);
     /* -----------------NOTE's To Self-----------------

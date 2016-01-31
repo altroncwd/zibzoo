@@ -1,66 +1,39 @@
 angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', ['$window', function ($window) {
-    var order = [
-      { orderNumber: 1,
-        username: '___UserEmail___@gmail.com',
-        ID: 123425667,
-        food: [
-          { item: 'burger',
-            quantity: 2
-          }
-        ]
-      },
-      { orderNumber: 2,
-        username: '___UserEmail___@gmail.com',
-        ID: 2098347523,
-        food: [
-          { item: 'Pizza',
-            quantity: 2
-          }
-        ]
-      },
-      { orderNumber: 3,
-        username: '___UserEmail___@gmail.com',
-        ID: 283470524,
-        food: [
-          { item: 'hotdog',
-            quantity: 1
-          },
-          { item: 'corndog',
-            quantity: 7
-          }
-        ]
-      },
-      { orderNumber: 4,
-        username: 'christopher.w.decker@gmail.com',
-        ID: 1234345634567,
-        food: [
-          { item: 'volcano pizza',
-            quantity: 1
-          },
-          { item: 'cheese bread',
-            quantity: 2
-          },
-          { item: 'pasta',
-            quantity: 3
-          }
-        ]
-      },
-    ];
-    order.total = 4;  // currently set to static data
-    // place for functions
+    var order = [];
+    order.total = 0;
+
     order.setLocalStorage = function () {
-      $window.localStorage.setItem('orders', JSON.stringifty(order));
+      var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
+      modifiedToken.timeStamp = $window.Date.now();
+      modifiedToken.orders = order;
+      modifiedToken.total = order.total;
+      $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
     };
 
-    order.callDbOrderFinished = function (order) {
+    order.callDbOrderFinished = function (finishedOrderObj) {
      // update the server info with the order id?
 
      // if the server comes back with no matching item
        // set /(or add) active key to false (aka finished)
        // and then do a post request with the missing item
     };
-    // place for returns
+
+    order.persistLocalTotal = function () {
+      var persist = JSON.parse($window.localStorage.getItem('_id'));
+      if (persist !== null) {
+        if ($window.Date.now() - persist.timeStamp < 10000) { // 3600000 = 1hours
+          console.log('Persisted total: ', persist);
+          for (var food in persist.orders) { order.push(food); }
+          order.total = persist.total;
+        } else {
+          order.total = 0;
+        }
+      }
+    };
+
+    order.persistLocalTotal();
+
     return order;
   }]);
 
