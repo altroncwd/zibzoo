@@ -46,7 +46,7 @@ angular.module('zibzoo.vendor.factory', [])
     {
       _id: 2563684,
       name: 'Pasta Shop',
-      cuisine: 'Italian?',
+      cuisine: 'Italian',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
       menuItems: [
