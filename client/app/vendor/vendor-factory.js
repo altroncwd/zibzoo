@@ -230,7 +230,6 @@ angular.module('zibzoo.vendor.factory', [])
     };
 
     vendor.updateVendor = function (vendorObj) {
-      console.log('this is the vendorObj being passed in ', vendorObj);
       return $http({
         method: 'PUT',
         url: 'api/vendors',

@@ -36,6 +36,7 @@
   "homepage": "https://zibzoo.herokuapp.com",
   "dependencies": {
     "angular": "^1.4.9",
+    "angular-drag-and-drop-lists": "^1.3.2",
     "angular-foundation": "^0.8.0",
     "angular-ui-router": "^0.2.15",
     "bcrypt": "^0.8.5",
