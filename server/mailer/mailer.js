@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport({
 
 // setup e-mail data
 var mailOptions = function (recipientEmail) {
-console.log("EMAIL DETAILS", mailDetails.email, mailDetails.password);
+  console.log('EMAIL DETAILS', mailDetails.email, mailDetails.password);
   var mail = {
     from: 'ZibZoo <' + mailDetails.email + '>',  // sender address
     to: recipientEmail,  // list of receivers
