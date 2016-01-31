@@ -3,15 +3,16 @@ angular.module('zibzoo.merchant.order.factory', [])
     var order = [];
     order.total = 0;
 
-    order.setLocalStorage = function () {
+    var setLocalStorage = function () {
       var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
       modifiedToken.timeStamp = $window.Date.now();
       modifiedToken.orders = order;
       modifiedToken.total = order.total;
+      // console.log('New modified token', modifiedToken);
       $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
     };
 
-    order.callDbOrderFinished = function (finishedOrderObj) {
+    var callDbOrderFinished = function (finishedOrderObj) {
      // update the server info with the order id?
 
      // if the server comes back with no matching item
@@ -19,22 +20,28 @@ angular.module('zibzoo.merchant.order.factory', [])
        // and then do a post request with the missing item
     };
 
-    order.persistLocalTotal = function () {
+    var persistLocalData = function () {
       var persist = JSON.parse($window.localStorage.getItem('_id'));
       if (persist !== null) {
-        if ($window.Date.now() - persist.timeStamp < 10000) { // 3600000 = 1hours
+        if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
           console.log('Persisted total: ', persist);
-          for (var food in persist.orders) { order.push(food); }
+          for (var i = 0; i < persist.orders.length; i++) {
+            delete persist.orders[i].$$hashKey;  // need to remove this or ng-repeate breaks
+            var temp = persist.orders[i];
+            order.push(temp);
+          }
           order.total = persist.total;
-        } else {
-          order.total = 0;
         }
       }
     };
 
-    order.persistLocalTotal();
+    persistLocalData();
 
-    return order;
+    return {
+      order: order,
+      setLocalStorage: setLocalStorage,
+      callDbOrderFinished: callDbOrderFinished,
+    };
   }]);
 
 
