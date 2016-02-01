@@ -5,10 +5,11 @@ angular.module('zibzoo.merchant.order.factory', [])
 
     var setLocalStorage = function () {
       var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
+      console.log('Before change', modifiedToken);
       modifiedToken.timeStamp = $window.Date.now();
-      modifiedToken.orders = order;
+      modifiedToken.menuItems = order;
       modifiedToken.total = order.total;
-      // console.log('New modified token', modifiedToken);
+      console.log('New modified token', modifiedToken);
       $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
     };
 
@@ -26,8 +27,8 @@ angular.module('zibzoo.merchant.order.factory', [])
         if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
           console.log('Persisted total: ', persist);
           for (var i = 0; i < persist.orders.length; i++) {
-            delete persist.orders[i].$$hashKey;  // need to remove this or ng-repeate breaks
-            var temp = persist.orders[i];
+            delete persist.menuItems[i].$$hashKey;  // need to remove this or ng-repeate breaks
+            var temp = persist.menuItems[i];
             order.push(temp);
           }
           order.total = persist.total;

@@ -24,13 +24,41 @@ console.log('server listening on ', port);
 // ------------------------------------------------
 // Server side socket test for vendor order list
 // ------------------------------------------------
-// setInterval(function () {
-//   console.log('Set timeout emit');
-//   io.sockets.emit('1', {
-//     username: '___UserEmail___@gmail.com',
-//     ID: 283470524,
-//     food: [{ item: 'hotdog', quantity: 1 },
-//            { item: 'corndog', quantity: 7 }
-//     ]
-//   });
-// }, 10000);
+setInterval(function () {
+  console.log('Set timeout emit');
+  io.sockets.emit('1', {
+    createdAt: Date,
+    vendorId: String,
+    customerId: String,
+    isActive: Boolean,
+    latitude: String,
+    longitude: String,
+    menuItems: [{ item: 'hotdog', quantity: 1 },
+                { item: 'corndog', quantity: 7 }],
+    customerInfo: {
+      email: '___UserEmail___@gmail.com',
+      name: 'Zibby Zabbs'
+    },
+    vendorInfo: {
+      type: 'Schema.Types.ObjectId',
+      ref: 'Vendor' }
+  });
+}, 10000);
+
+/*
+{
+  createdAt: Date,
+  vendorId: String,
+  customerId: String,
+  isActive: Boolean,
+  latitude: String,
+  longitude: String,
+  menuItems: [{ item: 'hotdog', quantity: 1 },
+              { item: 'corndog', quantity: 7 }],
+  customerInfo: {
+                email: '___UserEmail___@gmail.com',
+                name: 'Zibby Zabbs'
+    },
+  vendorInfo: { type: Schema.Types.ObjectId, ref: 'Vendor' }
+}
+ */

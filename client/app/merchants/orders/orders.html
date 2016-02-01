@@ -20,12 +20,12 @@
           <h3>Order # {{orders.orderNumber+1}}</h3>
         </div>
         <div class="small-8 large-8 columns">
-          <h4> Email : {{ orders.username }}</h4>
+          <h4> Email : {{ orders.customerInfo.email }}</h4>
         </div>
       </div>
       <div class="small-9 large-9 columns">
         <ul class="inline-list">
-          <li ng-repeat="food in orders.food">
+          <li ng-repeat="food in orders.menuItems">
            <button ng-click="itemFinished(orders, $index, $parent.$index)" class="button small radius">
               {{food.item}} : {{food.quantity}}
            </button>
