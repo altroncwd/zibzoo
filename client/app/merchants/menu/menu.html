@@ -67,6 +67,7 @@
         <button class="button" type="submit"> Add to Menu</button>
       </div>
     </form>
+    <alert type="alert.type" close="itemExists = false" ng-show="itemExists">You cannot add Duplicate Items</alert>
   </div>
 
 
@@ -100,6 +101,7 @@
               {{food.name}}
               <i class="fa fa-leaf" ng-show="food.isVegetarian"></i>
               <i class="fa fa-pagelines" ng-show="food.isVegan"></i>
+              <i class="fa fa-trash right deleteMenuItem" ng-click="deleteMenuItem(food)"></i>
               <span class="right">${{food.price}}</span>
             </li>
           </ul>

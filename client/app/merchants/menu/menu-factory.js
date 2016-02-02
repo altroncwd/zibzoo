@@ -11,15 +11,21 @@ angular.module('zibzoo.merchant.menu.factory', [])
       User.setNewToLocal();
     };
 
-    menu.remove = function (index) {
-      return menu.items.splice(index, 1);
+    menu.remove = function (menuItem) {
+      var menuItemsIndex = 0;
+      for (var i = 0; i < menu.items.length; i++) {
+        if (menu.items[i].name === menuItem.name) {
+          menuItemsIndex = i;
+        }
+      }
+      return menu.items.splice(menuItemsIndex, 1);
     };
 
     menu.deleteMenuItem = function (menuItemId) {
       return $http({
         method: 'DELETE',
         url: 'api/menu',
-        data: menuItemId
+        params: menuItemId
       })
         .success(function (data) {
           return data;

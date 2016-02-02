@@ -7,9 +7,9 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     $scope.vendor = User.data;
     $scope.menu = menu;
     $scope.menu.items = User.data.menuItems || [];
+    $scope.existingSections = [];
 
     $scope.menuItem;
-    // console.log(User.data.menuItems);
 
     $scope.models = {
       select: null,
@@ -19,12 +19,10 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       }
     };
 
-    $scope.setMenuToDnD = function () {
-      $scope.models.dropzones.menu = $scope.setSections();
-    };
 
     $scope.setSections = function () {
       var sections = [];
+      $scope.existingSections = [];
       $scope.menu.items.forEach(function (menuItem) {
         if (sections[menuItem.section.sectionIndex]) {
           sections[menuItem.section.sectionIndex].container.push(menuItem);
@@ -38,10 +36,14 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
             allowedTypes: ['menuItem'],
             container: [menuItem]
           };
+          $scope.existingSections[menuItem.section.sectionIndex] = menuItem.section.section;
         }
-      }
-        );
+      });
       return sections;
+    };
+
+    $scope.setMenuToDnD = function () {
+      $scope.models.dropzones.menu = $scope.setSections();
     };
 
     $scope.clearItem = function () {
@@ -68,10 +70,12 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       model = !model;
     };
 
-    $scope.deleteMenuItem = function (menuItemIndex) {
-      var toDelete = $scope.menu.remove(menuItemIndex);
+    $scope.deleteMenuItem = function (menuItem) {
+
+      var toDelete = $scope.menu.remove(menuItem);
       User.setNewToLocal();
-      $scope.menu.deleteMenuItem({ _id: toDelete._id })
+      $scope.setMenuToDnD();
+      $scope.menu.deleteMenuItem({ _id: toDelete[0]._id })
         .then(function (data) {
           $scope.deleteStatus = data.status;
         })
@@ -81,10 +85,28 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     };
 
     $scope.saveMenuItem = function (menuItem) {
-      console.log('this is the menuItem being saved', menuItem);
+      $scope.itemExists = false;
+      if ($scope.existingSections.indexOf(menuItem.section.section) === -1) {
+        $scope.existingSections.push(menuItem.section.section);
+      }
+      $scope.models.dropzones.menu.forEach(function (menuSection) {
+        if (menuSection.section === menuItem.section.section) {
+          menuItem.index = menuSection.container.length;
+        }
+        for (var i = 0; i < menuSection.container.length; i++) {
+          if (menuSection.container[i].name === menuItem.name) {
+            $scope.itemExists = true;
+            break;
+          }
+        }
+      });
+      if ($scope.itemExists) {
+        return;
+      }
+      menuItem.section.sectionIndex = $scope.existingSections.indexOf(menuItem.section.section);
       angular.extend(menuItem, { vendorId: $stateParams.merchantId });
       $scope.menu.addItem(menuItem);
-      $scope.clearItem();
+      $scope.setMenuToDnD();
       $scope.menu.saveMenuItem(menuItem)
         .then(function (data) {
           $scope.saveStatus = data.status;
@@ -92,7 +114,9 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         .catch(function (error) {
           $scope.saveStatus = error.status;
         });
+      $scope.clearItem();
     };
+
 
     $scope.setMenuToDnD();
     $scope.clearItem();
