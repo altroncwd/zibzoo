@@ -16,9 +16,9 @@ module.exports = function (app, express) {
   app.use('/api/menu', menuRouter);
   app.use('/api/orders', utils.hasToken, orderRouter);
 
-  require('../routes/customer/customerRoutes.js')(customerRouter);
-  require('../routes/vendor/vendorRoutes.js')(vendorRouter);
-  require('../routes/menuItem/menuItemRoutes.js')(menuRouter);
-  require('../routes/order/orderRoutes.js')(orderRouter);
+  require('../customer/customerRoutes.js')(customerRouter);
+  require('../vendor/vendorRoutes.js')(vendorRouter);
+  require('../menuItem/menuItemRoutes.js')(menuRouter);
+  require('../order/orderRoutes.js')(orderRouter);
 
 };
