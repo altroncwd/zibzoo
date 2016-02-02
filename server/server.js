@@ -24,9 +24,12 @@ console.log('server listening on ', port);
 // ------------------------------------------------
 // Server side socket test for vendor order list
 // ------------------------------------------------
+// _id: this is an id that the db adds on for refrence lookup
+//
 // setInterval(function () {
 //   console.log('Set timeout emit');
 //   io.sockets.emit('56afac79c04f12f2529bf0f9', {
+//     _id: 123j2352g34h342k5g3lk3,
 //     createdAt: Date,
 //     vendorId: String,
 //     customerId: String,
