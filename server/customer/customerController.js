@@ -9,7 +9,7 @@ var _ = require('underscore');
 mongoose.Promise = Promise;
 
 
-function _findCustomerByEmail(customerObj) {
+function _findOneCustomerByProperty(customerObj) {
   return Customer
     .findOne({
       email: customerObj.email
@@ -30,7 +30,38 @@ function _findCustomerByEmail(customerObj) {
 module.exports = {
 
   signIn: function (req, res) {
-    // TODO: add signIn() with _findCustomrByEmail
+    var customer = req.body;
+    var password = customer.password;
+
+    _findOneCustomerByProperty({ email: customer.email })
+      .then(function (foundCustomer) {
+        var vendorData;
+        if (!(foundCustomer instanceof Error)) {
+          vendorData = {
+            _id: foundCustomer._id,
+            isVendor: foundCustomer.isVendor
+          };
+        }
+        // console.log(foundVendor.prototype);
+        return [customerData, foundCustomer, bcrypt.compareAsync(password, foundCustomer.password)];
+        // return foundVendor.schema.verifyPassword(password);
+      })
+      .spread(function (customerData, foundCustomer, isMatch) {
+        console.log('A BUNCH OF CAPITAL LETTERS!!!', isMatch);
+        console.log('VENDOR DATA: ', customerData);
+        console.log('FOUND VENDOR: ', foundCustomer);
+        if (isMatch) {
+          req.token = utils.issueToken(customerData);
+          // console.log(req);
+        } else {
+          throw new Error('Incorrect username or password.');
+        }
+
+        // utils.sendHttpResponse(foundVendorResult, res, 200, 403);
+      })
+      .catch(function (error) {
+        // utils.sendHttpResponse(error, res, 200, 403);
+      });
   },
 
   signUp: function (req, res) {

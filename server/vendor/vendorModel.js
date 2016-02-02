@@ -1,6 +1,6 @@
 var utils = require('../config/utils.js');
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var Promise = require('bluebird');
 
 

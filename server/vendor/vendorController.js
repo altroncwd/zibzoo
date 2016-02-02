@@ -3,7 +3,7 @@ var utils = require('../config/utils.js');
 var Promise = require('bluebird');
 var cloudinary = require('cloudinary');
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 
 // Require menu item model for population in _findMultipleVendors()
@@ -91,13 +91,16 @@ module.exports = {
           };
         }
         // console.log(foundVendor.prototype);
-        return bcrypt.compareAsync(password, foundVendor.password);
+        return [vendorData, foundVendor, bcrypt.compareAsync(password, foundVendor.password)];
         // return foundVendor.schema.verifyPassword(password);
       })
-      .then(function (isMatch) {
+      .spread(function (vendorData, foundVendor, isMatch) {
         console.log('A BUNCH OF CAPITAL LETTERS!!!', isMatch);
+        console.log('VENDOR DATA: ', vendorData);
+        console.log('FOUND VENDOR: ', foundVendor);
         if (isMatch) {
-          // req.token = utils.issueToken(vendorDataResult);
+          req.token = utils.issueToken(vendorData);
+          // console.log(req);
         } else {
           throw new Error('Incorrect username or password.');
         }
@@ -105,7 +108,7 @@ module.exports = {
         // utils.sendHttpResponse(foundVendorResult, res, 200, 403);
       })
       .catch(function (error) {
-        utils.sendHttpResponse(error, res, 200, 403);
+        // utils.sendHttpResponse(error, res, 200, 403);
       });
   },
 

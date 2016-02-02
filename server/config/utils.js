@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');

@@ -76,7 +76,7 @@ module.exports = {
   },
 
   deleteMenuItem: function (req, res) {
-    var menuItem = req.body;
+    var menuItem = req.query;
 
     _removeMenuItem(menuItem)
       .then(function (menuItemDeleteStatus) {
