@@ -3,6 +3,7 @@ var utils = require('../config/utils.js');
 var Promise = require('bluebird');
 var cloudinary = require('cloudinary');
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 
 // Require menu item model for population in _findMultipleVendors()
@@ -12,6 +13,7 @@ require('../menuItem/menuItemModel.js');
 // Promisify libraries
 mongoose.Promise = Promise;
 Promise.promisify(cloudinary.uploader.upload);
+Promise.promisifyAll(bcrypt);
 
 
 var _imageConfig = {
@@ -22,9 +24,12 @@ var _imageConfig = {
 
 cloudinary.config(_imageConfig);
 
-function _findMultipleVendors(queryObj) {
+function _findMultipleVendors(queryObj, options) {
+  // console.log(queryObj);
+  options = options || '';
+  // TODO: verify .find() takes options and considers an empty string to include all options
   return Vendor
-    .find(queryObj)
+    .find(queryObj, options)
     .populate('menuItems')
     .then(function (vendors) {
       if (vendors.length === 0) {
@@ -35,6 +40,19 @@ function _findMultipleVendors(queryObj) {
     })
     .catch(function (error) {
       return error;
+    });
+}
+
+function _findOneVendorByProperty(queryObj, options) {
+  return _findMultipleVendors(queryObj, options)
+    .then(function (vendorArr) {
+      // TODO: possibly guard against the possibility of vendorArr coming back as 'undefined' and
+      // vendroArr[0] trying to access the '0' property of 'undefined'
+      if (vendorArr[0] && !(vendorArr[0] instanceof Error)) {
+        return vendorArr[0];
+      }
+
+      return vendorArr;
     });
 }
 
@@ -49,7 +67,7 @@ function _uploadImageToCloudinary(imagePath) {
 module.exports = {
 
   getMultipleVendors: function (req, res) {
-    var vendors = req.query
+    var vendors = req.query;
 
     _findMultipleVendors(vendors)
       .then(function (result) {
@@ -61,12 +79,39 @@ module.exports = {
 
   signIn: function (req, res) {
     var vendor = req.body;
-    // TODO: Complete signIn()
+    var password = vendor.password;
+
+    _findOneVendorByProperty({ email: vendor.email })
+      .then(function (foundVendor) {
+        var vendorData;
+        if (!(foundVendor instanceof Error)) {
+          vendorData = {
+            _id: foundVendor._id,
+            isVendor: foundVendor.isVendor
+          };
+        }
+        // console.log(foundVendor.prototype);
+        return bcrypt.compareAsync(password, foundVendor.password);
+        // return foundVendor.schema.verifyPassword(password);
+      })
+      .then(function (isMatch) {
+        console.log('A BUNCH OF CAPITAL LETTERS!!!', isMatch);
+        if (isMatch) {
+          // req.token = utils.issueToken(vendorDataResult);
+        } else {
+          throw new Error('Incorrect username or password.');
+        }
+
+        // utils.sendHttpResponse(foundVendorResult, res, 200, 403);
+      })
+      .catch(function (error) {
+        utils.sendHttpResponse(error, res, 200, 403);
+      });
   },
 
   signUp: function (req, res) {
     var vendor = req.body;
-    utils.findUserByEmail(vendor, Vendor)
+    utils.saveOneUserByEmail(vendor, Vendor)
       .then(function (savedVendor) {
         utils.sendHttpResponse(savedVendor, res, 201, 403);
       });
@@ -113,7 +158,7 @@ module.exports = {
 
 
 // Export private functions for testing
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'test') {
   module.exports._findMultipleVendors = _findMultipleVendors;
   module.exports._uploadImageToCloudinary = _uploadImageToCloudinary;
 }

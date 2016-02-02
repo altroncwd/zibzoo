@@ -11,7 +11,6 @@ Promise.promisifyAll(bcrypt);
 
 var _secret = process.env.TOKEN_SECRET;
 
-
 function _verifyToken(token) {
   var decoded = jwt.decode(token, _secret);
 
@@ -31,7 +30,7 @@ module.exports = {
     return payload;
   },
 
-  findUserByEmail: function (queryObj, Model) {
+  saveOneUserByEmail: function (queryObj, Model) {
     return Model
       .findOne({
         email: queryObj.email
@@ -42,6 +41,7 @@ module.exports = {
         }
 
         var newUser = new Model(queryObj);
+        console.log('newUser: ', newUser.schema.methods);
 
         return newUser.save();
       })

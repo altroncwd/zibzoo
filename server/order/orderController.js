@@ -47,7 +47,7 @@ module.exports = {
     var token = req.token;
     var model = '';
 
-    if (token.isVendor) {
+    if (token && token.isVendor) {
       model = 'Customer';
       searchParams.vendorId = token._id;
     } else {
@@ -83,7 +83,7 @@ module.exports = {
 
 
 // Export private functions for testing
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'test') {
   module.exports._findMultipleOrders = _findMultipleOrders;
   module.exports._saveMultipleOrders = _saveMultipleOrders;
 }

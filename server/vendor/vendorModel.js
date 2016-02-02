@@ -1,9 +1,16 @@
 var utils = require('../config/utils.js');
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+var Promise = require('bluebird');
+
+
+// Set promises
+mongoose.Promise = Promise;
+Promise.promisifyAll(bcrypt);
 
 var Schema = mongoose.Schema;
 
-var vendorSchema = new Schema({
+var VendorSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   salt: { type: String },
@@ -17,8 +24,13 @@ var vendorSchema = new Schema({
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
-// NOTE: May only work on 'validate'
-vendorSchema.pre('save', utils.hashPassword);
-vendorSchema.methods.checkPassword = utils.verifyPassword;
+VendorSchema.methods.verifyPassword = function (submittedPassword) {
+  var savedPassword = this.password;
+  console.log('savedPassword :');
 
-module.exports = mongoose.model('Vendor', vendorSchema);
+  return bcrypt.compareAsync(submittedPassword, savedPassword);
+};
+// NOTE: May only work on 'validate'
+VendorSchema.pre('save', utils.hashPassword);
+
+module.exports = mongoose.model('Vendor', VendorSchema);

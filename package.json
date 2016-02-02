@@ -14,7 +14,7 @@
     "sync": "browser-sync start --files \"client/**/**/*.css, client/**/**/*.html\" --proxy localhost:3000 --reload-delay 2000",
     "test": "npm run test:client -- --single-run --no-auto-watch && npm run test:server",
     "test:client": "karma start",
-    "test:server": "jasmine",
+    "test:server": "NODE_ENV=test jasmine",
     "postinstall": "gulp build"
   },
   "repository": {

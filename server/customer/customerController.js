@@ -36,7 +36,7 @@ module.exports = {
   signUp: function (req, res) {
     var customer = req.body;
 
-    utils.findUserByEmail(customer, Customer)
+    utils.saveOneUserByEmail(customer, Customer)
       .then(function (savedCustomer) {
         utils.sendHttpResponse(savedCustomer, res, 201, 403);
       });
@@ -83,6 +83,6 @@ module.exports = {
 
 
 // Export private functions for testing
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'test') {
   module.exports._findCustomerByEmail = _findCustomerByEmail;
 }

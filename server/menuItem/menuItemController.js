@@ -88,7 +88,7 @@ module.exports = {
 
 
 // Export private functions for testing
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'test') {
   module.exports._saveMenuItem = _saveMenuItem;
   module.exports._removeMenuItem = _removeMenuItem;
 }

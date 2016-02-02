@@ -7,4 +7,3 @@ module.exports = function (app) {
   app.put('/', orderController.updateOneOrder);
 
 };
-
