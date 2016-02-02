@@ -14,13 +14,17 @@ var transporter = nodemailer.createTransport({
 });
 
 // setup e-mail data
-var mailOptions = function (recipientEmail) {
-  console.log('EMAIL DETAILS', mailDetails.email, mailDetails.password);
+var mailOptions = function (finishedOrderObj) {
+  console.log('EMAIL DETAILS', mailDetails.email);
+
+  var orderNumber = finishedOrderObj.orderNumber + 1;
+  var displayMessage = '<div style="text-align:center; border: 5px solid #ff6600; border-radius: 10px; width:300px; font-family: Trebuchet MS, helvetica ">  <h1> ZibZoo </h1>  <p style="line-height: 0%">Your order is ready</p>  <h3 style="line-height: 0%"> Order # </h3>  <h1>' + orderNumber + '</h1>  <p style="line-height: 0%">or let them know your email</p>  <br>  <p style="line-height: 0%"> Get it fast, get it quick</p>  <p style="font-size:15px; line-height: 0%"> Thanks for choosing ZibZoo!</p></div>';
+
   var mail = {
     from: 'ZibZoo <' + mailDetails.email + '>',  // sender address
-    to: recipientEmail,  // list of receivers
+    to: finishedOrderObj.customerInfo.email,  // list of receivers
     subject: 'ZibZoo : Your order is ready ✔', // Subject line
-    text: 'Get it fast, get it quick. ZibZoo!!', // plaintext body
+    html: displayMessage
   };
   return mail;
 };
