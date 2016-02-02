@@ -34,7 +34,7 @@ angular.module('zibzoo.merchant.order.factory', [])
     var persistLocalData = function () {
       var persist = JSON.parse($window.localStorage.getItem('_id'));
       if (persist !== null) {
-        if ($window.Date.now() - persist.timeStamp < 10000) { // 3600000 = 1hours, set lower for testing
+        if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
           // console.log('Persisted total: ', persist);
           for (var i = 0; i < persist.orders.length; i++) {
             // console.log('looking for that hash', persist.orders[i]);
