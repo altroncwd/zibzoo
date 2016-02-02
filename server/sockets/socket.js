@@ -7,11 +7,11 @@ module.exports = function (server) {
   io.on('connect', function (socket) {
     console.log('Hyperdrive socket now connected');
 
-    socket.on('order finished', function (finishedOrder) {
-      console.log('User email:', finishedOrder.customerInfo.email, ': SERVER SIDE');
+    socket.on('order finished', function (finsihedOrder) {
+      console.log('User email:', finsihedOrder.customerInfo.email, ': SERVER SIDE');
 
       // Uncomment the line below for emails to work
-      // mail.sendMail(finishedOrder.customerInfo.email);
+      mail.sendMail(finsihedOrder);
     });
 
   });
@@ -19,19 +19,3 @@ module.exports = function (server) {
   return io;
 
 };
-
-// ----------- Socket Connection ----------------------
-
-/* ----------------------------------------------------
- orderObject format
- {  id: xxxxxxxxxx, (userId)
-    name: John Doe,   (the users name)
-    username: xxxxxxxx@xxxxmail.com,
-    order: {
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ex... ],
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ex... ],
-      vendorIdAsAKey: [ { food: 'burger', quantity:25 }, ex... ]
-    }
- }
-
----------------------------------------------------- */
