@@ -3,6 +3,8 @@ angular.module('zibzoo.filterbox.directive', [])
     return {
       restrict: 'E',
       templateUrl: 'app/components/filterbox/_filterbox.html',
-      require: '^VendorsListController'
+      controller: function () {
+         
+      }
     };
   });
