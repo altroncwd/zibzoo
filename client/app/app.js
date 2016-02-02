@@ -3,7 +3,7 @@ angular.module('zibzoo', [
   'mm.foundation',
   'zibzoo.navbar.directive',
   'zibzoo.vendors.directive',
-  'zibzoo.filterbox.directive',
+  'zibzoo.filtermenu.directive',
   'zibzoo.cart',
   'zibzoo.auth',
   'zibzoo.auth.factory',
