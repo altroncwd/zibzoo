@@ -5,30 +5,25 @@ angular.module('zibzoo.merchant.order.factory', [])
 
     var setLocalStorage = function () {
       var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
-      console.log('Before change', modifiedToken);
       modifiedToken.timeStamp = $window.Date.now();
-      modifiedToken.menuItems = order;
+      modifiedToken.orders = order;
       modifiedToken.total = order.total;
-      console.log('New modified token', modifiedToken);
+      // console.log('New modified token', modifiedToken);
       $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
     };
 
     var callDbOrderFinished = function (finishedOrderObj) {
-     // update the server info with the order id?
-
-     // if the server comes back with no matching item
-       // set /(or add) active key to false (aka finished)
-       // and then do a post request with the missing item
+     // call the DB using the order's unique number. its a put request
     };
 
     var persistLocalData = function () {
       var persist = JSON.parse($window.localStorage.getItem('_id'));
       if (persist !== null) {
-        if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
-          console.log('Persisted total: ', persist);
+        if ($window.Date.now() - persist.timeStamp < 10000) { // 3600000 = 1hours, set lower for testing
+          // console.log('Persisted total: ', persist);
           for (var i = 0; i < persist.orders.length; i++) {
-            delete persist.menuItems[i].$$hashKey;  // need to remove this or ng-repeate breaks
-            var temp = persist.menuItems[i];
+            // console.log('looking for that hash', persist.orders[i]);
+            var temp = persist.orders[i];
             order.push(temp);
           }
           order.total = persist.total;

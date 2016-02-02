@@ -4,8 +4,9 @@ angular.module('zibzoo.merchant.order', [])
     $scope.ordersList = Order.order;
 
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
-      currentOrder.food.splice(index, 1);
-      if (currentOrder.food.length === 0) {
+      // console.log(currentOrder, index, parentIndex);
+      Order.order[parentIndex].menuItems.splice(index, 1);
+      if (Order.order[parentIndex].menuItems.length === 0) {
         $scope.finishedOrder(parentIndex, currentOrder.ID);
       }
     };
