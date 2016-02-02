@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.order.factory', [])
-  .factory('Order', ['$window', function ($window) {
+  .factory('Order', ['$window', '$http', function ($window, $http) {
     var order = [];
     order.total = 0;
 
@@ -14,6 +14,21 @@ angular.module('zibzoo.merchant.order.factory', [])
 
     var callDbOrderFinished = function (finishedOrderObj) {
      // call the DB using the order's unique number. its a put request
+      var update = {
+        _id: finishedOrderObj._id,
+        propertiesToUpdate: { isActive: false }
+      };
+      $http({
+        method: 'PUT',
+        url: 'api/orders',
+        data: update
+      })
+        .success(function (data) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(data, status);
+        });
     };
 
     var persistLocalData = function () {
@@ -39,30 +54,3 @@ angular.module('zibzoo.merchant.order.factory', [])
       callDbOrderFinished: callDbOrderFinished,
     };
   }]);
-
-
-
-
-
-/*
-> if the server side goes down we save everything in local storage
-> if an order gets complete and the server is down we save that order in local storage in a finished order list
-> if vendor side crashes and orders come through
-  > que the db, remove any finished orders saved in local storage from the db
-  > que the db, get all orders that are not finished
-
-> if the server went down
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
