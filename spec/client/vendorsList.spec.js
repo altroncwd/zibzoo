@@ -50,7 +50,7 @@ describe('VendorsController', function () {
     });
   });
 
-  describe('$scope.selected', function () {
+  xdescribe('$scope.selected', function () {
     it('should not be defined on page load', function () {
       expect($scope.selected).toBeUndefined();
     });
@@ -61,7 +61,7 @@ describe('VendorsController', function () {
       });
   });
 
-  describe('$scope.filter', function () {
+  xdescribe('$scope.filter', function () {
     it('should be a property on the scope', function () {
       expect($scope.filter).toBeDefined();
     });
