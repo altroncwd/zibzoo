@@ -11,8 +11,123 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     $scope.menuItem;
 
     $scope.models = {
-      selected: null,
-      lists: {}
+      select: null,
+      sectionType: ['section'],
+      dropzones: {
+        menu: [
+          { section: 'Lunch',
+            type: 'section',
+            allowedTypes: ['menuItem'],
+            container: [
+              {
+                name: 'pizza1',
+                description: '',
+                price: 5,
+                section: {
+                  section: '',
+                  sectionIndex: 0,
+                },
+                index: 0,
+                inStock: true,
+                type: 'menuItem',
+                calories: 0,
+                isGlutenFree: false,
+                isVegan: true,
+                isDairyFree: false,
+                isVegetarian: false
+              }
+            ] },
+          { section: 'Appetizers',
+            type: 'section',
+            allowedTypes: ['menuItem'],
+            container: [
+              {
+                name: 'pizza2',
+                description: '',
+                price: 7,
+                section: {
+                  section: '',
+                  sectionIndex: 0,
+                },
+                index: 0,
+                inStock: true,
+                type: 'menuItem',
+                calories: 0,
+                isGlutenFree: false,
+                isVegan: false,
+                isDairyFree: false,
+                isVegetarian: false
+              }
+            ] },
+          { section: 'Entrees',
+            type: 'section',
+            allowedTypes: ['menuItem'],
+            container: [
+              {
+                name: 'pizza3',
+                description: '',
+                price: 8,
+                section: {
+                  section: '',
+                  sectionIndex: 0,
+                },
+                index: 0,
+                inStock: true,
+                type: 'menuItem',
+                calories: 0,
+                isGlutenFree: false,
+                isVegan: false,
+                isDairyFree: false,
+                isVegetarian: false
+              }
+            ] },
+          { section: 'Desserts',
+            type: 'section',
+            allowedTypes: ['menuItem'],
+            container: [
+              {
+                name: 'pizza4',
+                description: '',
+                price: 11,
+                section: {
+                  section: '',
+                  sectionIndex: 0,
+                },
+                index: 0,
+                inStock: true,
+                type: 'menuItem',
+                calories: 0,
+                isGlutenFree: false,
+                isVegan: true,
+                isDairyFree: false,
+                isVegetarian: false
+              }
+            ] },
+          { section: 'Drinks',
+            type: 'section',
+            allowedTypes: ['menuItem'],
+            container: [
+              {
+                name: 'pizza5',
+                description: '',
+                price: 90,
+                section: {
+                  section: '',
+                  sectionIndex: 0,
+                },
+                index: 0,
+                inStock: true,
+                type: 'menuItem',
+                calories: 0,
+                isGlutenFree: false,
+                isVegan: false,
+                isDairyFree: false,
+                isVegetarian: true
+              }
+            ] },
+
+        ]
+      }
     };
 
     $scope.clearItem = function () {
@@ -20,8 +135,13 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         name: '',
         description: '',
         price: '',
-        section: '',
+        section: {
+          section: '',
+          sectionIndex: 0,
+        },
+        index: 0,
         inStock: true,
+        type: 'menuItem',
         calories: 0,
         isGlutenFree: false,
         isVegan: false,
@@ -32,10 +152,6 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
 
     $scope.toggle = function (model) {
       model = !model;
-    };
-
-    $scope.setSection = function (section) {
-      $scope.menuItem.section = section;
     };
 
     $scope.deleteMenuItem = function (menuItemIndex) {
@@ -51,6 +167,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     };
 
     $scope.saveMenuItem = function (menuItem) {
+      console.log('this is the menuItem being saved', menuItem);
       angular.extend(menuItem, { vendorId: $stateParams.merchantId });
       $scope.menu.addItem(menuItem);
       $scope.clearItem();
@@ -63,6 +180,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         });
     };
 
+    // THIS IS FOR DND ONLY MENUITEMS NOT MENU SECTIONS
     $scope.setMenuToDnD = function (menuItems) {
       menuItems.forEach(function (item) {
         if ($scope.models.lists[item.section]) {
@@ -75,6 +193,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
 
     $scope.clearItem();
 
-    $scope.setMenuToDnD($scope.menu.items);
+    // THIS IS FOR DND ONLY FOR MENUITEM NOT MENU SECTIONS
+    // $scope.setMenuToDnD($scope.menu.items);
 
   }]);
