@@ -20,7 +20,8 @@ angular.module('zibzoo', [
   'zibzoo.merchant.menu.factory',
   'zibzoo.merchant.order.factory',
   'zibzoo.merchant.order',
-  'zibzoo.socketFactory'
+  'zibzoo.socketFactory',
+  'zibzoo.geolocation.factory'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -28,7 +29,7 @@ angular.module('zibzoo', [
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
-      controller: 'VendorsController'
+      controller: 'LandingController'
     })
     .state('vendors', {
       templateUrl: 'app/vendors/vendors.html',

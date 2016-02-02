@@ -12,7 +12,7 @@ angular.module('zibzoo.vendor.factory', [])
       imageUrl: 'https://placehold.it/1000x344',
       menuItems: [
         {
-          name: 'Royal with Cheese',
+          name: 'Royale with Cheese',
           description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit',
           price: 3.75
         },

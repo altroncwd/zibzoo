@@ -41,5 +41,4 @@ angular.module('zibzoo.vendor', [])
     };
 
     // $scope.getVendor({ _id: $stateParams.vendorId });
-
   }]);
