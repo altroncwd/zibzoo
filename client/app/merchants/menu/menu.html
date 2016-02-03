@@ -30,7 +30,7 @@
           <label class="right">
             Menu Section <small>required</small>
             <div>
-              <select class="menuItemSection" ng-model="menuItem.section.section" required>
+              <select class="menuItemSection" ng-model="menuItem.section" required>
                 <option ng-repeat="section in selectSections" value="{{section}}">{{section}}</option>
               </select>
             </div>
@@ -108,8 +108,8 @@
         </div>
       </li>
     </ul>
+    <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
   </div>
 
-  <button ng-show="models.dropzones.menu.length">Save Menu</button>
 
 </div>

@@ -24,19 +24,19 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       var sections = [];
       $scope.existingSections = [];
       $scope.menu.items.forEach(function (menuItem) {
-        if (sections[menuItem.section.sectionIndex]) {
-          sections[menuItem.section.sectionIndex].container.push(menuItem);
-          sections[menuItem.section.sectionIndex].container.sort(function (a, b) {
+        if (sections[menuItem.sectionIndex]) {
+          sections[menuItem.sectionIndex].container.push(menuItem);
+          sections[menuItem.sectionIndex].container.sort(function (a, b) {
             return a.index - b.index;
           });
         } else {
-          sections[menuItem.section.sectionIndex] = {
-            section: menuItem.section.section,
+          sections[menuItem.sectionIndex] = {
+            section: menuItem.section,
             type: 'section',
             allowedTypes: ['menuItem'],
             container: [menuItem]
           };
-          $scope.existingSections[menuItem.section.sectionIndex] = menuItem.section.section;
+          $scope.existingSections[menuItem.sectionIndex] = menuItem.section;
         }
       });
       return sections;
@@ -51,10 +51,8 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         name: '',
         description: '',
         price: '',
-        section: {
-          section: '',
-          sectionIndex: 0,
-        },
+        section: '',
+        sectionIndex: 0,
         index: 0,
         inStock: true,
         type: 'menuItem',
@@ -70,8 +68,33 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       model = !model;
     };
 
-    $scope.deleteMenuItem = function (menuItem) {
 
+
+
+
+    $scope.saveMenu = function () {
+      var toUpdate = [];
+      var menuSection = $scope.models.dropzones.menu;
+      for (var i = 0; i < menuSection.length; i++) {
+        for (var j = 0; j < menuSection[i].container.length; j++) {
+          menuSection[i].container[j].index = j;
+          menuSection[i].container[j].section = menuSection[i].section;
+          menuSection[i].container[j].sectionIndex = i;
+          toUpdate.push(menuSection[i].container[j]);
+        }
+      }
+      $scope.menu.saveMenu(toUpdate)
+        .then(function (success) {
+          console.log('success', success);
+        },
+          function (error) {
+            console.error('error', error);
+          });
+    };
+
+
+
+    $scope.deleteMenuItem = function (menuItem) {
       var toDelete = $scope.menu.remove(menuItem);
       User.setNewToLocal();
       $scope.setMenuToDnD();
@@ -84,13 +107,17 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
         });
     };
 
+
+
+
+
     $scope.saveMenuItem = function (menuItem) {
       $scope.itemExists = false;
-      if ($scope.existingSections.indexOf(menuItem.section.section) === -1) {
-        $scope.existingSections.push(menuItem.section.section);
+      if ($scope.existingSections.indexOf(menuItem.section) === -1) {
+        $scope.existingSections.push(menuItem.section);
       }
       $scope.models.dropzones.menu.forEach(function (menuSection) {
-        if (menuSection.section === menuItem.section.section) {
+        if (menuSection.section === menuItem.section) {
           menuItem.index = menuSection.container.length;
         }
         for (var i = 0; i < menuSection.container.length; i++) {
@@ -103,12 +130,12 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       if ($scope.itemExists) {
         return;
       }
-      menuItem.section.sectionIndex = $scope.existingSections.indexOf(menuItem.section.section);
+      menuItem.sectionIndex = $scope.existingSections.indexOf(menuItem.section);
       angular.extend(menuItem, { vendorId: $stateParams.merchantId });
-      $scope.menu.addItem(menuItem);
-      $scope.setMenuToDnD();
       $scope.menu.saveMenuItem(menuItem)
         .then(function (data) {
+          $scope.menu.addItem(data.data);
+          $scope.setMenuToDnD();
           $scope.saveStatus = data.status;
         })
         .catch(function (error) {
@@ -118,7 +145,12 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     };
 
 
-    $scope.setMenuToDnD();
+
+
+
+    if ($scope.menu.items) {
+      $scope.setMenuToDnD();
+    }
     $scope.clearItem();
 
   }]);

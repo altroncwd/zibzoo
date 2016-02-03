@@ -8,9 +8,7 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.setData = function (data) {
-      data.orders = user.data.orders;
-      data.menuItems = user.data.menuItems;
-      user.data = data;
+      angular.extend(user.data, data);
 
       $window.localStorage.setItem('_id', JSON.stringify(user.data));
       $rootScope.$broadcast('user:updated');
@@ -37,9 +35,9 @@ angular.module('zibzoo.user.factory', [])
         url: '/api/customer/charge',
         data: orders
       })
-      .then(function (res) {
-        return res.data;
-      });
+        .then(function (res) {
+          return res.data;
+        });
     };
 
     user.getFromLocal = function () {
