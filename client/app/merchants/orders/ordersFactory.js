@@ -1,6 +1,6 @@
 angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', ['$window', '$http', function ($window, $http) {
-    var order = [];
+    var order = [{orderNumber:2345}];
     order.total = 0;
 
     var setLocalStorage = function () {
@@ -13,7 +13,6 @@ angular.module('zibzoo.merchant.order.factory', [])
     };
 
     var callDbOrderFinished = function (finishedOrderObj) {
-     // call the DB using the order's unique number. its a put request
       var update = {
         _id: finishedOrderObj._id,
         propertiesToUpdate: { isActive: false }
