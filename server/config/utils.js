@@ -1,4 +1,4 @@
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
@@ -41,7 +41,6 @@ module.exports = {
         }
 
         var newUser = new Model(queryObj);
-        console.log('newUser: ', newUser.schema.methods);
 
         return newUser.save();
       })
