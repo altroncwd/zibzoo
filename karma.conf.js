@@ -28,6 +28,8 @@ module.exports = function (config) {
       'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
       'node_modules/angular-foundation/mm-foundation.js',
       'node_modules/angular-foundation/mm-foundation-tpls.js',
+      'node_modules/angular-simple-logger/dist/angular-simple-logger.js',
+      'node_modules/angular-google-maps/dist/angular-google-maps.js',
       'node_modules/lodash/lodash.js',
 
     // client source
