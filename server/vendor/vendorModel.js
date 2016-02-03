@@ -1,6 +1,6 @@
 var utils = require('../config/utils.js');
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 
 
@@ -17,20 +17,16 @@ var VendorSchema = new Schema({
   name: String,
   isVendor: { type: Boolean, default: true },
   stripeApiKey: String,
+  latitude: String,
+  longitude: String,
   description: String,
   cuisine: String,
-  imageUrl: String,
+  bannerImageUrl: String,
+  thumbImageUrl: String,
   location: String,
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
-VendorSchema.methods.verifyPassword = function (submittedPassword) {
-  var savedPassword = this.password;
-  console.log('savedPassword :');
-
-  return bcrypt.compareAsync(submittedPassword, savedPassword);
-};
-// NOTE: May only work on 'validate'
 VendorSchema.pre('save', utils.hashPassword);
 
 module.exports = mongoose.model('Vendor', VendorSchema);

@@ -13,6 +13,5 @@ var customerSchema = new Schema({
 });
 
 customerSchema.pre('validate', utils.hashPassword);
-customerSchema.methods.checkPassword = utils.verifyPassword;
 
 module.exports = mongoose.model('Customer', customerSchema);
