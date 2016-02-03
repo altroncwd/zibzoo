@@ -76,7 +76,7 @@ angular.module('zibzoo', [
       templateUrl: 'app/merchants/orders/orders.html',
       url: '/merchant/:merchantId/orders',
       controller: 'MerchantOrdersController',
-      authenticate: false
+      authenticate: true
     });
 
   $urlRouterProvider.otherwise('/');
