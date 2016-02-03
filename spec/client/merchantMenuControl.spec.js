@@ -53,7 +53,7 @@ describe('MerchantMenuController', function () {
     });
   });
 
-  describe('$scope.vendor', function () {
+  xdescribe('$scope.vendor', function () {
     it('should be a property on the scope object', function () {
       expect($scope.vendor).toBeDefined();
     });
@@ -71,7 +71,7 @@ describe('MerchantMenuController', function () {
       });
   });
 
-  describe('$scope.menu', function () {
+  xdescribe('$scope.menu', function () {
     it('should be a property on the $scope', function () {
       expect($scope.menu).toBeDefined();
     });
@@ -89,7 +89,7 @@ describe('MerchantMenuController', function () {
       });
   });
 
-  describe('$scope.menuItem', function () {
+  xdescribe('$scope.menuItem', function () {
     it('should be a property on the $scope object', function () {
       expect($scope.menuItem).toBeDefined();
     });
@@ -111,7 +111,7 @@ describe('MerchantMenuController', function () {
       });
   });
 
-  describe('$scope.clearItem', function () {
+  xdescribe('$scope.clearItem', function () {
     it('should be a function on the $scope object', function () {
       expect(typeof $scope.clearItem).toEqual('function');
     });
@@ -153,7 +153,7 @@ describe('MerchantMenuController', function () {
     });
   });
 
-  describe('$scope.deleteMenuItem', function () {
+  xdescribe('$scope.deleteMenuItem', function () {
     it('should be a function on the scope object', function () {
       expect(typeof $scope.deleteMenuItem).toBe('function');
     });
@@ -174,7 +174,7 @@ describe('MerchantMenuController', function () {
     });
   });
 
-  describe('$scope.saveMenuItem', function () {
+  xdescribe('$scope.saveMenuItem', function () {
     it('should be a function on the scope object', function () {
       expect(typeof $scope.saveMenuItem).toBe('function');
     });

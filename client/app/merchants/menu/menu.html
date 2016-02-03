@@ -30,7 +30,7 @@
           <label class="right">
             Menu Section <small>required</small>
             <div>
-              <select class="menuItemSection" name="" required>
+              <select class="menuItemSection" ng-model="menuItem.section" required>
                 <option ng-repeat="section in selectSections" value="{{section}}">{{section}}</option>
               </select>
             </div>
@@ -65,21 +65,51 @@
       </ul>
       <div>
         <button class="button" type="submit"> Add to Menu</button>
-        <button class="button" ng-click="clearItem()">Cancel</button>
       </div>
     </form>
+    <alert type="alert.type" close="itemExists = false" ng-show="itemExists">You cannot add Duplicate Items</alert>
   </div>
 
-  <div class="small-12 columns">
-    <ul class="menu-list">
-      <li ng-repeat="item in menu.items track by $index" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move"
-      dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+
+
+  <!--<div class="small-12 columns menuDrag" ng-repeat="(listName, list) in models.lists track by listName">
+    <header class="section-header main">
+      <h3 class="subheader">{{listName}}</h3>
+    </header>
+    <ul dnd-list="list" class="menu-list">
+      <li ng-repeat="item in list" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="models.selected = item"
+      ng-class="{'selected': models.selected === item}">
         {{item.name}}
-        <i class="fa fa-leaf" ng-show="item.isVegetarian || item.isVegan"></i>
+        <i class="fa fa-leaf" ng-show="item.isVegetarian"></i>
         <i class="fa fa-pagelines" ng-show="item.isVegan"></i>
         <span class="right">${{item.price}}</span>
       </li>
     </ul>
+  </div>-->
+
+  <div class="small-12 columns menuDrag">
+    <ul dnd-list="models.dropzones.menu" dnd-allowed-types="models.sectionType">
+      <li ng-repeat="section in models.dropzones.menu" dnd-draggable="section" dnd-type="section.type" dnd-effect-allowed="move"
+      dnd-moved="models.dropzones.menu.splice($index, 1)" dnd-selected="models.selected = section" ng-class="{selected: models.selected === item}">
+        <header class="section-header main">
+          <h3 class="subheader">{{section.section}}</h3>
+        </header>
+        <div>
+          <ul class="menu-list" dnd-list="section.container" dnd-allowed-types="section.allowedTypes">
+            <li ng-repeat="food in section.container" dnd-draggable="food" dnd-type="food.type" dnd-effect-allowed="move" dnd-moved="section.container.splice($index, 1)"
+            dnd-selected="models.selected = food" ng-class="{selected: models.selected === food}">
+              {{food.name}}
+              <i class="fa fa-leaf" ng-show="food.isVegetarian"></i>
+              <i class="fa fa-pagelines" ng-show="food.isVegan"></i>
+              <i class="fa fa-trash right deleteMenuItem" ng-click="deleteMenuItem(food)"></i>
+              <span class="right">${{food.price}}</span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
   </div>
+
 
 </div>

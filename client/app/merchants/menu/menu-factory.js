@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', ['$http', '$stateParams', 'User', function ($http, $stateParams, User) {
+  .factory('menu', ['$http', '$stateParams', 'User', '$q', function ($http, $stateParams, User, $q) {
     var menu = {};
 
     menu.items = User.data.menuItems;
@@ -11,15 +11,21 @@ angular.module('zibzoo.merchant.menu.factory', [])
       User.setNewToLocal();
     };
 
-    menu.remove = function (index) {
-      return menu.items.splice(index, 1);
+    menu.remove = function (menuItem) {
+      var menuItemsIndex = 0;
+      for (var i = 0; i < menu.items.length; i++) {
+        if (menu.items[i].name === menuItem.name) {
+          menuItemsIndex = i;
+        }
+      }
+      return menu.items.splice(menuItemsIndex, 1);
     };
 
     menu.deleteMenuItem = function (menuItemId) {
       return $http({
         method: 'DELETE',
         url: 'api/menu',
-        data: menuItemId
+        params: menuItemId
       })
         .success(function (data) {
           return data;
@@ -30,6 +36,33 @@ angular.module('zibzoo.merchant.menu.factory', [])
             status
             );
         });
+    };
+
+    menu.saveMenu = function (toBeUpdatedArray) {
+      var promises = [];
+      toBeUpdatedArray.forEach(function (menuItem) {
+        var propsToUpdate = {
+          _id: menuItem._id,
+          propertiesToUpdate: {
+            index: menuItem.index,
+            section: menuItem.section,
+            sectionIndex: menuItem.sectionIndex
+          }
+        };
+        var response = $http({
+          method: 'PUT',
+          url: 'api/menu',
+          data: propsToUpdate
+        })
+          .then(function (data) {
+            return data;
+          })
+          .catch(function (error) {
+            console.error('Error', error);
+          });
+        promises.push(response);
+      });
+      return $q.all(promises);
     };
 
     menu.saveMenuItem = function (menuItemObject) {
