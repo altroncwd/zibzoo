@@ -3,7 +3,7 @@ var utils = require('../config/utils.js');
 var Promise = require('bluebird');
 var cloudinary = require('cloudinary');
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 
 
 // Require menu item model for population in _findMultipleVendors()
@@ -95,9 +95,6 @@ module.exports = {
         // return foundVendor.schema.verifyPassword(password);
       })
       .spread(function (vendorData, foundVendor, isMatch) {
-        console.log('A BUNCH OF CAPITAL LETTERS!!!', isMatch);
-        console.log('VENDOR DATA: ', vendorData);
-        console.log('FOUND VENDOR: ', foundVendor);
         if (isMatch) {
           req.token = utils.issueToken(vendorData);
           // console.log(req);
@@ -105,10 +102,10 @@ module.exports = {
           throw new Error('Incorrect username or password.');
         }
 
-        // utils.sendHttpResponse(foundVendorResult, res, 200, 403);
+        utils.sendHttpResponse(foundVendor, res, 200, 403);
       })
       .catch(function (error) {
-        // utils.sendHttpResponse(error, res, 200, 403);
+        utils.sendHttpResponse(error, res, 200, 403);
       });
   },
 
@@ -135,20 +132,27 @@ module.exports = {
     var vendor = req.body;
 
     _uploadImageToCloudinary(filePath)
-      .then(function (uploadedImage) {
-        var vendorUpdate = {
+      .then(function (result) {
+        var urlType = '';
+        if (vendor.type === 'thumb') {
+          urlType = 'thumbImageUrl';
+        } else {
+          urlType = 'bannerImageUrl';
+        }
+
+        var updateObj = {
           _id: vendor._id,
-          propertiesToUpdate: {
-            imageUrl: uploadedImage.url
-          }
+          propertiesToUpdate: {}
         };
 
-        utils.modifyOneRecordById(vendorUpdate, Vendor)
+        updateObj.propertiesToUpdate[urlType] = result.url;
+
+        utils.modifyOneRecordById(updateObj, Vendor)
           .then(function (numUpdated) {
             return numUpdated;
           });
 
-        utils.sendHttpResponse(vendorUpdate, res, 200, 500);
+        utils.sendHttpResponse(updateObj, res, 200, 500);
       })
       .catch(function (error) {
         return error;
