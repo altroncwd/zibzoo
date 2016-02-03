@@ -83,6 +83,8 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
           toUpdate.push(menuSection[i].container[j]);
         }
       }
+      User.data.menuItems = toUpdate;
+      User.setNewToLocal();
       $scope.menu.saveMenu(toUpdate)
         .then(function (success) {
           console.log('success', success);
