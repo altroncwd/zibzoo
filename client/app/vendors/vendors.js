@@ -2,11 +2,11 @@ angular.module('zibzoo.vendors', [])
   .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
     $scope.location = location.data;
     $scope.vendors = vendor.tempData;
-    $scope.map = { 
-      center: { 
-        latitude: 37.7874963, 
-        longitude: -122.4020974 
-      }, 
+    $scope.map = {
+      center: {
+        latitude: 37.7874963,
+        longitude: -122.4020974
+      },
       zoom: 15
     };
 
@@ -30,4 +30,5 @@ angular.module('zibzoo.vendors', [])
       //   longitude: location.longitude
       // });
     });
+
   }]);

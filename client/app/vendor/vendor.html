@@ -6,21 +6,19 @@
     <h3 class="subheader">{{vendor.name}}</h3>
     <hr>
     <p>{{vendor.description}}</p>
-
-    <section class="menu">
-      <header><h3>Menu</h3></header>
-      <div class="row" ng-repeat="row in items">
-        <div class="small-12 large-6 columns" ng-repeat="item in row">
-          <ul class="menu-list">
-            <li ng-click="order(item)">
-              <p>
-                <span>{{item.name}}</span>
-                <span class="right">{{item.price | currency}}</span>
-              </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <div class="small-12 columns menu">
+      <ul ng-repeat="section in items" class="menu-list">
+        <header>
+          <h3>{{section.section}}</h3>
+        </header>
+        <li ng-repeat="menuItem in section.container" ng-click="order(menuItem)">
+          <p>
+            <span>{{menuItem.name}}</span>
+            <span class="right">{{menuItem.price | currency}}</span>
+          </p>
+        </li>
+      </ul>
+      <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
+    </div>
   </div>
 </div>
