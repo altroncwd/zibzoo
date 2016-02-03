@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var port = process.env.PORT;
 var uri = process.env.MONGOLAB_URI;
 var server = require('http').createServer(app);
-var io = require('./sockets/socket.js')(server);
+var io = require('./socket.js')(server);
 
 module.exports = io;  // simpley aquire the server to have access to the socket
 

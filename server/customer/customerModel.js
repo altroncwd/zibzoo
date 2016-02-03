@@ -1,4 +1,4 @@
-var dbUtils = require('../../utils/db.utils.js');
+var utils = require('../config/utils.js');
 var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
@@ -12,7 +12,6 @@ var customerSchema = new Schema({
   stripeId: String
 });
 
-customerSchema.pre('validate', dbUtils.hashPassword);
-customerSchema.methods.checkPassword = dbUtils.comparePassword;
+customerSchema.pre('validate', utils.hashPassword);
 
 module.exports = mongoose.model('Customer', customerSchema);

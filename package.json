@@ -9,12 +9,13 @@
   "scripts": {
     "lint": "esw client/app server/ test/",
     "lint:fix": "npm run lint -- --fix --quiet",
-    "start": "nodemon server/server.js & gulp & npm run lint:fix -- --watch & sleep 3 && npm run sync",
+    "start": "nodemon server/server.js",
+    "build": "gulp",
     "stop": "killall node; killall gulp",
     "sync": "browser-sync start --files \"client/**/**/*.css, client/**/**/*.html\" --proxy localhost:3000 --reload-delay 2000",
     "test": "npm run test:client -- --single-run --no-auto-watch && npm run test:server",
     "test:client": "karma start",
-    "test:server": "jasmine",
+    "test:server": "set NODE_ENV=test && jasmine",
     "postinstall": "gulp build"
   },
   "repository": {

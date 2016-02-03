@@ -1,23 +1,32 @@
+var utils = require('../config/utils.js');
 var mongoose = require('mongoose');
-var dbUtils = require('../../utils/db.utils.js');
+var bcrypt = require('bcrypt');
+var Promise = require('bluebird');
+
+
+// Set promises
+mongoose.Promise = Promise;
+Promise.promisifyAll(bcrypt);
 
 var Schema = mongoose.Schema;
 
-var vendorSchema = new Schema({
+var VendorSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   salt: { type: String },
   name: String,
   isVendor: { type: Boolean, default: true },
   stripeApiKey: String,
+  latitude: String,
+  longitude: String,
   description: String,
   cuisine: String,
-  imageUrl: String,
+  bannerImageUrl: String,
+  thumbImageUrl: String,
   location: String,
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 
-vendorSchema.pre('validate', dbUtils.hashPassword);
-vendorSchema.methods.checkPassword = dbUtils.comparePassword;
+VendorSchema.pre('save', utils.hashPassword);
 
-module.exports = mongoose.model('Vendor', vendorSchema);
+module.exports = mongoose.model('Vendor', VendorSchema);

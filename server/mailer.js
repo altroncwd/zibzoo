@@ -1,8 +1,12 @@
 var nodemailer = require('nodemailer');
-var mailDetails = require('../utils/email.utils');
 /* ************************************************************
 Emailer
 **************************************************************/
+
+var mailDetails = {
+  email: process.env.EMAIL,
+  password: process.env.EMAILPASSWORD
+};
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({

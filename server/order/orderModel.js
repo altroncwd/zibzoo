@@ -6,10 +6,11 @@ var orderSchema = new Schema({
   createdAt: Date,
   vendorId: String,
   customerId: String,
-  isActive: Boolean,
+  transactionId: String,
+  isActive: { type: Boolean, default: true },
   latitude: String,
   longitude: String,
-  menuItems: [Schema.Types.Mixed],
+  orderItems: [Schema.Types.Mixed],
   customerInfo: { type: Schema.Types.ObjectId, ref: 'Customer' },
   vendorInfo: { type: Schema.Types.ObjectId, ref: 'Vendor' }
 });

@@ -1,27 +1,12 @@
-var Order = require('../../db/order/orderModel.js');
-var controllerUtils = require('../../utils/controller.utils.js');
-var mongoose = require('mongoose');
+var Order = require('./orderModel.js');
+var utils = require('../config/utils.js');
 var Promise = require('bluebird');
+var mongoose = require('mongoose');
 
-require('../../db/menuItem/menuItemModel.js');
 
+// Promisify libraries
 mongoose.Promise = Promise;
 
-function _updateRecord(recordObj, Model) {
-  return Model.update(
-    { _id: recordObj._id },
-    { $set: recordObj.propertiesToUpdate })
-    .then(function (affectedDocsObj) {
-      if (affectedDocsObj.nModified === 0) {
-        throw new Error('No records were updated.');
-      }
-
-      return affectedDocsObj;
-    })
-    .catch(function (error) {
-      return error;
-    });
-}
 
 function _findMultipleOrders(queryObj, referenceModel) {
   return Order
@@ -53,24 +38,16 @@ function _saveMultipleOrders(orderArr) {
     });
 }
 
+
 module.exports = {
 
-  postMultipleOrders: function (req, res) {
-    var orders = req.body.orders;
-
-    _saveMultipleOrders(orders)
-      .then(function (result) {
-        controllerUtils.sendHttpResponse(result, res, 201, 403);
-      });
-  },
-
-  // TODO: look into tidying up model selection
+  // TODO: tidy up model selection
   getMultipleOrders: function (req, res) {
     var searchParams = {};
     var token = req.token;
     var model = '';
 
-    if (token.isVendor) {
+    if (token && token.isVendor) {
       model = 'Customer';
       searchParams.vendorId = token._id;
     } else {
@@ -80,18 +57,33 @@ module.exports = {
 
     _findMultipleOrders(searchParams, model)
       .then(function (orders) {
-        controllerUtils.sendHttpResponse(orders, res, 200, 404);
+        utils.sendHttpResponse(orders, res, 200, 404);
       });
   },
 
-  modifyOneOrder: function (req, res) {
+  postMultipleOrders: function (req, res) {
+    var orders = req.body.orders;
+
+    _saveMultipleOrders(orders)
+      .then(function (savedOrders) {
+        utils.sendHttpResponse(savedOrders, res, 201, 403);
+      });
+  },
+
+  updateOneOrder: function (req, res) {
     var order = req.body.order;
 
-    // NOTE: change to utility version of update record
-    _updateRecord(order, Order)
+    utils.modifyOneRecordById(order, Order)
       .then(function (orderUpdateStatus) {
-        controllerUtils.sendHttpResponse(orderUpdateStatus, res, 304, 404);
+        utils.sendHttpResponse(orderUpdateStatus, res, 304, 404);
       });
-  },
+  }
 
 };
+
+
+// Export private functions for testing
+if (process.env.NODE_ENV === 'test') {
+  module.exports._findMultipleOrders = _findMultipleOrders;
+  module.exports._saveMultipleOrders = _saveMultipleOrders;
+}
