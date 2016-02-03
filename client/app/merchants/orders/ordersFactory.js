@@ -1,6 +1,6 @@
 angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', ['$window', '$http', function ($window, $http) {
-    var order = [{orderNumber:2345}];
+    var order = [];
     order.total = 0;
 
     var setLocalStorage = function () {
