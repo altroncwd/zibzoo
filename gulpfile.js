@@ -39,6 +39,8 @@ var paths = {
     'node_modules/socket.io-client/socket.io.js',
     'node_modules/underscore/underscore.js',
     'node_modules/lodash/lodash.js',
+    'node_modules/angular-simple-logger/dist/angular-simple-logger.js',
+    'node_modules/angular-google-maps/dist/angular-google-maps.js',
     'client/app/**/*.*js'
   ]
 };

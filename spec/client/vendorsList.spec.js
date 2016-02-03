@@ -38,7 +38,7 @@ describe('VendorsController', function () {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('$scope.vendors', function () {
+  xdescribe('$scope.vendors', function () {
     it('should be a property on the scope', function () {
       expect($scope.vendors).toBeDefined();
     });
@@ -75,7 +75,7 @@ describe('VendorsController', function () {
       });
   });
 
-  describe('$scope.getVendors', function () {
+  xdescribe('$scope.getVendors', function () {
     it('should be property on the scope', function () {
       expect($scope.getVendors).toBeDefined();
     });

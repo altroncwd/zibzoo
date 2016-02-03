@@ -1,17 +1,18 @@
 angular.module('zibzoo', [
   'ui.router',
   'mm.foundation',
+  'uiGmapgoogle-maps',
   'zibzoo.navbar.directive',
   'zibzoo.vendors.directive',
   'zibzoo.filtermenu.directive',
+  'zibzoo.image-uploader.directive',
+  'zibzoo.places.directive',
   'zibzoo.cart',
   'zibzoo.auth',
   'zibzoo.auth.factory',
   'zibzoo.user.factory',
   'zibzoo.landing',
   'zibzoo.vendors',
-  'zibzoo.image-uploader.directive',
-  'zibzoo.vendors.directive',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
   'zibzoo.order',
@@ -21,7 +22,7 @@ angular.module('zibzoo', [
   'zibzoo.merchant.order.factory',
   'zibzoo.merchant.order',
   'zibzoo.socketFactory',
-  'zibzoo.geolocation.factory'
+  'zibzoo.location.factory'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -33,7 +34,7 @@ angular.module('zibzoo', [
     })
     .state('vendors', {
       templateUrl: 'app/vendors/vendors.html',
-      url: '/vendors',
+      url: '/vendors/:latlng',
       controller: 'VendorsController'
     })
     .state('vendor', {
@@ -41,6 +42,8 @@ angular.module('zibzoo', [
       url: '/vendor/:vendorId',
       controller: 'VendorController'
     });
+
+    url: '/merchant/:merchantId',
 
   $stateProvider
     .state('signup', {
