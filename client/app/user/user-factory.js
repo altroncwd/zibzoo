@@ -41,7 +41,10 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.getFromLocal = function () {
-      user.data = JSON.parse($window.localStorage.getItem('_id'));
+      var data = JSON.parse($window.localStorage.getItem('_id'));
+      data.longitude = parseFloat(data.longitude);
+      data.latitude = parseFloat(data.latitude);
+      user.data = data;
     };
 
     user.setNewToLocal = function () {

@@ -20,7 +20,7 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         $scope.bannerImg = User.data.bannerImageUrl;
       }
       if (!User.data.thumbImageUrl) {
-        $scope.thumbImg = 'https://placehold.it/1000x344';
+        $scope.thumbImg = 'https://placehold.it/900x500';
       } else {
         $scope.thumbImg = User.data.thumbImageUrl;
       }
