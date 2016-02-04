@@ -27,7 +27,7 @@ angular.module('zibzoo.cart', [])
           for (var i = 0; i < result.length; i++) {
             var individualOrder = result[i];
             if (individualOrder.status === 'succeeded') {
-              Socket.emit(individualOrder.vendorId, individualOrder);
+              Socket.emit('new order', individualOrder);
             }
           }
           // end of socket call -------------------------------------------
