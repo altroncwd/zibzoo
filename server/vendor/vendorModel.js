@@ -23,7 +23,6 @@ var VendorSchema = new Schema({
   cuisine: String,
   bannerImageUrl: String,
   thumbImageUrl: String,
-  location: String,
   menuItems: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }]
 });
 

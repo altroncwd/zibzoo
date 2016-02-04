@@ -2,6 +2,7 @@ var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
+var stripe = require('stripe')('process.env.STRIPE_TEST_API_KEY');
 
 
 // Set promises
@@ -31,16 +32,25 @@ module.exports = {
   },
 
   saveOneUserByEmail: function (queryObj, Model) {
+    var customerData = queryObj;
     return Model
       .findOne({
-        email: queryObj.email
+        email: customerData.email
       })
       .then(function (user) {
         if (user) {
           throw new Error(user.email + ' already exists.');
         }
 
-        var newUser = new Model(queryObj);
+        return stripe.customers.create({
+          description: 'Customer'
+        });
+
+      })
+      .then(function (customer) {
+
+        customerData.stripeId = customer.id;
+        var newUser = new Model(customerData);
 
         return newUser.save();
       })
@@ -48,7 +58,7 @@ module.exports = {
         if (!savedUser) {
           throw new Error('Unable to save ' + savedUser.email + '.');
         }
-
+        console.log('SAVED USER', savedUser);
         return savedUser;
       })
       .catch(function (error) {

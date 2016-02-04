@@ -62,7 +62,6 @@
       2,
       "property"
     ],
-    "eqeqeq": 1,
     "guard-for-in": 2,
     "no-alert": 1,
     "no-caller": 2,
