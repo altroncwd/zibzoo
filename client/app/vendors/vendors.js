@@ -1,5 +1,5 @@
 angular.module('zibzoo.vendors', [])
-  .controller('VendorsController', ['$rootScope', '$scope', '$stateParams', 'vendor', 'location', function ($rootScope, $scope, $stateParams, vendor, location) {
+  .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
     $scope.location = location.data;
     $scope.vendors = vendor.tempData;
     $scope.map = { 
@@ -23,6 +23,7 @@ angular.module('zibzoo.vendors', [])
     location.setLocation($stateParams.latlng, function (location) {
       $scope.map.center.latitude = location.latitude;
       $scope.map.center.longitude = location.longitude;
+      $scope.$apply();
 
       // $scope.getVendors({
       //   latitude: location.latitude,
