@@ -17,6 +17,9 @@ angular.module('zibzoo.auth.factory', [])
         .then(function (res) {
           delete res.data.password;
           delete res.data.salt;
+          delete res.data.creditCard;
+          delete res.data.ccDate;
+          delete res.data.cvc;
           return res.data;
         });
     };

@@ -29,6 +29,12 @@
              ng-show="!isAuth()">Login</a>
         </li>
         <li>
+          <a ui-sref="customer({ customerId: user._id})"
+            ng-show="isAuth() && user.isVendor === false">
+            Edit Profile
+          </a>
+        </li>
+        <li>
           <a href=""
              ng-click="signout()"
              ng-show="isAuth()">Logout</a>

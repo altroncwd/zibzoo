@@ -17,6 +17,17 @@ angular.module('zibzoo.user.factory', [])
       $rootScope.$broadcast('user:updated');
     };
 
+    user.updateCustomer = function (customer) {
+      return $http({
+        method: 'PUT',
+        url: 'api/customer/update',
+        data: customer
+      })
+        .then(function (data) {
+          return data;
+        });
+    };
+
     user.resetUser = function () {
       user.data = {
         orders: [],
@@ -45,8 +56,10 @@ angular.module('zibzoo.user.factory', [])
 
     user.getFromLocal = function () {
       var data = JSON.parse($window.localStorage.getItem('_id'));
-      data.longitude = parseFloat(data.longitude);
-      data.latitude = parseFloat(data.latitude);
+      if (isNaN(data.longitude) && isNaN(data.latitude)) {
+        data.longitude = parseFloat(data.longitude);
+        data.latitude = parseFloat(data.latitude);
+      }
       user.data = data;
     };
 
@@ -60,6 +73,7 @@ angular.module('zibzoo.user.factory', [])
       for (var key in version2) {
         if ((!Array.isArray(version2[key])) && (version2[key] !== version1[key] || !version1[key])) {
           diffUser[key] = version2[key];
+
         }
       }
       return diffUser;

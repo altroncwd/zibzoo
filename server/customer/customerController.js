@@ -74,8 +74,7 @@ module.exports = function (io) {
 
     updateCustomer: function (req, res) {
       var customer = req.body;
-
-      utils.modifyOneRecordById(customer)
+      utils.modifyOneRecordById(customer, Customer)
         .then(function (docsAffected) {
           utils.sendHttpResponse(docsAffected, res, 304, 404);
         });
