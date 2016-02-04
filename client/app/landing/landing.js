@@ -15,6 +15,7 @@ angular.module('zibzoo.landing', [])
     location.getCurrentLocation(function (location) {
       $scope.location = location;
       $scope.$apply();
+      
       // $scope.getVendors({
       //   latitude: location.latitude,
       //   longitude: location.longitude

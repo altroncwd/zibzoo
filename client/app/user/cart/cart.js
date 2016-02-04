@@ -1,5 +1,5 @@
 angular.module('zibzoo.cart', [])
-  .controller('CartController', ['$scope', '$modal', 'User', function ($scope, $modal, User) {
+  .controller('CartController', ['$scope', '$modal', 'User', 'Socket', function ($scope, $modal, User, Socket) {
     $scope.cart = User.data.orders;
     $scope.total = getTotal();
 
@@ -23,6 +23,14 @@ angular.module('zibzoo.cart', [])
 
       User.charge(orders)
         .then(function (result) {
+          // section for Client end socket call ---------------------------
+          for (var i = 0; i < result.length; i++) {
+            var individualOrder = result[i];
+            if (individualOrder.status === 'succeeded') {
+              Socket.emit('new order', individualOrder);
+            }
+          }
+          // end of socket call -------------------------------------------
           User.data.orders.length = 0;
           $scope.cancel();
           console.log('result: ', result);

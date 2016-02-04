@@ -10,6 +10,8 @@ angular.module('zibzoo.vendor.factory', [])
       cuisine: 'American',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
+      latitude: 37.787899, 
+      longitude: -122.399699,
       menuItems: [
         {
           name: 'Royale with Cheese',
@@ -49,6 +51,8 @@ angular.module('zibzoo.vendor.factory', [])
       cuisine: 'Italian',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
+      latitude: 37.789699, 
+      longitude: -122.397494,
       menuItems: [
         {
           name: 'Peperonni Pizza',
@@ -88,6 +92,8 @@ angular.module('zibzoo.vendor.factory', [])
       cuisine: 'Soup',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
+      latitude: 37.788001, 
+      longitude: -122.398815,
       menuItems: [
         {
           name: 'Chicken Soup',
@@ -127,6 +133,8 @@ angular.module('zibzoo.vendor.factory', [])
       cuisine: 'Thai',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
+      latitude: 37.787094, 
+      longitude: -122.402962,
       menuItems: [
         {
           name: 'Pad Thai',
@@ -166,6 +174,8 @@ angular.module('zibzoo.vendor.factory', [])
       cuisine: 'Seafood',
       description: 'this is a shop that sells food aka a restaurant',
       imageUrl: 'https://placehold.it/1000x344',
+      latitude: 37.786971, 
+      longitude: -122.398086,
       menuItems: [
         {
           name: 'Filet of Soul',
