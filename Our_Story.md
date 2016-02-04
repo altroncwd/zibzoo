@@ -7,54 +7,54 @@ Coming to Zibzoo as a vendor? Great, we've made it easy to manage your account. 
 
 # User Interaction
 
-Browse food trucks in your area
+- Browse food trucks in your area
 
-![alt tag](./pictureAssets/HomeScreen.png)
+![alt tag](./storyAssets/HomeScreen.png)
 
-Choose a vendor and check out their menu
+- Choose a vendor and check out their menu
 
-![alt tag](./pictureAssets/MerchPageView.png)
+![alt tag](./storyAssets/MerchPageView.png)
 
-Wait, you can see menus but before you can order any food online, you need to log in.
+- Wait, you can see menus but before you can order any food online, you need to log in.
 
-![alt tag](./pictureAssets/LogIn.png)
+![alt tag](./storyAssets/LogIn.png)
 
-Grab some food and add it to your cart, want to grab food from more then one vendor? No problem, feel free to add items from diffrent vendors
+- Grab some food and add it to your cart, want to grab food from more then one vendor? No problem, feel free to add items from diffrent vendors
 
-![alt tag](./pictureAssets/AddItemToCart.png)
+![alt tag](./storyAssets/AddItemToCart.png)
 
-Once your ready to finish, head over to your order cart and double check your food
+- Once your ready to finish, head over to your order cart and double check your food
 
-![alt tag](./pictureAssets/ShoppingCart.png)
+![alt tag](./storyAssets/ShoppingCart.png)
 
-Finaly just place your order and confirm your payment.  We take care of all the details so you dont have to.  All you need to do now is go pick up your food.
+- Finaly just place your order and confirm your payment.  We take care of all the details so you dont have to.  All you need to do now is go pick up your food.
 
-![alt tag](./pictureAssets/ConfirmPayment.png)
+![alt tag](./storyAssets/ConfirmPayment.png)
 
-Don't want to head out untill your food is ready? Don't have the time to get out there untill you know your food is ready.  Well we have you covered.  Once a vendor finishes you food, you'll automaticaly receive an email letting you know its all finsihed.
+- Don't want to head out untill your food is ready? Don't have the time to get out there untill you know your food is ready.  Well we have you covered.  Once a vendor finishes you food, you'll automaticaly receive an email letting you know its all finsihed.
 
-![alt tag](./pictureAssets/EmailResponce.png)
+![alt tag](./storyAssets/EmailResponce.png)
 
 
 # Vendor Interaction
 
-Coming to Zibzoo as a vendor and woundering how we can help you out?  Well when you sign up with Zibzoo we try to make things easy for you.
+- Coming to Zibzoo as a vendor and woundering how we can help you out?  Well when you sign up with Zibzoo we try to make things easy for you.
 
-Edit your profile
+- Edit your profile
 
-![alt tag](./pictureAssets/UpdateProfile.png)
+![alt tag](./storyAssets/UpdateProfile.png)
 
-Add items to your menu
+- Add items to your menu
 
-![alt tag](./pictureAssets/MerchMenu.png)
+![alt tag](./storyAssets/MerchMenu.png)
 
-Need to reorganize your menu? no problem simply drag and drop any item or any catagorie of food
+- Need to reorganize your menu? no problem simply drag and drop any item or any catagorie of food
 
-![alt tag](./pictureAssets/MenuDD2.png)
+![alt tag](./storyAssets/MenuDD2.png)
 
-Finaly take care of all your orders.  You can remove individual food items from orders, or complete an order all together. View how many orders you currently have, as well as a counter for how many orders you've had this session.  Dont worry about contacting people, when you finish an order we automaticaly send off emails to the person who ordered it.  Just make sure to write down their order numbers and emails just in case.
+- Finaly take care of all your orders.  You can remove individual food items from orders, or complete an order all together. View how many orders you currently have, as well as a counter for how many orders you've had this session.  Dont worry about contacting people, when you finish an order we automaticaly send off emails to the person who ordered it.  Just make sure to write down their order numbers and emails just in case.
 
-![alt tag](./pictureAssets/MerchOrderView.png)
+![alt tag](./storyAssets/MerchOrderView.png)
 
 
 
