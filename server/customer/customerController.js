@@ -1,12 +1,11 @@
 var Customer = require('./customerModel.js');
-var Order = require('../order/orderModel');
-var Vendor = require('../vendor/vendorModel');
 var utils = require('../config/utils.js');
+var Order = require('../order/orderModel.js');
+var Vendor = require('../vendor/vendorModel.js');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var stripe = require('stripe');
-
 
 
 // Promisify libraries
@@ -93,8 +92,8 @@ module.exports = {
         return Vendor.findOne({ _id: vendorId }, 'stripeApiKey');
       })
       .then(function (apiKeyArr) {
-        return Promise.map(apiKeyArr, function (apiKey, keyIndex) {
-          var orderItems = orders[vendorIds[keyIndex]];
+        return Promise.map(apiKeyArr, function (apiKey, keyi) {
+          var orderItems = orders[vendorIds[keyi]];
           var orderPrice = orderItems.reduce(function (total, item) {
             return total + (item.price * 100);
           }, 0);
@@ -106,7 +105,7 @@ module.exports = {
             customer: stripeId,
             metadata: {
               email: charge.email,
-              vendorId: vendorIds[keyIndex]
+              vendorId: vendorIds[keyi]
             }
           };
 
@@ -114,69 +113,50 @@ module.exports = {
         });
       })
       .then(function (chargeObjArr) {
-        var failedOrders = [];
-        var successfulOrders = [];
+        var savedOrders = [];
 
-        for (var ii = 0; ii < chargeObjArr.length; ii++) {
-          var chargeObj = chargeObjArr[ii];
-          var vendorId = chargeObj.metadata.vendorId;
-          if (chargeObj.status === 'succeeded') {
-
-            successfulOrders.push(charge.orders[vendorId]);
-          } else {
-            failedOrders.push(charge.orders[vendorId]);
-          }
-        }
-
-        return [Promise.map(successfulOrders, function (successfulOrderArr) {
-
+        for (var i = 0; i < chargeObjArr.length; i++) {
           var order = {
-            orderItems: successfulOrderArr
+            vendorId: vendorIds[i],
+            customerId: charge._id,
+            transactionId: chargeObjArr[i].id,
+            transactionStatus: chargeObjArr[i].status,
+            orderItems: orders[vendorIds[i]]
           };
 
-          console.log(successfulOrderArr);
+          if (order.transactionStatus === 'failure') {
+            order.isActive = false;
+          }
 
-          var newOrder = new Order(order);
-
-        }), failedOrders];
-      })
-      .spread(function (successfulOrders, failedOrders) {
-
-      });
-  },
-
-  // TODO: refactor
-  charge: function (req, res) {
-    var customerId = process.env.STRIPE_CUSTOMER_ID; // test customer id
-    var email = req.body.email;
-    var orders = req.body.orders;
-
-    for (var vendorId in orders) {
-      if (!orders.hasOwnProperty(vendorId)) continue;
-
-      var stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY);
-      var amount = _.reduce(orders[vendorId], function (total, order) {
-        return total + order.item.price;
-      }, 0);
-
-      stripe.charges.create({
-        amount: amount * 100,
-        currency: 'usd',
-        customer: customerId
-      }, function (err, charge) {
-        if (err) {
-          utils.sendHttpResponse(err, res, 500, 500);
-        } else {
-          utils.sendHttpResponse(charge, res, 200, 500);
+          savedOrders.push(order);
         }
+
+        return Promise.map(savedOrders, function (savedOrder) {
+          var newOrder = new Order(savedOrder);
+          return newOrder.save();
+        });
+      })
+      .then(function (storedOrders) {
+        // TODO: Remove unnecessary code if sockets are implemented separately
+        // var failedOrders = [];
+        // for (var i = 0; i < storedOrders.length; i++) {
+        //   var storedOrder = storedOrders[i];
+        //   if (storedOrder.transactionStatus === 'succeeded') {
+        //     io.socket.emit(storedOrder.vendorId, storedOrder);
+        //   } else {
+        //     failedOrders.push(storedOrder);
+        //   }
+        // }
+
+        utils.sendHttpResponse(storedOrders, res, 201, 404);
       });
-    }
-  }
+
+  },
 
 };
 
 
 // Export private functions for testing
 if (process.env.NODE_ENV === 'test') {
-  module.exports._findCustomerByEmail = _findCustomerByEmail;
+  module.exports._findCustomerByEmail = _findOneCustomerByProperty;
 }
