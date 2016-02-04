@@ -1,6 +1,6 @@
 angular.module('zibzoo.landing', [])
   .controller('LandingController', ['$scope', '$state', 'vendor', 'location', function ($scope, $state, vendor, location) {
-    $scope.location = location.data;
+    $scope.location = null;
     $scope.vendors = vendor.tempData;
 
     $scope.findVendors = function () {
