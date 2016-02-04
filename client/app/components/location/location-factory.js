@@ -1,5 +1,5 @@
 angular.module('zibzoo.location.factory', [])
-  .factory('location', ['$rootScope', function ($rootScope) {
+  .factory('location', function () {
     var location = {};
 
     location.data = {
@@ -10,14 +10,14 @@ angular.module('zibzoo.location.factory', [])
       error: null
     };
 
-    location.setCurrentLocation = function (position) {
+    location.setCurrentLocation = function (position, callback) {
       location.data.latitude = position.coords.latitude;
       location.data.longitude = position.coords.longitude;
       location.data.accuracy = position.coords.accuracy;
 
       location.setAddress(position.coords.latitude, position.coords.longitude, function (address) {
         location.data.address = address;
-        $rootScope.$apply();
+        callback(location.data);
       });
     };
 
@@ -30,7 +30,6 @@ angular.module('zibzoo.location.factory', [])
       location.setAddress(coords[0], coords[1], function (address) {
         location.data.address = address;
         callback(location.data);
-        $rootScope.$apply();
       });
     };
 
@@ -50,19 +49,19 @@ angular.module('zibzoo.location.factory', [])
       });
     };
 
-    location.getCurrentLocation = function () {
+    location.getCurrentLocation = function (callback) {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(location.setCurrentLocation, location.setError);
+        navigator.geolocation.getCurrentPosition(function (position) {
+          location.setCurrentLocation(position, callback);
+        }, location.setError);
       } else {
         location.data.error = 'Geolocation is not supported by this browser.';
-        $rootScope.$apply();
       }
     };
 
     location.setError = function (error) {
       location.data.error = error;
-      $rootScope.$apply();
     };
 
     return location;
-  }]);
+  });
