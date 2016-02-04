@@ -6,7 +6,7 @@ angular.module('zibzoo.order', [])
     $scope.addToCart = function () {
       var order = {
         vendor: {
-          id: vendor.id,
+          _id: vendor._id,
           name: vendor.name
         },
         item: item,

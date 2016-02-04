@@ -18,7 +18,7 @@ angular.module('zibzoo.cart', [])
       var orders = {
         _id: User.data._id,
         email: User.data.email,
-        orders: _.groupBy(User.data.orders, 'vendor.id')
+        orders: _.groupBy(User.data.orders, 'vendor._id')
       };
 
       User.charge(orders)

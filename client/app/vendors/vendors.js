@@ -1,7 +1,7 @@
 angular.module('zibzoo.vendors', [])
   .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
     $scope.location = location.data;
-    $scope.vendors = vendor.tempData;
+    $scope.vendors = [];
     $scope.map = {
       center: {
         latitude: 37.7874963,
@@ -29,6 +29,8 @@ angular.module('zibzoo.vendors', [])
       //   latitude: location.latitude,
       //   longitude: location.longitude
       // });
+
+      $scope.getVendors({});
     });
 
   }]);

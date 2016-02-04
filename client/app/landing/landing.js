@@ -1,7 +1,7 @@
 angular.module('zibzoo.landing', [])
   .controller('LandingController', ['$scope', '$state', 'vendor', 'location', function ($scope, $state, vendor, location) {
     $scope.location = null;
-    $scope.vendors = vendor.tempData;
+    $scope.vendors = [];
 
     $scope.findVendors = function () {
       if ($scope.selectedPlace) {
@@ -12,6 +12,16 @@ angular.module('zibzoo.landing', [])
       }
     };
 
+    $scope.getVendors = function (params) {
+      vendor.getVendors(params)
+        .then(function (vendors) {
+          vendor.setData($scope, vendors.data);
+        })
+        .catch(function (error) {
+          $scope.status = error.status;
+        });
+    };
+
     location.getCurrentLocation(function (location) {
       $scope.location = location;
       $scope.$apply();
@@ -20,5 +30,7 @@ angular.module('zibzoo.landing', [])
       //   latitude: location.latitude,
       //   longitude: location.longitude
       // });
+
+      $scope.getVendors({});
     });
   }]);

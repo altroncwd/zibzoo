@@ -26,7 +26,6 @@ angular.module('zibzoo.vendor', [])
             }
           });
           $scope.items = sections;
-          console.log($scope.items);
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);
