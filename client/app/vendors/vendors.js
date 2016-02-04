@@ -1,6 +1,6 @@
 angular.module('zibzoo.vendors', [])
   .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
-    $scope.location = null;
+    $scope.location = location.data;
     $scope.vendors = vendor.tempData;
     $scope.map = { 
       center: { 
