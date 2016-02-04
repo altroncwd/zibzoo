@@ -17,9 +17,12 @@ angular.module('zibzoo.cart', [])
     $scope.charge = function () {
       var orders = {
         _id: User.data._id,
+        stripeId: User.data.stripeId,
         email: User.data.email,
         orders: _.groupBy(User.data.orders, 'vendor._id')
       };
+
+      console.log('user: ', User.data);
 
       User.charge(orders)
         .then(function (result) {

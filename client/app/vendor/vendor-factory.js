@@ -224,6 +224,21 @@ angular.module('zibzoo.vendor.factory', [])
       });
     };
 
+    vendor.searchVendors = function (params) {
+      return $http({
+        method: 'GET',
+        url: 'api/vendors/search',
+        params: params
+      })
+      .success(function (data, status, headers, config) {
+        return data;
+      })
+      .error(function (data, status) {
+        console.log('error: ', data);
+        // console.error(data, status);
+      });
+    };
+
     vendor.saveVendor = function (vendorObj) {
       return $http({
         method: 'POST',
