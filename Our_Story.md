@@ -5,6 +5,8 @@ With Zibzoo you can browse the foodtrucks in your area and check out their menus
 
 Coming to Zibzoo as a vendor? Great, we've made it easy to manage your account.  Simply sign up with us, from here you can do everything you need.  Edit your profile, create new items, re-arrange your menu and take care of customer orders. Once you finish an order we'll notify your customers that they can pick up their food. Because we handle all the transactions, you dont have to worry about dealing with the money, instead you'll simply hand off orders to your customers.  No fuss, no lines and you get to focus on what really matters.
 
+Check us out today at http://zibzoo.herokuapp.com
+
 # User Interaction
 
 - Browse food trucks in your area
