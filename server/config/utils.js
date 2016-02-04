@@ -2,7 +2,7 @@ var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var mongoose = require('mongoose');
-var stripe = require('stripe')('process.env.STRIPE_TEST_API_KEY');
+var stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY);
 
 
 // Set promises
@@ -41,7 +41,6 @@ module.exports = {
         if (user) {
           throw new Error(user.email + ' already exists.');
         }
-
         return stripe.customers.create({
           description: 'Customer'
         });
@@ -49,6 +48,7 @@ module.exports = {
       })
       .then(function (customer) {
 
+        console.log('CUSTOMER', customer);
         customerData.stripeId = customer.id;
         var newUser = new Model(customerData);
 
@@ -58,7 +58,7 @@ module.exports = {
         if (!savedUser) {
           throw new Error('Unable to save ' + savedUser.email + '.');
         }
-        console.log('SAVED USER', savedUser);
+
         return savedUser;
       })
       .catch(function (error) {
