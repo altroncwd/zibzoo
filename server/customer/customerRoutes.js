@@ -1,4 +1,5 @@
-var customerController = require('./customerController');
+var io = require('../server.js');
+var customerController = require('./customerController')(io);
 
 module.exports = function (app) {
 
