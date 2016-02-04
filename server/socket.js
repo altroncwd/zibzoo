@@ -8,6 +8,11 @@ module.exports = function (server) {
     socket.on('order finished', function (finishedOrder) {
       mail.sendMail(finishedOrder);
     });
+// -------------- remove if server side emit is fixed ------
+    socket.on('new order', function (newOrderObj) {
+      socket.emit(newOrderObj.vendorId, newOrderObj);
+    });
+// ---------------------------------------------------------
 
   });
 

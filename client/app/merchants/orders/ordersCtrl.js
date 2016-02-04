@@ -19,9 +19,9 @@ angular.module('zibzoo.merchant.order', [])
       // set up a db call place the finished order in the db
     };
 
-    var listenOn = $stateParams.merchantId.toString();
-            // listenOn should be the merchants ID number
-    Socket.on(listenOn, function (newOrder) {
+    var listenOnMerchId = $stateParams.merchantId;
+            // listenOnMerchId should be the merchants ID number
+    Socket.on(listenOnMerchId, function (newOrder) {
       newOrder.orderNumber = Order.order.total++;
       Order.order.push(newOrder);
       Order.setLocalStorage();
