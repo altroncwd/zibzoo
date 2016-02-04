@@ -7,6 +7,7 @@ var orderSchema = new Schema({
   vendorId: String,
   customerId: String,
   transactionId: String,
+  transactionStatus: String,
   isActive: { type: Boolean, default: true },
   latitude: String,
   longitude: String,
