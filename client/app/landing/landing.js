@@ -19,17 +19,7 @@ angular.module('zibzoo.landing', [])
           $scope.$apply();
         })
         .catch(function (error) {
-          $scope.status = error.status;
-        });
-    };
-
-    $scope.getVendors = function (params) {
-      vendor.getVendors(params)
-        .then(function (vendors) {
-          vendor.setData($scope, vendors.data);
-        })
-        .catch(function (error) {
-          $scope.status = error.status;
+          console.log('error: ', error);
         });
     };
 
@@ -37,11 +27,9 @@ angular.module('zibzoo.landing', [])
       $scope.location = location;
       $scope.$apply();
       
-      // $scope.searchVendors({
-      //   latitude: location.latitude,
-      //   longitude: location.longitude
-      // });
-
-      $scope.getVendors({});
+      $scope.searchVendors({
+        latitude: location.latitude,
+        longitude: location.longitude
+      });
     });
   }]);

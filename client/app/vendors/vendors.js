@@ -10,23 +10,14 @@ angular.module('zibzoo.vendors', [])
       zoom: 15
     };
 
-    // $scope.searchVendors = function (params) {
-    //   vendor.searchVendors(params)
-    //     .then(function (vendors) {
-    //       vendor.setData($scope, vendors.data);
-    //     })
-    //     .catch(function (error) {
-    //       $scope.status = error.status;
-    //     });
-    // };
-
-    $scope.getVendors = function (params) {
-      vendor.getVendors(params)
+    $scope.searchVendors = function (params) {
+      vendor.searchVendors(params)
         .then(function (vendors) {
           vendor.setData($scope, vendors.data);
+          $scope.$apply();
         })
         .catch(function (error) {
-          $scope.status = error.status;
+          console.log('error: ', error);
         });
     };
 
