@@ -216,11 +216,19 @@ angular.module('zibzoo.vendor.factory', [])
         url: 'api/vendors',
         params: params
       })
-      .success(function (data, status, headers, config) {
-        return data;
+      .then(function (res) {
+        return res.data;
+      });
+    };
+
+    vendor.searchVendors = function (params) {
+      return $http({
+        method: 'GET',
+        url: 'api/vendors/search',
+        params: params
       })
-      .error(function (data, status) {
-        console.error(data, status);
+      .then(function (res) {
+        return res.data;
       });
     };
 
@@ -245,11 +253,8 @@ angular.module('zibzoo.vendor.factory', [])
         url: 'api/vendors',
         data: vendorObj
       })
-      .success(function (data, status, headers, config) {
-        return data;
-      })
-      .error(function (data, status) {
-        console.error(data, status);
+      .then(function (res) {
+        return res.data;
       });
     };
 
@@ -259,11 +264,8 @@ angular.module('zibzoo.vendor.factory', [])
         url: 'api/vendors',
         data: vendorObj
       })
-      .success(function (data) {
-        return data;
-      })
-      .error(function (data, status) {
-        console.error(data, status);
+      .then(function (res) {
+        return res.data;
       });
     };
 
