@@ -9,6 +9,10 @@ module.exports = function (server) {
       mail.sendMail(finishedOrder);
     });
 
+    socket.on('new order', function (newOrderObj) {
+      socket.emit(newOrderObj.vendorId, newOrderObj);
+    });
+
   });
 
   return io;
