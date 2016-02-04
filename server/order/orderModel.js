@@ -9,8 +9,8 @@ var orderSchema = new Schema({
   transactionId: String,
   transactionStatus: String,
   isActive: { type: Boolean, default: true },
-  latitude: String,
-  longitude: String,
+  latitude: Number,
+  longitude: Number,
   orderItems: [Schema.Types.Mixed],
   customerInfo: { type: Schema.Types.ObjectId, ref: 'Customer' },
   vendorInfo: { type: Schema.Types.ObjectId, ref: 'Vendor' }

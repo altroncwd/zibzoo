@@ -76,8 +76,8 @@ module.exports = {
   },
 
   getVendorsByLocation: function (req, res) {
-    var latitude = req.query.latitude;
-    var longitude = req.query.longitude;
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
 
     Vendor
       .find({
@@ -87,10 +87,11 @@ module.exports = {
       })
       .limit(20)
       .then(function (vendors) {
-        utils.sendHttpResponse(vendors, res, 200, 404);
+        console.log(vendors);
+        // utils.sendHttpResponse(vendors, res, 200, 404);
       })
       .catch(function (error) {
-        utils.sendHttpResponse(error, res, 200, 404);
+        // utils.sendHttpResponse(error, res, 200, 404);
       });
   },
 
