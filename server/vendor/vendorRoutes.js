@@ -8,5 +8,6 @@ module.exports = function (app) {
   app.post('/signin', vendorController.signIn);
   app.get('/', vendorController.getMultipleVendors);
   app.put('/', vendorController.updateOneVendor);
+  app.get('/search', vendorController.getVendorsByLocation);
 
 };

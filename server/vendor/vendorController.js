@@ -75,6 +75,26 @@ module.exports = {
       });
   },
 
+  getVendorsByLocation: function (req, res) {
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
+
+    Vendor
+      .find({
+        // .03 degrees ≈ 2 miles
+        latitude: {  $gt: latitude - .03, $lt: latitude + .03 },
+        longitude: { $gt: longitude - .03, $lt: longitude + .03 }
+      })
+      .limit(20)
+      .then(function (vendors) {
+        console.log(vendors);
+        // utils.sendHttpResponse(vendors, res, 200, 404);
+      })
+      .catch(function (error) {
+        // utils.sendHttpResponse(error, res, 200, 404);
+      });
+  },
+
   // TODO: Add getOneVendor()
 
   signIn: function (req, res) {

@@ -114,7 +114,7 @@ module.exports = {
     if (!(queryResult instanceof Error)) {
       httpResponse.status(successStatus).send(queryResult);
     } else {
-      httpResponse.status(failureStatus).send(queryResult.message);
+      httpResponse.status(failureStatus).send(queryResult);
     }
   },
 
