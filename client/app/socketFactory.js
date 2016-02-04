@@ -33,7 +33,8 @@ angular.module('zibzoo.socketFactory', [])
         }
       }
 
-      return socketLogic;
-
     };
+
+    return socketLogic;
+
   }]);
