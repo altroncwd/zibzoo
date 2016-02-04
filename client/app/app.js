@@ -43,7 +43,6 @@ angular.module('zibzoo', [
       controller: 'VendorController'
     });
 
-    url: '/merchant/:merchantId',
 
   $stateProvider
     .state('signup', {
