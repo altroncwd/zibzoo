@@ -1,76 +1,75 @@
 <div class="row">
+  <header class="section-header main">
+    <h2 class="subheader">Manage Profile</h2>
+  </header>
   <div class="small-12 large-12 columns">
-    <form novalidate class="css-form">
-      <h3> Vendor's Information</h3>
-      <!----------------------------------Vendor Image and Description-------------------------------------------->
-      <input type="text" ng-model="vendor.name" ng-model-options="{ updateOn: 'blur' }" required />
-      <!----------------------Name Input-------------------------->
-      <div class="row">
-        <div class="small-4 large-4 columns">
-          <img ng-src="{{img}}" alt="">
-          <!--Should display the vendor profile picture or a default if non provided-->
-        </div>
-        <div class="small-8 large-8 columns">
-          <h4>Description </h4>
-          <textarea rows="7" cols="1" ng-model="vendor.description" type="text" ng-model-options="{ updateOn: 'blur' }" required>
-            {{vendor.description}}
-          </textarea>
-          <h4>Vendor Image</h4>
-
-          <div class="button" ngf-select="upload($file)">Upload New Profile Image </div>
-        </div>
-        <div>
-
-          <div>
-            <a class="button dropdown" dropdown-toggle="#filter-dropdown">Select a Category</a>
-            <ul id="filter-dropdown" class="f-dropdown">
-              <li ng-repeat="cuisine in cuisines" ng-click="vendor.cuisine = cuisine">
-                {{cuisine}}
+    <form ng-submit="updateVendor(vendor)" class="profileForm">
+      <div>
+        <ul class="small-block-grid-1 merchantDescription">
+          <li>
+            <div>
+              <label>
+                Business Name <small>required</small>
+                <input class="merchantName" ng-submit="updateVendor(vendor)" ng-model="vendor.name" required>
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="cuisineType">
+              <label>
+                Cuisine <small>required</small>
+                <select ng-model="vendor.cuisine" required>
+                  <option ng-repeat="cuisine in cuisines" value="{{cuisine}}">{{cuisine}}</option>
+                </select>
+              </label>
+            </div>
+          </li>
+          <li>
+            <label>
+              Description <small>required</small>
+              <textarea ng-model="vendor.description"></textarea>
+            </label>
+          </li>
+          <li>
+            <label>
+              Stripe Api Key <small>required</small>
+              <input type="text" ng-model="vendor.stripeApiKey" required>
+            </label>
+          </li>
+          <li>
+            <label>
+              Location <small>required</small>
+            </label>
+            <ul class="small-block-grid-1 medium-block-grid-2">
+              <li>
+                <label>
+                  Latitude
+                  <input type="number" step="any" ng-model="vendor.latitude" required>
+                </label>
+              </li>
+              <li>
+                <label>
+                  Longitude
+                  <input type="number" step="any" ng-model="vendor.longitude" required>
+                </label>
               </li>
             </ul>
-          </div>
-
-
-          <!----------------------------------Open Hours-------------------------------------------
-    Come back and have default selections set to the vendors information, IsOpen/Hours
----------------------------------------------------------------------------------------->
-          <!--<div class="row" ng-repeat="(keys,data) in schedule">
-        <div class="large-2 columns">
-          <h4> {{keys}} </h4>
+          </li>
+        </ul>
+        <div class="bannerUpload" ngf-select="upload($file, 'banner')">
+          <i ng-show="vendor.data.bannerImageUrl" class="fa fa-upload fa-3x"></i>
+          <img ng-src="{{bannerImg}}" alt="">
         </div>
-        <div class="large-1 columns">
-          <label >Open</label> <input type="radio" name="{{keys}}" >
-        </div>
-        <div class="large-1 columns">
-          <label >Close</label> <input type="radio" name="{{keys}}"  >
-        </div>
-        <div ng-selected='open' class="large-5 columns end">
-          <div class="large-2 columns">
-            <select >
-              <option ng-repeat="hour in hour">{{hour}}</option>
-            </select>
-          </div>
-          <div class="large-2 columns">
-            <select >
-              <option ng-repeat="min in min">{{min}}</option>
-            </select>
-          </div>
-          <div class="large-2 columns">
-            <select >
-              <option ng-repeat="hour in hour">{{hour}}</option>
-            </select>
-          </div>
-          <div class="large-2 columns end ">
-            <select >
-            <option ng-repeat="min in min">{{min}}</option>
-            </select>
-          </div>
-        </div>
-      </div>-->
-
-          <!------------------------------Save Button--------------------------------------->
-          <button ng-click="updateVendor(vendor) " type="save">SAVE Profile</button>
-
+        <ul class="small-block-grid-1">
+          <li>
+            <div class="thumbUpload" ngf-select="upload($file, 'thumb')">
+              <img ng-src="{{thumbImg}}" alt="">
+              <i ng-show="vendor.data.bannerImageUrl" class="fa fa-upload fa-3x"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button type="submit">SAVE Profile</button>
     </form>
-    </div>
-    </div>
+  </div>
+</div>

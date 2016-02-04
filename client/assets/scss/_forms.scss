@@ -1,34 +1,51 @@
-.css-form input.ng-invalid.ng-touched {
-    background-color: #fee6e8;
-}
-
-.css-form input.ng-valid.ng-touched {
-    background-color: #e6feea;
-}
-
-.css-form textarea.ng-invalid.ng-touched {
-  background-color: #fee6e8;
-}
-
-.css-form textarea.ng-valid.ng-touched {
-  background-color: #e6feea;
-}
 
 .error {
   color: $alert-color;
 }
 
-.ng-invalid.ng-dirty {
-  color: $alert-color;
-  border-color: $alert-color;
-
-  &:focus {
-    border-color: $alert-color;
-  }
-}
-
 .menuFormInput {
   li {
     padding-bottom: 0;
+  }
+}
+
+.profileForm {
+  .merchantName {
+    width: 380px;
+  }
+
+  .merchantDescription {
+    li {
+      padding-bottom: 10px;
+    }
+  }
+
+  // .bannerButton {
+  //   width: 130px;
+  //   height: 60px;
+  // }
+  .cuisineType {
+    width: 300px;
+  }
+
+  .bannerUpload {
+    padding-bottom: 15px;
+    i {
+      position: absolute;
+      float: top;
+      top: 55%;
+      left: 50%;
+    }
+  }
+
+  .thumbUpload {
+    width: 410px;
+    height: 225px;
+    i {
+      position: absolute;
+      float: top;
+      top: 80%;
+      left: 22%;
+    }
   }
 }

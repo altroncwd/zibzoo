@@ -3,7 +3,7 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
 
     User.getFromLocal();
 
-    $scope.cuisines = ['American', 'Burger', 'Fusion', 'Asian', 'Spicy'];
+    $scope.cuisines = ['American', 'Chinese', 'Hawaiian', 'French', 'German', 'Japanese', 'Spanish', 'Mexican', 'Peruvian', 'Filipino', 'Korean', 'Indian', 'Bacon'];
     $scope.vendor = User.data;
 
     $scope.merchantId = $stateParams.merchantId;
@@ -13,10 +13,17 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
       propertiesToUpdate: {}
     };
 
-    $scope.img = 'https://placehold.it/1000x344';
-
-    $scope.setImage = function (l) {
-      $scope.img = User.data.imageUrl;
+    $scope.setImage = function () {
+      if (!User.data.bannerImageUrl) {
+        $scope.bannerImg = 'https://placehold.it/1000x344';
+      } else {
+        $scope.bannerImg = User.data.bannerImageUrl;
+      }
+      if (!User.data.thumbImageUrl) {
+        $scope.thumbImg = 'https://placehold.it/900x500';
+      } else {
+        $scope.thumbImg = User.data.thumbImageUrl;
+      }
     };
 
     $scope.updateVendor = function (updatedVendor) {
@@ -38,10 +45,10 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         });
     };
 
-    $scope.upload = function (file) {
+    $scope.upload = function (file, type) {
       Upload.upload({
         url: 'api/vendors/image',
-        data: { file: file, _id: $scope.merchantId }
+        data: { file: file, _id: $scope.merchantId, type: type }
       })
         .then(function (response) {
           User.setData(response.data.propertiesToUpdate);
@@ -50,5 +57,7 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
           $scope.setImage();
         });
     };
+
+    $scope.setImage();
 
   }]);

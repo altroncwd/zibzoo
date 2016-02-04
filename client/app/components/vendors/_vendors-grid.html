@@ -6,10 +6,10 @@
 <div class="row">
   <div class="small-12 large-12 columns">
     <ul class="vendors-grid small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-      <li ng-repeat="vendor in vendors" 
+      <li ng-repeat="vendor in vendors"
           ng-hide="(selected.length > 0) && selected.indexOf(vendor.cuisine)">
         <a href="#" ui-sref="vendor({vendorId: vendor._id})">
-          <img ng-src="{{vendor.imageUrl}}" />
+          <img ng-src="{{vendor.thumbImageUrl}}" />
           <div>
             <span>
               <h4>{{vendor.name}}</h4>
