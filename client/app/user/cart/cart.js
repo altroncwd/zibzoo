@@ -24,12 +24,7 @@ angular.module('zibzoo.cart', [])
       User.charge(orders)
         .then(function (result) {
           // section for Client end socket call ---------------------------
-          for (var i = 0; i < result.length; i++) {
-            var individualOrder = result[i];
-            if (individualOrder.status === 'succeeded') {
-              Socket.emit('new order', individualOrder);
-            }
-          }
+          Socket.callMultipleVendors(result);
           // end of socket call -------------------------------------------
           User.data.orders.length = 0;
           $scope.cancel();
