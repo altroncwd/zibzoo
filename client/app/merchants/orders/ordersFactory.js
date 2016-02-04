@@ -1,51 +1,55 @@
 angular.module('zibzoo.merchant.order.factory', [])
-  .factory('order', function () {
-    var order = [
-      { name: 'Benji Chambers',
-        ID: 123425667,
-        food: [
-          { item: 'burger',
-            quantity: 2
-          }
-        ]
-      },
-      { name: 'Tom Kilr',
-        ID: 2098347523,
-        food: [
-          { item: 'Pizza',
-            quantity: 2
-          }
-        ]
-      },
-      { name: 'Joe Pentagast',
-        ID: 283470524,
-        food: [
-          { item: 'hotdog',
-            quantity: 1
-          },
-          { item: 'corndog',
-            quantity: 7
-          }
-        ]
-      },
-      { name: 'Sam Samwise',
-        ID: 1234345634567,
-        food: [
-          { item: 'volcano pizza',
-            quantity: 1
-          },
-          { item: 'cheese bread',
-            quantity: 2
-          },
-          { item: 'pasta',
-            quantity: 3
-          }
-        ]
-      },
-    ];
+  .factory('Order', ['$window', '$http', function ($window, $http) {
+    var order = [];
+    order.total = 0;
 
-    // place for functions
+    var setLocalStorage = function () {
+      var modifiedToken = JSON.parse($window.localStorage.getItem('_id'));
+      modifiedToken.timeStamp = $window.Date.now();
+      modifiedToken.orders = order;
+      modifiedToken.total = order.total;
+      // console.log('New modified token', modifiedToken);
+      $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
+    };
 
-    // place for returns
-    return order;
-  });
+    var callDbOrderFinished = function (finishedOrderObj) {
+      var update = {
+        _id: finishedOrderObj._id,
+        propertiesToUpdate: { isActive: false }
+      };
+      $http({
+        method: 'PUT',
+        url: 'api/orders',
+        data: update
+      })
+        .success(function (data) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(data, status);
+        });
+    };
+
+    var persistLocalData = function () {
+      var persist = JSON.parse($window.localStorage.getItem('_id'));
+      if (persist !== null) {
+        if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
+          // console.log('Persisted total: ', persist);
+          for (var i = 0; i < persist.orders.length; i++) {
+            // console.log('looking for that hash', persist.orders[i]);
+            var temp = persist.orders[i];
+            order.push(temp);
+          }
+          order.total = persist.total;
+        }
+      }
+    };
+
+    persistLocalData();
+
+    return {
+      order: order,
+      setLocalStorage: setLocalStorage,
+      callDbOrderFinished: callDbOrderFinished,
+    };
+  }]);

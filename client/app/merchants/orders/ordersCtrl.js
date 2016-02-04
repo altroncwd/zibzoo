@@ -1,26 +1,30 @@
 angular.module('zibzoo.merchant.order', [])
-  .controller('MerchantOrdersController', ['$scope', 'order', function ($scope, order) {
-    $scope.ordersList = order;
+  .controller('MerchantOrdersController', ['$scope', 'Order', 'Socket', '$stateParams', '$window', function ($scope, Order, Socket, $stateParams, $window) {
+
+    $scope.ordersList = Order.order;
 
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
       // console.log(currentOrder, index, parentIndex);
-      currentOrder.food.splice(index, 1);
-      // will complete the order if there are no more items left in the order.
-      // if (currentOrder.food.length === 0) {
-      //   $scope.finishedOrder(parentIndex, currentOrder.ID);
-      // }
+      Order.order[parentIndex].menuItems.splice(index, 1);
+      if (Order.order[parentIndex].menuItems.length === 0) {
+        $scope.finishedOrder(parentIndex, currentOrder.ID);
+      }
     };
 
-    $scope.finishedOrder = function (index, userId) {
-      // console.log('index : ', index, 'id : ', userId);
-      order.splice(index, 1);
+    $scope.finishedOrder = function (index, order) {
+      Socket.emit('order finished', order);
+      // Order.callDbOrderFinished(order); // call to update the db
+      Order.order.splice(index, 1);
+      Order.setLocalStorage();
+      // set up a db call place the finished order in the db
     };
 
-    // TODO: incomingOrders is defined but never used
-    // var incomingOrders = function (orderObj) {
-    //   order.push(orderObj);
-    // };
-
+    var listenOn = $stateParams.merchantId.toString();
+            // listenOn should be the merchants ID number
+    Socket.on(listenOn, function (newOrder) {
+      newOrder.orderNumber = Order.order.total++;
+      Order.order.push(newOrder);
+      Order.setLocalStorage();
+    });
 
   }]);
-

@@ -18,11 +18,17 @@
   color: $alert-color;
 }
 
-.ng-invalid.ng-dirty { 
+.ng-invalid.ng-dirty {
   color: $alert-color;
   border-color: $alert-color;
 
   &:focus {
     border-color: $alert-color;
+  }
+}
+
+.menuFormInput {
+  li {
+    padding-bottom: 0;
   }
 }

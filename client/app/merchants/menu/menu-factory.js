@@ -1,38 +1,74 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', ['$http', '$stateParams', function ($http, $stateParams) {
+  .factory('menu', ['$http', '$stateParams', 'User', '$q', function ($http, $stateParams, User, $q) {
     var menu = {};
 
-    menu.items = [];
+    menu.items = User.data.menuItems;
+
+    menu.sections = ['', 'Appetizers', 'Entrees', 'Desserts', 'Drinks'];
 
     menu.addItem = function (menuItem) {
-      menu.items.unshift(menuItem);
+      User.data.menuItems.unshift(menuItem);
+      User.setNewToLocal();
     };
 
-    menu.remove = function (index) {
-      return menu.items.splice(index, 1);
+    menu.remove = function (menuItem) {
+      var menuItemsIndex = 0;
+      for (var i = 0; i < menu.items.length; i++) {
+        if (menu.items[i].name === menuItem.name) {
+          menuItemsIndex = i;
+        }
+      }
+      return menu.items.splice(menuItemsIndex, 1);
     };
 
     menu.deleteMenuItem = function (menuItemId) {
       return $http({
         method: 'DELETE',
-        url: 'api/vendor/menuItems',
-        data: JSON.stringify(menuItemId)
+        url: 'api/menu',
+        params: menuItemId
       })
         .success(function (data) {
           return data;
         })
         .error(function (data, status) {
           console.error(
-            JSON.stringify(data),
-            JSON.stringify(status)
+            data,
+            status
             );
         });
+    };
+
+    menu.saveMenu = function (toBeUpdatedArray) {
+      var promises = [];
+      toBeUpdatedArray.forEach(function (menuItem) {
+        var propsToUpdate = {
+          _id: menuItem._id,
+          propertiesToUpdate: {
+            index: menuItem.index,
+            section: menuItem.section,
+            sectionIndex: menuItem.sectionIndex
+          }
+        };
+        var response = $http({
+          method: 'PUT',
+          url: 'api/menu',
+          data: propsToUpdate
+        })
+          .then(function (data) {
+            return data;
+          })
+          .catch(function (error) {
+            console.error('Error', error);
+          });
+        promises.push(response);
+      });
+      return $q.all(promises);
     };
 
     menu.saveMenuItem = function (menuItemObject) {
       return $http({
         method: 'POST',
-        url: 'api/vendor/menuItems',
+        url: 'api/menu',
         data: menuItemObject
       })
         .success(function (data, status, headers, config) {

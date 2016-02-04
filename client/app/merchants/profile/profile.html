@@ -1,46 +1,40 @@
 <div class="row">
-  <div class="small-12 large-12 columns" >
+  <div class="small-12 large-12 columns">
     <form novalidate class="css-form">
       <h3> Vendor's Information</h3>
-<!----------------------------------Vendor Image and Description-------------------------------------------->
-      <input type="text" ng-model="vendor.username" ng-model-options="{ updateOn: 'blur' }" required />
+      <!----------------------------------Vendor Image and Description-------------------------------------------->
+      <input type="text" ng-model="vendor.name" ng-model-options="{ updateOn: 'blur' }" required />
       <!----------------------Name Input-------------------------->
       <div class="row">
         <div class="small-4 large-4 columns">
-          <img src={{img}} alt="">
-        <!--Should display the vendor profile picture or a default if non provided-->
+          <img ng-src="{{img}}" alt="">
+          <!--Should display the vendor profile picture or a default if non provided-->
         </div>
         <div class="small-8 large-8 columns">
           <h4>Description </h4>
-          <textarea rows="7" cols="1" ng-model="vendor.description" type="text" ng-model-options="{ updateOn: 'blur' }" required >
-              {{vendor.description}}
+          <textarea rows="7" cols="1" ng-model="vendor.description" type="text" ng-model-options="{ updateOn: 'blur' }" required>
+            {{vendor.description}}
           </textarea>
           <h4>Vendor Image</h4>
-          <input type="file" name="pic" accept="image/*" ng-model-options="{ updateOn: 'blur' }" required />
-        </div>
-      <div>
-<!----------------------------------Cuisine Listing--------------------------------------------
- The existing Cuisine list are all buttons, we can set them to splice for removing them later
----------------------------------------------------------------------------------------------->
-      <div class="row">
-        <div class="large-12 columns">
-          <h4>Cuisine</h4>
-          <ul class="inline-list">
-            <!--ng-click="remove($index)"-- for removing cuisine---->
-            <li ng-repeat="food in cuisine" > <button class="button small" ng-click="vendor.cuisine = food">{{food}}</button> </li>
-          </ul>
-          <div class="large-12 columns">
-            <select name="" id="" class="large-2 columns>
-              <option value=""></option>
-            </select>
-          </div>
-        </div>
-      </div>
 
-<!----------------------------------Open Hours-------------------------------------------
+          <div class="button" ngf-select="upload($file)">Upload New Profile Image </div>
+        </div>
+        <div>
+
+          <div>
+            <a class="button dropdown" dropdown-toggle="#filter-dropdown">Select a Category</a>
+            <ul id="filter-dropdown" class="f-dropdown">
+              <li ng-repeat="cuisine in cuisines" ng-click="vendor.cuisine = cuisine">
+                {{cuisine}}
+              </li>
+            </ul>
+          </div>
+
+
+          <!----------------------------------Open Hours-------------------------------------------
     Come back and have default selections set to the vendors information, IsOpen/Hours
 ---------------------------------------------------------------------------------------->
-      <div class="row" ng-repeat="(keys,data) in schedule">
+          <!--<div class="row" ng-repeat="(keys,data) in schedule">
         <div class="large-2 columns">
           <h4> {{keys}} </h4>
         </div>
@@ -72,12 +66,11 @@
             </select>
           </div>
         </div>
-      </div>
+      </div>-->
 
-<!------------------------------Save Button--------------------------------------->
-      <button ng-click="saveVendor(vendor) " type="save">SAVE Profile</button>
-      <button ng-show="merchantId" ui-sref="menu({merchantId: merchantId})">Create Menu</button>
+          <!------------------------------Save Button--------------------------------------->
+          <button ng-click="updateVendor(vendor) " type="save">SAVE Profile</button>
 
     </form>
-  </div>
-</div>
+    </div>
+    </div>

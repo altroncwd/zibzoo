@@ -1,29 +1,44 @@
 angular.module('zibzoo.vendor', [])
-  .controller('VendorController', ['$scope', '$stateParams', 'vendor', '$modal', function ($scope, $stateParams, vendor, $modal) {
-    $scope.vendor = vendor;
-    $scope.items  = _.chunk($scope.vendor.menu, 2);
+  .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', function ($scope, $stateParams, $modal, vendor, Auth) {
+    // $scope.vendor = vendor.data;
+    $scope.vendor = function (data) {  // for temp data
+      for (var i = 0; i < data.length; i++) {
+        if (data[i]._id == $stateParams.vendorId) {
+          return data[i];
+        }
+      }
+    }(vendor.tempData) || [];
+    $scope.items  = _.chunk($scope.vendor.menuItems, 2); // for temp data
 
     $scope.getVendor = function (params) {
-      vendor.getVendor(params)
+      vendor.getVendors(params)
         .then(function (data) {
-          $scope.vendor = data;
+          vendor.setData($scope, data.data[0]);
+          $scope.items  = _.chunk($scope.vendor.menuItems, 2);
         })
         .catch(function (error) {
           console.error('Error getting vendor: ', error);
         });
     };
 
-    $scope.open = function (item) {
-      $modal.open({
-        templateUrl: 'app/vendor/_order-form.html',
-        controller: 'OrderFormController',
-        resolve: {
-          item: function () {
-            return item;
+    $scope.order = function (item) {
+      if (Auth.isAuth()) {
+        $modal.open({
+          templateUrl: 'app/vendor/_order-form.html',
+          controller: 'OrderFormController',
+          resolve: {
+            item: function () {
+              return item;
+            },
+            vendor: function () {
+              return $scope.vendor;
+            }
           }
-        }
-      });
+        });
+      } else {
+        Auth.openModal();
+      }
     };
 
-    // $scope.getVendor($stateParams.vendorId);
+    // $scope.getVendor({ _id: $stateParams.vendorId });
   }]);

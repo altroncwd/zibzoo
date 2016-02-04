@@ -18,11 +18,18 @@ module.exports = function (config) {
     // angular-files
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/socket.io-client/socket.io.js',
+
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/fastclick/lib/fastclick.js',
       'node_modules/viewport-units-buggyfill/viewport-units-buggyfill.js',
+      'node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js',
+      'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
+      'node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js',
       'node_modules/angular-foundation/mm-foundation.js',
       'node_modules/angular-foundation/mm-foundation-tpls.js',
+      'node_modules/angular-simple-logger/dist/angular-simple-logger.js',
+      'node_modules/angular-google-maps/dist/angular-google-maps.js',
       'node_modules/lodash/lodash.js',
 
     // client source

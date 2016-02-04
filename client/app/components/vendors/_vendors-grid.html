@@ -1,0 +1,23 @@
+<div class="row" ng-hide="vendors.length > 0">
+  <div class="large-3 large-centered columns">
+    <div class="loading"><i class="fa fa-spinner fa-pulse"></i></div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <ul class="vendors-grid small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+      <li ng-repeat="vendor in vendors" 
+          ng-hide="(selected.length > 0) && selected.indexOf(vendor.cuisine)">
+        <a href="#" ui-sref="vendor({vendorId: vendor._id})">
+          <img ng-src="{{vendor.imageUrl}}" />
+          <div>
+            <span>
+              <h4>{{vendor.name}}</h4>
+              <h5>{{vendor.cuisine}}</h5>
+            </span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

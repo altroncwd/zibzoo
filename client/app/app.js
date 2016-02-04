@@ -1,17 +1,18 @@
 angular.module('zibzoo', [
   'ui.router',
   'mm.foundation',
+  'uiGmapgoogle-maps',
   'zibzoo.navbar.directive',
   'zibzoo.vendors.directive',
-  'zibzoo.filterbox.directive',
+  'zibzoo.filtermenu.directive',
+  'zibzoo.image-uploader.directive',
+  'zibzoo.places.directive',
   'zibzoo.cart',
   'zibzoo.auth',
   'zibzoo.auth.factory',
   'zibzoo.user.factory',
   'zibzoo.landing',
-  'zibzoo.vendors.list',
-  'zibzoo.vendors.factory',
-  'zibzoo.vendors.directive',
+  'zibzoo.vendors',
   'zibzoo.vendor',
   'zibzoo.vendor.factory',
   'zibzoo.order',
@@ -19,7 +20,9 @@ angular.module('zibzoo', [
   'zibzoo.merchant.menu',
   'zibzoo.merchant.menu.factory',
   'zibzoo.merchant.order.factory',
-  'zibzoo.merchant.order'
+  'zibzoo.merchant.order',
+  'zibzoo.socketFactory',
+  'zibzoo.location.factory'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -27,18 +30,20 @@ angular.module('zibzoo', [
     .state('landing', {
       templateUrl: 'app/landing/landing.html',
       url: '/',
-      controller: 'VendorsListController'
+      controller: 'LandingController'
     })
     .state('vendors', {
-      templateUrl: 'app/vendors/vendors-list.html',
-      url: '/vendors',
-      controller: 'VendorsListController'
+      templateUrl: 'app/vendors/vendors.html',
+      url: '/vendors/:latlng',
+      controller: 'VendorsController'
     })
     .state('vendor', {
       templateUrl: 'app/vendor/vendor.html',
       url: '/vendor/:vendorId',
       controller: 'VendorController'
     });
+
+    url: '/merchant/:merchantId',
 
   $stateProvider
     .state('signup', {
@@ -97,13 +102,13 @@ angular.module('zibzoo', [
   return attach;
 })
 
-.run(function ($rootScope, $state, Auth) {
+.run(function ($rootScope, $state, Auth, Socket) {
   $rootScope.$state = $state;
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if (toState && toState.authenticate && !Auth.isAuth()) {
       event.preventDefault();
       $state.go('landing');
-    } 
+    }
   });
 });

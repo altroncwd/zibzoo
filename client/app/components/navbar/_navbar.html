@@ -8,11 +8,36 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li><a href="" ng-click="open()" ng-show="!isAuth() && items.length == 0">Login</a></li>
-        <li><a href="" ng-click="signout()" ng-show="isAuth()">Logout</a></li>
         <li>
-          <a ui-sref="cart" ng-model="items" ng-show="items.length > 0">
-            <i class="fa fa-shopping-cart fa"></i> {{items.length}}
+          <a href="#"
+             ui-sref="merchant({merchantId: user._id})"
+             ng-show="user.isVendor">Profile</a>
+        </li>
+        <li>
+          <a href="#"
+             ui-sref="menu({merchantId: user._id})"
+             ng-show="user.isVendor">Menu</a>
+        </li>
+        <li>
+          <a href="#"
+             ui-sref="orders({merchantId: user._id})"
+             ng-show="user.isVendor">Orders</a>
+        </li>
+        <li>
+          <a href=""
+             ng-click="signin()"
+             ng-show="!isAuth()">Login</a>
+        </li>
+        <li>
+          <a href=""
+             ng-click="signout()"
+             ng-show="isAuth()">Logout</a>
+        </li>
+        <li>
+          <a ui-sref="cart"
+             ng-model="user"
+             ng-show="isAuth() && user.orders.length > 0">
+            <i class="fa fa-shopping-cart fa"></i> {{user.orders.length}}
           </a>
         </li>
       </ul>

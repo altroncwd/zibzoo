@@ -1,20 +1,20 @@
 angular.module('zibzoo.order', [])
-  .controller('OrderFormController', ['$scope', '$modalInstance', 'item', 'User', function ($scope, $modalInstance, item, User) {
+  .controller('OrderFormController', ['$scope', '$modalInstance', 'vendor', 'item', 'User', function ($scope, $modalInstance, vendor, item, User) {
     $scope.item = item;
     $scope.quantity = 1;
 
     $scope.addToCart = function () {
       var order = {
-        item: $scope.item,
+        vendor: {
+          id: vendor.id,
+          name: vendor.name
+        },
+        item: item,
         quantity: $scope.quantity
       };
 
-      User.data.orders.push(order);
-      $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
+      User.addOrder(order);
+      $scope.cancel();
     };
 
     $scope.increment = function () {
@@ -25,5 +25,9 @@ angular.module('zibzoo.order', [])
       if ($scope.quantity > 0) {
         --$scope.quantity;
       }
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
     };
   }]);

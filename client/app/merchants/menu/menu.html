@@ -1,56 +1,115 @@
 <div class="row">
-  <div class="small-12 large-12 columns">
+  <header class="section-header main">
     <h2 class="subheader">Manage Menu</h2>
-
+  </header>
+  <div class="small-12 columns">
     <a class="add-link" ng-click="show=true" style="float:right">
       <i class="fa fa-plus"></i> Add Item
     </a>
-    <div class="small-12 large-12 columns">
-      <!-- Bar for adding new food items-----------add these to css styles later----------->
-      <div class="small-12 large-12 columns" ng-show="show">
-        <div class="small-5 large-5 columns">
-          <input type="text" style="width: 300px" ng-model="menuItem.name" placeholder="Name" />
-        </div>
-        <div class="small-2 large-2 columns">
-          <input type="number" style="width: 100px" ng-model="menuItem.price" required placeholder="Price" />
-        </div>
-        <!--<div class="small-3 large-3 columns">
-          <input type="number" style="width: 100px" ng-model="menuItem.prepTime" placeholder="Prep Time" />
-        </div>-->
-        <textarea name="" id="" cols="30" rows="5" ng-model="menuItem.description" placeholder="Description"></textarea>
-        <button class="button" ng-click="clearItem()">Cancel</button>
-        <button class="button" ng-click="saveMenuItem(menuItem)" style="float:right"> Add to Menu</button>
+  </div>
+
+  <div class="small-12 columns">
+    <form class="menuFormInput" ng-submit="saveMenuItem(menuItem)" ng-show="show" data-abide>
+      <ul class="small-block-grid-1 medium-block-grid-4">
+        <li>
+          <div>
+            <label>
+              Name <small>required</small>
+              <input type="text" class="menuItemName" ng-model="menuItem.name" required>
+            </label>
+            <small class="error">Name is required</small>
+          </div>
+        </li>
+        <li>
+          <label>
+            Description
+            <input class="menuItemDescription" ng-model="menuItem.description" type="text" />
+          </label>
+        </li>
+        <li>
+          <label class="right">
+            Menu Section <small>required</small>
+            <div>
+              <select class="menuItemSection" ng-model="menuItem.section" required>
+                <option ng-repeat="section in selectSections" value="{{section}}">{{section}}</option>
+              </select>
+            </div>
+          </label>
+        </li>
+        <li>
+          <label>
+            Price <small>required</small>
+            <input type="number" class="menuItemPrice" min="0" ng-model="menuItem.price" required/>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isGlutenFree" ng-change="toggle(menuItem.isGlutenFree)"> Gluten Free
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isVegan" ng-change="toggle(menuItem.isVegan)"> Vegan
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isDairyFree" ng-change="toggle(menuItem.isDairyFree)"> Dairy Free
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" ng-model="menuItem.isVegetarian" ng-change="toggle(menuItem.isVegetarian)"> Vegetarian
+          </label>
+        </li>
+      </ul>
+      <div>
+        <button class="button" type="submit"> Add to Menu</button>
       </div>
+    </form>
+    <alert type="alert.type" close="itemExists = false" ng-show="itemExists">You cannot add Duplicate Items</alert>
+  </div>
 
-      <!------------- End of the add item bar ------------->
 
-      <div ng-repeat="item in menu.items track by $index" class="fadeIn small- large-12 columns" style="background-color:#ffd1b3; margin-top:10px; padding-top:20px ">
-        <div class="small-3 large-4 columns">
-          <h4>{{item.food}}</h4>
-        </div>
-        <div class="small-2 large-2 columns">
-          <p>Price : ${{item.price}}</p>
-        </div>
-        <div class="small-2 large-2 columns">
-          <p>Prep Time : {{item.prepTime}}mins</p>
-        </div>
-        <div class="small-3 large-3 columns">
-          <ul class="inline-list" style="float:right">
-            <li>
-              <li>
-                <button class="button tiny" ng-click="deleteMenuItem($index)">Remove</button>
-              </li>
-              <!--<button class="button tiny" >Edit</button></li>----------------Edit Button------>
+
+  <!--<div class="small-12 columns menuDrag" ng-repeat="(listName, list) in models.lists track by listName">
+    <header class="section-header main">
+      <h3 class="subheader">{{listName}}</h3>
+    </header>
+    <ul dnd-list="list" class="menu-list">
+      <li ng-repeat="item in list" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="models.selected = item"
+      ng-class="{'selected': models.selected === item}">
+        {{item.name}}
+        <i class="fa fa-leaf" ng-show="item.isVegetarian"></i>
+        <i class="fa fa-pagelines" ng-show="item.isVegan"></i>
+        <span class="right">${{item.price}}</span>
+      </li>
+    </ul>
+  </div>-->
+
+  <div class="small-12 columns menuDrag">
+    <ul dnd-list="models.dropzones.menu" dnd-allowed-types="models.sectionType">
+      <li ng-repeat="section in models.dropzones.menu" dnd-draggable="section" dnd-type="section.type" dnd-effect-allowed="move"
+      dnd-moved="models.dropzones.menu.splice($index, 1)" dnd-selected="models.selected = section" ng-class="{selected: models.selected === item}">
+        <header class="section-header main">
+          <h3 class="subheader">{{section.section}}</h3>
+        </header>
+        <div>
+          <ul class="menu-list" dnd-list="section.container" dnd-allowed-types="section.allowedTypes">
+            <li ng-repeat="food in section.container" dnd-draggable="food" dnd-type="food.type" dnd-effect-allowed="move" dnd-moved="section.container.splice($index, 1)"
+            dnd-selected="models.selected = food" ng-class="{selected: models.selected === food}">
+              {{food.name}}
+              <i class="fa fa-leaf" ng-show="food.isVegetarian"></i>
+              <i class="fa fa-pagelines" ng-show="food.isVegan"></i>
+              <i class="fa fa-trash right deleteMenuItem" ng-click="deleteMenuItem(food)"></i>
+              <span class="right">${{food.price}}</span>
+            </li>
           </ul>
         </div>
-        <div class="small-9 large-9 columns">
-          <p>{{item.description}}</p>
-        </div>
-        <div class="small-3 large-3 columns" style="text-align:right; padding-top:10px">
-          <!--<button class="button">Out of Stock</button>-->
-        </div>
-      </div>
-      <button ng-show="menu.items.length" ng-click="saveMenuItems(menu.items)">Save Menu</button>
-    </div>
+      </li>
+    </ul>
+    <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
   </div>
+
+
 </div>

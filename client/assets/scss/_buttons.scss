@@ -1,12 +1,12 @@
 button, .button {
-  padding: .8rem 1.8rem 1rem 1.8rem;  
+  padding: .8rem 1.8rem 1rem 1.8rem;
 }
 
 .quantity-bar {
   .button {
     color: $primary-color;
-    padding: rem-calc(8); 
-    width: rem-calc(34); 
+    padding: rem-calc(8);
+    width: rem-calc(34);
     height: 2.3125rem;
     margin-bottom: 0;
     background-color: $white;
@@ -14,5 +14,25 @@ button, .button {
 
   input[type="text"] {
     width: rem-calc(34);
+  }
+}
+
+.button-group-auth {
+  li {
+    padding-bottom: 4px;
+
+    .button {
+      padding-top: 12px;
+      padding-bottom: 13px;
+    }
+  }
+}
+.deleteMenuItem {
+  padding-left: 5px;
+  padding-top: 4px;
+  color: grey;
+
+  &:hover {
+    color: #d25300;
   }
 }
