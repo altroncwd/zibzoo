@@ -1,7 +1,7 @@
 angular.module('zibzoo.vendors', [])
   .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
     $scope.location = location.data;
-    $scope.vendors = vendor.tempData;
+    $scope.vendors = [];
     $scope.map = {
       center: {
         latitude: 37.7874963,
@@ -9,6 +9,16 @@ angular.module('zibzoo.vendors', [])
       },
       zoom: 15
     };
+
+    // $scope.searchVendors = function (params) {
+    //   vendor.searchVendors(params)
+    //     .then(function (vendors) {
+    //       vendor.setData($scope, vendors.data);
+    //     })
+    //     .catch(function (error) {
+    //       $scope.status = error.status;
+    //     });
+    // };
 
     $scope.getVendors = function (params) {
       vendor.getVendors(params)
@@ -25,10 +35,9 @@ angular.module('zibzoo.vendors', [])
       $scope.map.center.longitude = location.longitude;
       $scope.$apply();
 
-      // $scope.getVendors({
-      //   latitude: location.latitude,
-      //   longitude: location.longitude
-      // });
+      $scope.searchVendors({
+        latitude: location.latitude,
+        longitude: location.longitude
+      });
     });
-
   }]);
