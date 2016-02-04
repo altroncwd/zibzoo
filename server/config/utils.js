@@ -42,13 +42,12 @@ module.exports = {
           throw new Error(user.email + ' already exists.');
         }
         return stripe.customers.create({
-          description: 'Customer'
+          description: customerData.email
         });
 
       })
       .then(function (customer) {
 
-        console.log('CUSTOMER', customer);
         customerData.stripeId = customer.id;
         var newUser = new Model(customerData);
 
