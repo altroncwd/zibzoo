@@ -8,8 +8,11 @@ angular.module('zibzoo.user.factory', [])
     };
 
     user.setData = function (data) {
+      if (user.data.confirmPassword) {
+        delete user.data.confirmPassword;
+      }
+      delete user.data.password;
       angular.extend(user.data, data);
-
       $window.localStorage.setItem('_id', JSON.stringify(user.data));
       $rootScope.$broadcast('user:updated');
     };

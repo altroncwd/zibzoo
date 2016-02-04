@@ -14,9 +14,11 @@ angular.module('zibzoo.auth.factory', [])
         url: '/api/' + userType + '/signin',
         data: user
       })
-      .then(function (res) {
-        return res.data;
-      });
+        .then(function (res) {
+          delete res.data.password;
+          delete res.data.salt;
+          return res.data;
+        });
     };
 
     auth.signup = function (user, userType) {
@@ -25,9 +27,11 @@ angular.module('zibzoo.auth.factory', [])
         url: '/api/' + userType + '/signup',
         data: user
       })
-      .then(function (res) {
-        return res.data;
-      });
+        .then(function (res) {
+          delete res.data.password;
+          delete res.data.salt;
+          return res.data;
+        });
     };
 
     auth.signout = function () {
