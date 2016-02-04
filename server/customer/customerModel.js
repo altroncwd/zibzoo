@@ -9,7 +9,10 @@ var customerSchema = new Schema({
   salt: { type: String },
   name: String,
   isVendor: { type: Boolean, default: false },
-  stripeId: String
+  stripeId: String,
+  creditCard: String,
+  cvc: String,
+  ccDate: String
 });
 
 customerSchema.pre('validate', utils.hashPassword);
