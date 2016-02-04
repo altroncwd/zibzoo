@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
-  createdAt: Date,
+  createdAt: { type: Date, default: Date.now },
   vendorId: String,
   customerId: String,
   transactionId: String,
