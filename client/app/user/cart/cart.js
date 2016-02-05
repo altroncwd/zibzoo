@@ -22,16 +22,11 @@ angular.module('zibzoo.cart', [])
         orders: _.groupBy(User.data.orders, 'vendor._id')
       };
 
-      console.log('user: ', User.data);
-
       User.charge(orders)
         .then(function (result) {
-          // section for Client end socket call ---------------------------
-          Socket.callMultipleVendors(result);
-          // end of socket call -------------------------------------------
           User.data.orders.length = 0;
           $scope.cancel();
-          console.log('result: ', result);
+          Socket.callMultipleVendors(result);
         })
         .catch(function (error) {
           console.log('error: ', error);
