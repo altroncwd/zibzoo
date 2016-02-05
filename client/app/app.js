@@ -25,7 +25,6 @@ angular.module('zibzoo', [
   'zibzoo.socketFactory',
   'zibzoo.location.factory',
   'zibzoo.customer.profile',
-  'angular-animate',
   'zibzoo.location.factory'
 ])
 
