@@ -1,25 +1,7 @@
 angular.module('zibzoo.merchant.order.factory', [])
   .factory('Order', ['$window', '$http', function ($window, $http) {
 
-    var order = [{
-      _id: '123j2352g34h342k5g3lk3',
-      createdAt: Date,
-      vendorId: String,
-      orderNumber: 0,
-      customerId: String,
-      isActive: Boolean,
-      latitude: String,
-      longitude: String,
-      menuItems: [{ item: 'Classic Cheese', quantity: 1 },
-                { item: 'Garlic Bread', quantity: 2 }],
-      customerInfo: {
-        email: 'christopher.w.decker@gmail.com',
-        name: 'Zibby Zabbs'
-      },
-      vendorInfo: {
-        type: 'Schema.Types.ObjectId',
-        ref: 'Vendor' }
-    }];
+    var order = [];
     order.total = 0;
 
     var setLocalStorage = function () {
