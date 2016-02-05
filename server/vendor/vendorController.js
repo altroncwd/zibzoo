@@ -87,8 +87,9 @@ module.exports = {
       })
       .limit(20)
       .then(function (vendors) {
-        if (!(vendors instanceof Error))
-        utils.sendHttpResponse(vendors, res, 200, 404);
+        if (!(vendors instanceof Error)) {
+          utils.sendHttpResponse(vendors, res, 200, 404);
+        }
       })
       .catch(function (error) {
         utils.sendHttpResponse(error, res, 200, 404);
