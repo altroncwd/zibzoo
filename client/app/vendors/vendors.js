@@ -20,26 +20,14 @@ angular.module('zibzoo.vendors', [])
         });
     };
 
-    $scope.getVendors = function (params) {
-      vendor.getVendors(params)
-        .then(function (vendors) {
-          $scope.vendors = vendors;
-        })
-        .catch(function (error) {
-          console.log('error: ', error);
-        });
-    };
-
     location.setLocation($stateParams.latlng, function (location) {
       $scope.map.center.latitude = location.latitude;
       $scope.map.center.longitude = location.longitude;
       $scope.$apply();
 
-      // $scope.searchVendors({
-      //   latitude: location.latitude,
-      //   longitude: location.longitude
-      // });
-
-      $scope.getVendors({});
+      $scope.searchVendors({
+        latitude: location.latitude,
+        longitude: location.longitude
+      });
     });
   }]);
