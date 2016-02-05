@@ -68,8 +68,25 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       model = !model;
     };
 
-
-
+    $scope.updateStock = function (menuItem) {
+      console.log(menuItem);
+      menuItem.inStock = !menuItem.inStock;
+      $scope.menu.remove(menuItem);
+      $scope.menu.addItem(menuItem);
+      var toUpdate = {
+        _id: menuItem._id,
+        propertiesToUpdate: {
+          inStock: menuItem.inStock
+        }
+      };
+      $scope.menu.update(toUpdate)
+        .then(function (response) {
+          console.log(response);
+        },
+        function (error) {
+          console.log(error);
+        });
+    };
 
 
     $scope.saveMenu = function () {
