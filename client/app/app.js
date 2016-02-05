@@ -23,7 +23,8 @@ angular.module('zibzoo', [
   'zibzoo.merchant.order',
   'zibzoo.socketFactory',
   'zibzoo.location.factory',
-  'zibzoo.customer.profile'
+  'zibzoo.customer.profile',
+  'angular-animate',
 ])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
