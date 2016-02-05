@@ -1,0 +1,45 @@
+<div class="row">
+  <div>
+    <header class="section-header  main">
+      <h2 class="subheader">Your Profile</h2>
+    </header>
+  </div>
+  <div class="small-12 columns">
+    <form ng-submit="updateCustomer(customer)">
+      <ul class="small-block-grid-1">
+        <li>
+          <div class="customerName">
+            <label>
+              Name <small>required</small>
+              <input type="text" ng-model="customer.name" required>
+            </label>
+          </div>
+        </li>
+        <li>
+          <ul class="small-block-grid-1 medium-block-grid-3">
+            <li>
+              <label>
+                Credit Card Number <small>required</small>
+                <input type="text" ng-model="customer.creditCard" pattern="[0-9]{13,16}" placeholder="ex: 12345678901234" required>
+              </label>
+            </li>
+            <li>
+              <label>
+                CVC <small>required</small>
+                <input type="text" ng-model="customer.cvc" patter="[0-9]{3,4}" placeholder="ex: 747" required>
+              </label>
+            </li>
+            <li>
+              <label>
+                Expiration Date <small>required</small>
+                <input type="text" ng-model="customer.ccDate" pattern="(0[1-9]|1[012])-[0-9]{4}" placeholder="ex: MM-YYYY" required>
+              </label>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <button type="submit">Save Profile</button>
+    </form>
+
+  </div>
+</div>
