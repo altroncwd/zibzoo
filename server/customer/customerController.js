@@ -93,8 +93,8 @@ module.exports = function (io) {
         .then(function (apiKeyArr) {
           return Promise.map(apiKeyArr, function (apiKey, keyi) {
             var orderItems = orders[vendorIds[keyi]];
-            var orderPrice = orderItems.reduce(function (total, item) {
-              return total + (item.price * 100);
+            var orderPrice = orderItems.reduce(function (total, item, index) {
+              return total + (orderItems[index].item.price * 100);
             }, 0);
 
             var chargeRecipient = stripe(apiKey.stripeApiKey);
@@ -140,7 +140,7 @@ module.exports = function (io) {
           for (var i = 0; i < storedOrders.length; i++) {
             var storedOrder = storedOrders[i];
             if (storedOrder.transactionStatus === 'succeeded') {
-              io.socket.emit(storedOrder.vendorId, storedOrder);
+              //io.socket.emit(storedOrder.vendorId, storedOrder);
             }
           }
 

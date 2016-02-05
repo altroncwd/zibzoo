@@ -8,7 +8,8 @@ angular.module('zibzoo.vendor', [])
     $scope.getVendor = function (params) {
       vendor.getVendors(params)
         .then(function (data) {
-          vendor.setData($scope, data.data[0]);
+          vendor.setData($scope, data[0]);
+
           var sections = [];
           $scope.existingSections = [];
           $scope.vendor.menuItems.forEach(function (menuItem) {
