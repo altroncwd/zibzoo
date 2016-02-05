@@ -13,7 +13,7 @@ angular.module('zibzoo.merchant.order', [])
 
     $scope.finishedOrder = function (index, order) {
       Socket.emit('order finished', order);
-      // Order.callDbOrderFinished(order); // call to update the db
+      Order.callDbOrderFinished(order); // call to update the db
       Order.order.splice(index, 1);
       Order.setLocalStorage();
       // set up a db call place the finished order in the db
