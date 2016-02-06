@@ -26,6 +26,21 @@
           </li>
           <li>
             <label>
+              Location <small>Set to your trucks location</small>
+            </label>
+            <ul class="small-block-grid-1 medium-block-grid-4">
+              <li>
+                <label>
+                  <a class="button setLocation" ng-click="setLocation()">Set Truck Location</a>
+                </label>
+              </li>
+              <li>
+                <alert type="alert.type" class="setLocation" close="locationSuccess = false" ng-show="locationSuccess">Current Location Set!</alert>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <label>
               Description <small>required</small>
               <textarea ng-model="vendor.description"></textarea>
             </label>
@@ -36,40 +51,32 @@
               <input type="text" ng-model="vendor.stripeApiKey" required>
             </label>
           </li>
-          <li>
-            <label>
-              Location <small>required</small>
-            </label>
-            <ul class="small-block-grid-1 medium-block-grid-2">
-              <li>
-                <label>
-                  Latitude
-                  <input type="number" step="any" ng-model="vendor.latitude" required>
-                </label>
-              </li>
-              <li>
-                <label>
-                  Longitude
-                  <input type="number" step="any" ng-model="vendor.longitude" required>
-                </label>
-              </li>
-            </ul>
-          </li>
         </ul>
-        <div class="bannerUpload" ngf-select="upload($file, 'banner')">
-          <i ng-show="vendor.data.bannerImageUrl" class="fa fa-upload fa-3x"></i>
-          <img ng-src="{{bannerImg}}" alt="">
+        <div class="row">
+          <label>
+            If your images are not displayed properly please upload the correct size.
+          </label>
+          <div class="bannerUpload" ngf-select="upload($file, 'banner')">
+            <i ng-if="!vendor.bannerImageUrl" class="fa fa-upload fa-3x"></i>
+            <img ng-src="{{bannerImg}}" alt="">
+          </div>
+          <label>
+            1000px x 344px
+          </label>
+          <ul class="small-block-grid-1">
+            <li>
+              <div class="thumbUpload" ngf-select="upload($file, 'thumb')">
+                <i ng-if="!vendor.thumbImageUrl" class="fa fa-upload fa-3x"></i>
+                <img ng-src="{{thumbImg}}" alt="">
+              </div>
+              <label>
+                410px x 225px
+              </label>
+            </li>
+          </ul>
         </div>
-        <ul class="small-block-grid-1">
-          <li>
-            <div class="thumbUpload" ngf-select="upload($file, 'thumb')">
-              <img ng-src="{{thumbImg}}" alt="">
-              <i ng-show="vendor.data.bannerImageUrl" class="fa fa-upload fa-3x"></i>
-            </div>
-          </li>
-        </ul>
+        <button class="profileSubmit" type="submit">Save Profile</button>
       </div>
-      <button type="submit">Save Profile</button>
     </form>
   </div>
 </div>
