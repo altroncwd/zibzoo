@@ -14,7 +14,7 @@ angular.module('zibzoo.merchant.order', [])
     $scope.finishedOrder = function (index, order) {
 
       Socket.emit('orderFinished', order);
-      // Order.callDbOrderFinished(order); // call to update the db
+      Order.callDbOrderFinished(order); // call to update the db
 
       Order.order.splice(index, 1);
       Order.setLocalStorage();
@@ -26,8 +26,8 @@ angular.module('zibzoo.merchant.order', [])
     Socket.emit('menuConnect', listenOnMerchId);
 
     Socket.on('newOrder', function (newOrder) {
-      console.log("HEARD");
-      console.log("NEWORDER", newOrder);
+      // console.log("HEARD");
+      // console.log("NEWORDER", newOrder);
       newOrder.orderNumber = Order.order.total++;
       Order.order.push(newOrder);
       Order.setLocalStorage();

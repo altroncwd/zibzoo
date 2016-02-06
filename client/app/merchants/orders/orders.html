@@ -17,14 +17,14 @@
           <h3 class="subheader">Order # {{orders.orderNumber+1}}</h3>
         </div>
         <div class="small-8 large-8 columns">
-          <h4 class="subheader"> Email : {{ orders.customerInfo.email }}</h4>
+          <h4 class="subheader"> Email : {{ orders.customerEmail }}</h4>
         </div>
       </div>
       <div class="small-9 large-9 columns">
         <ul class="inline-list">
-          <li ng-repeat="food in orders.menuItems">
+          <li ng-repeat="food in orders.orderItems">
            <button class="button small" ng-click="itemFinished(orders, $index, $parent.$index)" class="button small">
-              {{food.item}} : {{food.quantity}}
+              {{food.item.name}} : {{food.quantity}}
            </button>
           </li>
         </ul>
