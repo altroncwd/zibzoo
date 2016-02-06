@@ -20,17 +20,31 @@
     }
   }
 
-  // .bannerButton {
-  //   width: 130px;
-  //   height: 60px;
-  // }
+  alert {
+    padding: 0;
+    margin: 0;
+  }
+
+  .setLocation {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
   .cuisineType {
     width: 300px;
   }
 
   .bannerUpload {
     padding-bottom: 15px;
+    height: 344px;
+    width: 1000px;
+    overflow: hidden;
+    justify-content: center;
+
+    img {
+      width: 100%;
+    }
     i {
+      z-index: 1000;
       position: absolute;
       float: top;
       top: 55%;
@@ -41,12 +55,24 @@
   .thumbUpload {
     width: 410px;
     height: 225px;
+    overflow: hidden;
+    justify-content: center;
+
+    img {
+      width: 100%;
+    }
+
     i {
+      z-index: 1000;
       position: absolute;
       float: top;
       top: 80%;
       left: 22%;
     }
+  }
+
+  .profileSubmit {
+    position: relative;
   }
 }
 
