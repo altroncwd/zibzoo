@@ -55,8 +55,8 @@ angular.module('zibzoo.user.factory', [])
     user.getFromLocal = function () {
       var data = JSON.parse($window.localStorage.getItem('_id'));
       if (isNaN(data.longitude) && isNaN(data.latitude)) {
-        data.longitude = parseFloat(data.longitude);
-        data.latitude = parseFloat(data.latitude);
+        data.longitude = data.longitude;
+        data.latitude = data.latitude;
       }
       user.data = data;
     };

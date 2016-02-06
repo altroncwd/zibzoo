@@ -51,10 +51,10 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         User.setData({ latitude: currLocation.latitude,
                       longitude: currLocation.longitude
                       });
+        $scope.locationSuccess = true;
+        $scope.updateVendor($scope.vendor);
+        console.log($scope.vendor);
       });
-      User.setNewToLocal();
-      User.getFromLocal();
-      $scope.locationSuccess = true;
     };
 
     $scope.upload = function (file, type) {
