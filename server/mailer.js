@@ -33,8 +33,8 @@ var mailOptions = function (finishedOrderObj) {
   return mail;
 };
 
-exports.sendMail = function (usersEmail) {
-  transporter.sendMail(mailOptions(usersEmail), function (error, info) {
+exports.sendMail = function (OrderObject) {
+  transporter.sendMail(mailOptions(OrderObject), function (error, info) {
     if (error) {
       return console.log(error);
     }
