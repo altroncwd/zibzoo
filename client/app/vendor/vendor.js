@@ -34,8 +34,8 @@ angular.module('zibzoo.vendor', [])
     };
 
     $scope.order = function (item) {
-      if (Auth.isAuth()) {
-        if (item.inStock) {
+      if (item.inStock) {
+        if (Auth.isAuth()) {
           $modal.open({
             templateUrl: 'app/vendor/_order-form.html',
             controller: 'OrderFormController',
@@ -48,9 +48,9 @@ angular.module('zibzoo.vendor', [])
               }
             }
           });
+        } else {
+          Auth.openModal();
         }
-      } else {
-        Auth.openModal();
       }
     };
 
