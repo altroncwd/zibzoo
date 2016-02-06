@@ -91,8 +91,8 @@ module.exports = function (socket) {
           return Vendor.findOne({ _id: vendorId }, 'stripeApiKey');
         })
         .then(function (apiKeyArr) {
-          return Promise.map(apiKeyArr, function (apiKey, keyi) {
-            var orderItems = orders[vendorIds[keyi]];
+          return Promise.map(apiKeyArr, function (apiKey, key) {
+            var orderItems = orders[vendorIds[key]];
             var orderPrice = orderItems.reduce(function (total, item, index) {
               return total + (orderItems[index].item.price * 100);
             }, 0);
@@ -104,7 +104,7 @@ module.exports = function (socket) {
               customer: stripeId,
               metadata: {
                 email: charge.email,
-                vendorId: vendorIds[keyi]
+                vendorId: vendorIds[key]
               }
             };
             console.log("BEFORE CHARGE");
@@ -118,6 +118,7 @@ module.exports = function (socket) {
             var order = {
               vendorId: vendorIds[i],
               customerId: charge._id,
+              customerEmail: chargeObjArr[i].metadata.email,
               transactionId: chargeObjArr[i].id,
               transactionStatus: chargeObjArr[i].status,
               orderItems: orders[vendorIds[i]]
@@ -136,7 +137,7 @@ module.exports = function (socket) {
           });
         })
         .then(function (storedOrders) {
-          console.log(storedOrders);
+          // console.log(storedOrders);
           // TODO: Remove unnecessary code if sockets are implemented separately
           for (var i = 0; i < storedOrders.length; i++) {
             var storedOrder = storedOrders[i];

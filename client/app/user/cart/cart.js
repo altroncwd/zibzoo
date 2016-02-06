@@ -34,12 +34,12 @@ angular.module('zibzoo.cart', [])
 
       Socket.on('chargeResponse', function (data) {
 
+        $scope.cancel();
         console.log("CHARGE HAPPENED!", data);
       });
       // User.charge(orders)
       //   .then(function (result) {
       //     User.data.orders.length = 0;
-      //     $scope.cancel();
       //     // Socket.emit(result);
       //   })
       //   .catch(function (error) {

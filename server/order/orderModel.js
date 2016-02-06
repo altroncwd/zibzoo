@@ -6,6 +6,7 @@ var orderSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   vendorId: String,
   customerId: String,
+  customerEmail: String,
   transactionId: String,
   transactionStatus: String,
   isActive: { type: Boolean, default: true },

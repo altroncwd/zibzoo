@@ -16,10 +16,7 @@ module.exports = function (server) {
 var customerController = require('./customer/customerController.js')(socket);
 
     socket.on('charge', function (chargeData) {
-      // console.log(chargeData.orders);
-      // delete chargeData.orders[chargeData.vendor._id][0].item['$$hashKey'];
-      // delete chargeData.orders[chargeData.vendor._id][0]['$$hashKey'];
-      // console.log('-----------------------', chargeData.orders['56b534125eee08602c010d71'][0]);
+
       customerController.chargeOrders(chargeData)
         .then(function (response) {
           socket.emit('chargeResponse', response);
