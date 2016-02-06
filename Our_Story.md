@@ -1,9 +1,12 @@
 # Our Story
 
-Are you hungry, and looking for some food?  Keep hearing about some great truck around the area but dont know where it is?  Even when you get there you waste your time waiting in line just to grab something that might have just run out.   Well no more, welcome to Zibzoo.
-With Zibzoo you can browse the foodtrucks in your area and check out their menus before you go.  Anyone can use ZibZoo, but by signing up with us you can avoid the lines.  When you register with Zibzoo and are ready to complete your order, we handle all the details; you just have to pick up your food. Not sure when it will be ready? No worries; when a merchant has finished your food you'll receive an email letting you know its ready.
+With the breath of food trucks in SanFrancisco, the choice can be overwhelming.  When you do decide on a truck, waiting in line only to find out your favorite item has sold out can be frustrating; especially when you only have an hour for lunch.
 
-Coming to Zibzoo as a vendor? Great, we've made it easy to manage your account.  Simply sign up with us, from here you can do everything you need.  Edit your profile, create new items, re-arrange your menu and take care of customer orders. Once you finish an order we'll notify your customers that they can pick up their food. Because we handle all the transactions, you dont have to worry about dealing with the money, instead you'll simply hand off orders to your customers.  No fuss, no lines and you get to focus on what really matters.
+Zibzoo solves this problem.
+
+Zibzoo is a web based food exploration application for food trucks that will help you take out the hastle of getting your lunch.  When you come to Zibzoo we check the food trucks in your area with geolocations and google maps.  Once you choose a food truck your free to pick what you want.  With our live updates using Socket io your always kept up to date with what foods are in stock.  Anyone can check out food trucks but to get the most out of Zibzoo create and account to place your orders.  When you sign up with Zibzoo we take care of all the everything for you.  All you need to do is pick what food you want and place your order.  Can't decide on a single vendor, well you don't have too.  We will even take care of orders to more then one truck quickly and securly with Stripe. Want to make sure that you dont wait for your food and waste your lunch?  When a vendor finishes your food you will receive an email notifying you to come get your food.
+
+If you own a food truck Zibzoo will put you on the map.  With the ability to update your location, menu and profile; you can make sure your customers are always up to date.  Your orders list will always be kept up to date using Sockets so you never miss a beat, and when you finish off your order we make sure to notify your customer their food is done.  With us you can help your customers avoid the lines, and you can speed up the process with us handling the money securly.  Zibzoo takes care of all the money, and you get the time to focus on whats most important, your food; and your customers.
 
 Check us out today at http://zibzoo.herokuapp.com
 
@@ -52,7 +55,7 @@ Check us out today at http://zibzoo.herokuapp.com
 
 - Need to reorganize your menu? no problem simply drag and drop any item or any catagorie of food
 
-![alt tag](./storyAssets/MenuDD2.png)
+![alt tag](./storyAssets/MenuDD.png)
 
 - Finaly take care of all your orders.  You can remove individual food items from orders, or complete an order all together. View how many orders you currently have, as well as a counter for how many orders you've had this session.  Dont worry about contacting people, when you finish an order we automaticaly send off emails to the person who ordered it.  Just make sure to write down their order numbers and emails just in case.
 
