@@ -11,8 +11,9 @@
         <header>
           <h3>{{section.section}}</h3>
         </header>
-        <li ng-repeat="menuItem in section.container" ng-click="order(menuItem)">
+        <li ng-repeat="menuItem in section.container" ng-class="{'instock' : !menuItem.inStock}" ng-click="order(menuItem)">
           <p>
+            <span ng-if="!menuItem.inStock"><i class="fa fa-ban"></i></span>
             <span>{{menuItem.name}}</span>
             <span class="right">{{menuItem.price | currency}}</span>
           </p>
