@@ -12,19 +12,24 @@ angular.module('zibzoo.merchant.order', [])
     };
 
     $scope.finishedOrder = function (index, order) {
-      Socket.emit('order finished', order);
-      Order.callDbOrderFinished(order); // call to update the db
+
+      Socket.emit('orderFinished', order);
+      // Order.callDbOrderFinished(order); // call to update the db
+
       Order.order.splice(index, 1);
       Order.setLocalStorage();
       // set up a db call place the finished order in the db
     };
 
     var listenOnMerchId = $stateParams.merchantId;
-            // listenOnMerchId should be the merchants ID number
-    Socket.on(listenOnMerchId, function (newOrder) {
+
+    Socket.emit('menuConnect', listenOnMerchId);
+
+    Socket.on('newOrder', function (newOrder) {
+      console.log("HEARD");
+      console.log("NEWORDER", newOrder);
       newOrder.orderNumber = Order.order.total++;
       Order.order.push(newOrder);
       Order.setLocalStorage();
     });
-
   }]);

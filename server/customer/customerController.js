@@ -29,7 +29,7 @@ function _findOneCustomerByProperty(customerObj) {
 }
 
 
-module.exports = function (io) {
+module.exports = function (socket) {
   return {
     signIn: function (req, res) {
       var customer = req.body;
@@ -80,13 +80,13 @@ module.exports = function (io) {
         });
     },
 
-    chargeOrders: function (req, res) {
-      var charge = req.body;
+    chargeOrders: function (chargeData) {
+      var charge = chargeData;
       var orders = charge.orders;
       var vendorIds = Object.keys(orders);
       var stripeId = charge.stripeId;
 
-      Promise
+      return Promise
         .map(vendorIds, function (vendorId) {
           return Vendor.findOne({ _id: vendorId }, 'stripeApiKey');
         })
@@ -107,13 +107,13 @@ module.exports = function (io) {
                 vendorId: vendorIds[keyi]
               }
             };
-
+            console.log("BEFORE CHARGE");
             return chargeRecipient.charges.create(chargeObj);
           });
         })
         .then(function (chargeObjArr) {
           var savedOrders = [];
-
+          console.log("AFTER CHARGE");
           for (var i = 0; i < chargeObjArr.length; i++) {
             var order = {
               vendorId: vendorIds[i],
@@ -136,15 +136,19 @@ module.exports = function (io) {
           });
         })
         .then(function (storedOrders) {
+          console.log(storedOrders);
           // TODO: Remove unnecessary code if sockets are implemented separately
           for (var i = 0; i < storedOrders.length; i++) {
             var storedOrder = storedOrders[i];
             if (storedOrder.transactionStatus === 'succeeded') {
-              //io.socket.emit(storedOrder.vendorId, storedOrder);
+
+              console.log(storedOrder.vendorId);
+              console.log(storedOrder);
+              socket.to(storedOrder.vendorId).emit('newOrder', storedOrder);
             }
           }
 
-          utils.sendHttpResponse(storedOrders, res, 201, 404);
+          // utils.sendHttpResponse(storedOrders, res, 201, 404);
         });
 
     }
