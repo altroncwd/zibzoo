@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.menu.factory', [])
-  .factory('menu', ['$http', '$stateParams', 'User', '$q', function ($http, $stateParams, User, $q) {
+  .factory('menu', ['$http', '$stateParams', 'User', '$q', 'Socket', function ($http, $stateParams, User, $q, Socket) {
     var menu = {};
 
     menu.items = User.data.menuItems;
@@ -39,17 +39,19 @@ angular.module('zibzoo.merchant.menu.factory', [])
     };
 
     menu.update = function (propsToUpdate) {
-      return $http({
-        method: 'PUT',
-        url: 'api/menu',
-        data: propsToUpdate
-      })
-        .then(function (data) {
-          return data;
-        })
-        .catch(function (error) {
-          console.error('Error', error);
-        });
+      console.log('PROPS TO UPDATE', propsToUpdate);
+      Socket.emit('updateStock', propsToUpdate);
+      // return $http({
+      //   method: 'PUT',
+      //   url: 'api/menu',
+      //   data: propsToUpdate
+      // })
+      //   .then(function (data) {
+      //     return data;
+      //   })
+      //   .catch(function (error) {
+      //     console.error('Error', error);
+      //   });
     };
 
     menu.saveMenu = function (toBeUpdatedArray) {

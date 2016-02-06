@@ -26,8 +26,7 @@ angular.module('zibzoo.merchant.order', [])
     Socket.emit('menuConnect', listenOnMerchId);
 
     Socket.on('newOrder', function (newOrder) {
-      // console.log("HEARD");
-      // console.log("NEWORDER", newOrder);
+
       newOrder.orderNumber = Order.order.total++;
       Order.order.push(newOrder);
       Order.setLocalStorage();
