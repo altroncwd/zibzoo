@@ -1,5 +1,5 @@
 angular.module('zibzoo.merchant.menu', ['dndLists'])
-  .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', 'vendor', function ($scope, menu, User, $stateParams, vendor) {
+  .controller('MerchantMenuController', ['$scope', 'menu', 'User', '$stateParams', 'vendor', 'Socket', function ($scope, menu, User, $stateParams, vendor, Socket) {
 
     User.getFromLocal();
 
@@ -69,23 +69,25 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     };
 
     $scope.updateStock = function (menuItem) {
-      console.log(menuItem);
+
       menuItem.inStock = !menuItem.inStock;
       $scope.menu.remove(menuItem);
       $scope.menu.addItem(menuItem);
       var toUpdate = {
         _id: menuItem._id,
+        vendorId: menuItem.vendorId,
         propertiesToUpdate: {
           inStock: menuItem.inStock
         }
       };
-      $scope.menu.update(toUpdate)
-        .then(function (response) {
-          console.log(response);
-        },
-        function (error) {
-          console.log(error);
-        });
+      console.log('MENU UPDATE EXECUTED');
+      $scope.menu.update(toUpdate);
+        // .then(function (response) {
+
+        // },
+        // function (error) {
+        //   console.log(error);
+        // });
     };
 
 
@@ -164,7 +166,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     };
 
 
-
+    Socket.emit('menuConnect', $stateParams.merchantId);
 
 
     if ($scope.menu.items) {

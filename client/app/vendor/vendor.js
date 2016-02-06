@@ -26,6 +26,7 @@ angular.module('zibzoo.vendor', [])
               $scope.existingSections[menuItem.sectionIndex] = menuItem.section;
             }
           });
+          console.log("SECTIONS", sections);
           $scope.items = sections;
         })
         .catch(function (error) {
@@ -55,12 +56,15 @@ angular.module('zibzoo.vendor', [])
     };
 
     $scope.getVendor({ _id: $stateParams.vendorId });
-
-    Socket.on('_____', function (updatedItem) {
-      $scope.vendor.menuItems.forEach(function (item) {
-        if (item.name === updatedItem.name) {
-          item.inStock = !item.inStock;
-        }
+    Socket.emit('menuConnect', $stateParams.vendorId);
+    Socket.on('updateItem', function (updatedItem) {
+      console.log(updatedItem);
+      $scope.items.forEach(function (section) {
+        section.container.forEach(function (item) {
+          if (item._id === updatedItem._id) {
+            item.inStock = !item.inStock;
+          }
+        });
       });
     });
 

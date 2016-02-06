@@ -13,8 +13,9 @@
         </header>
         <li ng-repeat="menuItem in section.container" ng-class="{'instock' : !menuItem.inStock}" ng-click="order(menuItem)">
           <p>
-            <span ng-if="!menuItem.inStock"><i class="fa fa-ban"></i></span>
+            <!--<span ng-if="!menuItem.inStock"><i class="fa fa-ban"></i></span>-->
             <span>{{menuItem.name}}</span>
+            <small ng-if="!menuItem.inStock" >out of stock</small>
             <span class="right">{{menuItem.price | currency}}</span>
           </p>
         </li>

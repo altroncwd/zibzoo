@@ -1,5 +1,7 @@
 var mail = require('./mailer.js');  // (nodemailer)
-var io = require('./server.js');
+// var io = require('./server.js');
+var utils = require('./config/utils.js');
+var MenuItem = require('./menuItem/menuItemModel.js');
 var sockets = require('socket.io');
 
 module.exports = function (server) {
@@ -23,8 +25,13 @@ var customerController = require('./customer/customerController.js')(socket);
         });
     });
 
-    socket.on('updateMenu', function (data) {
-      socket.to(data.room._id).emit('updateItem', data);
+    socket.on('updateStock', function (update) {
+      console.log('UPDATE OBJ FOR SOCKET', update);
+      utils.modifyOneRecordById(update, MenuItem)
+        .then(function (menuItem) {
+
+          socket.to(update.vendorId).emit('updateItem', update);
+        });
     });
 
     socket.on('createOrder', function (order) {
