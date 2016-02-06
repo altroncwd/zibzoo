@@ -2,6 +2,7 @@ angular.module('zibzoo.landing', [])
   .controller('LandingController', ['$scope', '$state', 'vendor', 'location', function ($scope, $state, vendor, location) {
     $scope.location = null;
     $scope.vendors = [];
+    $scope.loading = true;
 
     $scope.findVendors = function () {
       if ($scope.selectedPlace) {
@@ -16,6 +17,7 @@ angular.module('zibzoo.landing', [])
       vendor.searchVendors(params)
         .then(function (vendors) {
           $scope.vendors = vendors;
+          $scope.loading = false;
         })
         .catch(function (error) {
           console.log('error: ', error);
