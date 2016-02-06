@@ -2,6 +2,7 @@ angular.module('zibzoo.vendors', [])
   .controller('VendorsController', ['$scope', '$stateParams', 'vendor', 'location', function ($scope, $stateParams, vendor, location) {
     $scope.location = location.data;
     $scope.vendors = [];
+    $scope.loading = true;
     $scope.map = {
       center: {
         latitude: 37.7874963,
@@ -13,7 +14,8 @@ angular.module('zibzoo.vendors', [])
     $scope.searchVendors = function (params) {
       vendor.searchVendors(params)
         .then(function (vendors) {
-          $scope.vendors = vendors;
+          $scope.vendors = vendors;  
+          $scope.loading = false;
         })
         .catch(function (error) {
           console.log('error: ', error);
