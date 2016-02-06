@@ -35,18 +35,20 @@ angular.module('zibzoo.vendor', [])
 
     $scope.order = function (item) {
       if (Auth.isAuth()) {
-        $modal.open({
-          templateUrl: 'app/vendor/_order-form.html',
-          controller: 'OrderFormController',
-          resolve: {
-            item: function () {
-              return item;
-            },
-            vendor: function () {
-              return $scope.vendor;
+        if (item.inStock) {
+          $modal.open({
+            templateUrl: 'app/vendor/_order-form.html',
+            controller: 'OrderFormController',
+            resolve: {
+              item: function () {
+                return item;
+              },
+              vendor: function () {
+                return $scope.vendor;
+              }
             }
-          }
-        });
+          });
+        }
       } else {
         Auth.openModal();
       }
