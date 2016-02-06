@@ -1,5 +1,5 @@
 angular.module('zibzoo.vendor', [])
-  .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', function ($scope, $stateParams, $modal, vendor, Auth) {
+  .controller('VendorController', ['$scope', '$stateParams', '$modal', 'vendor', 'Auth', 'Socket', function ($scope, $stateParams, $modal, vendor, Auth, Socket) {
 
     $scope.vendor = {};
     $scope.existingSections = [];
@@ -55,4 +55,13 @@ angular.module('zibzoo.vendor', [])
     };
 
     $scope.getVendor({ _id: $stateParams.vendorId });
+
+    Socket.on('_____', function (updatedItem) {
+      $scope.vendor.menuItems.forEach(function (item) {
+        if (item.name === updatedItem.name) {
+          item.inStock = !item.inStock;
+        }
+      });
+    });
+
   }]);
