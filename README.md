@@ -14,21 +14,14 @@ Once you have finished that you will to obtain your won api keys.
 
 # Choice of Technologies
 - Angular
-- Foundation
 - Express
-- Gulp
-- Mongod
 - MongoDB
-- BlueBird
-- NPM
-- SASS
-- Bcrypt
-- Socket.io
-- Nodemailer
-- Cloudinary
-- Stripe
 - Karma
 - Jasmine
+- Stripe
+- Gulp
+- SASS
+- Socket.io
 
 # File Structure
 Files are separated into three main sections.
@@ -57,8 +50,7 @@ ZibZoo
 # Features
 Users :
 - Create a account
-- Display food trucks
-- Filter results by cuisine
+- Displays food trucks in your area
 - Place orders from multiple food trucks
 - Checkout orders and pay via Stripe
 - Email notification when your order is ready
@@ -68,12 +60,16 @@ Vendors :
 - Automaticaly accept payments for online orders
 - Vendor order display que with live updates
 - Create a profile and easily update menu
+- Update all your customers with instock menu items
 
-# In Progress
-- Live menu update for out of stock items
-- Geo locational data
-- Geo location filtering
-- Anyalitic data and display
+# Future Features
+- Anyalitic data and display page
+- Filter by cuisine types
+- Allow vendors to select multiple cuisine types
+- Implement auto picture cropping
+- User favorites
+- Sorting orders based on geolocation
+- Ordering food for pickup at a specific time
 
 # Tests
 Testing done in Jasmine/Karma.  Coverage [ 80% ]
