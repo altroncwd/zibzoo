@@ -47,13 +47,11 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
 
     $scope.setLocation = function () {
       location.getCurrentLocation(function (currLocation) {
-        console.log(currLocation);
-        User.setData({ latitude: currLocation.latitude,
+        angular.extend($scope.vendor, { latitude: currLocation.latitude,
                       longitude: currLocation.longitude
                       });
-        $scope.locationSuccess = true;
         $scope.updateVendor($scope.vendor);
-        console.log($scope.vendor);
+        $scope.locationSuccess = true;
       });
     };
 
