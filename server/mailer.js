@@ -26,7 +26,7 @@ var mailOptions = function (finishedOrderObj) {
 
   var mail = {
     from: 'ZibZoo <' + mailDetails.email + '>',  // sender address
-    to: finishedOrderObj.customerInfo.email,  // list of receivers
+    to: finishedOrderObj.customerEmail,  // list of receivers
     subject: 'ZibZoo : Your order is ready ✔', // Subject line
     html: displayMessage
   };
