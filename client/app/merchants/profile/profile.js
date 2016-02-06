@@ -1,13 +1,11 @@
 angular.module('zibzoo.merchant', ['ngFileUpload'])
-  .controller('MerchantProfileController', ['$scope', 'vendor', '$stateParams', 'User', 'Upload', function ($scope, vendor, $stateParams, User, Upload) {
+  .controller('MerchantProfileController', ['$scope', 'vendor', '$stateParams', 'User', 'Upload', 'location', function ($scope, vendor, $stateParams, User, Upload, location) {
 
     User.getFromLocal();
 
     $scope.cuisines = ['American', 'Chinese', 'Hawaiian', 'French', 'German', 'Japanese', 'Spanish', 'Mexican', 'Peruvian', 'Filipino', 'Korean', 'Indian', 'Bacon'];
     $scope.vendor = User.data;
-
     $scope.merchantId = $stateParams.merchantId;
-
     $scope.diff = {
       _id: $scope.merchantId,
       propertiesToUpdate: {}
@@ -26,6 +24,7 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
       }
     };
 
+
     $scope.updateVendor = function (updatedVendor) {
 
       var updated = $scope.vendor;
@@ -43,6 +42,19 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
         .catch(function (error) {
           $scope.updateStatus = error.status;
         });
+    };
+
+
+    $scope.setLocation = function () {
+      location.getCurrentLocation(function (currLocation) {
+        console.log(currLocation);
+        User.setData({ latitude: currLocation.latitude,
+                      longitude: currLocation.longitude
+                      });
+      });
+      User.setNewToLocal();
+      User.getFromLocal();
+      $scope.locationSuccess = true;
     };
 
     $scope.upload = function (file, type) {
