@@ -1,25 +1,25 @@
-.ng-enter{
+.ng-enter {
   transition: 0.75s;
   opacity: 0;
 }
 
-.ng-enter-stagger{
+.ng-enter-stagger {
   transition-delay: 0.1s;
 }
 
-.ng-enter-active{
+.ng-enter-active {
   opacity: 1;
 }
 
-.ng-leave-stagger{
+.ng-leave-stagger {
   transition-delay: 0.1s;
 }
 
-.ng-leave{
+.ng-leave {
   transition: 0.75s;
   opacity: 1;
 }
 
-.ng-leave-active{
+.ng-leave-active {
   opacity: 0;
 }
