@@ -22,11 +22,10 @@ angular.module('zibzoo.customer.profile', [])
       User.setData($scope.diff);
       User.updateCustomer($scope.diff)
         .then(function (data) {
-          console.log('data.data', data.data);
-          console.log('data', data);
+          $scope.updateSuccess = data;
         })
         .catch(function (error) {
-          console.error('Error:', error.status);
+          $scope.updateError(error);
         });
     };
 

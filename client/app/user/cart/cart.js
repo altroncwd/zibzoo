@@ -21,7 +21,6 @@ angular.module('zibzoo.cart', [])
         email: User.data.email,
         orders: _.groupBy(User.data.orders, 'vendor._id')
       };
-      console.log(orders.orders);
       for(var key in orders.orders) {
         orders.orders[key].forEach(function (orderItem) {
 
@@ -35,16 +34,7 @@ angular.module('zibzoo.cart', [])
       Socket.on('chargeResponse', function (data) {
 
         $scope.cancel();
-        console.log("CHARGE HAPPENED!", data);
       });
-      // User.charge(orders)
-      //   .then(function (result) {
-      //     User.data.orders.length = 0;
-      //     // Socket.emit(result);
-      //   })
-      //   .catch(function (error) {
-      //     console.log('error: ', error);
-      //   });
     };
 
     function getTotal() {

@@ -14,11 +14,11 @@ angular.module('zibzoo.vendors', [])
     $scope.searchVendors = function (params) {
       vendor.searchVendors(params)
         .then(function (vendors) {
-          $scope.vendors = vendors;  
+          $scope.vendors = vendors;
           $scope.loading = false;
         })
         .catch(function (error) {
-          console.log('error: ', error);
+          $scope.searchError = error;
         });
     };
 
