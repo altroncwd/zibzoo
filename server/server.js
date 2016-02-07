@@ -1,25 +1,29 @@
 require('dotenv').config();
+
 var express = require('express');
 var app = express();
-var mongoose = require('mongoose');
-var port = process.env.PORT;
-var uri = process.env.MONGOLAB_URI;
 var server = require('http').createServer(app);
 var io = require('./socket.js')(server);
+var mongoose = require('mongoose');
 
-module.exports = io;  // simpley aquire the server to have access to the socket
+var port = process.env.PORT;
+var uri = process.env.MONGOLAB_URI;
 
-mongoose.connect(uri);
+module.exports.io = io;
+
+// Export for testing
+module.exports.app = server;
+module.exports.db = mongoose.connect(uri);
 
 mongoose.connection.once('open', function () {
-  console.log('Connected to mongoDB.');
+  console.log('Connected to MongoDB.');
 });
 
 require('./config/middleware.js')(app, express);
 
 server.listen(port);
 
-console.log('server listening on ', port);
+console.log('App listening on port: ', port);
 
 // ------------------------------------------------
 // Server side socket test for vendor order list

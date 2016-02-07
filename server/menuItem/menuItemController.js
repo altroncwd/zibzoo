@@ -9,7 +9,7 @@ var Promise = require('bluebird');
 mongoose.Promise = Promise;
 
 
-function _saveMenuItem(menuItemObj) {
+var _saveMenuItem = function (menuItemObj) {
   var newMenuItem = new MenuItem(menuItemObj);
 
   return newMenuItem
@@ -19,8 +19,7 @@ function _saveMenuItem(menuItemObj) {
         throw new Error('Unable to save menu item.');
       }
 
-      Vendor.update(
-        { _id: menuItemObj.vendorId },
+      Vendor.update({ _id: menuItemObj.vendorId },
         { $push: { menuItems: menuItem._id } },
         function (error) {
           if (error) {
@@ -33,7 +32,7 @@ function _saveMenuItem(menuItemObj) {
     .catch(function (error) {
       return error;
     });
-}
+};
 
 function _removeMenuItem(menuItemObj) {
   return MenuItem.remove({ _id: menuItemObj._id })
@@ -42,10 +41,8 @@ function _removeMenuItem(menuItemObj) {
         throw new Error('Menu item cannot be deleted because it may not exist.');
       }
 
-      Vendor.update(
-          { _id: menuItemObj.vendorId },
-          { $pull: { menuItems: menuItemObj._id }
-        });
+      Vendor.update({ _id: menuItemObj.vendorId },
+        { $pull: { menuItems: menuItemObj._id } });
 
       return docsAffectedObj;
     })

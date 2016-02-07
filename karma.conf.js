@@ -10,7 +10,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'should'],
 
 
     // list of files / patterns to load in the browser
@@ -37,7 +37,7 @@ module.exports = function (config) {
       'client/**/*.js',
 
     // client test
-      'spec/client/**/*.js'
+      'test/client/**/*.test.js'
     ],
 
 
@@ -56,7 +56,15 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'nyan', 'html'],
+    reporters: ['progress', 'mocha'],
+
+
+    client: {
+      mocha: {
+        reporter: 'html', // change Karma's debug.html to the mocha web reporter
+        ui: 'bdd'
+      }
+    },
 
 
     // web server port
