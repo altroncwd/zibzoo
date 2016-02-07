@@ -75,21 +75,11 @@ module.exports = {
   deleteMenuItem: function (req, res) {
     var menuItem = req.query;
 
-<<<<<<< Updated upstream
     _removeMenuItem(menuItem)
       .then(function (menuItemDeleteStatus) {
         utils.sendHttpResponse(menuItemDeleteStatus, res, 304, 404);
       });
   }
-=======
-      _removeMenuItem(menuItem)
-        .then(function (menuItemDeleteStatus) {
-          utils.sendHttpResponse(menuItemDeleteStatus, res, 304, 404);
-        });
-    }
-
-  };
->>>>>>> Stashed changes
 
 };
 
