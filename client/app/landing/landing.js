@@ -8,7 +8,7 @@ angular.module('zibzoo.landing', [])
       if ($scope.selectedPlace) {
         var latitude = $scope.selectedPlace.geometry.location.lat();
         var longitude = $scope.selectedPlace.geometry.location.lng();
-        
+
         $state.go('vendors', { latlng: latitude + ',' + longitude });
       }
     };
@@ -20,14 +20,14 @@ angular.module('zibzoo.landing', [])
           $scope.loading = false;
         })
         .catch(function (error) {
-          console.log('error: ', error);
+          $scope.searchError = error.status;
         });
     };
 
     location.getCurrentLocation(function (location) {
       $scope.location = location;
       $scope.$apply();
-      
+
       $scope.searchVendors({
         latitude: location.latitude,
         longitude: location.longitude

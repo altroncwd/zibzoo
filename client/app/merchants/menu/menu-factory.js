@@ -39,19 +39,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
     };
 
     menu.update = function (propsToUpdate) {
-      console.log('PROPS TO UPDATE', propsToUpdate);
       Socket.emit('updateStock', propsToUpdate);
-      // return $http({
-      //   method: 'PUT',
-      //   url: 'api/menu',
-      //   data: propsToUpdate
-      // })
-      //   .then(function (data) {
-      //     return data;
-      //   })
-      //   .catch(function (error) {
-      //     console.error('Error', error);
-      //   });
     };
 
     menu.saveMenu = function (toBeUpdatedArray) {

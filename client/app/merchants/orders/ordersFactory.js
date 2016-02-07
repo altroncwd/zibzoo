@@ -9,7 +9,6 @@ angular.module('zibzoo.merchant.order.factory', [])
       modifiedToken.timeStamp = $window.Date.now();
       modifiedToken.orders = order;
       modifiedToken.total = order.total;
-      // console.log('New modified token', modifiedToken);
       $window.localStorage.setItem('_id', JSON.stringify(modifiedToken));
     };
 
@@ -35,9 +34,7 @@ angular.module('zibzoo.merchant.order.factory', [])
       var persist = JSON.parse($window.localStorage.getItem('_id'));
       if (persist !== null) {
         if ($window.Date.now() - persist.timeStamp < 3600000) { // 3600000 = 1hours, set lower for testing
-          // console.log('Persisted total: ', persist);
           for (var i = 0; i < persist.orders.length; i++) {
-            // console.log('looking for that hash', persist.orders[i]);
             var temp = persist.orders[i];
             order.push(temp);
           }

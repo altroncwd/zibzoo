@@ -6,7 +6,6 @@ angular.module('zibzoo.merchant.order', [])
     var vendorName = JSON.parse($window.localStorage.getItem('_id')).name;
 
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
-      // console.log(currentOrder, index, parentIndex);
       Order.order[parentIndex].menuItems.splice(index, 1);
       if (Order.order[parentIndex].menuItems.length === 0) {
         $scope.finishedOrder(parentIndex, currentOrder.ID);

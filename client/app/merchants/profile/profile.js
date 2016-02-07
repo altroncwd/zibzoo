@@ -37,7 +37,6 @@ angular.module('zibzoo.merchant', ['ngFileUpload'])
       vendor.updateVendor($scope.diff)
         .then(function (data) {
           $scope.updateStatus = data.status;
-          console.log('vendor updated successfully', data);
         })
         .catch(function (error) {
           $scope.updateStatus = error.status;

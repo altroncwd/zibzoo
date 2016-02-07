@@ -80,14 +80,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
           inStock: menuItem.inStock
         }
       };
-      console.log('MENU UPDATE EXECUTED');
       $scope.menu.update(toUpdate);
-        // .then(function (response) {
-
-        // },
-        // function (error) {
-        //   console.log(error);
-        // });
     };
 
 
@@ -106,10 +99,10 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       User.setNewToLocal();
       $scope.menu.saveMenu(toUpdate)
         .then(function (success) {
-          console.log('success', success);
+          $scope.menuSuccess = success;
         },
           function (error) {
-            console.error('error', error);
+            $scope.menuError = error;
           });
     };
 
