@@ -15,8 +15,17 @@
           <p>
             <!--<span ng-if="!menuItem.inStock"><i class="fa fa-ban"></i></span>-->
             <span>{{menuItem.name}}</span>
-            <small ng-if="!menuItem.inStock" >out of stock</small>
-            <span class="right">{{menuItem.price | currency}}</span>
+            <span>
+            <i class="fa fa-heartbeat" ng-show="menuItem.isGlutenFree"></i>
+            <i class="fa fa-pagelines" ng-show="menuItem.isVegan"></i>
+            <i class="fa fa-circle-thin" ng-show="menuItem.isDairyFree"></i>
+            <i class="fa fa-leaf" ng-show="menuItem.isVegetarian"></i>
+            </span>
+            <span class="right">
+              <small ng-if="!menuItem.inStock" >out of stock</small>
+              <span ng-if="!menuItem.inStock" class="fa fa-ban"></span>
+              {{menuItem.price | currency}}
+            </span>
           </p>
         </li>
       </ul>

@@ -85,8 +85,11 @@
               <div class="row">
                 <div class="small-4 medium-7 large-9 columns">
                   {{food.name}}
-                  <i class="fa fa-leaf" ng-show="food.isVegetarian"></i>
+                  <i class="fa fa-heartbeat" ng-show="food.isGlutenFree"></i>
                   <i class="fa fa-pagelines" ng-show="food.isVegan"></i>
+                  <i class="fa fa-circle-thin" ng-show="food.isDairyFree"></i>
+                  <i class="fa fa-leaf" ng-show="food.isVegetarian"></i>
+
                 </div>
                 <div class="small-4 medium-3 large-2 columns">
                   <a ng-show="food.inStock" ng-click="updateStock(food)">In Stock</a>
