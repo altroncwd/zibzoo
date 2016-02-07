@@ -20,7 +20,7 @@ angular.module('zibzoo.merchant.order.factory', [])
       $http({
         method: 'PUT',
         url: 'api/orders',
-        data: update
+        data: { order: update }
       })
         .success(function (data) {
           return data;
