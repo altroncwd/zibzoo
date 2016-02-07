@@ -9,7 +9,7 @@
   }
 
   &.main {
-    margin-top: rem-calc(30); 
+    margin-top: rem-calc(30);
   }
 }
 
@@ -71,4 +71,13 @@
       line-height: 2.3125rem;
     }
   }
+}
+
+#logo{
+  height: 35px;
+  width: auto;
+}
+
+#nospace{
+  margin:0px;
 }
