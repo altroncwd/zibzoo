@@ -1,4 +1,6 @@
-var menuItemController = require('./menuItemController');
+var server = require('../server.js');
+var menuItemController = require('./menuItemController')(server.io);
+
 
 module.exports = function (app) {
 
