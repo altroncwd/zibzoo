@@ -3,6 +3,8 @@ angular.module('zibzoo.merchant.order', [])
 
     $scope.ordersList = Order.order;
 
+    var vendorName = JSON.parse($window.localStorage.getItem('_id')).name;
+
     $scope.itemFinished = function (currentOrder, index, parentIndex) {
       // console.log(currentOrder, index, parentIndex);
       Order.order[parentIndex].menuItems.splice(index, 1);
@@ -12,7 +14,7 @@ angular.module('zibzoo.merchant.order', [])
     };
 
     $scope.finishedOrder = function (index, order) {
-
+      order.vendorName = vendorName;
       Socket.emit('orderFinished', order);
       Order.callDbOrderFinished(order); // call to update the db
 
