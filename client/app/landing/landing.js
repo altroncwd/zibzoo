@@ -2,6 +2,7 @@ angular.module('zibzoo.landing', [])
   .controller('LandingController', ['$scope', '$state', 'vendor', 'location', function ($scope, $state, vendor, location) {
     $scope.location = null;
     $scope.vendors = [];
+    $scope.cuisines = [];
     $scope.loading = true;
 
     $scope.findVendors = function () {
@@ -18,6 +19,11 @@ angular.module('zibzoo.landing', [])
         .then(function (vendors) {
           $scope.vendors = vendors;
           $scope.loading = false;
+          $scope.vendors.forEach(function (vendorObj) {
+            if ($scope.cuisines.indexOf(vendorObj.cuisine) === -1) {
+              $scope.cuisines.push(vendorObj.cuisine);
+            }
+          });
         })
         .catch(function (error) {
           $scope.searchError = error.status;
