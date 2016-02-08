@@ -85,6 +85,7 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
 
 
     $scope.saveMenu = function () {
+      $scope.savingMenu = true;
       var toUpdate = [];
       var menuSection = $scope.models.dropzones.menu;
       for (var i = 0; i < menuSection.length; i++) {
@@ -100,8 +101,10 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
       $scope.menu.saveMenu(toUpdate)
         .then(function (success) {
           $scope.menuSuccess = success;
+          $scope.savingMenu = false;
         },
           function (error) {
+            $scope.savingMenu = false;
             $scope.menuError = error;
           });
     };

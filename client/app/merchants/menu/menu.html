@@ -107,7 +107,14 @@
         </div>
       </li>
     </ul>
-    <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
+    <div class="row">
+      <div class="small-3 columns">
+        <button ng-show="models.dropzones.menu.length" ng-click="saveMenu()">Save Menu</button>
+      </div>
+      <div class="small-9 columns">
+        <i class="fa fa-floppy-o fa-blink fa-3x" ng-show="savingMenu"></i>
+      </div>
+    </div>
   </div>
 
 

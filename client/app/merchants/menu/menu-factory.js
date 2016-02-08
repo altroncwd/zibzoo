@@ -42,6 +42,21 @@ angular.module('zibzoo.merchant.menu.factory', [])
       Socket.emit('updateStock', propsToUpdate);
     };
 
+    menu.updateMenuItem = function (propsToUpdate) {
+      return $http({
+        method: 'PUT',
+        url: 'api/menu',
+        data: propsToUpdate
+      })
+        .then(function (data) {
+          return data;
+        })
+        .catch(function (error) {
+          console.error('Error', error);
+        });
+    };
+
+
     menu.saveMenu = function (toBeUpdatedArray) {
       var promises = [];
       toBeUpdatedArray.forEach(function (menuItem) {
@@ -53,7 +68,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
             sectionIndex: menuItem.sectionIndex
           }
         };
-        var response = menu.update(propsToUpdate);
+        var response = menu.updateMenuItem(propsToUpdate);
         promises.push(response);
       });
       return $q.all(promises);
@@ -61,22 +76,22 @@ angular.module('zibzoo.merchant.menu.factory', [])
 
 
 
-    menu.saveMenuItem = function (menuItemObject) {
-      return $http({
-        method: 'POST',
-        url: 'api/menu',
-        data: menuItemObject
-      })
-        .success(function (data, status, headers, config) {
-          return data;
-        })
-        .error(function (data, status) {
-          console.error(
-            JSON.stringify(data),
-            JSON.stringify(status)
-            );
-        });
-    };
+menu.saveMenuItem = function (menuItemObject) {
+  return $http({
+    method: 'POST',
+    url: 'api/menu',
+    data: menuItemObject
+  })
+    .success(function (data, status, headers, config) {
+      return data;
+    })
+    .error(function (data, status) {
+      console.error(
+        JSON.stringify(data),
+        JSON.stringify(status)
+        );
+    });
+};
 
-    return menu;
+return menu;
   }]);
