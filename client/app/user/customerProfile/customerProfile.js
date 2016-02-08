@@ -38,12 +38,12 @@ angular.module('zibzoo.customer.profile', [])
       var cardUpdate = {
         stripeId: JSON.parse(customer).stripeId,
         card: card
-      }
+      };
 
       User.saveCard(cardUpdate)
         .then(function (response) {
-          
+
         });
-    }
+    };
 
   }]);
