@@ -150,7 +150,7 @@ module.exports = function (socket) {
     saveCard: function (req, res) {
       var customer = req.body.stripeId;
       var card = req.body.card;
-      var vendor = stripe('sk_test_rdpc0JihWCMKsFHnBexVmbsZ');
+      var vendor = stripe(process.env.STRIPE_TEST_API_KEY);
 
       vendor.customers.update(customer, {
         source: card
