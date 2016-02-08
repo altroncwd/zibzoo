@@ -76,22 +76,22 @@ angular.module('zibzoo.merchant.menu.factory', [])
 
 
 
-menu.saveMenuItem = function (menuItemObject) {
-  return $http({
-    method: 'POST',
-    url: 'api/menu',
-    data: menuItemObject
-  })
-    .success(function (data, status, headers, config) {
-      return data;
-    })
-    .error(function (data, status) {
-      console.error(
-        JSON.stringify(data),
-        JSON.stringify(status)
-        );
-    });
-};
+    menu.saveMenuItem = function (menuItemObject) {
+      return $http({
+        method: 'POST',
+        url: 'api/menu',
+        data: menuItemObject
+      })
+        .success(function (data, status, headers, config) {
+          return data;
+        })
+        .error(function (data, status) {
+          console.error(
+            JSON.stringify(data),
+            JSON.stringify(status)
+            );
+        });
+    };
 
-return menu;
+    return menu;
   }]);

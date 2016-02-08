@@ -6,7 +6,6 @@ angular.module('zibzoo', [
   'zibzoo.navbar.directive',
   'zibzoo.vendors.directive',
   'zibzoo.filtermenu.directive',
-  'zibzoo.image-uploader.directive',
   'zibzoo.places.directive',
   'zibzoo.cart',
   'zibzoo.auth',

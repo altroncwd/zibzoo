@@ -10,7 +10,7 @@
             <div>
               <label>
                 Business Name <small>required</small>
-                <input class="merchantName" ng-submit="updateVendor(vendor)" ng-model="vendor.name" required>
+                <input type="text" class="merchantName" ng-submit="updateVendor(vendor)" ng-model="vendor.name" required>
               </label>
             </div>
           </li>
@@ -35,7 +35,7 @@
                 </label>
               </li>
               <li>
-                <alert type="alert.type" class="setLocation" close="locationSuccess = false" ng-show="locationSuccess">Current Location Set!</alert>
+                <i class="fa fa-map-marker fa-blink fa-3x" ng-show="savingLocation"></i>
               </li>
             </ul>
           </li>
@@ -75,7 +75,14 @@
             </li>
           </ul>
         </div>
-        <button class="profileSubmit" type="submit">Save Profile</button>
+        <div class="row">
+          <div class="small-3 columns">
+            <button class="profileSubmit" type="submit">Save Profile</button>
+          </div>
+          <div class="small-9 columns">
+            <i class="fa fa-floppy-o fa-blink fa-3x" ng-show="savingProfile"></i>
+          </div>
+        </div>
       </div>
     </form>
   </div>

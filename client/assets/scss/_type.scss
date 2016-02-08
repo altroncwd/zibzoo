@@ -1,5 +1,20 @@
 .loading {
   text-align: center;
-  font-size: 2.5rem; 
+  font-size: 2.5rem;
   color: $primary-color;
+}
+
+ @keyframes fa-blink {
+     0% { opacity: 1; }
+     25% { opacity: 0.25; }
+     50% { opacity: 0.5; }
+     75% { opacity: 0.75; }
+     100% { opacity: 0; }
+ }
+.fa-blink {
+   animation: fa-blink 2s linear infinite;
+}
+
+.fa-floppy-o {
+    color: #ff6908;
 }
