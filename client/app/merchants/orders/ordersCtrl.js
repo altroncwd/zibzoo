@@ -24,6 +24,10 @@ angular.module('zibzoo.merchant.order', [])
 
     var listenOnMerchId = $stateParams.merchantId;
 
+    $scope.$on('$destroy', function (event) {
+      Socket.removeAllListeners('newOrder');
+    });
+
     Socket.emit('menuConnect', listenOnMerchId);
 
     Socket.on('newOrder', function (newOrder) {

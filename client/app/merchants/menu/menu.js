@@ -167,4 +167,8 @@ angular.module('zibzoo.merchant.menu', ['dndLists'])
     }
     $scope.clearItem();
 
+    $scope.$on('$destroy', function (event) {
+      Socket.removeAllListeners('updateStock');
+    });
+
   }]);

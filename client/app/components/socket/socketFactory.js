@@ -1,6 +1,7 @@
 angular.module('zibzoo.socketFactory', [])
   .factory('Socket', ['$rootScope', function ($rootScope) {
     var socket = io.connect();
+    var socketRun = false;
     var socketLogic = {
       on: function (eventName, callback) {
         socket.on(eventName, function () {
@@ -12,6 +13,9 @@ angular.module('zibzoo.socketFactory', [])
       },
 
       emit: function (eventName, data, callback) {
+        if (eventName === 'menuConnect' && socketRun) {
+          return;
+        }
         socket.emit(eventName, data, function () {
           var args = arguments;
           $rootScope.$apply(function () {
@@ -20,17 +24,12 @@ angular.module('zibzoo.socketFactory', [])
             }
           });
         });
+        socketRun = true;
+
       },
 
-// Remove callMultipleVendors if sockets are refactored for server side
-      callMultipleVendors: function (orderList) {
-        // order list should be a list of objects with a status key
-        for (var i = 0; i < orderList.length; i++) {
-          var currentVendorOrder = orderList[i];
-          if (currentVendorOrder.status === 'succeeded') {
-            socketLogic.emit(currentVendorOrder.vendorId, currentVendorOrder);
-          }
-        }
+      removeAllListeners: function (event) {
+        socket.removeAllListeners(event);
       }
 
     };
