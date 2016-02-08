@@ -42,6 +42,21 @@ angular.module('zibzoo.merchant.menu.factory', [])
       Socket.emit('updateStock', propsToUpdate);
     };
 
+    menu.updateMenuItem = function (propsToUpdate) {
+      return $http({
+        method: 'PUT',
+        url: 'api/menu',
+        data: propsToUpdate
+      })
+        .then(function (data) {
+          return data;
+        })
+        .catch(function (error) {
+          console.error('Error', error);
+        });
+    };
+
+
     menu.saveMenu = function (toBeUpdatedArray) {
       var promises = [];
       toBeUpdatedArray.forEach(function (menuItem) {
@@ -53,7 +68,7 @@ angular.module('zibzoo.merchant.menu.factory', [])
             sectionIndex: menuItem.sectionIndex
           }
         };
-        var response = menu.update(propsToUpdate);
+        var response = menu.updateMenuItem(propsToUpdate);
         promises.push(response);
       });
       return $q.all(promises);
