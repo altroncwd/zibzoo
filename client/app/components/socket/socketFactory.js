@@ -20,17 +20,11 @@ angular.module('zibzoo.socketFactory', [])
             }
           });
         });
+
       },
 
-// Remove callMultipleVendors if sockets are refactored for server side
-      callMultipleVendors: function (orderList) {
-        // order list should be a list of objects with a status key
-        for (var i = 0; i < orderList.length; i++) {
-          var currentVendorOrder = orderList[i];
-          if (currentVendorOrder.status === 'succeeded') {
-            socketLogic.emit(currentVendorOrder.vendorId, currentVendorOrder);
-          }
-        }
+      removeAllListeners: function (event) {
+        socket.removeAllListeners(event);
       }
 
     };
