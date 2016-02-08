@@ -107,13 +107,13 @@ module.exports = function (socket) {
                 vendorId: vendorIds[key]
               }
             };
-            console.log("BEFORE CHARGE");
+
             return chargeRecipient.charges.create(chargeObj);
           });
         })
         .then(function (chargeObjArr) {
           var savedOrders = [];
-          console.log("AFTER CHARGE");
+
           for (var i = 0; i < chargeObjArr.length; i++) {
             var order = {
               vendorId: vendorIds[i],
@@ -137,21 +137,30 @@ module.exports = function (socket) {
           });
         })
         .then(function (storedOrders) {
-          // console.log(storedOrders);
-          // TODO: Remove unnecessary code if sockets are implemented separately
           for (var i = 0; i < storedOrders.length; i++) {
             var storedOrder = storedOrders[i];
             if (storedOrder.transactionStatus === 'succeeded') {
-
-              console.log(storedOrder.vendorId);
-              console.log(storedOrder);
               socket.to(storedOrder.vendorId).emit('newOrder', storedOrder);
             }
           }
-
-          // utils.sendHttpResponse(storedOrders, res, 201, 404);
         });
 
+    },
+
+    saveCard: function (req, res) {
+      var customer = req.body.stripeId;
+      var card = req.body.card;
+      var vendor = stripe('sk_test_rdpc0JihWCMKsFHnBexVmbsZ');
+
+      vendor.customers.update(customer, {
+        source: card
+      })
+      .then(function (data) {
+        utils.sendHttpResponse(data, res, 401, 403);
+      })
+      .catch(function (error) {
+        utils.sendHttpResponse(error, res, 201, 403);
+      })
     }
   };
 

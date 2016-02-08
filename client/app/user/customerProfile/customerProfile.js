@@ -1,9 +1,11 @@
 angular.module('zibzoo.customer.profile', [])
-  .controller('CustomerProfileController', ['$scope', 'User', function ($scope, User) {
+  .controller('CustomerProfileController', ['$scope', '$window', 'User', function ($scope, $window, User) {
     User.getFromLocal();
 
     $scope.customer = User.data;
-
+    $scope.card = {
+      object: 'card'
+    };
     $scope.diff = {
       _id: $scope.customer._id,
       propertiesToUpdate: {}
@@ -20,6 +22,7 @@ angular.module('zibzoo.customer.profile', [])
       delete $scope.diff.propertiesToUpdate.isVendor;
       delete $scope.diff.propertiesToUpdate.propertiesToUpdate;
       User.setData($scope.diff);
+
       User.updateCustomer($scope.diff)
         .then(function (data) {
           $scope.updateSuccess = data;
@@ -28,5 +31,19 @@ angular.module('zibzoo.customer.profile', [])
           $scope.updateError(error);
         });
     };
+
+    $scope.saveCard = function (card) {
+      var customer = $window.localStorage.getItem('_id');
+
+      var cardUpdate = {
+        stripeId: JSON.parse(customer).stripeId,
+        card: card
+      }
+
+      User.saveCard(cardUpdate)
+        .then(function (response) {
+          
+        });
+    }
 
   }]);

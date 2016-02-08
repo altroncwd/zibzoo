@@ -41,16 +41,16 @@ angular.module('zibzoo.user.factory', [])
       $rootScope.$broadcast('user:updated');
     };
 
-    // user.charge = function (orders) {
-    //   return $http({
-    //     method: 'POST',
-    //     url: '/api/customer/charge',
-    //     data: orders
-    //   })
-    //     .then(function (res) {
-    //       return res.data;
-    //     });
-    // };
+    user.saveCard = function (card) {
+      return $http({
+        method: 'POST',
+        url: '/api/customer/card',
+        data: card
+      })
+        .then(function (res) {
+          return res.data;
+        });
+    };
 
     user.getFromLocal = function () {
       var data = JSON.parse($window.localStorage.getItem('_id'));

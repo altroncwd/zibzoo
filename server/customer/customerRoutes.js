@@ -7,5 +7,6 @@ module.exports = function (app) {
   app.post('/signin', customerController.signIn);
   app.put('/update', customerController.updateCustomer);
   app.post('/charge', customerController.chargeOrders);
+  app.post('/card', customerController.saveCard);
 
 };
