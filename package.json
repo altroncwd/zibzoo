@@ -4,8 +4,8 @@
   "description": "A food truck ordering app",
   "main": "client/index.html",
   "engines": {
-    "node": "5.0.0",
-    "npm": "3.0.0"
+    "node": "5.5.0",
+    "npm": "3.7.1"
   },
   "scripts": {
     "lint": "eslint client/app server/ test/",
