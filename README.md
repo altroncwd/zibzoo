@@ -1,4 +1,4 @@
-# zibzoo
+# Zibzoo
 
 [![Build Status](https://travis-ci.org/unforgitables/zibzoo.svg?branch=master)](https://travis-ci.org/unforgitables/zibzoo)
 
@@ -7,8 +7,8 @@ A food truck ordering web application and anyalics platform for vendors.
 # installation
 Getting started is simple, run
 ```
- NPM install
- NPM start
+ npm install
+ npm start
 ```
 Once you have finished that you will to obtain your won api keys.
 
@@ -32,7 +32,7 @@ Server : continas the server, middleware, express routing, sockets, nodemailer a
 
 Spec : contains all Jasmine / Karma tests which are split up into a client and server spec folder.
 ```
-ZibZoo
+Zibzoo
   |-client
   |---app             # Views / Controllers / Factories
   |---assets          # SASS files
@@ -63,11 +63,10 @@ Vendors :
 - Update all your customers with instock menu items
 
 # Future Features
-- Anyalitic data and display page
-- Filter by cuisine types
+- Analytic data and display page for vendors
 - Allow vendors to select multiple cuisine types
-- Implement auto picture cropping
-- User favorites
+- Implement auto-cropping for uploaded images
+- Allow users to save favorite food trucks to their profile
 - Sorting orders based on geolocation
 - Ordering food for pickup at a specific time
 
@@ -76,26 +75,26 @@ Testing done in Jasmine/Karma.  Coverage [ 80% ]
 
 Testing includes both backend and front end coverage
 ```
-  NPM run test:client
-  NPM run test:server
+  npm run test:client
+  npm run test:server
 ```
 
 # Style Guide
 All files are writen using a modified styleguide from Airb&b.
-run the linting file to fix minor mistakes, see the contributing guide for more details
+Run the linting file to fix minor mistakes, see the contributing guide for more details
 ```
-  NPM run lint:fix
+  npm run lint:fix
 ```
 
-# Licence
-  ZibZoo is a project made with help and copoeration from MakerSquare [ http://www.makersquare.com/ ]
-  The project is open source but full credit must be given to any and all projects forked from this repo
+# License
+  Zibzoo is a project made with help and cooperation from MakerSquare [ http://www.makersquare.com/ ]
+  The project is open source but full credit must be given by any and all projects forked from this repo
 
 # Contributors
 - Ahmed Modan [ https://github.com/ahmedmodan ]
 - Benjiamin Marinacci [ https://github.com/bcmarinacci ]
 - Christopher Decker [ https://github.com/altroncwd ]
 - Ian B. [ https://github.com/ibari ]
-- Tom Bergen [ https://github.com/tbergen1 ]
+- Thomas Bergen [ https://github.com/tbergen1 ]
 
 
