@@ -19,7 +19,7 @@ Once you have finished that you will to obtain your won api keys.
 - Express
 - MongoDB
 - Karma
-- Jasmine
+- Should.Js
 - Stripe
 - Gulp
 - SASS
@@ -32,7 +32,7 @@ Client : holds all files associated with with the View, Controllers, and Factori
 
 Server : continas the server, middleware, express routing, sockets, nodemailer and helper functions.
 
-Spec : contains all Jasmine / Karma tests which are split up into a client and server spec folder.
+Spec : contains all Should.Js / Karma tests which are split up into a client and server spec folder.
 ```
 Zibzoo
   |-client
@@ -46,7 +46,7 @@ Zibzoo
   |---routes
   |---sockets         # Socket.io files
   |---utils
-  |-spec              # Jasmine / Karma testing files
+  |-spec              # Should.js / Karma testing files
 
 ```
 # Features
@@ -73,7 +73,7 @@ Vendors :
 - Ordering food for pickup at a specific time
 
 # Tests
-Testing done in Jasmine/Karma.  Coverage [ 80% ]
+Testing done in Should.js/Karma.  Coverage [ 80% ]
 
 Testing includes both backend and front end coverage
 ```
