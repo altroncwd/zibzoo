@@ -4,7 +4,7 @@
 
 A food truck ordering web application that helps you avoid the lines, and connects vendors to its users in real time.
 
-For more information check out Our_Story.md
+For more information check out [Our_Story.md](Our_Story.md)
 
 # installation
 Getting started is simple, run
