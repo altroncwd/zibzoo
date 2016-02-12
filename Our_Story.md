@@ -4,13 +4,13 @@ With the breadth of food trucks in San Francisco, the choice can be overwhelming
 What if you could place your order before going on lunch and bypass all of the lines at your favorite food truck? Using Zibzoo this dream becomes a reality.
 Zibzoo is a web application that removes the hassle of ordering from popular food trucks by allowing you to pre-order your meal and pick it up at your convenience.
 
-When you first log on to Zibzoo, it will find your current location and show you a list of food trucks in your area. Filter by cuisine type to quickly find what you are looking for. Want to order from food trucks that aren't in your area? Just type a location and Zibzoo will pull up all the food trucks nearby.
+When you first log on to Zibzoo, it will find your current location and show you a list of food trucks in your area. Want to order from food trucks that aren't in your area? Just type a location and Zibzoo will pull up all the food trucks nearby.
 
 When you decide on a truck you'll be taken to its menu page. There you can browse all that the food truck has to offer and be updated in real time when those items become unavailable. When something catches your eye, add it to your cart. Ordering for a group? No worries, you can add items from multiple vendors to your cart.  When you're ready to checkout, confirm and pay. Zibzoo will intelligently send your orders to the desired trucks. The vendors will be notified immediately of your order, allowing them to fulfill it as quickly as possible.
 
 As a vendor Zibzoo allows you to dynamically adjust your business so you're always ready for any situation. Adjust your menu to showcase underperforming items or change the look or feel of it by simply dragging and dropping entire sections. When you have fulfilled an order notify your customer via email with a single click
 
-Zibzoo delivers a clean and dynamic interface by leveraging Angular JS as the client side framework. To ensure quick and reliable data access and distribution, Zibzoo's server were built using Express and Node.js. Zibzoo also harnesses the power of MongoDB to provide lightning fast data lookup. Using Socket.io for robust real time event-based communication, and Stripe, for secure and reliable payment processing, Zibzoo provides a seamless user experience.
+Zibzoo delivers a clean and dynamic interface by leveraging Angular JS as the client side framework. To ensure quick and reliable data access and distribution, Zibzoo's server was built using Express and Node.js. Zibzoo also harnesses the power of MongoDB to provide lightning fast data lookup, Socket.io for robust real time event-based communication, and Stripe, for secure and reliable payment processing.
 
 Zibzoo was created by a team of 5 full stack software engineers, Benji Marinacci, Tom Bergen, Ahmed Modan, Ian Bari, & Christopher Decker.
 
