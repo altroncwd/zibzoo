@@ -39,12 +39,10 @@ Zibzoo
   |---app             # Views / Controllers / Factories
   |---assets          # SASS files
   |---build           # SASS files
-  |-server
+  |-server            # NodeMailer / Socket.io files
   |---config          # Middleware
   |---db
-  |---mailer          # NodeMailer files
   |---routes
-  |---sockets         # Socket.io files
   |---utils
   |-spec              # Should.js / Karma testing files
 
