@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/unforgitables/zibzoo.svg?branch=master)](https://travis-ci.org/unforgitables/zibzoo)
 
-A food truck ordering web application that helps connect vendors and customer in real time and helps you avoid the lines.
+A food truck ordering web application that helps you avoid the lines, and connects vendors to its users in real time.
 
 For more information check out Our_Story.md
 
